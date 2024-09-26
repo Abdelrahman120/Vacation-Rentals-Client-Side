@@ -1,0 +1,11 @@
+.landing{
+  background-image: url('../../../public/landing.jpeg');
+  color: white;
+  background-size: cover;
+  height: 100vh;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
