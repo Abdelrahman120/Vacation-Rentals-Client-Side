@@ -1,0 +1,203 @@
+<div class="log py-2">
+
+<div class="container w-50 border  rounded px-5 my-2 py-2" >
+    <h2 class="text-center my-3">Add Property</h2>
+    <form [formGroup]="AddForm" (ngSubmit)="handleSubmit()">
+        <div class="row">
+        <div class="mb-2 col-md-6">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" formControlName="name">
+       
+        @if(AddForm.get('name')?.invalid &&
+        (AddForm.get('name')?.touched || submitted)){
+        <div id="nameErrors" class="form-text text-danger">
+            @if(AddForm.get('name')?.hasError('required')){
+            <span>Required</span>
+            }
+        </div> 
+        }
+    </div>
+    <div class="mb-2 col-md-6">
+        <label for="headline" class="form-label">headline</label>
+        <input type="text" name="headline" class="form-control" formControlName="headline">
+    
+    @if(AddForm.get('headline')?.invalid &&
+    (AddForm.get('headline')?.touched || submitted)){
+    <div id="headlineErrors" class="form-text text-danger">
+        @if(AddForm.get('headline')?.hasError('required')){
+        <span>Required</span>
+        }
+    </div> 
+    }
+</div>
+<div class="mb-2 col-md-4">
+    <label for="country" class="form-label">Country</label>
+    <input type="text" name="country" class="form-control" formControlName="country">
+
+@if(AddForm.get('country')?.invalid &&
+(AddForm.get('country')?.touched || submitted)){
+<div id="countryErrors" class="form-text text-danger">
+    @if(AddForm.get('country')?.hasError('required')){
+    <span>Required</span>
+    }
+</div> 
+}
+</div>  <div class="mb-2 col-md-4">
+    <label for="city" class="form-label">City</label>
+    <input type="text" name="city" class="form-control" formControlName="city">
+
+@if(AddForm.get('city')?.invalid &&
+(AddForm.get('city')?.touched || submitted)){
+<div id="cityErrors" class="form-text text-danger">
+    @if(AddForm.get('city')?.hasError('required')){
+    <span>Required</span>
+    }
+</div> 
+}
+</div>  <div class="mb-2 col-md-4">
+    <label for="address" class="form-label">Address</label>
+    <input type="text" name="address" class="form-control" formControlName="address">
+
+@if(AddForm.get('address')?.invalid &&
+(AddForm.get('address')?.touched || submitted)){
+<div id="addressErrors" class="form-text text-danger">
+    @if(AddForm.get('address')?.hasError('required')){
+    <span>Required</span>
+    }
+</div> 
+}
+</div>
+        <div class="mb-2 col-md-6">
+            <label for="price" class="form-label">price</label>
+            <input type="text" name="price" class="form-control" formControlName="price">
+       
+        @if(AddForm.get('price')?.invalid &&
+        (AddForm.get('price')?.touched || submitted)){
+        <div id="priceErrors" class="form-text text-danger">
+            @if(AddForm.get('price')?.hasError('required')){
+            <span>Required</span>
+            }
+        </div> 
+        }
+    </div> 
+    <div class="mb-2 col-md-6">
+        <label for="number_of_room" class="form-label">number_of_room</label>
+        <input type="number" name="number_of_room" class="form-control" formControlName="number_of_room">
+    
+    @if(AddForm.get('number_of_room')?.invalid &&
+    (AddForm.get('number_of_room')?.touched || submitted)){
+    <div id="number_of_roomErrors" class="form-text text-danger">
+        @if(AddForm.get('number_of_room')?.hasError('required')){
+        <span>Required</span>
+        }
+    </div>
+}
+</div>
+    
+    
+        <div class="mb-2 col-md-12 ">
+            <label for="exampleInputEmail1" class="form-label">Description</label>
+            <textarea   name="description" class="form-control" formControlName="description" 
+                aria-describedby="emailHelp">
+             </textarea>
+        @if(AddForm.get('description')?.invalid &&
+        (AddForm.get('description')?.touched || submitted)){
+        <div id="descriptionErrors" class="form-text text-danger">
+            @if(AddForm.get('description')?.hasError('required')){
+            <span>Required</span>
+            }
+           
+        </div>
+        }
+    </div>
+    <div class="mb-2 col-md-12 ">
+        <label for="exampleInputEmail1" class="form-label">Amenities</label>
+        <textarea   name="amenities" class="form-control" formControlName="amenities" 
+            aria-describedby="emailHelp">
+         </textarea>
+    @if(AddForm.get('amenities')?.invalid &&
+    (AddForm.get('amenities')?.touched || submitted)){
+    <div id="amenitiesErrors" class="form-text text-danger">
+        @if(AddForm.get('amenities')?.hasError('required')){
+        <span>Required</span>
+        }
+       
+    </div>
+    }
+</div>
+     <div class="mb-2 col-md-6">
+            <label for="status" class="form-label">status</label>
+            <select name="status" class="form-control" formControlName="status">
+                <option value="available">available</option>
+                <option value="unavailable">unavailable</option>
+            </select>
+        </div>
+        @if(AddForm.get('status')?.invalid &&
+        (AddForm.get('status')?.touched || submitted)){
+        <div id="statusErrors" class="form-text text-danger">
+            @if(AddForm.get('status')?.hasError('required')){
+            <span>Required</span>
+            }
+        </div> 
+        }
+         <div class="mb-2 col-md-6">
+            <label for="category" class="form-label">category</label>
+            <select name="category_id" class="form-control" formControlName="category_id" id="">
+                <!-- @for (item of categories; track item.id) { -->
+                    <option value="home">home</option>
+                    <option value="hh">nn</option>
+                    <option value="jj">hh</option>
+
+                <!-- } -->
+            </select>
+        </div>
+        @if(AddForm.get('category_id')?.invalid &&
+        (AddForm.get('category_id')?.touched || submitted)){
+        <div id="category_idErrors" class="form-text text-danger">
+            @if(AddForm.get('category_id')?.hasError('required')){
+            <span>Required</span>
+            }
+        </div> 
+        }
+        
+
+        <div class="mb-2 col-md-6">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" id="image" class="form-control" (change)="onFileChange($event)">
+            
+       
+        @if(AddForm.get('image')?.invalid &&
+        (AddForm.get('image')?.touched || submitted)){
+        <div id="imageErrors" class="form-text text-danger">
+            @if(AddForm.get('image')?.hasError('required')){
+            <span>Required</span>
+            }
+           
+        </div>
+        }
+        
+    </div>
+   
+    <div class="mb-2 col-md-6">
+        <label for="night_rate" class="form-label">night_rate</label>
+        <input type="text" name="night_rate" class="form-control" formControlName="night_rate">
+    
+    @if(AddForm.get('night_rate')?.invalid &&
+    (AddForm.get('night_rate')?.touched || submitted)){
+    <div id="night_rateErrors" class="form-text text-danger">
+        @if(AddForm.get('night_rate')?.hasError('required')){
+        <span>Required</span>
+        }
+    </div> 
+    }
+</div>
+
+      
+        
+        <div class="d-flex justify-content-center col-md-12">
+            <button type="submit"  class="btn btn-primary w-50 m-auto "> Add Property</button>
+        </div>
+    </div>
+    </form>
+</div>
+</div>

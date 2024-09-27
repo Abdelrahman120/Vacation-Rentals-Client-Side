@@ -1,0 +1,160 @@
+<div class="log ">
+
+    <div class="container mt-5 w-50 border rounded px-5 p-1" >
+
+        <h1 class="text-center my-2">Register</h1>
+        <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+            <div class="row">
+                <div class="mb-2 col-md-6">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control" formControlName="name">
+
+
+                    @if(registerForm.get('name')?.invalid &&
+                    (registerForm.get('name')?.touched || submitted)){
+                    <div id="nameErrors" class="form-text text-danger">
+                        @if(registerForm.get('name')?.hasError('required')){
+                        <span>Required</span>
+                        }
+                    </div>
+                    }
+                </div>
+
+                <div class="mb-2 col-md-6">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" name="address" class="form-control" formControlName="address">
+
+                    @if(registerForm.get('address')?.invalid &&
+                    (registerForm.get('address')?.touched || submitted)){
+                    <div id="addressErrors" class="form-text text-danger">
+                        @if(registerForm.get('address')?.hasError('required')){
+                        <span>Required</span>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="mb-2 col-md-6">
+                    <label for="phone" class="form-label">phone</label>
+                    <input type="text" name="phone" class="form-control" formControlName="phone">
+
+                    @if(registerForm.get('phone')?.invalid &&
+                    (registerForm.get('phone')?.touched || submitted)){
+                    <div id="phoneErrors" class="form-text text-danger">
+                        @if(registerForm.get('phone')?.hasError('required')){
+                        <span>Required</span>
+                        }
+                    </div>
+                    }
+                </div>
+
+                <div class="mb-2 col-md-6">
+                <label for="company_name" class="form-label">Company Name</label>
+                <input type="text" name="company_name" class="form-control" formControlName="company_name">
+
+                @if(registerForm.get('company_name')?.invalid &&
+                (registerForm.get('company_name')?.touched || submitted)){
+                <div id="company_nameErrors" class="form-text text-danger">
+                    @if(registerForm.get('company_name')?.hasError('required')){
+                    <span>Required</span>
+                    }
+                </div>
+                }
+            </div>
+            <div class="mb-2 col-md-6">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control" formControlName="email" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+
+                @if(registerForm.get('email')?.invalid &&
+                (registerForm.get('email')?.touched || submitted)){
+                <div id="emailErrors" class="form-text text-danger">
+                    @if(registerForm.get('email')?.hasError('required')){
+                    <span>Required</span>
+                    }
+                    @if(registerForm.get('email')?.hasError('pattern')){
+                    <span>Email is not valid</span>
+                    }
+                </div>
+                }
+            </div>
+            <div class="mb-2 col-md-6">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" id="image" class="form-control" (change)="onFileChange($event)">
+                <!-- <div *ngIf="registerForm.get('image')?.invalid && (registerForm.get('image')?.touched || submitted)" class="form-text text-danger">
+                <span *ngIf="registerForm.get('image')?.hasError('required')">Required</span>
+            </div> -->
+
+                @if(registerForm.get('image')?.invalid &&
+                (registerForm.get('image')?.touched || submitted)){
+                <div id="imageErrors" class="form-text text-danger">
+                    @if(registerForm.get('image')?.hasError('required')){
+                    <span>Required</span>
+                    }
+
+                </div>
+                }
+            </div>
+            <div class="mb-2 col-md-12">
+                <label for="description" class="form-label">Description </label>
+                <input type="text" name="description" class="form-control" formControlName="description">
+
+                @if(registerForm.get('description')?.invalid &&
+                (registerForm.get('description')?.touched || submitted)){
+                <div id="descriptionErrors" class="form-text text-danger">
+                    @if(registerForm.get('description')?.hasError('required')){
+                    <span>Required</span>
+                    }
+                </div>
+                }
+            </div>
+            <!-- <input type="hidden" name="role" value="user" formControlName="role"> -->
+            <div class="mb-2 col-md-6">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" formControlName="password"
+                    id="exampleInputPassword1">
+
+
+                @if(registerForm.get('password')?.invalid &&
+                (registerForm.get('password')?.touched || submitted)){
+                <div id="passwordErrors" class="form-text text-danger">
+                    @if(registerForm.get('password')?.hasError('required')){
+                    <span>Required</span>
+                    }
+                    @if(registerForm.get('password')?.hasError('minlength')){
+                    <span>minlength 8 characters
+                    </span>
+                    }
+
+
+                </div>
+                }
+            </div>
+            <div class="mb-2 col-md-6">
+                <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control" formControlName="confirm_password"
+                    id="exampleInputconfirm_Password1">
+
+
+                @if(registerForm.get('confirm_password')?.invalid &&
+                (registerForm.get('confirm_password')?.touched || submitted)){
+                <div id="confirm_passwordErrors" class="form-text text-danger">
+                    @if(registerForm.get('confirm_password')?.hasError('required')){
+                    <span>Required</span>
+                    }
+                    @if(registerForm.get('confirm_password')?.hasError('minlength')){
+                    <span>minlength 8 characters
+                    </span>
+                    }
+
+
+                </div>
+                }
+            </div>
+            <div class="d-flex justify-content-center my-3">
+                <button type="submit" class="btn btn-primary w-50 m-auto "> Register</button>
+            </div>
+    </div>
+    </form>
+</div>
+
+</div>
