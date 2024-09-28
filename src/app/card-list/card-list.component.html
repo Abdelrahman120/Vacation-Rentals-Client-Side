@@ -1,1 +1,8 @@
-<p>card-list works!</p>
+<div class="container tw-mt-12">
+  <app-search-input></app-search-input>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    @for (property of properties; track $index) {
+    <app-item-card [property]="property"></app-item-card>
+    }
+  </div>
+</div>

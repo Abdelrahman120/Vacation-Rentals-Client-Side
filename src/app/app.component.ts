@@ -12,11 +12,12 @@ import { PropertiesComponent } from "./properties/properties.component";
 import { CategoryComponent } from "./category/category.component";
 import { AddCategoryComponent } from "./add-category/add-category.component";
 import { EditCategoryComponent } from "./edit-category/edit-category.component";
+import { CardListComponent } from "./card-list/card-list.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, HeroComponent, LoginComponent, RegisterComponent, AddPropertyComponent, EditPropertyComponent, NotAuthorizedComponent, PropertiesComponent, CategoryComponent, AddCategoryComponent, EditCategoryComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, HeroComponent, LoginComponent, RegisterComponent, AddPropertyComponent, EditPropertyComponent, NotAuthorizedComponent, PropertiesComponent, CategoryComponent, AddCategoryComponent, EditCategoryComponent, CardListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

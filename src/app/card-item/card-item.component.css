@@ -1,0 +1,12 @@
+.card {
+  max-width: 30em;
+  flex-direction: row;
+}
+
+.card img {
+  max-width: 50%;
+}
+
+.card-item:hover > h1 {
+  text-decoration: underline;
+}
