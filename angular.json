@@ -31,7 +31,9 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -97,6 +99,6 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "e7f06051-7f76-4049-9b46-4182f01137e5"
   }
 }
