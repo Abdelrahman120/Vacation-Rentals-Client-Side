@@ -1,4 +1,4 @@
 import { Routes } from '@angular/router';
-import { CardListComponent } from './card-list/card-list.component';
+import { CardListComponent } from './property/list-property/card-list.component';
 
 export const routes: Routes = [];

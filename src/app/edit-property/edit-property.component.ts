@@ -1,22 +1,18 @@
-
 import { Component } from '@angular/core';
-import { ReactiveFormsModule,
-
+import {
+  ReactiveFormsModule,
   FormBuilder,
   FormControl,
-  FormGroup, 
+  FormGroup,
   Validators,
-
-
 } from '@angular/forms';
+
 import { NgIf } from '@angular/common';
-// import { CategoryService } from '../category.service';
 import { Router } from '@angular/router';
-// import { ProductService } from '../product.service';
 @Component({
   selector: 'app-edit-property',
   standalone: true,
-  imports: [ReactiveFormsModule,NgIf],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './edit-property.component.html',
   styleUrl: './edit-property.component.css'
 })
@@ -25,7 +21,7 @@ export class EditPropertyComponent {
 
   AddForm: FormGroup;
   categories: any[] = [];
-  constructor(private fb: FormBuilder,private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.AddForm = this.fb.group({
       name: ['', Validators.required],
       image: ['', [Validators.required,]],
@@ -45,12 +41,11 @@ export class EditPropertyComponent {
   }
   // ngOnInit(): void {
   //   this.categoryService.getCategories().subscribe((data: any) => {
-  //     this.categories = data.data;
-  //     //  console.log(this.categories[0].name);
-      
+  //   this.categories = data.data;
+  //   console.log(this.categories[0].name);
   //   });
   // }
-  
+
   onFileChange(event: any): void {
     const file = event.target.files[0];
     this.AddForm.patchValue({
@@ -59,8 +54,8 @@ export class EditPropertyComponent {
   }
 
   submitted = false
-  
-  handleSubmit(){
+
+  handleSubmit() {
     this.submitted = true;
     if (this.AddForm.valid) {
       const formData = new FormData();

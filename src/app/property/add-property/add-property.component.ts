@@ -16,9 +16,10 @@ import { Router } from '@angular/router';
   styleUrl: './add-property.component.css'
 })
 export class AddPropertyComponent {
-
   AddForm: FormGroup;
   categories: any[] = [];
+  submitted = false
+
   constructor(private fb: FormBuilder, private router: Router) {
     this.AddForm = this.fb.group({
       name: ['', Validators.required],
@@ -36,21 +37,12 @@ export class AddPropertyComponent {
       status: ['', [Validators.required,]],
     });
   }
-  // ngOnInit(): void {
-  //   this.categoryService.getCategories().subscribe((data: any) => {
-  //     this.categories = data.data;
-  //  console.log(this.categories[0].name);
-  //   });
-  // }
-
   onFileChange(event: any): void {
     const file = event.target.files[0];
     this.AddForm.patchValue({
       image: file
     });
   }
-
-  submitted = false
 
   handleSubmit() {
     this.submitted = true;
@@ -59,17 +51,6 @@ export class AddPropertyComponent {
       Object.keys(this.AddForm.value).forEach(key => {
         formData.append(key, this.AddForm.get(key)?.value);
       });
-
-      // this.productService.addProduct(formData).subscribe(
-      //   response => {
-      //     console.log('Add successful:', response);
-      //     this.router.navigate(['/product']);
-      //   },
-      //   error => {
-      //     console.error('Add failed:', error);
-      //   }
-      // );
     }
   }
-
 }

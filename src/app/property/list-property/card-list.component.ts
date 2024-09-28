@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { PropertyService } from '../service/property.service';
-import { CardItemComponent } from "../card-item/card-item.component";
-import { SearchInputComponent } from "../search-input/search-input.component";
+import { PropertyService } from '../../service/property.service';
+import { CardItemComponent } from "../property-card/card-item.component";
+import { SearchInputComponent } from "../../search-input/search-input.component";
 
 @Component({
   selector: 'app-card-list',

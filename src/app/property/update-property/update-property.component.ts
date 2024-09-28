@@ -2,21 +2,21 @@ import { Component } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
-
 @Component({
-  selector: 'app-add-property',
+  selector: 'app-update-property',
   standalone: true,
   imports: [ReactiveFormsModule, NgIf],
-  templateUrl: './add-property.component.html',
-  styleUrl: './add-property.component.css'
+  templateUrl: './update-property.component.html',
+  styleUrl: './update-property.component.css'
 })
-export class AddPropertyComponent {
-
+export class UpdatePropertyComponent {
   AddForm: FormGroup;
   categories: any[] = [];
   constructor(private fb: FormBuilder, private router: Router) {
@@ -34,14 +34,9 @@ export class AddPropertyComponent {
       country: ['', [Validators.required,]],
       address: ['', [Validators.required,]],
       status: ['', [Validators.required,]],
+
     });
   }
-  // ngOnInit(): void {
-  //   this.categoryService.getCategories().subscribe((data: any) => {
-  //     this.categories = data.data;
-  //  console.log(this.categories[0].name);
-  //   });
-  // }
 
   onFileChange(event: any): void {
     const file = event.target.files[0];
@@ -59,17 +54,6 @@ export class AddPropertyComponent {
       Object.keys(this.AddForm.value).forEach(key => {
         formData.append(key, this.AddForm.get(key)?.value);
       });
-
-      // this.productService.addProduct(formData).subscribe(
-      //   response => {
-      //     console.log('Add successful:', response);
-      //     this.router.navigate(['/product']);
-      //   },
-      //   error => {
-      //     console.error('Add failed:', error);
-      //   }
-      // );
     }
   }
-
 }
