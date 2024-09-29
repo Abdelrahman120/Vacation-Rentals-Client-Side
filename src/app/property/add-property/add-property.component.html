@@ -93,37 +93,19 @@
           </div>
           }
         </div>
-        <div class="mb-2 col-md-6">
-          <label for="price" class="form-label">price</label>
-          <input
-            type="text"
-            name="price"
-            class="form-control"
-            formControlName="price"
-          />
-
-          @if(AddForm.get('price')?.invalid && (AddForm.get('price')?.touched ||
-          submitted)){
-          <div id="priceErrors" class="form-text text-danger">
-            @if(AddForm.get('price')?.hasError('required')){
-            <span>Required</span>
-            }
-          </div>
-          }
-        </div>
-        <div class="mb-2 col-md-6">
-          <label for="number_of_room" class="form-label">number_of_room</label>
+        <div class="mb-2 col-md-12">
+          <label for="number_of_room" class="form-label">number of rooms</label>
           <input
             type="number"
-            name="number_of_room"
+            name="number_of_rooms"
             class="form-control"
-            formControlName="number_of_room"
+            formControlName="number_of_rooms"
           />
 
-          @if(AddForm.get('number_of_room')?.invalid &&
-          (AddForm.get('number_of_room')?.touched || submitted)){
+          @if(AddForm.get('number_of_rooms')?.invalid &&
+          (AddForm.get('number_of_rooms')?.touched || submitted)){
           <div id="number_of_roomErrors" class="form-text text-danger">
-            @if(AddForm.get('number_of_room')?.hasError('required')){
+            @if(AddForm.get('number_of_rooms')?.hasError('required')){
             <span>Required</span>
             }
           </div>
@@ -190,9 +172,9 @@
             id=""
           >
             <!-- @for (item of categories; track item.id) { -->
-            <option value="home">home</option>
-            <option value="hh">nn</option>
-            <option value="jj">hh</option>
+            <option value="1">home</option>
+            <option value="2">nn</option>
+            <option value="3">hh</option>
 
             <!-- } -->
           </select>

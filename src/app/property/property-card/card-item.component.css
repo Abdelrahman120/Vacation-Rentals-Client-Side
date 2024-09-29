@@ -1,12 +1,10 @@
-.card {
-  max-width: 30em;
-  flex-direction: row;
+.hover-effect {
+  position: absolute;
+  top: 2%;
+  right: 4%;
+  transition: transform 0.3s ease;
 }
 
-.card img {
-  max-width: 50%;
-}
-
-.card-item:hover > h1 {
-  text-decoration: underline;
+.hover-effect:hover {
+  transform: scale(1.1);
 }

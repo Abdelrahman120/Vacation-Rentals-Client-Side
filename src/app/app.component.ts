@@ -5,7 +5,7 @@ import { FooterComponent } from "./footer/footer.component";
 import { HeroComponent } from "./hero/hero.component";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
-import { AddPropertyComponent } from "./add-property/add-property.component";
+import { AddPropertyComponent } from "./property/add-property/add-property.component"; //./add-property/add-property.component // ./property/add-property/add-property.component
 import { EditPropertyComponent } from "./edit-property/edit-property.component";
 import { NotAuthorizedComponent } from "./not-authorized/not-authorized.component";
 import { PropertiesComponent } from "./properties/properties.component";

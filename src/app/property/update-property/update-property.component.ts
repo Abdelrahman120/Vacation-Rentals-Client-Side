@@ -8,7 +8,8 @@ import {
 } from '@angular/forms';
 
 import { NgIf } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PropertyService } from '../../service/propertyService/property.service';
 @Component({
   selector: 'app-update-property',
   standalone: true,
@@ -19,7 +20,8 @@ import { Router } from '@angular/router';
 export class UpdatePropertyComponent {
   AddForm: FormGroup;
   categories: any[] = [];
-  constructor(private fb: FormBuilder, private router: Router) {
+  propertyId: string = "";
+  constructor(private fb: FormBuilder, private router: Router, private PropertyService: PropertyService, private route: ActivatedRoute) {
     this.AddForm = this.fb.group({
       name: ['', Validators.required],
       image: ['', [Validators.required,]],
@@ -27,7 +29,7 @@ export class UpdatePropertyComponent {
       price: ['', [Validators.required,]],
       category_id: ['', [Validators.required,]],
       amenities: ['', [Validators.required,]],
-      number_of_room: ['', [Validators.required,]],
+      number_of_rooms: ['', [Validators.required,]],
       headline: ['', [Validators.required,]],
       night_rate: ['', [Validators.required,]],
       city: ['', [Validators.required,]],
@@ -48,12 +50,23 @@ export class UpdatePropertyComponent {
   submitted = false
 
   handleSubmit() {
+    this.propertyId = this.route.snapshot.paramMap.get('id') || '';
     this.submitted = true;
     if (this.AddForm.valid) {
       const formData = new FormData();
       Object.keys(this.AddForm.value).forEach(key => {
         formData.append(key, this.AddForm.get(key)?.value);
       });
+      formData.append('_method', 'PUT');
+
+      this.PropertyService.updateProperty(formData, Number(this.propertyId)).subscribe(
+        response => {
+          console.log('property updated successfully:', response);
+        },
+        error => {
+          console.error('Add failed:', error);
+        }
+      );
     }
   }
 }

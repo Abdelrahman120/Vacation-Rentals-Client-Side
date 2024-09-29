@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { PropertyService } from '../../service/property.service';
+import { PropertyService } from '../../service/propertyService/property.service';
 import { CardItemComponent } from "../property-card/card-item.component";
-import { SearchInputComponent } from "../../search-input/search-input.component";
+import { SearchComponent } from "../../search/search.component";
 
 @Component({
   selector: 'app-card-list',
   standalone: true,
-  imports: [CardItemComponent, SearchInputComponent],
+  imports: [CardItemComponent, SearchComponent],
   templateUrl: './card-list.component.html',
   styleUrl: './card-list.component.css'
 })
