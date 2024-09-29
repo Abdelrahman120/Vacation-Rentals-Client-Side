@@ -1,7 +1,21 @@
 import { Routes } from '@angular/router';
+import { RegisterUserComponent } from './register-user/register-user.component';
+import { LoginUserComponent } from './login-user/login-user.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const routes: Routes = [
+ 
     {
-        path: "search-result/:",
+        path:'register/user',
+        component: RegisterUserComponent
+    },
+    {
+        path: 'login/user',
+        component: LoginUserComponent
+    },
+    {
+        path: 'dashboard',
+        component: DashboardComponent
     }
+
 ];
