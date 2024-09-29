@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginUserService } from '../services/login-user.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -15,8 +15,29 @@ export class LoginUserComponent {
   password: string = '';
   validationErrors: any = {}; // For handling validation errors
   
-  constructor(private loginservice: LoginUserService, private router: Router) {}
+  constructor(private loginservice: LoginUserService, private router: Router , private route: ActivatedRoute) {}
 
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const token = params['token'];
+      const name = params['name'];
+      const email = params['email'];
+
+      if (token) {
+        // Store the token and user data
+        localStorage.setItem('token', token);
+        localStorage.setItem('userName', name);
+        localStorage.setItem('userEmail', email);
+
+        // Redirect or load user data
+        this.router.navigate(['/dashboard']);
+      }
+    });
+  }
+  loginWithGoogle() {
+    // Redirect to Laravel API for Google OAuth login
+    window.location.href = 'http://127.0.0.1:8000/api/gmail/login';
+  }
   onLogin() {
     // Client-side validation before sending the request
     this.validationErrors = {}; // Clear any previous errors
@@ -40,7 +61,7 @@ export class LoginUserComponent {
     this.loginservice.login(this.email, this.password).subscribe(
       (response) => {
         console.log('Login successful', response);
-        localStorage.setItem('auth_token', response.data.token); // Store token
+        localStorage.setItem('token', response.data.token); // Store token
         this.router.navigate(['/dashboard']); // Redirect after successful login
       },
       (error) => {

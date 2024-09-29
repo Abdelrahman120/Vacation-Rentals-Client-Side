@@ -15,8 +15,11 @@ export class DashboardComponent {
     this.authService.logout().subscribe(
       (response) => {
         console.log('Logout successful', response);
-        localStorage.removeItem('auth_token'); // Remove token
-        this.router.navigate(['/login/user']); // Redirect to login
+        // localStorage.removeItem('auth_token');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('token'); // Remove token
+        this.router.navigate(['/login']); // Redirect to login
       },
       (error) => {
         console.log('Logout failed', error);
