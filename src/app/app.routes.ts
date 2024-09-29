@@ -10,7 +10,7 @@ export const routes: Routes = [
         component: RegisterUserComponent
     },
     {
-        path: 'login/user',
+        path: 'login',
         component: LoginUserComponent
     },
     {
