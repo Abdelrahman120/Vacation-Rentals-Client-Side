@@ -1,0 +1,36 @@
+<div class="log">
+    <div class="conatiner w-50 border bg-white rounded mx-auto mt-5 p-5">
+        <h1 class="text-center my-2 ">Log in</h1>
+        <form (ngSubmit)="onLogin()">
+            <div class="row">
+                <div class="mb-2 col-md-12">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" required />
+                      @if (validationErrors.email) {
+                        <span class="text-dark">
+                          {{ validationErrors.email[0] }}
+                        </span>
+                      }
+                  </div>
+                
+                  <div  class="mb-2 col-md-12">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" id="password" class="form-control" [(ngModel)]="password" name="password" required />
+                      @if (validationErrors.password) {
+                        <span class="text-danger">
+                          {{ validationErrors.password[0] }}
+                        </span>
+                      }
+                  </div>
+            </div>
+  
+    
+        
+          
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+           
+    </div>
+   
+</div>
+
