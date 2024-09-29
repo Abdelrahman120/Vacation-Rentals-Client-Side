@@ -1,6 +1,6 @@
 <div class="log ">
 
-    <div class="container mt-5 w-50 border rounded px-5 p-1" >
+    <div class="container  w-50 border rounded px-5 p-1" >
 
         <h1 class="text-center my-2">Register</h1>
         <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
@@ -72,12 +72,32 @@
                     <span>Required</span>
                     }
                     @if(registerForm.get('email')?.hasError('pattern')){
-                    <span>Email is not valid</span>
-                    }
+                        <span>Email is not valid</span>
+                        }
+                        
+                   
                 </div>
                 }
             </div>
             <div class="mb-2 col-md-6">
+                <label for="gender" class="form-label">Gender</label>
+                <select name="gender" class="form-control" formControlName="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+
+                @if(registerForm.get('gender')?.invalid &&
+                (registerForm.get('gender')?.touched || submitted)){
+                <div id="genderErrors" class="form-text text-danger">
+                    @if(registerForm.get('gender')?.hasError('required')){
+                    <span>Required</span>
+                    }
+                </div>
+                }
+            </div>
+
+
+            <div class="mb-2 col-md-12">
                 <label for="image" class="form-label">Image</label>
                 <input type="file" id="image" class="form-control" (change)="onFileChange($event)">
                 <!-- <div *ngIf="registerForm.get('image')?.invalid && (registerForm.get('image')?.touched || submitted)" class="form-text text-danger">
@@ -107,7 +127,7 @@
                 </div>
                 }
             </div>
-            <!-- <input type="hidden" name="role" value="user" formControlName="role"> -->
+            <input type="hidden" name="role" value="owner" formControlName="role">
             <div class="mb-2 col-md-6">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input type="password" name="password" class="form-control" formControlName="password"
@@ -131,17 +151,17 @@
             </div>
             <div class="mb-2 col-md-6">
                 <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control" formControlName="confirm_password"
-                    id="exampleInputconfirm_Password1">
+                <input type="password" name="password_confirmation" class="form-control" formControlName="password_confirmation"
+                    id="exampleInputpassword_confirmation1">
 
 
-                @if(registerForm.get('confirm_password')?.invalid &&
-                (registerForm.get('confirm_password')?.touched || submitted)){
-                <div id="confirm_passwordErrors" class="form-text text-danger">
-                    @if(registerForm.get('confirm_password')?.hasError('required')){
+                @if(registerForm.get('password_confirmation')?.invalid &&
+                (registerForm.get('password_confirmation')?.touched || submitted)){
+                <div id="password_confirmationErrors" class="form-text text-danger">
+                    @if(registerForm.get('password_confirmation')?.hasError('required')){
                     <span>Required</span>
                     }
-                    @if(registerForm.get('confirm_password')?.hasError('minlength')){
+                    @if(registerForm.get('password_confirmation')?.hasError('minlength')){
                     <span>minlength 8 characters
                     </span>
                     }

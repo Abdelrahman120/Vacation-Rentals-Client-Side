@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-// import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { OwnerAuthService } from '../Services/owner-auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  // credentials = { email: '', password: '' };
+  credentials = { email: '', password: '' };
 
-  // constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: OwnerAuthService, private router: Router) {}
 
   submitted = false;
   user: any;
@@ -22,16 +22,16 @@ export class LoginComponent {
       console.log(form.value);
       
     
-  //   this.authService.login(form.value).subscribe(
-  //     (response) => {
-  //       console.log('Login successful', response);
-  //       this.router.navigate(['/profile']);
-  //     },
-  //     (error) => {
-  //       console.error('Login failed', error);
-  //     }
-  //   );
-  // }
+    this.authService.login(form.value).subscribe(
+      (response) => {
+        console.log('Login successful', response);
+        this.router.navigate(['/properties']);
+      },
+      (error) => {
+        console.error('Login failed', error);
+      }
+    );
+  }
 
   }
-}
+
