@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FiltrationComponent } from "../filtration/filtration.component";
-import { CardListComponent } from "../card-list/card-list.component";
+import { CardListComponent } from "../property/list-property/card-list.component";
 import { SearchComponent } from "../search/search.component";
 
 @Component({

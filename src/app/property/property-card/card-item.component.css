@@ -1,0 +1,10 @@
+.hover-effect {
+  position: absolute;
+  top: 2%;
+  right: 4%;
+  transition: transform 0.3s ease;
+}
+
+.hover-effect:hover {
+  transform: scale(1.1);
+}
