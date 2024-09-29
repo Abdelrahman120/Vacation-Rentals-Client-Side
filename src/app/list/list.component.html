@@ -1,16 +1,12 @@
 <div class="row mt-5  d-flex justify-content-center align-items-center" >
     <div class="card col-lg-4 mx-5 mb-5" style="width: 18rem;" *ngFor="let card of cards">
-      <img [src]="card.imageUrl" class="card-img-top" alt="...">
+      <img [src]="card.image" class="card-img-top" alt="image">
       <div class="card-body">
-        <h5 class="card-title">{{ card.title }}</h5>
-        <p class="card-text">{{ card.text }}</p>
+        <h5 class="card-title">{{ card.name }}</h5>
+        <p class="card-text">{{ card.description }}</p>
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let item of card.items">{{ item }}</li>
-      </ul>
-      <div class="card-body">
-        <a *ngFor="let link of card.links" [href]="link.href" class="card-link">{{ link.text }}</a>
-      </div>
+      <p class="card-text"> {{ card.address }}</p>
+      
     </div>
   </div>
   

@@ -14,18 +14,17 @@
 </thead>
 
 <tbody>
-  <!-- @for(item of categories; track item.id) { -->
+  @for(item of categories; track item.id) {
  
       <tr>
-          <td class="text-center align-middle">1</td>
-          <td class="text-center align-middle">home</td>
-          <!-- <td class="text-center align-middle">{{item.description}}</td>
-          <td class="text-center align-middle"><img [src]="item.image" width="75" alt="" srcset=""></td> -->
-          <td class="text-center align-middle"><a class="btn btn-primary" [routerLink]="['/edit_category', 1]" >Edit</a></td>
-          <td class="text-center align-middle"><button class="btn btn-danger" (click)="confirmDelete(2)" >Delete</button></td>
+          <td class="text-center align-middle">{{item.id}}</td>
+          <td class="text-center align-middle">{{item.name}}</td>
+          
+          <td class="text-center align-middle"><a class="btn btn-primary" [routerLink]="['/edit_category', item.id]" >Edit</a></td>
+          <td class="text-center align-middle"><button class="btn btn-danger" (click)="confirmDelete(item.id)" >Delete</button></td>
       </tr>
   
-    <!-- } -->
+    }
 
 </tbody>
 

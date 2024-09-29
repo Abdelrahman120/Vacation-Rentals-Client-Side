@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CategoryService } from '../services/category.service';
 // import { CategoryService } from '../category.service';
 // import { ProductService } from '../product.service';
 
@@ -21,7 +22,8 @@ export class EditCategoryComponent  {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private categoryService:CategoryService
   ) {
     this.editForm = this.fb.group({
       name: ['', Validators.required],
@@ -29,19 +31,19 @@ export class EditCategoryComponent  {
     });
   }
 
-  // ngOnInit(): void {
-  //   this.categoryId = this.route.snapshot.paramMap.get('id') || '';
+  ngOnInit(): void {
+    this.categoryId = this.route.snapshot.paramMap.get('id') || '';
 
    
-  //   this.categoryService.getCategory(Number(this.categoryId)).subscribe((category: any) => {
-  //     this.editForm.patchValue({
+    this.categoryService.getCategory(Number(this.categoryId)).subscribe((category: any) => {
+      this.editForm.patchValue({
         
-  //       name: category.data.name,
-  //   });
+        name: category.data.name,
+    });
 
 
-  // });
-  // }
+  });
+  }
 
  
 
@@ -56,20 +58,19 @@ export class EditCategoryComponent  {
       formData.append('_method', 'PUT');
       console.log('Form Data:', formData);
   
-  //     this.categoryService.updateCategory(Number(this.categoryId),formData).subscribe(
-  //       response => {
-  //         console.log('Edit successful:', response);
-  //         this.router.navigate(['/category']);
-  //       },
-  //       error => {
-  //         console.error('Edit failed:', error.error.errors); 
-  //       }
-  //     );
-  //   } else {
-  //     console.log('Form is invalid');
-  //   }
-  // }
+      this.categoryService.updateCategory(Number(this.categoryId),this.editForm.value).subscribe(
+        response => {
+          console.log('Edit successful:', response);
+          this.router.navigate(['/category']);
+        },
+        error => {
+          console.error('Edit failed:', error.error.errors); 
+        }
+      );
+    } else {
+      console.log('Form is invalid');
+    }
+  }
   
 }
 
-  }}
