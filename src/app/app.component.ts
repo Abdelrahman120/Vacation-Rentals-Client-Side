@@ -16,11 +16,12 @@ import { ListComponent } from "./list/list.component";
 import { AboutComponent } from "./about/about.component";
 import { RecommendationComponent } from "./recommendation/recommendation.component";
 import { CardListComponent } from "./property/list-property/card-list.component";
+import { RegisterUserComponent } from "./register-user/register-user.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, HeroComponent, LoginComponent, RegisterComponent, AddPropertyComponent, EditPropertyComponent, NotAuthorizedComponent, PropertiesComponent, CategoryComponent, AddCategoryComponent, EditCategoryComponent, ListComponent, AboutComponent, RecommendationComponent, CardListComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, HeroComponent, LoginComponent, RegisterComponent, AddPropertyComponent, EditPropertyComponent, NotAuthorizedComponent, PropertiesComponent, CategoryComponent, AddCategoryComponent, EditCategoryComponent, ListComponent, AboutComponent, RecommendationComponent, CardListComponent, RegisterUserComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
