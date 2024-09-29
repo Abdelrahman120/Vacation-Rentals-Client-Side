@@ -9,6 +9,9 @@ import { RegisterComponent } from './register/register.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { LoginUserComponent } from './login-user/login-user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CategoryComponent } from './category/category.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 export const routes: Routes = [
 
@@ -56,5 +59,17 @@ export const routes: Routes = [
     {
         path: 'dashboard',
         component: DashboardComponent
+    },
+    {
+        path: 'category',
+        component: CategoryComponent
+    },
+    {
+        path: 'add_category',
+        component: AddCategoryComponent
+    },
+    {
+        path: 'edit_category/:id',
+        component: EditCategoryComponent
     }
 ];
