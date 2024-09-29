@@ -11,6 +11,7 @@ import { ReactiveFormsModule,
 } from '@angular/forms';
 // import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { OwnerAuthService } from '../Services/owner-auth.service';
 
 @Component({
   selector: 'app-register',
@@ -26,22 +27,23 @@ export class RegisterComponent {
   
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: OwnerAuthService) {
     this.registerForm = this.fb.group({
       company_name : ['', Validators.required],
       name: ['', Validators.required],
       address: ['', Validators.required],
       phone: ['', Validators.required],
       description: ['', Validators.required],
-
+       role:['owner'],
       image: ['', [Validators.required,]],
+      gender: ['', [Validators.required,]],
 
-      email: ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
+      email: ['', [Validators.required, Validators.email,Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
       password: ['', [
         Validators.required,
         Validators.minLength(8),
       ]],
-      confirm_password: ['', [
+      password_confirmation: ['', [
         Validators.required,
         Validators.minLength(8),
       ]],
@@ -58,26 +60,52 @@ export class RegisterComponent {
   }
 
   submitted = false
-  
-  handleSubmit(){
+  handleSubmit() {
     this.submitted = true;
-    if (this.registerForm.valid) {
-      const formData = new FormData();
-      Object.keys(this.registerForm.value).forEach(key => {
-        formData.append(key, this.registerForm.get(key)?.value);
-      });
 
-//       this.authService.register(formData).subscribe(
-//         response => {
-//           console.log('Registration successful:', response);
-//           this.router.navigate(['/login']);
-//         },
-//         error => {
-//           console.error('Registration failed:', error);
-//         }
-//       );
-//     }
-//   }
-// }
-    }}
+    if (this.registerForm.valid) {
+        const formData = new FormData();
+        Object.keys(this.registerForm.value).forEach(key => {
+            formData.append(key, this.registerForm.get(key)?.value);
+        });
+
+        this.authService.register(formData).subscribe(
+            response => {
+                console.log('Registration successful:', response);
+                this.router.navigate(['/login']);
+            },
+            error => {
+                console.error('Registration failed:', error);
+
+                // Check if the error has the expected structure
+                if (error.status === 422 && error.error && error.error.errors) {
+                    const validationErrors = error.error.errors;
+                    console.log('Validation errors:', validationErrors);
+
+                    // Set the error on the corresponding form controls
+                    Object.keys(validationErrors).forEach((key) => {
+                        const formControl = this.registerForm.get(key);
+                        if (formControl) {
+                            const errorMessage = validationErrors[key][0]; // Make sure this is safe
+                            formControl.setErrors({ serverError: errorMessage });
+                        } else {
+                            console.warn(`No form control found for key: ${key}`);
+                        }
+                    });
+                } else {
+                    alert('Something went wrong; please try again later.');
+                }
+            }
+        );
+    }
 }
+
+
+
+
+
+
+
+  
+}
+

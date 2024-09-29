@@ -6,8 +6,9 @@
 
 .log{
     background-image: url("/2.jpg");
-    background-repeat: repeat-y;
+    background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
   
+    padding-top: 50px;
 }
