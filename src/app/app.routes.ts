@@ -13,6 +13,8 @@ import { CategoryComponent } from './category/category.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { MasterComponent } from './master/master.component';
+import { EditOwnerProfileComponent } from './edit-owner-profile/edit-owner-profile.component';
+import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
 
 export const routes: Routes = [
     {
@@ -60,22 +62,38 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        component: LoginUserComponent
+        component: LoginUserComponent,
+        title: "Login"
     },
     {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        title: "Dashboard"
     },
     {
         path: 'category',
-        component: CategoryComponent
+        component: CategoryComponent,
+        title: "Category"
     },
     {
         path: 'add_category',
-        component: AddCategoryComponent
+        component: AddCategoryComponent,
+        title: "Add Category"
     },
     {
         path: 'edit_category/:id',
-        component: EditCategoryComponent
-    }
+        component: EditCategoryComponent,
+        title: "Edit Category"
+    },
+    {
+      path:'edit_Owner_profile/:id',
+      component:EditOwnerProfileComponent,
+      title: "Edit Profile"
+    },
+    {
+      path:'edit_user_profile/:id',
+      component:EditUserProfileComponent,
+      title: "Edit Profile"
+    },
+
 ];
