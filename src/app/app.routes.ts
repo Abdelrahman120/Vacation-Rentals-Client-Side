@@ -7,15 +7,17 @@ import { PropertiesComponent } from './properties/properties.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
-import { LoginUserComponent } from './login-user/login-user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoryComponent } from './category/category.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { MasterComponent } from './master/master.component';
-import { EditOwnerProfileComponent } from './edit-owner-profile/edit-owner-profile.component';
 import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
 import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
+import { EditOwnerProfileComponent } from './edit-owner-profile/edit-owner-profile.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginUserComponent } from './login-user/login-user.component';
 
 export const routes: Routes = [
     {
@@ -100,5 +102,15 @@ export const routes: Routes = [
       path:'owner-dashboard',
       component:OwnerDashboardComponent,
       title: "Dashboard"
+    },
+    {
+      path:"admin-dashboard",
+      component:AdminDashboardComponent,
+      title: "Dashboard"
+    },
+    {
+        path: '**',
+        component:NotFoundComponent,
+        title: "Not Found"
     }
 ];
