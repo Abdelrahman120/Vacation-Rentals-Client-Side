@@ -15,6 +15,7 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { MasterComponent } from './master/master.component';
 import { EditOwnerProfileComponent } from './edit-owner-profile/edit-owner-profile.component';
 import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
+import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
 
 export const routes: Routes = [
     {
@@ -95,5 +96,9 @@ export const routes: Routes = [
       component:EditUserProfileComponent,
       title: "Edit Profile"
     },
-
+    {
+      path:'owner-dashboard',
+      component:OwnerDashboardComponent,
+      title: "Dashboard"
+    }
 ];
