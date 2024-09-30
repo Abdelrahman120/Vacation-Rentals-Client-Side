@@ -1,0 +1,114 @@
+<div class="container w-50 border bg-white rounded mx-auto p-5" style="margin-top: 150px;">
+
+  <h2 class="text-center my-2 mb-3 text-dark">Edit Profile</h2>
+  <form (ngSubmit)="onRegister()" enctype="multipart/form-data">
+    <div class="row">
+      <div class="mb-2 col-md-6">
+        <label for="name" class="form-label fs-6 text-uppercase fw-bold text-black">Name:</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name" required />
+        <!-- Display validation error for name -->
+        @if (validationErrors.name) {
+        <span class="text-danger">
+          {{ validationErrors.name[0] }}
+        </span>
+        }
+        <!-- <div *ngIf="validationErrors.name" class="error">{{ validationErrors.name[0] }}</div> -->
+      </div>
+
+      <div class="mb-2 col-md-6">
+        <label for="email" class="form-label fs-6 text-uppercase fw-bold text-black">Email:</label>
+        <input type="email" id="email" class="form-control" [(ngModel)]="email" name="email" required />
+        <!-- Display validation error for email -->
+        @if (validationErrors.email) {
+        <span class="text-danger">
+          {{ validationErrors.email[0] }}
+        </span>
+        }
+        <!-- <div *ngIf="validationErrors.email" class="error">{{ validationErrors.email[0] }}</div> -->
+      </div>
+
+      <div class="mb-2 col-md-6">
+        <label for="password" class="form-label fs-6 text-uppercase fw-bold text-black">Password:</label>
+        <input type="password" id="password" class="form-control" [(ngModel)]="password" name="password" required />
+        <!-- Display validation error for password -->
+        @if (validationErrors.password) {
+        <span class="text-danger">
+          {{ validationErrors.password[0] }}
+        </span>
+        }
+        <!-- <div *ngIf="validationErrors.password" class="error">{{ validationErrors.password[0] }}</div> -->
+      </div>
+
+      <div class="mb-2 col-md-6">
+        <label class="form-label fs-6 text-uppercase fw-bold text-black" for="confirm_password">Confirm Password:</label>
+        <input type="password" class="form-control" id="confirm_password" [(ngModel)]="confirmPassword"
+          name="confirm_password" required />
+        <!-- Display validation error for password confirmation -->
+        @if (validationErrors.confirmPassword) {
+        <span class="text-danger">
+          {{ validationErrors.confirmPassword[0] }}
+        </span>
+        }
+        <!-- <div *ngIf="validationErrors.confirmPassword" class="error">{{ validationErrors.confirmPassword[0] }}</div> -->
+      </div>
+
+      <div class="mb-2 col-md-6">
+        <label class="form-label fs-6 text-uppercase fw-bold text-black" for="phone">Phone:</label>
+        <input type="text" id="phone" class="form-control" [(ngModel)]="phone" name="phone" required />
+        <!-- Display validation error for phone -->
+        @if (validationErrors.phone) {
+        <span class="text-danger">
+          {{ validationErrors.phone[0] }}
+        </span>
+        }
+        <!-- <div *ngIf="validationErrors.phone" class="error">{{ validationErrors.phone[0] }}</div> -->
+      </div>
+
+      <div class="mb-2 col-md-6">
+        <label class="form-label fs-6 text-uppercase fw-bold text-black" for="address">Address:</label>
+        <input type="text" class="form-control" id="address" [(ngModel)]="address" name="address" required />
+        <!-- Display validation error for address -->
+        @if (validationErrors.address) {
+        <span class="text-danger">
+          {{ validationErrors.address[0] }}
+        </span>
+        }
+        <!-- <div *ngIf="validationErrors.address" class="error">{{ validationErrors.address[0] }}</div> -->
+      </div>
+
+      <div class="mb-2 col-md-6">
+        <label for="gender" class="form-label fs-6 text-uppercase fw-bold text-black">Gender:</label>
+        <select id="gender" class="form-control" [(ngModel)]="gender" name="gender" required>
+          <option value="male" class="form-control">Male</option>
+          <option value="female" class="form-control">Female</option>
+        </select>
+        <!-- Display validation error for gender -->
+        @if (validationErrors.gender) {
+        <span class="text-danger">
+          {{ validationErrors.gender[0] }}
+        </span>
+        }
+        <!-- <div *ngIf="validationErrors.gender" class="error">{{ validationErrors.gender[0] }}</div> -->
+      </div>
+
+      <div class="mb-2 col-md-6">
+        <label class="form-label fs-6 text-uppercase fw-bold text-black" for="image">Profile Image:</label>
+        <input type="file" class="form-control" id="image" (change)="onFileSelected($event)" required />
+        <!-- Display validation error for image -->
+        @if (validationErrors.image) {
+        <span class="text-danger">
+          {{ validationErrors.image[0] }}
+        </span>
+        }
+        <!-- <div *ngIf="validationErrors.image" class="error">{{ validationErrors.image[0] }}</div> -->
+      </div>
+
+      <div class="d-flex justify-content-center my-3">
+        <button type="submit" class="btn btn-primary w-50 m-auto">
+          Edit
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>

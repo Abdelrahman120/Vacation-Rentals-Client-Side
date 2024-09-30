@@ -1,12 +1,42 @@
-<div class="row mt-5  d-flex justify-content-center align-items-center" >
-    <div class="card col-lg-4 mx-5 mb-5" style="width: 18rem;" *ngFor="let card of cards">
-      <img [src]="card.image" class="card-img-top" alt="image">
-      <div class="card-body">
-        <h5 class="card-title">{{ card.name }}</h5>
-        <p class="card-text">{{ card.description }}</p>
+<section id="residence">
+  <div class="container  my-5 py-5">
+    <h2 class="text-capitalize m-0 py-lg-5">Popular Residence</h2>
+
+    <div class="swiper-button-next residence-swiper-next  residence-arrow"></div>
+    <div class="swiper-button-prev residence-swiper-prev residence-arrow"></div>
+
+    <div class="swiper residence-swiper">
+      <div class="swiper-wrapper">
+        @for(card of cards; track $index) {
+          <div class="swiper-slide">
+            <div class="card">
+              <a href="index.html"><img src="images/item15.png" class="card-img-top" alt="image"></a>
+              <div class="card-body p-0">
+                <a href="index.html">
+                  <h5 class="card-title pt-4">Aliva Priva Jalvin</h5>
+                </a>
+                <p class="card-text">1087 Pin Oak Drive, Clinton, USA</p>
+
+                <div class="card-text">
+                  <ul class="d-flex">
+                    <li class="residence-list text-light"> <img src="images/bed.png" alt="image"> 4 bed</li>
+                    <li class="residence-list text-light"> <img src="images/bath.png" alt="image"> 2 bath</li>
+                    <li class="residence-list text-light"> <img src="images/square.png" alt="image"> 1203 Sqft.</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        }
+
+
       </div>
-      <p class="card-text"> {{ card.address }}</p>
-      
     </div>
+
+    <div class="residence-btn">
+      <a routerLink="/properties" class="btn btn-primary btn-lg my-5">View All Properties</a>
+    </div>
+
   </div>
-  
+</section>

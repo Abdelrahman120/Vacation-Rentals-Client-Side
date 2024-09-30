@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { OwnerAuthService } from '../Services/owner-auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
   credentials = { email: '', password: '' };
@@ -16,22 +16,20 @@ export class LoginComponent {
 
   submitted = false;
   user: any;
- 
-  handleSubmit(form:NgForm){
+
+  handleSubmit(form: NgForm) {
     this.submitted = true;
-      console.log(form.value);
-      
-    
+    console.log(form.value);
+
     this.authService.login(form.value).subscribe(
-      (response) => {
-        console.log('Login successful', response);
-        this.router.navigate(['/properties']);
+      (response: boolean) => {
+        if (response) {
+          this.router.navigate(['/properties']);
+        }
       },
       (error) => {
         console.error('Login failed', error);
       }
     );
   }
-
-  }
-
+}

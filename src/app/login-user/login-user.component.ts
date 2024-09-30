@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
-import { LoginUserService } from '../services/login-user.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { LoginUserService } from '../Services/login-user.service';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login-user',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,RouterLink],
   templateUrl: './login-user.component.html',
   styleUrl: './login-user.component.css'
 })
 export class LoginUserComponent {
   email: string = '';
   password: string = '';
-  validationErrors: any = {}; // For handling validation errors
-  
+  validationErrors: any = {};
+
   constructor(private loginservice: LoginUserService, private router: Router , private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -35,43 +35,39 @@ export class LoginUserComponent {
     });
   }
   loginWithGoogle() {
-    // Redirect to Laravel API for Google OAuth login
     window.location.href = 'http://127.0.0.1:8000/api/gmail/login';
   }
   onLogin() {
-    // Client-side validation before sending the request
-    this.validationErrors = {}; // Clear any previous errors
+    this.validationErrors = {};
 
     if (!this.email) {
       this.validationErrors.email = 'Email is required';
     } else if (!this.isValidEmail(this.email)) {
-      this.validationErrors.email = 'Invalid email format';
+      this.validationErrors.email = 'Email is not valid';
     }
 
     if (!this.password) {
-      this.validationErrors.password = 'Password is required';
+      this.validationErrors.password = 'password is required';
+    }else if (this.password.length < 8) {
+      this.validationErrors.password = 'password must be at least 8 characters';
     }
 
-    // If there are validation errors, return early
     if (Object.keys(this.validationErrors).length > 0) {
       return;
     }
 
-    // Proceed with login if validation passes
     this.loginservice.login(this.email, this.password).subscribe(
       (response) => {
         console.log('Login successful', response);
-        localStorage.setItem('token', response.data.token); // Store token
-        this.router.navigate(['/dashboard']); // Redirect after successful login
+        localStorage.setItem('token', response.data.token);
+        this.router.navigate(['/dashboard']);
       },
       (error) => {
         console.log('Login failed', error);
-        alert('Invalid credentials');
       }
     );
   }
 
-  // Helper function to validate email format
   isValidEmail(email: string): boolean {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
