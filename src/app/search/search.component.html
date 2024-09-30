@@ -1,21 +1,12 @@
-<div class="d-flex justify-content-evenly align-items-center row my-3">
-  <div class="col-sm-12 col-md-6 col-lg-5 col-xl-3">
-    <input
-      type="text"
-      name="destination"
-      placeholder="Where to..."
-      class="form-control"
-    />
-    <input type="text" ngxDaterangepickerBootstrap class="form-control" />
-  </div>
-  <div class="col-sm-12 col-md-6 col-lg-5">
-    <input type="date" name="from_date" id="" class="form-control" />
-  </div>
-  <div class="col-sm-12 col-md-6 col-lg-2">
-    <input
-      type="submit"
-      value="Search"
-      class="form-control btn btn-outline-dark fs-5 roboto-medium"
-    />
+<div class="d-flex justify-content-evenly align-items-center row ">
+    <div class="col-sm-12 col-md-6 col-lg-5 col-xl-3 d-flex flex-row my-5">
+      <input type="text" name="destination" placeholder="Where to..." class="form-control mx-3" />
+      <input type="text" ngxDaterangepickerBootstrap class="form-control" placeholder="Select date" />
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-5 my-5">
+      <input type="date" name="from_date" id="fromDate" class="form-control"/>
+    </div>
+  <div class="col-sm-12 col-md-6 col-lg-2 my-5">
+    <input type="submit" value="Search" class="form-control btn btn-primary fs-5 roboto-medium" />
   </div>
 </div>
