@@ -12,9 +12,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoryComponent } from './category/category.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { MasterComponent } from './master/master.component';
 
 export const routes: Routes = [
-
+    {
+      path: "",
+      component:MasterComponent,
+      title: "Home",
+    },
     {
         path: "property-details/:id",
         component: ViewPropertyComponent,
@@ -36,13 +41,14 @@ export const routes: Routes = [
         title: "Add new property"
     },
     {
-        path: 'login',
-        component: LoginComponent
-
+        path: 'login/owner',
+        component: LoginComponent,
+        title: "Login"
     },
     {
-        path: 'register',
-        component: RegisterComponent
+        path: 'register/owner',
+        component: RegisterComponent,
+        title: "Register"
     },
     {
         path: 'properties',

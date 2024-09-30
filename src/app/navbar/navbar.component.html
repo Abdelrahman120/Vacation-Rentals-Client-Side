@@ -1,16 +1,51 @@
-<nav class="navbar navbar-light bg-light">
-  <div class="container">
-    <div>
-      <a class="navbar-brand mb-0 h1">Vacation Rentals</a>
-    </div>
-    <div>
-      <a class="navbar-brand mb-0 h1" routerLink="/home">Home</a>
-      <a class="navbar-brand mb-0 h1" routerLink="/about">About</a>
-      <a class="navbar-brand mb-0 h1" routerLink="/contact">Contact</a>
-      <a class="navbar-brand mb-0 h1" routerLink="/login">Login</a>
-      <a class="navbar-brand mb-0 h1" routerLink="/register">Register</a>
-      <button class="navbar-brand mb-0 h1" (click)="logout()">LogOut</button>
+<header id="nav" class="site-header position-fixed text-white bg-dark">
+  <nav id="navbar-example2" class="navbar navbar-expand-lg py-2">
+
+    <div class="container ">
+
+      <a class="navbar-brand" href="/">VacationRentals</a>
+
+
+
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">xx</button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav align-items-center justify-content-end align-items-center flex-grow-1 ">
+            <li class="nav-item">
+              <a class="nav-link me-md-4" routerLink="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-md-4" routerLink="/properties">Properties</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-md-4" href="#about-us">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-md-4" href="#help">Contact</a>
+            </li>
+            <li class="nav-item dropdown ">
+              <a class="nav-link me-md-4 text-center dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-expanded="false">Login</a>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a  routerLink="/login/owner" class="dropdown-item">Owner</a>
+                </li>
+                <li><a routerLink="/login" class="dropdown-item">Traveller</a>
+                </li>
+              </ul>
+            </li>
+
+          </ul>
+
+        </div>
+      </div>
+
 
     </div>
-  </div>
-</nav>
+  </nav>
+</header>

@@ -1,54 +1,62 @@
-<div class="log">
-<div class="container w-50 border rounded mt-5 p-5" >
+<div class="container w-50 border bg-white rounded mx-auto p-5" style="margin-top: 150px;">
+  <form #loginForm="ngForm" (ngSubmit)="handleSubmit(loginForm) ">
+    <h1 class="text-center my-2 text-dark">Login</h1>
+    <div class="form-input col-lg-12 my-4">
+      <label for="exampleInputEmail1" class="form-label fs-6 text-uppercase fw-bold text-black">Email
+        Address</label>
+      <input type="email" id="exampleInputEmail1" name="email" placeholder="Email" class="form-control ps-3" ngModel
+        #email="ngModel" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 
-    <h1 class="text-center my-2 ">Log in</h1>
-    <form #loginForm="ngForm" (ngSubmit)="handleSubmit(loginForm)">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" name="email" class="form-control" ngModel #email="ngModel" required
-                pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        @if(email.invalid && (email.touched || submitted)){
-        <div id="emailErrors" class="form-text text-danger">
-            @if(email.hasError('required')) {
+      @if(email.invalid && (email.touched || submitted)){
+      <div id="emailErrors" class="form-text text-danger">
+        @if(email.hasError('required')) {
 
-            <span>Email is required</span>
-            }
-            @if(email.hasError('pattern')) {
+        <span class="text-danger">Email is required</span>
+        }
+        @if(email.hasError('pattern')) {
 
-            <span>Email is not valid</span>
-            }
-
-
-        </div>
+        <span class="text-danger">Email is not valid</span>
         }
 
-        <div class="mb-3">
-            <div class="d-flex justify-content-between">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <a href="#">Forget password ?</a></div>
-            <input type="password" name="password" class="form-control" ngModel #password="ngModel" required
-                minlength="8"
-                id="exampleInputPassword1">
-        </div>
-        @if(password.invalid && (password.touched|| submitted)){
-            <div id="exampleInputPassword1" class="form-text text-danger">
 
-            @if(password.hasError('required')) {
+      </div>
+      }
 
-                <span>password is required</span>
-                }
-      
+    </div>
+    <div class="form-input col-lg-12 my-4">
+      <label for="inputPassword1" class="form-label  fs-6 text-uppercase fw-bold text-black">Password</label>
+      <input type="password" id="inputPassword1" placeholder="Password" name="password" class="form-control ps-3"
+        aria-describedby="passwordHelpBlock" ngModel #password="ngModel" required minlength="8">
+      @if(password.invalid && (password.touched|| submitted)){
+      <div id="exampleInputPassword1" class="form-text text-danger">
+
+        @if(password.hasError('required')) {
+
+        <span class="text-danger">password is required</span>
+        }
+
         @if(password.hasError('minlength')) {
 
-            <span>password must be at least 8 characters</span>
-            }
-
-            </div>
+        <span class="text-danger">password must be at least 8 characters</span>
         }
-        <div class="d-flex justify-content-center ">
-            <button type="submit" class="btn btn-primary w-50 m-auto "> Log in</button>
-        </div>
-    </form>
-</div>
+
+      </div>
+      }
+
+      <div id="passwordHelpBlock" class="form-text text-end">
+        <a href="#" class="password text-dark">Forgot Password ?</a>
+      </div>
+
+
+
+    </div>
+
+    <div class="d-grid my-3">
+      <button type="submit" class="btn btn-primary btn-lg  text-uppercase btn-rounded-none fs-6 ">Log
+        In</button>
+    </div>
+    <div id="passwordHelpBlock" >
+      <a routerLink="/register/owner" class="text-dark fs-5">Sign Up</a>
+    </div>
+  </form>
 </div>

@@ -1,37 +1,44 @@
-<div class="log">
-    <div class="conatiner w-50 border bg-white rounded mx-auto mt-5 p-5">
-        <h1 class="text-center my-2 ">Log in</h1>
-        <form (ngSubmit)="onLogin()">
-            <div class="row">
-                <div class="mb-2 col-md-12">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" required />
-                      @if (validationErrors.email) {
-                        <span class="text-dark">
-                          {{ validationErrors.email[0] }}
-                        </span>
-                      }
-                  </div>
-                
-                  <div  class="mb-2 col-md-12">
-                    <label for="password" class="form-label">Password:</label>
-                    <input type="password" id="password" class="form-control" [(ngModel)]="password" name="password" required />
-                      @if (validationErrors.password) {
-                        <span class="text-danger">
-                          {{ validationErrors.password[0] }}
-                        </span>
-                      }
-                  </div>
-            </div>
-  
-    
-        
-          
-            <button type="submit" class="btn btn-primary">Login</button>
-          </form>
-          <button class="btn btn-primary mt-3" (click)="loginWithGoogle()">Login with Google</button>
+<div class="container w-50 border bg-white rounded mx-auto p-5" style="margin-top: 150px;">
+  <form (ngSubmit)="onLogin() ">
+    <h1 class="text-center my-2 text-dark">Login</h1>
+    <div class="form-input col-lg-12 my-4">
+      <label for="exampleInputEmail1" class="form-label fs-6 text-uppercase fw-bold text-black">Email
+        Address</label>
+      <input type="email" id="exampleInputEmail1" placeholder="Email" class="form-control ps-3" [(ngModel)]="email"
+        name="email" required required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+      @if (validationErrors.email) {
+      <span class="text-danger">
+        {{ validationErrors.email}}
+      </span>
+      }
 
     </div>
-   
-</div>
+    <div class="form-input col-lg-12 my-4">
+      <label for="inputPassword1" class="form-label  fs-6 text-uppercase fw-bold text-black">Password</label>
+      <input type="password" id="inputPassword1" placeholder="Password" name="password" class="form-control ps-3"
+        aria-describedby="passwordHelpBlock" [(ngModel)]="password" name="password" required />
+      @if (validationErrors.password) {
+      <span class="text-danger">
+        {{ validationErrors.password }}
+      </span>
+      }
+      <div id="passwordHelpBlock" class="form-text text-end">
+        <a href="#" class="password text-dark">Forgot Password ?</a>
+      </div>
 
+
+
+    </div>
+
+    <div class="d-grid my-3">
+      <button type="submit" class="btn btn-primary btn-lg  text-uppercase btn-rounded-none fs-6 ">Log
+        In</button>
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-success mt-3" (click)="loginWithGoogle()">Login with Google</button>
+    </div>
+    <div id="passwordHelpBlock">
+      <a routerLink="/register/user" class="text-dark fs-5">Sign Up</a>
+    </div>
+  </form>
+</div>
