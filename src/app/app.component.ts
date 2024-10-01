@@ -22,29 +22,9 @@ import { PaymentComponent } from './Stripe/payment/payment.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    NavbarComponent,
-    FooterComponent,
-    HeroComponent,
-    LoginComponent,
-    RegisterComponent,
-    AddPropertyComponent,
-    EditPropertyComponent,
-    NotAuthorizedComponent,
-    PropertiesComponent,
-    CategoryComponent,
-    AddCategoryComponent,
-    EditCategoryComponent,
-    ListComponent,
-    AboutComponent,
-    RecommendationComponent,
-    CardListComponent,
-    RegisterUserComponent,
-    PaymentComponent
-  ],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, HeroComponent, LoginComponent, RegisterComponent, AddPropertyComponent, EditPropertyComponent, NotAuthorizedComponent, PropertiesComponent, CategoryComponent, AddCategoryComponent, EditCategoryComponent, ListComponent, AboutComponent, RecommendationComponent, CardListComponent, RegisterUserComponent, PaymentComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'Vacation-Rentals';

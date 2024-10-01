@@ -1,7 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { RequestServiceService } from '../Services/request-service.service';
 import { RouterLink } from '@angular/router';
+import { RequestServiceService } from '../services/request-service.service';
 
 @Component({
   selector: 'app-list',

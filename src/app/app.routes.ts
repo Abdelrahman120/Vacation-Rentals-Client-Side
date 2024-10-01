@@ -56,7 +56,7 @@ export const routes: Routes = [
         title: "Register"
     },
     {
-        path: 'properties',
+        path: 'admin/properties',
         component: PropertiesComponent
     },
     {
@@ -79,22 +79,22 @@ export const routes: Routes = [
         title: "Category"
     },
     {
-        path: 'add_category',
+        path: 'add-category',
         component: AddCategoryComponent,
         title: "Add Category"
     },
     {
-        path: 'edit_category/:id',
+        path: 'edit-category/:id',
         component: EditCategoryComponent,
         title: "Edit Category"
     },
     {
-        path: 'edit_Owner_profile/:id',
+        path: 'edit-Owner-profile/:id',
         component: EditOwnerProfileComponent,
         title: "Edit Profile"
     },
     {
-        path: 'edit_user_profile/:id',
+        path: 'edit-user-profile/:id',
         component: EditUserProfileComponent,
         title: "Edit Profile"
     },
