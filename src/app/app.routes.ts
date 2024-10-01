@@ -25,6 +25,8 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgetPasswordUserComponent } from './forget-password-user/forget-password-user.component';
 import { ResetPasswordUserComponent } from './reset-password-user/reset-password-user.component';
+import { TestBed } from '@angular/core/testing';
+import { TestComponent } from './test/test.component';
 
 export const routes: Routes = [
     {
@@ -117,15 +119,20 @@ export const routes: Routes = [
     },
     {
       path: 'admin/users',
-      component: UsersComponent  
+      component: UsersComponent
     },
     {
       path: 'admin/owners',
-      component: OwnersComponent  
+      component: OwnersComponent
     },
     {
       path : 'admin/properties',
-      component: ShowPropertiesComponent 
+      component: ShowPropertiesComponent
+    },
+    {
+      path: 'test/:id',
+      component: TestComponent,
+      title: "test"
     },
     {
       path : 'forget_password',
@@ -143,4 +150,5 @@ export const routes: Routes = [
         component:NotFoundComponent,
         title: "Not Found"
     }
+
 ];
