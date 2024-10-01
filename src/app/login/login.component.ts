@@ -20,11 +20,18 @@ export class LoginComponent {
   handleSubmit(form: NgForm) {
     this.submitted = true;
     console.log(form.value);
-
+  
     this.authService.login(form.value).subscribe(
       (response: boolean) => {
         if (response) {
-          this.router.navigate(['/properties']);
+          const role = localStorage.getItem('user_role');
+          
+          if (role === 'admin') {
+            // console.log('Login successful', response);
+            this.router.navigate(['/admin-dashboard']); 
+          } else if (role === 'owner') {
+            this.router.navigate(['/properties']); // Redirect to owner properties page
+          }
         }
       },
       (error) => {
