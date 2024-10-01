@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { LoginUserService } from '../Services/login-user.service';
 import { Router } from '@angular/router';
+import { LoginUserService } from '../services/login-user.service';
 
 @Component({
   selector: 'app-owner-dashboard',

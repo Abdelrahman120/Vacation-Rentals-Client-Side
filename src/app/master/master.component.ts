@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { HeroComponent } from "../hero/hero.component";
-import { ListComponent } from "../list/list.component";
 import { AboutComponent } from "../about/about.component";
 import { FooterComponent } from "../footer/footer.component";
+import { ListComponent } from "../list/list.component";
 
 @Component({
   selector: 'app-master',
   standalone: true,
-  imports: [HeroComponent, ListComponent, AboutComponent, FooterComponent],
+  imports: [HeroComponent, AboutComponent, FooterComponent, ListComponent],
   templateUrl: './master.component.html',
   styleUrl: './master.component.css'
 })
