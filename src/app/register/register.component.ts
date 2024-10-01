@@ -3,13 +3,12 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule,
 
   FormBuilder,
-  FormControl, 
-  FormGroup, 
+  FormControl,
+  FormGroup,
   Validators,
 
 
 } from '@angular/forms';
-// import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { OwnerAuthService } from '../Services/owner-auth.service';
 
@@ -24,7 +23,7 @@ export class RegisterComponent {
 
   // list :Array<any> = [];
 
-  
+
   registerForm: FormGroup;
 
   constructor(private fb: FormBuilder, private router: Router, private authService: OwnerAuthService) {
@@ -32,9 +31,9 @@ export class RegisterComponent {
       company_name : ['', Validators.required],
       name: ['', Validators.required],
       address: ['', Validators.required],
-      phone: ['', Validators.required],
+      phone: ['', [Validators.required,Validators.minLength(11)]],
       description: ['', Validators.required],
-       role:['owner'],
+      role:['owner'],
       image: ['', [Validators.required,]],
       gender: ['', [Validators.required,]],
 
@@ -50,8 +49,8 @@ export class RegisterComponent {
 
     });
   }
-  
-  
+
+
   onFileChange(event: any): void {
     const file = event.target.files[0];
     this.registerForm.patchValue({
@@ -72,7 +71,7 @@ export class RegisterComponent {
         this.authService.register(formData).subscribe(
             response => {
                 console.log('Registration successful:', response);
-                this.router.navigate(['/login']);
+                this.router.navigate(['/login/owner']);
             },
             error => {
                 console.error('Registration failed:', error);
@@ -93,7 +92,7 @@ export class RegisterComponent {
                         }
                     });
                 } else {
-                    alert('Something went wrong; please try again later.');
+                    console.error('Something went wrong; please try again later.');
                 }
             }
         );
@@ -106,6 +105,6 @@ export class RegisterComponent {
 
 
 
-  
+
 }
 

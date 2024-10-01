@@ -11,8 +11,5 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class NavbarComponent {
   constructor(private ownerAuthService: OwnerAuthService , private router: Router) { }
-  logout() {
-    this.ownerAuthService.logout().subscribe((data)=>{
-    });
-  }
+
 }

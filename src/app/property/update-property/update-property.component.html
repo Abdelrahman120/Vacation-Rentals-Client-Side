@@ -1,11 +1,11 @@
-<div class="log py-2">
+<div class="log py-2 mt-5">
   <div class="container w-50 border rounded px-5 my-2 py-2">
-    <h2 class="text-center my-3">Edit Property</h2>
+    <h2 class="text-center my-3 text-dark">Edit Property</h2>
     <form [formGroup]="AddForm" (ngSubmit)="handleSubmit()">
       <div class="row">
         <div class="mb-2 col-md-6">
-          <label for="name" class="form-label">Name</label>
-          <input
+          <label for="name" class="form-label fs-6 text-uppercase fw-bold text-black">Name</label>
+          <input id="name"
             type="text"
             name="name"
             class="form-control"
@@ -22,8 +22,8 @@
           }
         </div>
         <div class="mb-2 col-md-6">
-          <label for="headline" class="form-label">headline</label>
-          <input
+          <label for="headline" class="form-label fs-6 text-uppercase fw-bold text-black">headline</label>
+          <input id="headline"
             type="text"
             name="headline"
             class="form-control"
@@ -40,8 +40,8 @@
           }
         </div>
         <div class="mb-2 col-md-4">
-          <label for="country" class="form-label">Country</label>
-          <input
+          <label for="country" class="form-label fs-6 text-uppercase fw-bold text-black">Country</label>
+          <input id="country"
             type="text"
             name="country"
             class="form-control"
@@ -58,8 +58,8 @@
           }
         </div>
         <div class="mb-2 col-md-4">
-          <label for="city" class="form-label">City</label>
-          <input
+          <label for="city" class="form-label fs-6 text-uppercase fw-bold text-black">City</label>
+          <input id="city"
             type="text"
             name="city"
             class="form-control"
@@ -76,8 +76,8 @@
           }
         </div>
         <div class="mb-2 col-md-4">
-          <label for="address" class="form-label">Address</label>
-          <input
+          <label for="address" class="form-label fs-6 text-uppercase fw-bold text-black">Address</label>
+          <input id="address"
             type="text"
             name="address"
             class="form-control"
@@ -94,8 +94,8 @@
           }
         </div>
         <div class="mb-2 col-md-6">
-          <label for="price" class="form-label">price</label>
-          <input
+          <label for="price" class="form-label fs-6 text-uppercase fw-bold text-black">price</label>
+          <input id="price"
             type="text"
             name="price"
             class="form-control"
@@ -112,7 +112,7 @@
           }
         </div>
         <div class="mb-2 col-md-6">
-          <label for="number_of_room" class="form-label">number_of_room</label>
+          <label for="number_of_room" class="form-label fs-6 text-uppercase fw-bold text-black">number_of_room</label>
           <input
             type="number"
             name="number_of_rooms"
@@ -132,8 +132,8 @@
         </div>
 
         <div class="mb-2 col-md-12">
-          <label for="exampleInputEmail1" class="form-label">Description</label>
-          <textarea
+          <label for="exampleInputEmail1" class="form-label fs-6 text-uppercase fw-bold text-black">Description</label>
+          <textarea id="exampleInputEmail1"
             name="description"
             class="form-control"
             formControlName="description"
@@ -150,8 +150,8 @@
           }
         </div>
         <div class="mb-2 col-md-12">
-          <label for="exampleInputEmail1" class="form-label">Amenities</label>
-          <textarea
+          <label for="exampleInputEmail1" class="form-label fs-6 text-uppercase fw-bold text-black">Amenities</label>
+          <textarea id="exampleInputEmail1"
             name="amenities"
             class="form-control"
             formControlName="amenities"
@@ -168,8 +168,8 @@
           }
         </div>
         <div class="mb-2 col-md-6">
-          <label for="status" class="form-label">status</label>
-          <select name="status" class="form-control" formControlName="status">
+          <label for="status" class="form-label fs-6 text-uppercase fw-bold text-black">status</label>
+          <select id="status" name="status" class="form-control" formControlName="status">
             <option value="available">available</option>
             <option value="unavailable">unavailable</option>
           </select>
@@ -183,8 +183,8 @@
         </div>
         }
         <div class="mb-2 col-md-6">
-          <label for="category" class="form-label">category</label>
-          <select
+          <label for="category" class="form-label fs-6 text-uppercase fw-bold text-black">category</label>
+          <select id="category"
             name="category_id"
             class="form-control"
             formControlName="category_id"
@@ -208,7 +208,7 @@
         }
 
         <div class="mb-2 col-md-6">
-          <label for="image" class="form-label">Image</label>
+          <label for="image" class="form-label fs-6 text-uppercase fw-bold text-black">Image</label>
           <input
             type="file"
             id="image"
@@ -227,8 +227,8 @@
         </div>
 
         <div class="mb-2 col-md-6">
-          <label for="night_rate" class="form-label">night_rate</label>
-          <input
+          <label for="night_rate" class="form-label fs-6 text-uppercase fw-bold text-black">night_rate</label>
+          <input id="night_rate"
             type="text"
             name="night_rate"
             class="form-control"

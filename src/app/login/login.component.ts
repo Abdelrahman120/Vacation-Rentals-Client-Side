@@ -1,37 +1,68 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { OwnerAuthService } from '../Services/owner-auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
   credentials = { email: '', password: '' };
 
-  constructor(private authService: OwnerAuthService, private router: Router) {}
+  constructor(private authService: OwnerAuthService, private router: Router,private route: ActivatedRoute) {}
 
   submitted = false;
   user: any;
- 
-  handleSubmit(form:NgForm){
+
+  handleSubmit(form: NgForm) {
     this.submitted = true;
-      console.log(form.value);
-      
-    
+    console.log(form.value);
+
     this.authService.login(form.value).subscribe(
-      (response) => {
-        console.log('Login successful', response);
-        this.router.navigate(['/properties']);
+      (response: boolean) => {
+        if (response) {
+          this.router.navigate(['/properties']);
+        }
       },
       (error) => {
         console.error('Login failed', error);
       }
     );
   }
-
+  loginWithGoogleForOwner() {
+    // Redirect to Laravel API for Owner Google OAuth login
+    window.location.href = 'http://127.0.0.1:8000/api/owner/gmail/login';
   }
 
+  canActivate(): boolean {
+    const role = localStorage.getItem('role');
+    return role === 'owner';
+  }
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const token = params['token'];
+      const name = params['name'];
+      const email = params['email'];
+      const role = params['role'] || 'user'; // Default role is 'user'
+
+      if (token) {
+        // Store the token, user data, and role
+        localStorage.setItem('token', token);
+        localStorage.setItem('userName', name);
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('role', role); // Store the role (user or owner)
+
+        // Redirect based on the role (you can customize this part)
+        if (role === 'owner') {
+          this.router.navigate(['/owner-dashboard']);
+        } else {
+          this.router.navigate(['/dashboard']);
+        }
+      }
+    });
+  }
+}

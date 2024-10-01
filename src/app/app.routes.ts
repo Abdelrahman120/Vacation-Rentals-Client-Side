@@ -7,14 +7,24 @@ import { PropertiesComponent } from './properties/properties.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
-import { LoginUserComponent } from './login-user/login-user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoryComponent } from './category/category.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { MasterComponent } from './master/master.component';
+import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
+import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
+import { EditOwnerProfileComponent } from './edit-owner-profile/edit-owner-profile.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginUserComponent } from './login-user/login-user.component';
 
 export const routes: Routes = [
-
+    {
+        path: "",
+        component: MasterComponent,
+        title: "Home",
+    },
     {
         path: "property-details/:id",
         component: ViewPropertyComponent,
@@ -35,14 +45,15 @@ export const routes: Routes = [
         component: AddPropertyComponent,
         title: "Add new property"
     },
-    // {
-    //     path: 'login',
-    //     component: LoginComponent
-
-    // },
     {
-        path: 'register',
-        component: RegisterComponent
+        path: 'login/owner',
+        component: LoginComponent,
+        title: "Login"
+    },
+    {
+        path: 'register/owner',
+        component: RegisterComponent,
+        title: "Register"
     },
     {
         path: 'properties',
@@ -54,22 +65,52 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        component: LoginUserComponent
+        component: LoginUserComponent,
+        title: "Login"
     },
     {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        title: "Dashboard"
     },
     {
         path: 'category',
-        component: CategoryComponent
+        component: CategoryComponent,
+        title: "Category"
     },
     {
         path: 'add_category',
-        component: AddCategoryComponent
+        component: AddCategoryComponent,
+        title: "Add Category"
     },
     {
         path: 'edit_category/:id',
-        component: EditCategoryComponent
+        component: EditCategoryComponent,
+        title: "Edit Category"
+    },
+    {
+        path: 'edit_Owner_profile/:id',
+        component: EditOwnerProfileComponent,
+        title: "Edit Profile"
+    },
+    {
+        path: 'edit_user_profile/:id',
+        component: EditUserProfileComponent,
+        title: "Edit Profile"
+    },
+    {
+        path: 'owner-dashboard',
+        component: OwnerDashboardComponent,
+        title: "Dashboard"
+    },
+    {
+        path: "admin-dashboard",
+        component: AdminDashboardComponent,
+        title: "Dashboard"
+    },
+    {
+        path: '**',
+        component: NotFoundComponent,
+        title: "Not Found"
     }
 ];
