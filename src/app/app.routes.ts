@@ -18,6 +18,9 @@ import { EditOwnerProfileComponent } from './edit-owner-profile/edit-owner-profi
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginUserComponent } from './login-user/login-user.component';
+import { UsersComponent } from './Admin/users/users.component';
+import { OwnersComponent } from './Admin/owners/owners.component';
+import { ShowPropertiesComponent } from './Admin/show-properties/show-properties.component';
 
 export const routes: Routes = [
     {
@@ -107,6 +110,18 @@ export const routes: Routes = [
         path: "admin-dashboard",
         component: AdminDashboardComponent,
         title: "Dashboard"
+    },
+    {
+      path: 'admin/users',
+      component: UsersComponent  
+    },
+    {
+      path: 'admin/owners',
+      component: OwnersComponent  
+    },
+    {
+      path : 'admin/properties',
+      component: ShowPropertiesComponent 
     },
     {
         path: '**',
