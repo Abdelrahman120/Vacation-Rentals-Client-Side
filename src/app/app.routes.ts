@@ -21,6 +21,8 @@ import { LoginUserComponent } from './login-user/login-user.component';
 import { UsersComponent } from './Admin/users/users.component';
 import { OwnersComponent } from './Admin/owners/owners.component';
 import { ShowPropertiesComponent } from './Admin/show-properties/show-properties.component';
+import { TestBed } from '@angular/core/testing';
+import { TestComponent } from './test/test.component';
 
 export const routes: Routes = [
     {
@@ -113,19 +115,25 @@ export const routes: Routes = [
     },
     {
       path: 'admin/users',
-      component: UsersComponent  
+      component: UsersComponent
     },
     {
       path: 'admin/owners',
-      component: OwnersComponent  
+      component: OwnersComponent
     },
     {
       path : 'admin/properties',
-      component: ShowPropertiesComponent 
+      component: ShowPropertiesComponent
+    },
+    {
+      path: 'test/:id',
+      component: TestComponent,
+      title: "test"
     },
     {
         path: '**',
         component:NotFoundComponent,
         title: "Not Found"
     }
+
 ];
