@@ -9,7 +9,7 @@ import {
 
 import { NgIf } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PropertyService } from '../../service/propertyService/property.service';
+import { PropertyService } from '../../services/propertyService/property.service';
 @Component({
   selector: 'app-update-property',
   standalone: true,

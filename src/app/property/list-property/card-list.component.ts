@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PropertyService } from '../../service/propertyService/property.service';
+import { PropertyService } from '../../services/propertyService/property.service';
 import { CardItemComponent } from "../property-card/card-item.component";
 import { SearchComponent } from "../../search/search.component";
 
