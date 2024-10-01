@@ -1,5 +1,32 @@
-<div class="d-flex justify-content-evenly align-items-center row my-3">
-  <div class="col-sm-12 col-md-6 col-lg-5 col-xl-3">
+<div
+  class="input-group p-2 rounded-pill shadow-lg bg-white mt-3 w-50 mx-auto d-flex justify-content-between"
+>
+  <input
+    type="text"
+    class="form-control border me-2 rounded-pill"
+    placeholder="Where to?"
+    aria-label="Location"
+  />
+
+  <input
+    class="form-control border me-2 rounded-pill"
+    placeholder="Dates"
+    ngxDaterangepickerBootstrap
+  />
+
+  <input
+    type="text"
+    class="form-control border me-2 rounded-pill"
+    placeholder="travelers"
+    aria-label="Travelers"
+  />
+
+  <button class="btn btn-primary rounded-pill ms-1 px-4" type="button">
+    Search
+  </button>
+</div>
+
+<!-- <div class="col-sm-12 col-md-6 col-lg-5 col-xl-3"></div>
     <input
       type="text"
       name="destination"
@@ -22,5 +49,4 @@
       value="Search"
       class="form-control btn btn-outline-dark fs-5 roboto-medium"
     />
-  </div>
-</div>
+  </div> -->
