@@ -1,0 +1,23 @@
+
+<div class="container mt-5">
+    <h2 class="text-center  text-white">Users</h2>
+    <table class="table mt-5">
+        <thead>
+          <tr>
+            <th class="text-center" scope="col">#</th>
+            <th class="text-center" scope="col">First</th>
+            <th class="text-center" scope="col">Last</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <th scope="row" class="text-center">{{user.id}}</th>
+                <td class="text-center">{{user.name}}</td>
+                <td class="text-center">{{user.email}}</td>
+                <!-- <td>{{user.password}}</td> -->
+            </tr>
+      
+       
+        </tbody>
+      </table>
+</div>
