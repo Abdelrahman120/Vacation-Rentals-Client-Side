@@ -11,6 +11,6 @@ export class TestService {
   constructor(private http: HttpClient) {}
 
   getProperty(id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/1`);
+    return this.http.get(`${this.apiUrl}/5`);
   }
 }

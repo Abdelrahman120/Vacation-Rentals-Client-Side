@@ -27,6 +27,7 @@ import { ForgetPasswordUserComponent } from './forget-password-user/forget-passw
 import { ResetPasswordUserComponent } from './reset-password-user/reset-password-user.component';
 import { TestBed } from '@angular/core/testing';
 import { TestComponent } from './test/test.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -119,15 +120,18 @@ export const routes: Routes = [
     },
     {
       path: 'admin/users',
-      component: UsersComponent
+      component: UsersComponent,
+      canActivate: [AuthGuard],
     },
     {
       path: 'admin/owners',
-      component: OwnersComponent
+      component: OwnersComponent,
+      canActivate: [AuthGuard],
     },
     {
       path : 'admin/properties',
-      component: ShowPropertiesComponent
+      component: ShowPropertiesComponent,
+      canActivate: [AuthGuard],
     },
     {
       path: 'test/:id',

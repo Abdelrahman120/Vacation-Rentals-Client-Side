@@ -16,11 +16,13 @@ export class UsersComponent {
 
   ngOnInit() {
     this.getUsers();
+    
+    
   }
   getUsers(): void {
     this.adminServices.getUsers().subscribe(
       (response) => {
-        this.users = response.data; // Access the data from the response object
+        this.users = response.data; 
       },
       (error) => {
         console.error('Error fetching users:', error);
