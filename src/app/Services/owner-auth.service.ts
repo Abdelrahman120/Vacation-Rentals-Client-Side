@@ -22,13 +22,16 @@ export class OwnerAuthService {
   }
   getCurrentUser() {
     const token = localStorage.getItem(this.tokenKey);
+    const role = localStorage.getItem(this.roleKey);
+    
     if (token) {
-      const user = JSON.parse(token.split('|')[1]);
-      console.log('User:', user);
-      return user; 
+      return {
+        token: token,
+        role: role,
+      };
     }
-    console.log('No user found');
-    return null;
+
+    return null; // User is not logged in
   }
   login(credentials: any): Observable<boolean> {
     return this.http.post<any>(`${this.apiUrl}/login/owner`, credentials).pipe(
