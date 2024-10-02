@@ -11,13 +11,24 @@ export class OwnerAuthService {
 
   constructor(private router: Router,private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object,) { }
 
-  private apiUrl = 'http://127.0.0.1:8000/api'
+  private apiUrl = 'http://127.0.0.1:8000/api';
   private tokenKey = 'owner_auth_token';
+  private roleKey = 'user_role'; 
 
   register(userData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/register/owner`, userData).pipe(
       catchError(this.handleError)
     );
+  }
+  getCurrentUser() {
+    const token = localStorage.getItem(this.tokenKey);
+    if (token) {
+      const user = JSON.parse(token.split('|')[1]);
+      console.log('User:', user);
+      return user; 
+    }
+    console.log('No user found');
+    return null;
   }
   login(credentials: any): Observable<boolean> {
     return this.http.post<any>(`${this.apiUrl}/login/owner`, credentials).pipe(
@@ -26,7 +37,8 @@ export class OwnerAuthService {
         
         if (response && response.data.token) {
           if (isPlatformBrowser(this.platformId)) {
-            localStorage.setItem(this.tokenKey, response.data.token);
+            localStorage.setItem(this.tokenKey, response.data.token); // Store the token
+            localStorage.setItem(this.roleKey, response.data.role);  // Store the user role (admin or owner)
           }
           return true;
         }
@@ -89,4 +101,15 @@ export class OwnerAuthService {
     return throwError(errorMessage); // Return the error message for further handling
 }
 
+forgetPassword(email: any): Observable<any> {
+  return this.http.post<any>('http://127.0.0.1:8000/api/owners/password/email', { email }).pipe(
+    catchError(this.handleError)
+  );
+}
+resetPassword(email: any, token: any, password: any, password_confirmation: any): Observable<any> {
+  return this.http.post<any>('http://127.0.0.1:8000/api/owners/password/reset', {email, token, password, password_confirmation }).pipe(
+    catchError(this.handleError)
+  );
+
+}
 }
