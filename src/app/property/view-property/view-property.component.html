@@ -1,5 +1,22 @@
 <div class="container py-5">
-    <h1 class="text-center text-danger mb-4">Book Page</h1>
+    <h1 class="text-center text-danger m-4">Book Page</h1>
+    <div id="carouselExampleControls" class="carousel slide mb-4" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        @for (item of propertyDetails.images; track $index) {
+          <div class="carousel-item active">
+            <img src="http://127.0.0.1:8000{{item.image}}" class="d-block w-100" alt="...">
+          </div>
+        }
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
     <div class="row g-4">
       <div class="col-sm-12 col-md-8 col-12 d-flex flex-column">
         <!-- Book Info Section -->
@@ -22,13 +39,13 @@
         <!-- Features Section -->
         <div class="d-flex flex-wrap gap-3 mb-4">
           <span class="me-3">
-            <i class="fa-solid fa-door-open me-2"></i> 1 bedroom
+            <i class="fa-solid fa-door-open me-2"></i> {{propertyDetails.bedrooms}} bedroom
           </span>
           <span class="me-3">
-            <i class="fa-solid fa-toilet me-2"></i> 1 bathroom
+            <i class="fa-solid fa-toilet me-2"></i> {{propertyDetails.bathrooms}} bathroom
           </span>
           <span class="me-3">
-            <i class="fa-solid fa-users me-2"></i> 2 guests
+            <i class="fa-solid fa-users me-2"></i> {{propertyDetails.sleeps}} guests
           </span>
           <span><i class="fa-regular fa-square me-2"></i> 300 sq ft</span>
         </div>
@@ -36,27 +53,16 @@
         <!-- Amenities Section -->
         <h4 class="fw-bold">Popular amenities</h4>
         <div class="amenities">
-          <div class="d-flex justify-content-between mb-2">
-            <span
-              ><i class="fa-solid fa-car me-2"></i> Parking available</span
-            >
-            <span><i class="fa-solid fa-droplet me-2"></i> Pet friendly</span>
-          </div>
-          <div class="d-flex justify-content-between mb-2">
-            <span
-              ><i class="fa-solid fa-bowl-food me-2"></i> Barbecue grill</span
-            >
-            <span><i class="fa-solid fa-outdent me-2"></i> Pet friendly</span>
-          </div>
-          <div class="d-flex justify-content-between">
-            <span><i class="fa-solid fa-kitchen-set me-2"></i> Kitchen</span>
-            <span
-              ><i class="fa-brands fa-airbnb me-2"></i> Air conditioning</span
-            >
-          </div>
-          <a class="text-decoration-none mt-2 d-block" href="#"
-            >See all property amenities ></a
-          >
+          @for (item of propertyDetails.amenities; track $index) {
+            <div class="d-flex justify-content-between mb-2">
+              <span
+                ><i class="fa-solid fa-car me-2"></i> {{item.name}}</span
+              >
+              <span><i class="fa-solid fa-droplet me-2"></i> {{item.name}}</span>
+            </div>
+          }
+         
+        
         </div>
 
         <!-- Map Section -->
@@ -90,13 +96,13 @@
         <div class="mt-5 d-flex flex-column">
           <div>
             <h3>1 bedroom (4 sleeps)</h3>
-            <p class="fw-bold">Bedroom 1</p>
+            <p class="fw-bold">Bedroom {{propertyDetails.bedrooms}}</p>
             <span>1 Double Futon and 1 Twin Bunk Bed</span>
           </div>
           <hr />
           <div>
             <h3>1 bathroom</h3>
-            <p class="fw-bold">Bathroom 1</p>
+            <p class="fw-bold">Bathroom {{propertyDetails.bathrooms}}</p>
             <span>Toilet · Shower only · Outdoor shower</span>
           </div>
         </div>
@@ -108,30 +114,13 @@
           <div>
             <h3>Tiny house on private 20 acres along the Klamath River.</h3>
             <p>
-              Private cozy space with 500 hundred yards of river front. Copco
-              lake does not have water anymore BUT- the historic Klamath River
-              is back to the valley like it used to be back then! And you got
-              the crazy option to walk on a lake bed and see what is was 100
-              years ago. On Klamath River you can fish for Rainbow Trout.
-              Property has access to thousands of acres of land lock BLM . You
-              can hunt Deer, Bear, Elk, Turkey, Quail. This place is a
-              paradise for hunters and fisherman's. In winter, you can visit
-              the ski resorts of Ashland and Shasta. Fresh, clean air, the
-              proximity of the river and the forest, comfortable living
-              conditions, convenient location for tourist destination-all this
-              will decorate your holiday in the vicinity of the village at any
-              time of the year. The cabin has everything you need for a
-              comfortable stay. A fool-size futon. a fool - twin size bunk
-              bad, and a kitchen with a refrigerator, microwave, stove and
-              coffee maker. There are two showers , one in the house and one
-              outdoor. Our tiny home is a great place to relax with friends or
-              the whole family!
+             {{propertyDetails.description}}
             </p>
             <div>
               <h5>Property Manager</h5>
               <div class="d-flex flex-column justify-content-center">
-                  <img src="WhatsApp Image 2024-09-21 at 13.43.08.jpeg" class="img-fluid w-25" alt="Property Manager">
-                  <small class="ms-5">Mr. Smith</small>
+                  <!-- <img src="WhatsApp Image 2024-09-21 at 13.43.08.jpeg" class="img-fluid w-25" alt="Property Manager"> -->
+                  <small class="ms-5">{{propertyDetails.owner_name}}</small>
               </div>                
             </div>
           </div>
@@ -140,54 +129,16 @@
         <div class="mt-5">
            <h2>Amenities</h2>
            <div class="d-flex flex-column mb-3">
+            @for (item of propertyDetails.amenities; track $index) {
               <div>
-                  <span
-                ><i class="fa-solid fa-location-dot me-2"></i> Southern Oregon
-                University 63 min drive</span
-              >
-              <span
-                ><i class="fa-solid fa-location-dot me-2"></i> Oregon
-                Shakespeare Festival 67 min drive</span
-              >
-              </div>
+                <span
+              ><i class="fa-solid fa-location-dot me-2"></i> {{item.name}}</span
+            >
+            </div>
+            }
+             
            </div>   
-           <div class="d-flex flex-column mb-3">
-              <div>
-                  <span
-                ><i class="fa-solid fa-location-dot me-2"></i> Southern Oregon
-                University 63 min drive</span
-              >
-              <span
-                ><i class="fa-solid fa-location-dot me-2"></i> Oregon
-                Shakespeare Festival 67 min drive</span
-              >
-              </div>
-           </div>
-           <div class="d-flex flex-column mb-3">
-              <div>
-                  <span
-                ><i class="fa-solid fa-location-dot me-2"></i> Southern Oregon
-                University 63 min drive</span
-              >
-              <span
-                ><i class="fa-solid fa-location-dot me-2"></i> Oregon
-                Shakespeare Festival 67 min drive</span
-              >
-              </div>
-           </div>
-           <div class="d-flex flex-column mb-3">
-              <div>
-                  <span
-                ><i class="fa-solid fa-location-dot me-2"></i> Southern Oregon
-                University 63 min drive</span
-              >
-              <span
-                ><i class="fa-solid fa-location-dot me-2"></i> Oregon
-                Shakespeare Festival 67 min drive</span
-              >
-              </div>
-              <a href="#" class="text-decoration-underline mt-2">See all amenities</a>
-           </div>
+         
         </div>
 
       <!-- rules Section  -->
@@ -278,3 +229,5 @@
       </div>
     </div>
   </div>
+  
+
