@@ -1,4 +1,4 @@
-<div
+<form
   class="input-group p-2 rounded-pill shadow-lg bg-white mt-3 w-50 mx-auto d-flex justify-content-between"
 >
   <input
@@ -6,12 +6,16 @@
     class="form-control border me-2 rounded-pill"
     placeholder="Where to?"
     aria-label="Location"
+    name="location"
+    [(ngModel)]="location"
   />
 
   <input
     class="form-control border me-2 rounded-pill"
     placeholder="Dates"
     ngxDaterangepickerBootstrap
+    name="dates"
+    [(ngModel)]="dates"
   />
 
   <input
@@ -19,12 +23,17 @@
     class="form-control border me-2 rounded-pill"
     placeholder="travelers"
     aria-label="Travelers"
+    name="travelers"
+    [(ngModel)]="travelers"
   />
 
-  <button class="btn btn-primary rounded-pill ms-1 px-4" type="button">
-    Search
-  </button>
-</div>
+  <input
+    class="btn btn-primary rounded-pill ms-1 px-4"
+    value="Search"
+    type="submit"
+    (click)="search()"
+  />
+</form>
 
 <!-- <div class="col-sm-12 col-md-6 col-lg-5 col-xl-3"></div>
     <input

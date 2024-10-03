@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { OwnerAuthService } from '../Services/owner-auth.service';
+import { environment } from '../../environments/environment.development';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -12,7 +13,7 @@ import { OwnerAuthService } from '../Services/owner-auth.service';
 export class LoginComponent {
   credentials = { email: '', password: '' };
 
-  constructor(private authService: OwnerAuthService, private router: Router,private route: ActivatedRoute) {}
+  constructor(private authService: OwnerAuthService, private router: Router, private route: ActivatedRoute) { }
 
   submitted = false;
   user: any;
@@ -20,17 +21,16 @@ export class LoginComponent {
   handleSubmit(form: NgForm) {
     this.submitted = true;
     console.log(form.value);
-  
+
     this.authService.login(form.value).subscribe(
       (response: boolean) => {
         if (response) {
           const role = localStorage.getItem('user_role');
-          
+
           if (role === 'admin') {
-            // console.log('Login successful', response);
-            this.router.navigate(['/admin-dashboard']); 
+            this.router.navigate(['/admin-dashboard']);
           } else if (role === 'owner') {
-            this.router.navigate(['/properties']); // Redirect to owner properties page
+            this.router.navigate(['/properties']);
           }
         }
       },
@@ -40,8 +40,7 @@ export class LoginComponent {
     );
   }
   loginWithGoogleForOwner() {
-    // Redirect to Laravel API for Owner Google OAuth login
-    window.location.href = 'http://127.0.0.1:8000/api/owner/gmail/login';
+    window.location.href = `${environment.BACKEND_URL}/api/owner/gmail/login`;
   }
 
   canActivate(): boolean {

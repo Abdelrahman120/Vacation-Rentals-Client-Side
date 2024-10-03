@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { provideDaterangepickerLocale } from "ngx-daterangepicker-bootstrap";
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,5 +12,7 @@ export const appConfig: ApplicationConfig = {
     provideDaterangepickerLocale({
       separator: ' - ',
       applyLabel: 'Okay',
-    })]
+    }),
+    NgxDaterangepickerMd,
+  ]
 };

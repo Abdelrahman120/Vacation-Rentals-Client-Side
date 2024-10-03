@@ -7,7 +7,9 @@ import * as L from 'leaflet';
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  styleUrls: ['./test.component.css'],
+  standalone: true,
+  imports: []
 })
 export class TestComponent implements OnInit {
   property: any;
@@ -16,7 +18,7 @@ export class TestComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private testService: TestService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const propertyId = this.route.snapshot.params['id'];

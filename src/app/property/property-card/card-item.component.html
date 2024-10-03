@@ -10,18 +10,25 @@
       class="fs-4 position-absolute rounded-3 text-light hover-effect"
       style="top: 2%; right: 4%"
     ></fa-icon>
-    <div class="card-body">
+    <div class="card-body p-1">
       <span class="text-light" style="font-size: 14px">{{
         property.city
       }}</span>
-      <p class="mb-0 roboto-bold" style="bottom: 2rem">
+      <p class="roboto-bold" style="bottom: 2rem; font-size: 1rem">
         {{ property.name }}
       </p>
-      <div class="d-flex justify-content-between" style="height: 0.5rem">
+      <div class="d-flex justify-content-between" style="font-size: 0.8rem">
         <div class="card-text text-light">
-          {{ property.property_type }}
+          <fa-icon [icon]="faHouse" class="rounded-3 text-light"></fa-icon>
+          {{ property.property_type }} |
+          <fa-icon [icon]="faBed" class="rounded-3 text-light"></fa-icon>
+          {{ property.bedrooms }} |
+          <fa-icon [icon]="faBath" class="rounded-3 text-light"></fa-icon>
+          {{ property.bathrooms }} | Sleeps: {{ property.sleeps }}
         </div>
-        <div class="text-end fw-bold text-light">{{ property.nightRate }}$</div>
+        <div class="text-end fw-bold text-light" style="font-size: 0.8rem">
+          {{ property.night_rate }}$
+        </div>
       </div>
     </div>
   </a>
