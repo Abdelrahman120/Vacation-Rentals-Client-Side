@@ -123,6 +123,7 @@ export const routes: Routes = [
     component: AdminDashboardComponent,
     title: 'Dashboard',
     canActivate: [AuthGuard],
+
   },
   {
     path: 'admin/users',
