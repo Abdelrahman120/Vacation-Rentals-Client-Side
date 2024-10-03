@@ -1,0 +1,8 @@
+<div *ngIf="paymentDetails">
+    <h2>Payment Successful</h2>
+    <p>Product: {{ paymentDetails.product_name }}</p>
+    <p>Amount: {{ paymentDetails.amount  }} {{ paymentDetails.currency }}</p>
+    <p>Quantity: {{ paymentDetails.quantity }}</p>
+    <p>Payer Name: {{ paymentDetails.payer_name }}</p>
+    <p>Payer Email: {{ paymentDetails.payer_email }}</p>
+  </div>
