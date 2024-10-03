@@ -53,3 +53,6 @@
   }
 
 }
+.fs-5:hover , .fs-4:hover {
+  color: brown !important;
+}
