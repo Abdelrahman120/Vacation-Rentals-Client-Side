@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 // import { CategoryService } from '../category.service';
 import { RouterLink , Router } from '@angular/router';
 import { CategoryService } from '../services/category.service';
+import { SidebarComponent } from "../admin-dashboard/sidebar/sidebar.component";
 
 @Component({
   selector: 'app-category',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, SidebarComponent],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })

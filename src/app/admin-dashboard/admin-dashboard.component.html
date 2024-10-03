@@ -1,51 +1,11 @@
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content>
-  <meta name="author" content>
-  <link href="../../../public/vendorr/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
-  <link href="../../../public/csss/sb-admin-2.css" rel="stylesheet">
 
-</head>
 
-<body id="page-top" [style]="{'margin-top': '50px'}">
+<div id="page-top" [style]="{'margin-top': '50px'}">
   <div>
     <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-          <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
-          </div>
-          <div class="sidebar-brand-text mx-3">Admin</div>
-        </a>
-        <hr class="sidebar-divider my-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Users</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Owners</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Properties</span></a>
-        </li>
-      </ul>
+     <app-sidebar></app-sidebar>
       <!-- End of Sidebar -->
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
@@ -82,37 +42,48 @@
               <h3 class="text-light text-center">Admin Dashboard</h3>
             
         </div>
-        <div class="mt-4 d-flex justify-content-center">
-          <div class="row">
-            <div class="col-sm-12 col-md-4">
-              <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
+        <div class="mt-4 d-flex justify-content-center container" >
+          <div class="row g-5">
+            <div class="col-sm-12  col-md-3">
+              <div class="card" >
+                <img  src="https://img.freepik.com/premium-vector/man-traveler-walking-city-carry-suitcase_80802-316.jpg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">All Users</h5>
-                  <p class="text-black">all users in the system</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <h5 class="card-title">All Traveler</h5>
+                  <p class="text-black">all Traveleres in the system</p>
+                  <a routerLink="/admin/users" class="btn btn-primary">Show</a>
                 </div>
               </div>
 
             </div>
-            <div class="col-sm-12 col-md-4 ">
-              <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
+            <div class="col-sm-12 col-md-3">
+              <div class="card" >
+                <img  src="/images/group.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">All Category</h5>
+                  <p class="text-black">all Categories in the system</p>
+                  <a routerLink="/category" class="btn btn-primary">Show</a>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-sm-12 col-md-3 ">
+              <div class="card" >
+                <img src="https://lh3.googleusercontent.com/proxy/3xgraJcWg1BTOL3NPDgBgHActoCLKrvel9CucFnMYsHLs7nX_Qg-BmQmbUS0YjuuA0FTF2P20fruPsWRuETswHOVuL90RKOuKTUf_K3PgJ9bg48" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">All Owners</h5>
                   <p class="text-black">all owners in the system</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <a routerLink="/admin/owners" class="btn btn-primary">Show</a>
                 </div>
               </div>
 
             </div>
-            <div class="col-sm-12 col-md-4 ">
-              <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
+            <div class="col-sm-12 col-md-3 ">
+              <div class="card" >
+                <img src="/images/billboard.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">All Properties</h5>
                   <p class="text-black">all properties in the system</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <a routerLink="/admin/properties" class="btn btn-primary">Show</a>
                 </div>
               </div>
 
@@ -127,23 +98,7 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="../../../public/vendorr/jquery/jquery.min.js"></script>
-  <script src="../../../public/vendorr/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="../../../public/vendorr/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="../../../public/jss/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="../../../public/vendorr/chart.js/Chart.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="../../../public/jss/demo/chart-area-demo.js"></script>
-  <script src="../../../public/jss/demo/chart-pie-demo.js"></script>
 
 
 </div>
-</body>
+</div>

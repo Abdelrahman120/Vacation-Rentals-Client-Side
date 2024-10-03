@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { AdminServicesService } from '../../services/admin-services.service';
 import { CommonModule } from '@angular/common';
+import { SidebarComponent } from "../../admin-dashboard/sidebar/sidebar.component";
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SidebarComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })
@@ -29,5 +30,17 @@ export class UsersComponent {
       }
     );
   }
-
+  deleteUser(id: number): void {
+    // if (confirm('Are you sure you want to delete this user?')) {
+    //   this.adminServices.deleteUser(id).subscribe(
+    //     (response) => {
+    //       console.log('User deleted:', response);
+    //       this.getUsers();
+    //     },
+    //     (error) => {
+    //       console.error('Error deleting user:', error);
+    //     }
+    //   );
+    // }
+  }
 }

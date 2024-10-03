@@ -1,45 +1,53 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { AdminServicesService } from '../services/admin-services.service';
+import { SidebarComponent } from "../admin-dashboard/sidebar/sidebar.component";
 
 @Component({
   selector: 'app-properties',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, SidebarComponent],
   templateUrl: './properties.component.html',
   styleUrl: './properties.component.css'
 })
 export class PropertiesComponent {
-  products: any[] = [];
-  constructor(private router: Router ) {
-    
+  properties: any[] = [];
+  constructor (private adminServices : AdminServicesService ) {}
+
+  ngOnInit(): void {
+    this.getProperties();
   }
-//   ngOnInit(): void {
-//    this.productService.getProducts().subscribe((data: any) => {
-//      this.products = data.data;
-//      // console.log(this.products.data);
-     
-//    });
-// }
 
-confirmDelete(id: number): void {
-  const confirmed = window.confirm('Are you sure you want to delete this item?');
-
-  if (confirmed) {
-    // this.onDelete(id);
+  getProperties(): void {
+    this.adminServices.getProperties().subscribe(
+      (response) => {
+        this.properties = response.data; // Access the data from the response object
+      },
+      (error) => {
+        console.error('Error fetching properties:', error);
+      }
+    );
   }
-}
-// onDelete(id: number) {
-//  this.productService.deleteProduct(id).subscribe((data) => {
-//    this.update();
-//    this.router.navigate(['/product']);
-
-//  })
-// }
-
-// update(){
-//  this.productService.getProducts().subscribe((data: any) => {
-//    this.products = data.data;
-// });}
-
-
+  accept(id: number) {
+    this.adminServices.acceptProperty(id).subscribe(
+      (response) => {
+        console.log('Property accepted:', response);
+        this.getProperties();
+      },
+      (error) => {
+        console.error('Error accepting property:', error);
+      }
+    );
+  }
+  reject(id: number) {
+    this.adminServices.rejectProperty(id).subscribe(
+      (response) => {
+        console.log('Property rejected:', response);
+        this.getProperties();
+      },
+      (error) => {
+        console.error('Error rejecting property:', error);
+      }
+    );
+   }
 }

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { AdminServicesService } from '../../services/admin-services.service';
 import { CommonModule } from '@angular/common';
+import { SidebarComponent } from "../../admin-dashboard/sidebar/sidebar.component";
 
 @Component({
   selector: 'app-show-properties',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SidebarComponent],
   templateUrl: './show-properties.component.html',
   styleUrl: './show-properties.component.css'
 })
