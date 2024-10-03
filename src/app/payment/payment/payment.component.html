@@ -1,0 +1,9 @@
+
+<h1 style="color: wheat; margin-top: 20px;">ssssssssssssss</h1>
+<form (ngSubmit)="makePayment(product_name, price, quantity)">
+    <input type="text" [(ngModel)]="product_name" placeholder="Product Name" name="product_name" required />
+    <input type="number" [(ngModel)]="price" placeholder="Price" name="price" required />
+    <input type="number" [(ngModel)]="quantity" placeholder="Quantity" name="quantity" />
+    <button type="submit">Pay with Stripe</button>
+  </form>
+  

@@ -28,6 +28,9 @@ import { ResetPasswordUserComponent } from './reset-password-user/reset-password
 import { TestBed } from '@angular/core/testing';
 import { TestComponent } from './test/test.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PaymentComponent } from './payment/payment/payment.component';
+import { SuccessComponent } from './payment/success/success.component';
+import { CancleComponent } from './payment/cancle/cancle.component';
 
 export const routes: Routes = [
     {
@@ -147,7 +150,19 @@ export const routes: Routes = [
       component:ForgetPasswordUserComponent
     },
     { path: 'password-reset/owners/:token', component: ResetPasswordComponent } ,
-    { path: 'password-reset/users/:token', component: ResetPasswordUserComponent } 
+    { path: 'password-reset/users/:token', component: ResetPasswordUserComponent },
+    {
+        path : 'payment',
+        component : PaymentComponent
+    },
+    {
+        path : 'success',
+        component: SuccessComponent
+    },
+    {
+        path: 'cancel',
+        component: CancleComponent
+    } 
 
     ,    {
         path: '**',
