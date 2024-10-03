@@ -1,22 +1,55 @@
-import { Component } from '@angular/core';
-import { PropertyService } from '../../service/propertyService/property.service';
+import { Component, OnInit } from '@angular/core';
+import { PropertyService } from '../../services/propertyService/property.service';
 import { CardItemComponent } from "../property-card/card-item.component";
 import { SearchComponent } from "../../search/search.component";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-card-list',
   standalone: true,
   imports: [CardItemComponent, SearchComponent],
   templateUrl: './card-list.component.html',
-  styleUrl: './card-list.component.css'
+  styleUrls: ['./card-list.component.css'] // Note: 'styleUrls' should be plural
 })
-export class CardListComponent {
-  constructor(private PropertyService: PropertyService) { }
-  properties: any[] = [];
+export class CardListComponent implements OnInit {
+  properties: any;
+  city: any;
+  input: any;
+  objLength: string[] = [];
+
+  constructor(
+    private propertyService: PropertyService,
+    private activatedRoute: ActivatedRoute
+  ) { }
+
   ngOnInit(): void {
-    this.PropertyService.getProperty().subscribe((data: any) => {
-      console.log(data.data);
-      this.properties = data.data;
-    })
+    this.loadData();
+  }
+
+  loadData() {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.input = {
+        startDate: params['start_date'],
+        endDate: params['end_date'],
+        destination: params["city"],
+        sleeps: params["sleeps"]
+      };
+
+      if (this.input.destination && this.input.startDate && this.input.endDate) {
+        this.propertyService.getPropertyByDate(this.input).subscribe(data => {
+          this.properties = data;
+          console.log(this.properties);
+
+        });
+      }
+    });
+  }
+
+  objectLength() {
+    this.objLength = Object.keys(this.properties);
+    if (this.objLength.length > 0) {
+      return true;
+    }
+    return false;
   }
 }

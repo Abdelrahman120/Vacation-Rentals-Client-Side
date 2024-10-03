@@ -31,9 +31,9 @@ import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {
-      path: "",
-      component:MasterComponent,
-      title: "Home",
+        path: "",
+        component: MasterComponent,
+        title: "Home",
     },
     {
         path: "property-details/:id",
@@ -66,7 +66,7 @@ export const routes: Routes = [
         title: "Register"
     },
     {
-        path: 'properties',
+        path: 'admin/properties',
         component: PropertiesComponent
     },
     {
@@ -89,34 +89,34 @@ export const routes: Routes = [
         title: "Category"
     },
     {
-        path: 'add_category',
+        path: 'add-category',
         component: AddCategoryComponent,
         title: "Add Category"
     },
     {
-        path: 'edit_category/:id',
+        path: 'edit-category/:id',
         component: EditCategoryComponent,
         title: "Edit Category"
     },
     {
-      path:'edit_Owner_profile/:id',
-      component:EditOwnerProfileComponent,
-      title: "Edit Profile"
+        path: 'edit-Owner-profile/:id',
+        component: EditOwnerProfileComponent,
+        title: "Edit Profile"
     },
     {
-      path:'edit_user_profile/:id',
-      component:EditUserProfileComponent,
-      title: "Edit Profile"
+        path: 'edit-user-profile/:id',
+        component: EditUserProfileComponent,
+        title: "Edit Profile"
     },
     {
-      path:'owner-dashboard',
-      component:OwnerDashboardComponent,
-      title: "Dashboard"
+        path: 'owner-dashboard',
+        component: OwnerDashboardComponent,
+        title: "Dashboard"
     },
     {
-      path:"admin-dashboard",
-      component:AdminDashboardComponent,
-      title: "Dashboard"
+        path: "admin-dashboard",
+        component: AdminDashboardComponent,
+        title: "Dashboard"
     },
     {
       path: 'admin/users',
@@ -151,7 +151,7 @@ export const routes: Routes = [
 
     ,    {
         path: '**',
-        component:NotFoundComponent,
+        component: NotFoundComponent,
         title: "Not Found"
     }
 
