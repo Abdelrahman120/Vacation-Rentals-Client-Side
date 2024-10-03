@@ -32,4 +32,10 @@ export class AdminServicesService {
   getProperties(): Observable<any> {
     return this.http.get(`${this.url}/properties`, { headers: this.getAuthHeaders() }); // Add headers
   }
+  acceptProperty(id: number): Observable<any> {
+    return this.http.post(`http://127.0.0.1:8000/api/properties/${id}/accept`,{});
+  }
+  rejectProperty(id: number): Observable<any> {
+    return this.http.post(`http://127.0.0.1:8000/api/properties/${id}/reject`,{});
+  }
 }

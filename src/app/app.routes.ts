@@ -70,7 +70,9 @@ export const routes: Routes = [
     },
     {
         path: 'admin/properties',
-        component: PropertiesComponent
+        component: PropertiesComponent,
+        title: "Properties",
+        canActivate: [AuthGuard],
     },
     {
         path: 'register/user',
@@ -90,7 +92,7 @@ export const routes: Routes = [
         path: 'category',
         component: CategoryComponent,
         title: "Category"
-    },
+    },  
     {
         path: 'add-category',
         component: AddCategoryComponent,
@@ -131,11 +133,11 @@ export const routes: Routes = [
       component: OwnersComponent,
       canActivate: [AuthGuard],
     },
-    {
-      path : 'admin/properties',
-      component: ShowPropertiesComponent,
-      canActivate: [AuthGuard],
-    },
+    // {
+    //   path : 'admin/properties',
+    //   component: ShowPropertiesComponent,
+    //   canActivate: [AuthGuard],
+    // },
     {
       path: 'test/:id',
       component: TestComponent,
