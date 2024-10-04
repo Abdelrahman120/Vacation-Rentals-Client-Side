@@ -33,141 +33,147 @@ import { SuccessComponent } from './payment/success/success.component';
 import { CancleComponent } from './payment/cancle/cancle.component';
 
 export const routes: Routes = [
-    {
-        path: "",
-        component: MasterComponent,
-        title: "Home",
-    },
-    {
-        path: "property-details/:id",
-        component: ViewPropertyComponent,
-        title: "property details",
-    },
-    {
-        path: "properties",
-        component: CardListComponent,
-        title: "Properties",
-    },
-    {
-        path: "update-property/:id",
-        component: UpdatePropertyComponent,
-        title: "Update Property"
-    },
-    {
-        path: "add-property",
-        component: AddPropertyComponent,
-        title: "Add new property"
-    },
-    {
-        path: 'login/owner',
-        component: LoginComponent,
-        title: "Login"
-    },
-    {
-        path: 'register/owner',
-        component: RegisterComponent,
-        title: "Register"
-    },
-    {
-        path: 'admin/properties',
-        component: PropertiesComponent
-    },
-    {
-        path: 'register/user',
-        component: RegisterUserComponent
-    },
-    {
-        path: 'login',
-        component: LoginUserComponent,
-        title: "Login"
-    },
-    {
-        path: 'dashboard',
-        component: DashboardComponent,
-        title: "Dashboard"
-    },
-    {
-        path: 'category',
-        component: CategoryComponent,
-        title: "Category"
-    },
-    {
-        path: 'add-category',
-        component: AddCategoryComponent,
-        title: "Add Category"
-    },
-    {
-        path: 'edit-category/:id',
-        component: EditCategoryComponent,
-        title: "Edit Category"
-    },
-    {
-        path: 'edit-Owner-profile/:id',
-        component: EditOwnerProfileComponent,
-        title: "Edit Profile"
-    },
-    {
-        path: 'edit-user-profile/:id',
-        component: EditUserProfileComponent,
-        title: "Edit Profile"
-    },
-    {
-        path: 'owner-dashboard',
-        component: OwnerDashboardComponent,
-        title: "Dashboard"
-    },
-    {
-        path: "admin-dashboard",
-        component: AdminDashboardComponent,
-        title: "Dashboard"
-    },
-    {
-      path: 'admin/users',
-      component: UsersComponent,
-      canActivate: [AuthGuard],
-    },
-    {
-      path: 'admin/owners',
-      component: OwnersComponent,
-      canActivate: [AuthGuard],
-    },
-    {
-      path : 'admin/properties',
-      component: ShowPropertiesComponent,
-      canActivate: [AuthGuard],
-    },
-    {
-      path: 'test/:id',
-      component: TestComponent,
-      title: "test"
-    },
-    {
-      path : 'forget_password',
-      component: ForgetPasswordComponent 
-    },
-    {
-      path:'forget_password_user',
-      component:ForgetPasswordUserComponent
-    },
-    { path: 'password-reset/owners/:token', component: ResetPasswordComponent } ,
-    { path: 'password-reset/users/:token', component: ResetPasswordUserComponent },
-    {
-        path : 'payment',
-        component : PaymentComponent
-    },
-    {
-        path : 'success',
-        component: SuccessComponent
-    },
-    {
-        path: 'cancel',
-        component: CancleComponent
-    } 
+  {
+    path: '',
+    component: MasterComponent,
+    title: 'Home',
+  },
+  {
+    path: 'property-details/:id',
+    component: ViewPropertyComponent,
+    title: 'property details',
+  },
+  {
+    path: 'properties',
+    component: CardListComponent,
+    title: 'Properties',
+  },
+  {
+    path: 'update-property/:id',
+    component: UpdatePropertyComponent,
+    title: 'Update Property',
+  },
+  {
+    path: 'add-property',
+    component: AddPropertyComponent,
+    title: 'Add new property',
+  },
+  {
+    path: 'login/owner',
+    component: LoginComponent,
+    title: 'Login',
+  },
+  {
+    path: 'register/owner',
+    component: RegisterComponent,
+    title: 'Register',
+  },
+  {
+    path: 'admin/properties',
+    component: PropertiesComponent,
+    title: 'Properties',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'register/user',
+    component: RegisterUserComponent,
+  },
+  {
+    path: 'login',
+    component: LoginUserComponent,
+    title: 'Login',
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    title: 'Dashboard',
+  },
+  {
+    path: 'category',
+    component: CategoryComponent,
+    title: 'Category',
+  },
+  {
+    path: 'add-category',
+    component: AddCategoryComponent,
+    title: 'Add Category',
+  },
+  {
+    path: 'edit-category/:id',
+    component: EditCategoryComponent,
+    title: 'Edit Category',
+  },
+  {
+    path: 'edit-Owner-profile/:id',
+    component: EditOwnerProfileComponent,
+    title: 'Edit Profile',
+  },
+  {
+    path: 'edit-user-profile/:id',
+    component: EditUserProfileComponent,
+    title: 'Edit Profile',
+  },
+  {
+    path: 'owner-dashboard',
+    component: OwnerDashboardComponent,
+    title: 'Dashboard',
+  },
+  {
+    path: 'admin-dashboard',
+    component: AdminDashboardComponent,
+    title: 'Dashboard',
+    canActivate: [AuthGuard],
 
-    ,    {
-        path: '**',
-        component: NotFoundComponent,
-        title: "Not Found"
-    }
+  },
+  {
+    path: 'admin/users',
+    component: UsersComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/owners',
+    component: OwnersComponent,
+    canActivate: [AuthGuard],
+  },
+  // {
+  //   path : 'admin/properties',
+  //   component: ShowPropertiesComponent,
+  //   canActivate: [AuthGuard],
+  // },
+  {
+    path: 'test/:id',
+    component: TestComponent,
+    title: 'test',
+  },
+  {
+    path: 'forget_password',
+    component: ForgetPasswordComponent,
+  },
+  {
+    path: 'forget_password_user',
+    component: ForgetPasswordUserComponent,
+  },
+  { path: 'password-reset/owners/:token', component: ResetPasswordComponent },
+  {
+    path: 'password-reset/users/:token',
+    component: ResetPasswordUserComponent,
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent,
+  },
+  {
+    path: 'success',
+    component: SuccessComponent,
+  },
+  {
+    path: 'cancel',
+    component: CancleComponent,
+  },
 
+  {
+    path: '**',
+    component: NotFoundComponent,
+    title: 'Not Found',
+  },
 ];

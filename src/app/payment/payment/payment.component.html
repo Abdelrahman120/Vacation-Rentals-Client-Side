@@ -1,9 +1,69 @@
+<div class="mt-5">ss</div>
+<div class="container mt-5">
+  <div class="mt-5">
+    <h1 class="text-center">Payment Page</h1>  
+    <form class="w-50 mx-auto" (ngSubmit)="makePayment(product_name, price, quantity)">
+      <div class="mb-2"> 
+        <label for="product_name" class="form-label fs-4">Property Name</label>
+        <input class="form-control" type="text" [(ngModel)]="product_name"  name="product_name" required />
+      </div>
 
-<h1 style="color: wheat; margin-top: 20px;">ssssssssssssss</h1>
-<form (ngSubmit)="makePayment(product_name, price, quantity)">
-    <input type="text" [(ngModel)]="product_name" placeholder="Product Name" name="product_name" required />
-    <input type="number" [(ngModel)]="price" placeholder="Price" name="price" required />
-    <input type="number" [(ngModel)]="quantity" placeholder="Quantity" name="quantity" />
-    <button type="submit">Pay with Stripe</button>
-  </form>
+      <div class="mb-2">
+        <label for="price" class="form-label fs-4">Price</label>
+        <input type="number" [(ngModel)]="price"  class="form-control" name="price" required disabled/>
+      </div>
+
+      <div class="mb-2">
+
+      </div>
+      
+      <input type="hidden" [(ngModel)]="quantity" placeholder="Quantity" name="quantity" />
+      <button type="submit" class="btn btn-primary rounded mt-1">Pay with Stripe</button>
+    </form>
+  </div>
+   <!-- rules Section  -->
+   <div class="mt-5">
+    <h2>House Rules</h2>
+    <div class="d-flex flex-column  ">
+        <span>Check out before 11:00 AM</span>
+        <div class="d-flex mt-3">
+            <div class="me-3">
+                <i class="fa-solid fa-child fs-4 me-2"></i>
+                <span>
+                    Children allowed: ages 0-17 
+                </span>
+            </div>
+
+            <div>
+                <i class="fa-solid fa-gift fs-4 me-2"></i>
+                <span>
+                    Events allowed: family gatherings, birthday parties, weddings
+                </span>
+            </div>
+            <div>
+
+            </div>
+
+        </div>
+        <div class="mt-3">
+            <p>
+                Pets are not allowed on the furniture !!! No Smoking inside. No loaded firearms at the cabin and campsite.
+                Since the cabin is located in the forest highly recommended to meet host while checking for your own safety.
+                Open fires only with permission of the host.
+            </p>
+        </div>
+    </div>
+ </div>
+
+       <!-- damage section -->
+       <div class="mt-5">
+        <h2>Damages</h2>
+        <p>
+            You will be responsible for any damage to the rental property caused by you or your party during your stay.
+        </p>
+      </div>
+
+  
+</div>
+
   

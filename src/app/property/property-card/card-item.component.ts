@@ -22,6 +22,19 @@ export class CardItemComponent {
   faHouse = faHouse;
 
   goToDetails(id: string) {
-    this.router.navigate(['/property-details', id]);
+    const queryParams = new URLSearchParams(window.location.search);
+    const startDate = queryParams.get('start_date');
+    const endDate = queryParams.get('end_date');
+    const city = queryParams.get('city');
+    const sleeps = queryParams.get('sleeps');
+
+    this.router.navigate(['/property-details', id], {
+      queryParams: {
+        start_date: startDate,
+        end_date: endDate,
+        city: city,
+        sleeps: sleeps,
+      },
+    });
   }
 }
