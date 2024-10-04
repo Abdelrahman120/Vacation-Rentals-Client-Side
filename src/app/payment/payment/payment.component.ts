@@ -3,7 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { StripeService } from '../../services/stripe.service';
 import { FormsModule, NgModel } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -17,8 +17,20 @@ export class PaymentComponent {
   price: number = 0;
   quantity: number = 1;
 
-  constructor(private stripeService: StripeService , private http: HttpClient, private router: Router) {}
+  constructor(private stripeService: StripeService , private http: HttpClient, private route: ActivatedRoute) {}
+  totalPrice: number = 0
+  sleeps: number = 0
+  name: string = ''
 
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.product_name = params['product_name'];
+      this.price = params['total_price'];
+      this.sleeps = params['sleeps'];
+      this.totalPrice = this.price
+    });
+  }
+  
   async makePayment(product_name: string, price: number, quantity: number = 1) {
     this.stripeService.createCheckoutSession(product_name, price, quantity).subscribe(async (response: any) => {
       if (response.status === 'success') {
