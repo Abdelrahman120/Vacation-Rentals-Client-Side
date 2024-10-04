@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class RegisterUserService {
 
-  private apiUrl = 'http://127.0.0.1:8000/api/register/'; 
+  private apiUrl = 'http://127.0.0.1:8000/api/register/';
+
 
   constructor(private http: HttpClient) { }
 
@@ -15,4 +16,6 @@ export class RegisterUserService {
   register(data: FormData): Observable<any> {
     return this.http.post(`${this.apiUrl}`, data);
   }
+
+
 }

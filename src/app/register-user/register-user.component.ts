@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RegisterUserService } from '../services/register-user.service';
+import { RegisterUserService } from '../Services/register-user.service';
 
 @Component({
   selector: 'app-register-user',
   standalone: true,
-  imports: [ReactiveFormsModule , CommonModule , FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule],
   templateUrl: './register-user.component.html',
-  styleUrl: './register-user.component.css'
+  styleUrl: './register-user.component.css',
 })
 export class RegisterUserComponent {
   name: string = '';
@@ -21,7 +21,10 @@ export class RegisterUserComponent {
   gender: string = '';
   selectedFile: File | null = null;
   validationErrors: any = {};
-  constructor(private authService: RegisterUserService , private router: Router) {}
+  constructor(
+    private authService: RegisterUserService,
+    private router: Router
+  ) {}
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -46,11 +49,15 @@ export class RegisterUserComponent {
     if (!this.password) {
       this.validationErrors.password = ['Password is required'];
     } else if (this.password.length < 6) {
-      this.validationErrors.password = ['Password must be at least 6 characters long'];
+      this.validationErrors.password = [
+        'Password must be at least 6 characters long',
+      ];
     }
 
     if (!this.confirmPassword) {
-      this.validationErrors.confirmPassword = ['Password confirmation is required'];
+      this.validationErrors.confirmPassword = [
+        'Password confirmation is required',
+      ];
     } else if (this.password !== this.confirmPassword) {
       this.validationErrors.confirmPassword = ['Passwords do not match'];
     }
@@ -59,14 +66,16 @@ export class RegisterUserComponent {
       this.validationErrors.phone = ['Phone is required'];
     } else if (!/^\d+$/.test(this.phone)) {
       this.validationErrors.phone = ['Phone must contain only digits'];
-    }else if (this.phone.length !== 11) {
+    } else if (this.phone.length !== 11) {
       this.validationErrors.phone = ['Phone must be 11 digits'];
     }
 
     if (!this.address) {
       this.validationErrors.address = ['Address is required'];
     } else if (this.address.length < 5) {
-      this.validationErrors.address = ['Address must be at least 5 characters long'];
+      this.validationErrors.address = [
+        'Address must be at least 5 characters long',
+      ];
     }
 
     if (!this.gender) {
@@ -98,7 +107,8 @@ export class RegisterUserComponent {
     this.authService.register(formData).subscribe(
       (response) => {
         console.log('Registration successful', response);
-        localStorage.setItem('auth_token', response.access_token); // Store token
+        localStorage.setItem('auth_token', response.access_token);
+        localStorage.setItem('userId', response.user.id);
         this.router.navigate(['/login']);
       },
       (error) => {
@@ -112,5 +122,4 @@ export class RegisterUserComponent {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   }
-
 }

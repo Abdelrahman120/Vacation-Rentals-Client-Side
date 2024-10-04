@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
-import { RegisterUserService } from '../services/register-user.service';
+import { Component, OnInit } from '@angular/core';
+import { UserProfileService } from '../Services/user-profile.service';
 import { Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-edit-user-profile',
   standalone: true,
-  imports: [ReactiveFormsModule , CommonModule , FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule],
   templateUrl: './edit-user-profile.component.html',
-  styleUrl: './edit-user-profile.component.css'
+  styleUrls: ['./edit-user-profile.component.css'],
 })
-export class EditUserProfileComponent {
+export class EditUserProfileComponent implements OnInit {
   name: string = '';
   email: string = '';
   password: string = '';
@@ -20,97 +21,84 @@ export class EditUserProfileComponent {
   gender: string = '';
   selectedFile: File | null = null;
   validationErrors: any = {};
-  constructor(private authService: RegisterUserService , private router: Router) {}
+  userId!: number;
+
+  constructor(
+    private userProfileService: UserProfileService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.userId =
+      +this.router.routerState.snapshot.root.firstChild?.params['id']!;
+    if (!this.userId) {
+      console.error('User ID is not found in the route parameters.');
+      return; // أو توجيه المستخدم إلى صفحة أخرى
+    }
+    this.getUserData(this.userId);
+  }
+
+  getUserData(id: number): void {
+    this.userProfileService.getUser(id).subscribe(
+      (response) => {
+        this.name = response.name || '';
+        this.email = response.email || '';
+        this.phone = response.phone || '';
+        this.address = response.address || '';
+        this.gender = response.gender || '';
+      },
+      (error) => {
+        console.error('Error fetching user data:', error);
+      }
+    );
+  }
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
 
-  onRegister() {
+  onUpdate() {
     this.validationErrors = {};
 
-    // Client-side validation
-    if (!this.name) {
-      this.validationErrors.name = ['Name is required'];
-    } else if (this.name.length < 3) {
-      this.validationErrors.name = ['Name must be at least 3 characters long'];
-    }
-
-    if (!this.email) {
-      this.validationErrors.email = ['Email is required'];
-    } else if (!this.validateEmail(this.email)) {
-      this.validationErrors.email = ['Invalid email format'];
-    }
-
-    if (!this.password) {
-      this.validationErrors.password = ['Password is required'];
-    } else if (this.password.length < 6) {
-      this.validationErrors.password = ['Password must be at least 6 characters long'];
-    }
-
-    if (!this.confirmPassword) {
-      this.validationErrors.confirmPassword = ['Password confirmation is required'];
-    } else if (this.password !== this.confirmPassword) {
-      this.validationErrors.confirmPassword = ['Passwords do not match'];
-    }
-
-    if (!this.phone) {
-      this.validationErrors.phone = ['Phone is required'];
-    } else if (!/^\d+$/.test(this.phone)) {
-      this.validationErrors.phone = ['Phone must contain only digits'];
-    }else if (this.phone.length !== 11) {
-      this.validationErrors.phone = ['Phone must be 11 digits'];
-    }
-
-    if (!this.address) {
-      this.validationErrors.address = ['Address is required'];
-    } else if (this.address.length < 5) {
-      this.validationErrors.address = ['Address must be at least 5 characters long'];
-    }
-
-    if (!this.gender) {
-      this.validationErrors.gender = ['Gender is required'];
-    }
-
-    if (!this.selectedFile) {
-      this.validationErrors.image = ['Profile image is required'];
-    }
-
-    if (Object.keys(this.validationErrors).length > 0) {
+    if (
+      !this.name ||
+      !this.email ||
+      !this.phone ||
+      !this.address ||
+      !this.gender
+    ) {
+      this.validationErrors = {
+        name: ['Name is required.'],
+        email: ['Email is required.'],
+        phone: ['Phone number is required.'],
+        address: ['Address is required.'],
+        gender: ['Gender is required.'],
+      };
       return;
     }
 
-    // Prepare form data to send in the request
-    const formData = new FormData();
-    formData.append('name', this.name);
-    formData.append('email', this.email);
-    formData.append('password', this.password);
-    formData.append('password_confirmation', this.confirmPassword);
-    formData.append('phone', this.phone);
-    formData.append('address', this.address);
-    formData.append('gender', this.gender);
+    const userData: { [key: string]: any } = {
+      name: this.name,
+      email: this.email,
+      phone: this.phone,
+      address: this.address,
+      gender: this.gender,
+    };
 
-    if (this.selectedFile) {
-      formData.append('image', this.selectedFile, this.selectedFile.name);
+    if (this.password) {
+      userData['password'] = this.password;
+      userData['password_confirmation'] = this.confirmPassword;
     }
 
-    this.authService.register(formData).subscribe(
+    this.userProfileService.updateUser(this.userId, userData).subscribe(
       (response) => {
-        console.log('Registration successful', response);
-        localStorage.setItem('auth_token', response.access_token); // Store token
-        this.router.navigate(['/login']);
+        console.log('Update successful', response);
+        this.router.navigate(['/profile']);
       },
       (error) => {
-        this.validationErrors = error.error.errors;
-        console.log('Registration failed', error);
+        this.validationErrors = error.error.errors || {};
+        console.error('Update failed', error);
       }
     );
   }
-
-  validateEmail(email: string): boolean {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  }
-
 }
-

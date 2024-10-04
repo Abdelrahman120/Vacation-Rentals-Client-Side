@@ -1,29 +1,45 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { LoginUserService } from '../services/login-user.service';
+import { Router, RouterModule } from '@angular/router';
+import { LoginUserService } from '../Services/login-user.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  constructor(private authService: LoginUserService, private router: Router) {}
-  onLogout() {
+  id: number = 0;
+
+  constructor(private authService: LoginUserService, private router: Router) {
+    this.loadUserId();
+  }
+
+  private loadUserId(): void {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      this.id = +userId;
+    }
+  }
+
+  onLogout(): void {
     this.authService.logout().subscribe(
       (response) => {
         console.log('Logout successful', response);
-        // localStorage.removeItem('auth_token');
-        localStorage.removeItem('userName');
-        localStorage.removeItem('userEmail');
-        localStorage.removeItem('token'); // Remove token
-        this.router.navigate(['/login']); // Redirect to login
+        this.clearLocalStorage();
+        this.router.navigate(['/login']);
       },
       (error) => {
         console.log('Logout failed', error);
       }
     );
+  }
+
+  private clearLocalStorage(): void {
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
   }
 }

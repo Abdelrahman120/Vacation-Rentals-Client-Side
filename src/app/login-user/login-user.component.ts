@@ -1,35 +1,37 @@
 import { Component } from '@angular/core';
-import { LoginUserService } from '../services/login-user.service';
+import { LoginUserService } from '../Services/login-user.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login-user',
   standalone: true,
-  imports: [FormsModule,RouterLink],
+  imports: [FormsModule, RouterLink],
   templateUrl: './login-user.component.html',
-  styleUrl: './login-user.component.css'
+  styleUrl: './login-user.component.css',
 })
 export class LoginUserComponent {
   email: string = '';
   password: string = '';
   validationErrors: any = {};
 
-  constructor(private loginservice: LoginUserService, private router: Router , private route: ActivatedRoute) {}
+  constructor(
+    private loginservice: LoginUserService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const token = params['token'];
       const name = params['name'];
       const email = params['email'];
 
       if (token) {
-        // Store the token and user data
         localStorage.setItem('token', token);
         localStorage.setItem('userName', name);
         localStorage.setItem('userEmail', email);
 
-        // Redirect or load user data
         this.router.navigate(['/dashboard']);
       }
     });
@@ -48,7 +50,7 @@ export class LoginUserComponent {
 
     if (!this.password) {
       this.validationErrors.password = 'password is required';
-    }else if (this.password.length < 8) {
+    } else if (this.password.length < 8) {
       this.validationErrors.password = 'password must be at least 8 characters';
     }
 
