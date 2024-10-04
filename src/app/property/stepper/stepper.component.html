@@ -1,0 +1,20 @@
+<div class="container mt-5">
+  <ul class="nav nav-pills p-3 nav-justified rounded-1 shadow-sm">
+    <li class="nav-item" *ngFor="let step of steps; let i = index">
+      <div class="d-grid">
+        <button
+          (click)="!isReadOnly && onClick(i)"
+          [class.active]="selectedIndex === i"
+          [class.completed]="isStepCompleted(i)"
+          [class.read-only]="isReadOnly"
+          class="py-3 m-0 fw-bold border-0 stepperBtns"
+        >
+          {{ step.label }}
+        </button>
+      </div>
+    </li>
+  </ul>
+  <div *ngIf="selected">
+    <ng-container [ngTemplateOutlet]="selected.content"></ng-container>
+  </div>
+</div>

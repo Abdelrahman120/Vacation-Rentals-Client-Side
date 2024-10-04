@@ -13,6 +13,6 @@ export const appConfig: ApplicationConfig = {
       separator: ' - ',
       applyLabel: 'Okay',
     }),
-    NgxDaterangepickerMd,
-  ]
+    NgxDaterangepickerMd
+  ],
 };

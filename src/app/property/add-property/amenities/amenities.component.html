@@ -1,0 +1,69 @@
+<div class="mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          id="FirstName"
+          class="form-control"
+          placeholder="FirstName"
+          [(ngModel)]="firstName"
+          required
+        />
+        <label for="FirstName">FirstName</label>
+      </div>
+      <div class="form-floating">
+        <input
+          type="text"
+          id="LastName"
+          class="form-control"
+          placeholder="LastName"
+          [(ngModel)]="lastName"
+          required
+        />
+        <label for="LastName">LastName</label>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <input
+          type="email"
+          id="Email"
+          class="form-control"
+          placeholder="Email"
+          [(ngModel)]="email"
+          required
+          email
+        />
+        <label for="Email">Email</label>
+      </div>
+      <div class="form-floating">
+        <input
+          type="text"
+          id="Phone"
+          class="form-control"
+          placeholder="Phone"
+          [(ngModel)]="phone"
+          required
+          pattern="[0-9]{10}"
+        />
+        <label for="Phone">Phone</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between flex-row mb-5 mt-4">
+  <button class="btn btn-outline-danger rounded-1 fs-5" cdkStepperPrevious>
+    <i class="fa fa-angle-left"></i> Previous
+  </button>
+
+  <button
+    class="btn btn-outline-primary rounded-1 fs-5"
+    (click)="submitAmenity()"
+    cdkStepperNext
+  >
+    Next <i class="fa fa-angle-right"></i>
+  </button>
+</div>
