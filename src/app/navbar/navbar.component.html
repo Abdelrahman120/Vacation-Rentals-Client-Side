@@ -1,7 +1,11 @@
 <header id="nav" class="site-header position-fixed text-white bg-dark">
-  <nav id="navbar-example2" class="navbar navbar-expand-lg py-2">
+  <nav
+    id="navbar-example2"
+    class="navbar navbar-expand-lg py-2"
+    style="background-color: #3b5899"
+  >
     <div class="container">
-      <a class="navbar-brand" href="/">VacationRentals</a>
+      <a class="navbar-brand poppins-bold" href="/">VacationRentals</a>
 
       <button
         class="navbar-toggler text-white"
@@ -33,34 +37,46 @@
             class="navbar-nav align-items-center justify-content-end align-items-center flex-grow-1"
           >
             <li class="nav-item">
-              <a class="nav-link me-md-4" routerLink="/">Home</a>
+              <a class="nav-link me-md-4 poppins-medium" routerLink="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link me-md-4" routerLink="/properties"
+              <a
+                class="nav-link me-md-4 poppins-medium"
+                routerLink="/properties"
                 >Properties</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link me-md-4" href="#about-us">About</a>
+              <a class="nav-link me-md-4 poppins-medium" href="#about-us"
+                >About</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link me-md-4" href="#help">Contact</a>
+              <a class="nav-link me-md-4 poppins-medium" href="#help"
+                >Contact</a
+              >
             </li>
             <li class="nav-item dropdown">
               <a
-                class="nav-link me-md-4 text-center dropdown-toggle"
+                class="nav-link me-md-4 text-center dropdown-toggle poppins-medium"
                 data-bs-toggle="dropdown"
                 href="#"
                 role="button"
                 aria-expanded="false"
                 >Login</a
               >
-              <ul class="dropdown-menu dropdown-menu-dark">
+              <ul class="dropdown-menu">
                 <li>
-                  <a routerLink="/login/owner" class="dropdown-item">Owner</a>
+                  <a
+                    routerLink="/login/owner"
+                    class="dropdown-item poppins-medium"
+                    >Owner</a
+                  >
                 </li>
                 <li>
-                  <a routerLink="/login" class="dropdown-item">Traveller</a>
+                  <a routerLink="/login" class="dropdown-item poppins-medium"
+                    >Traveller</a
+                  >
                 </li>
               </ul>
             </li>

@@ -1,0 +1,20 @@
+.nav-pills {
+  background-color: #e4e4e4;
+}
+.isReadOnly {
+  cursor: not-allowed;
+}
+
+.completed {
+  background-color: #1b7731bd;
+  color: white;
+}
+
+button.active {
+  background-color: #1b773169; /*hsl(206, 10%, 14%) */
+  color: rgb(43, 43, 43);
+}
+
+.stepperBtns {
+  cursor: default;
+}
