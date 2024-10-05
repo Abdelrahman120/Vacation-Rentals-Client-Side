@@ -38,7 +38,7 @@ export const routes: Routes = [
   {
     path: '',
     component: MasterComponent,
-    title: 'Home',
+    title: 'Home',  
   },
   {
     path: 'property-details/:id',
