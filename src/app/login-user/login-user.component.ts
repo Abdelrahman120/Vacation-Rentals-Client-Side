@@ -31,7 +31,7 @@ export class LoginUserComponent {
         localStorage.setItem('token', token);
         localStorage.setItem('userName', name);
         localStorage.setItem('userEmail', email);
-
+        localStorage.setItem('role' , 'user');
         this.router.navigate(['/dashboard']);
       }
     });

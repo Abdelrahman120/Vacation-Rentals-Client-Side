@@ -15,12 +15,11 @@ export class OwnerDashboardComponent {
     this.authService.logout().subscribe(
       (response) => {
         console.log('Owner Logout successful', response);
-        // Remove the relevant local storage items for the owner
         localStorage.removeItem('userName');
         localStorage.removeItem('userEmail');
-        localStorage.removeItem('token'); // Remove token
-        localStorage.removeItem('role'); // Remove role if stored
-        this.router.navigate(['/login/owner']); // Redirect to login
+        localStorage.removeItem('token'); 
+        localStorage.removeItem('role'); 
+        this.router.navigate(['/login/owner']); 
       },
       (error) => {
         console.log('Owner Logout failed', error);

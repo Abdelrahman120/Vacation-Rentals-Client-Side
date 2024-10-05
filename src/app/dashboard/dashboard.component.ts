@@ -41,5 +41,7 @@ export class DashboardComponent {
     localStorage.removeItem('userEmail');
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
+    localStorage.removeItem('owner_auth_token');
+    localStorage.removeItem('user_role');
   }
 }

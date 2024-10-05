@@ -1,109 +1,127 @@
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
-import { ReactiveFormsModule,
-
+import { Component, OnInit } from '@angular/core';
+import {
+  ReactiveFormsModule,
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
-
-
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { OwnerAuthService } from '../Services/owner-auth.service';
+import { OwnerProfileService } from '../Services/owner-profile.service';
+
 @Component({
   selector: 'app-edit-owner-profile',
   standalone: true,
-  imports: [ReactiveFormsModule,NgIf],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './edit-owner-profile.component.html',
-  styleUrl: './edit-owner-profile.component.css'
+  styleUrls: ['./edit-owner-profile.component.css'],
 })
-export class EditOwnerProfileComponent{
-
-  // list :Array<any> = [];
-
-
+export class EditOwnerProfileComponent implements OnInit {
   registerForm: FormGroup;
+  submitted = false;
+  validationErrors: any = {};
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: OwnerAuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private ownerProfileService: OwnerProfileService
+  ) {
     this.registerForm = this.fb.group({
-      company_name : ['', Validators.required],
+      company_name: ['', Validators.required],
       name: ['', Validators.required],
       address: ['', Validators.required],
-      phone: ['', [Validators.required,Validators.minLength(11)]],
+      phone: ['', [Validators.required, Validators.minLength(11)]],
       description: ['', Validators.required],
-      role:['owner'],
-      image: ['', [Validators.required,]],
-      gender: ['', [Validators.required,]],
-
-      email: ['', [Validators.required, Validators.email,Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(8),
-      ]],
-      password_confirmation: ['', [
-        Validators.required,
-        Validators.minLength(8),
-      ]],
-
+      role: ['owner'],
+      gender: ['', Validators.required],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/),
+        ],
+      ],
+      password: ['', [Validators.minLength(6)]],
+      password_confirmation: [''],
     });
   }
 
-
-  onFileChange(event: any): void {
-    const file = event.target.files[0];
-    this.registerForm.patchValue({
-      image: file
-    });
+  ngOnInit() {
+    this.loadOwnerData();
   }
 
-  submitted = false
-  handleSubmit() {
+  loadOwnerData(): void {
+    const ownerId = this.getOwnerIdFromLocalStorage();
+    this.ownerProfileService.getOwner(ownerId).subscribe(
+      (data) => {
+        console.log('Owner data:', data);
+        this.registerForm.patchValue({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          address: data.address,
+          company_name: data.company_name,
+          gender: data.gender,
+          description: data.description,
+        });
+      },
+      (error) => {
+        console.log('Error fetching owner data:', error);
+      }
+    );
+  }
+
+  getOwnerIdFromLocalStorage(): number {
+    const ownerId = +localStorage.getItem('owner_id')!;
+    console.log('Owner ID from localStorage:', ownerId);
+    return ownerId;
+  }
+
+  handleEditSubmit() {
     this.submitted = true;
 
     if (this.registerForm.valid) {
-        const formData = new FormData();
-        Object.keys(this.registerForm.value).forEach(key => {
-            formData.append(key, this.registerForm.get(key)?.value);
-        });
+      const formData = { ...this.registerForm.value };
 
-        this.authService.register(formData).subscribe(
-            response => {
-                console.log('Registration successful:', response);
-                this.router.navigate(['/login/owner']);
-            },
-            error => {
-                console.error('Registration failed:', error);
+      const password = this.registerForm.get('password')?.value;
+      const confirmPassword = this.registerForm.get(
+        'password_confirmation'
+      )?.value;
+      if (password && password !== confirmPassword) {
+        this.validationErrors.password_confirmation = [
+          'Passwords do not match.',
+        ];
+        return;
+      }
 
-                // Check if the error has the expected structure
-                if (error.status === 422 && error.error && error.error.errors) {
-                    const validationErrors = error.error.errors;
-                    console.log('Validation errors:', validationErrors);
-
-                    // Set the error on the corresponding form controls
-                    Object.keys(validationErrors).forEach((key) => {
-                        const formControl = this.registerForm.get(key);
-                        if (formControl) {
-                            const errorMessage = validationErrors[key][0]; // Make sure this is safe
-                            formControl.setErrors({ serverError: errorMessage });
-                        } else {
-                            console.warn(`No form control found for key: ${key}`);
-                        }
-                    });
-                } else {
-                    console.error('Something went wrong; please try again later.');
-                }
-            }
-        );
+      console.log('Form Data before submitting:', formData);
+      const ownerId = this.getOwnerIdFromLocalStorage();
+      this.ownerProfileService.updateOwner(ownerId, formData).subscribe(
+        (response) => {
+          console.log('Update successful:', response);
+          this.router.navigate(['/profile/owner']);
+        },
+        (error) => {
+          console.error('Update failed:', error);
+          this.handleErrors(error);
+        }
+      );
     }
+  }
+
+  handleErrors(error: any) {
+    if (error.status === 422 && error.error && error.error.errors) {
+      this.validationErrors = error.error.errors;
+      console.log('Validation errors:', this.validationErrors);
+      Object.keys(this.validationErrors).forEach((key) => {
+        const formControl = this.registerForm.get(key);
+        if (formControl) {
+          formControl.setErrors({ serverError: this.validationErrors[key][0] });
+        }
+      });
+    } else {
+      console.error('Something went wrong; please try again later.');
+    }
+  }
 }
-
-
-
-
-
-
-
-
-}
-

@@ -6,16 +6,19 @@
       <label for="name" class="form-label">Category Name</label>
       <input id="name" type="text" name="name" class="form-control" formControlName="name">
     </div>
-    @if(AddForm.get('name')?.invalid &&
-    (AddForm.get('name')?.touched || submitted)){
-    <div id="nameErrors" class="form-text text-danger">
-      @if(AddForm.get('name')?.hasError('required')){
-      <span>Required</span>
-      }
-    </div>
+    @if(AddForm.get('name')?.invalid && (AddForm.get('name')?.touched || submitted)){
+      <div id="nameErrors" class="form-text text-danger">
+        @if(AddForm.get('name')?.hasError('required')){
+          <span>Required</span>
+        }
+      </div>
     }
     <div class="d-flex justify-content-center ">
-      <button type="submit" class="btn btn-primary w-50 m-auto "> Add Category</button>
+      <button type="submit" class="btn btn-primary w-50 m-auto">Add Category</button>
     </div>
   </form>
+
+  <div class="d-flex justify-content-center mt-3">
+    <button class="btn btn-secondary" (click)="navigateToEditProfile()">Edit Profile</button>
+  </div>
 </div>

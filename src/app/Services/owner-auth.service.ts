@@ -12,8 +12,8 @@ export class OwnerAuthService {
   constructor(private router: Router,private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object,) { }
 
   private apiUrl = 'http://127.0.0.1:8000/api';
-  private tokenKey = 'owner_auth_token';
-  private roleKey = 'user_role'; 
+  private tokenKey = 'token';
+  private roleKey = 'role'; 
 
   register(userData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/register/owner`, userData).pipe(
