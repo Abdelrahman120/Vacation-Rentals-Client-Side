@@ -11,10 +11,12 @@
           ></app-information>
         </cdk-step>
         <cdk-step [label]="'Amenities'">
-          <app-amenities></app-amenities>
+          <app-amenities
+            (AmenityFormSubmitted)="appStepper.next()"
+          ></app-amenities>
         </cdk-step>
         <cdk-step [label]="'Pictures'">
-          <app-pictures></app-pictures>
+          <app-pictures (imageFormSubmitted)="appStepper.next()"></app-pictures>
         </cdk-step>
         <cdk-step [label]="'Finish'">
           <app-finish></app-finish>

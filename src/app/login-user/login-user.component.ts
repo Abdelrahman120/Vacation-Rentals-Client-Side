@@ -19,7 +19,7 @@ export class LoginUserComponent {
     private loginservice: LoginUserService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {

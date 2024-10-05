@@ -24,7 +24,7 @@ export class RegisterUserComponent {
   constructor(
     private authService: RegisterUserService,
     private router: Router
-  ) {}
+  ) { }
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
