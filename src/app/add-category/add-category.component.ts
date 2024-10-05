@@ -1,39 +1,38 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule,
-
-  FormBuilder,
-  FormControl,
-  FormGroup, 
-  Validators,
-
-
-} from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
-// import { CategoryService } from '../category.service';
 import { Router } from '@angular/router';
 import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-add-category',
   standalone: true,
-  imports: [ReactiveFormsModule,NgIf],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './add-category.component.html',
-  styleUrl: './add-category.component.css'
+  styleUrls: ['./add-category.component.css']
 })
 export class AddCategoryComponent {
   AddForm: FormGroup;
-  constructor(private fb: FormBuilder,private router: Router, private categoryService: CategoryService) {
+  submitted = false;
+
+  ownerId: number | null = null;
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private categoryService: CategoryService
+  ) {
     this.AddForm = this.fb.group({
       name: ['', Validators.required],
-
     });
+
+    const storedOwnerId = localStorage.getItem('owner_id');
+    if (storedOwnerId) {
+      this.ownerId = +storedOwnerId;
+    }
   }
-  
-  
-  
-  submitted = false
-  
-  handleSubmit(){
+
+  handleSubmit() {
     this.submitted = true;
     if (this.AddForm.valid) {
       const formData = new FormData();
@@ -53,4 +52,11 @@ export class AddCategoryComponent {
     }
   }
 
+  navigateToEditProfile() {
+    if (this.ownerId !== null) {
+      this.router.navigate(['/edit-Owner-profile', this.ownerId]);
+    } else {
+      console.error('Owner ID not found');
+    }
+  }
 }
