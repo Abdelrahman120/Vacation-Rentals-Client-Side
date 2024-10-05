@@ -23,14 +23,14 @@ export class LoginComponent {
     console.log(form.value);
 
     this.authService.login(form.value).subscribe(
-      (response: boolean) => {
+      (response: any) => {
         if (response) {
-          const role = localStorage.getItem('user_role');
+          const role = localStorage.getItem('role');
 
           if (role === 'admin') {
             this.router.navigate(['/admin-dashboard']);
           } else if (role === 'owner') {
-            this.router.navigate(['/properties']);
+            this.router.navigate(['/owner-dashboard']);
           }
         }
       },
@@ -39,6 +39,7 @@ export class LoginComponent {
       }
     );
   }
+
   loginWithGoogleForOwner() {
     window.location.href = `${environment.BACKEND_URL}/api/owner/gmail/login`;
   }

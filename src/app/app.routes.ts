@@ -31,6 +31,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { PaymentComponent } from './payment/payment/payment.component';
 import { SuccessComponent } from './payment/success/success.component';
 import { CancleComponent } from './payment/cancle/cancle.component';
+import { userGuard } from './guards/user.guard';
 import { FavoritesComponent } from './favorites/favorites.component';
 
 export const routes: Routes = [
@@ -162,6 +163,7 @@ export const routes: Routes = [
   {
     path: 'payment',
     component: PaymentComponent,
+    canActivate: [userGuard],
   },
   {
     path: 'success',

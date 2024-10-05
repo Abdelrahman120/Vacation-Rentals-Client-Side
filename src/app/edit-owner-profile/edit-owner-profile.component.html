@@ -1,176 +1,83 @@
 <div class="container w-50 border bg-white rounded mx-auto p-5" style="margin-top: 100px;">
-  <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+  <form [formGroup]="registerForm" (ngSubmit)="handleEditSubmit()">
     <h2 class="text-center my-2 mb-3 text-dark">Edit Profile</h2>
     <div class="row">
-        <div class="mb-2 col-md-6">
-            <label  for="name" class="form-label fs-6 text-uppercase fw-bold text-black">Name</label>
-            <input id="name" type="text" name="name" class="form-control" formControlName="name">
+      <div class="mb-2 col-md-6">
+        <label for="name" class="form-label fs-6 text-uppercase fw-bold text-black">Name</label>
+        <input id="name" type="text" name="name" class="form-control" formControlName="name">
+        @if (validationErrors.name) {
+        <span class="text-danger">{{ validationErrors.name[0] }}</span>
+        }
+      </div>
 
+      <div class="mb-2 col-md-6">
+        <label for="address" class="form-label fs-6 text-uppercase fw-bold text-black">Address</label>
+        <input id="address" type="text" name="address" class="form-control" formControlName="address">
+        @if (validationErrors.address) {
+        <span class="text-danger">{{ validationErrors.address[0] }}</span>
+        }
+      </div>
 
-            @if(registerForm.get('name')?.invalid &&
-            (registerForm.get('name')?.touched || submitted)){
-            <div id="nameErrors" class="form-text text-danger">
-                @if(registerForm.get('name')?.hasError('required')){
-                <span>Name is Required</span>
-                }
-            </div>
-            }
-        </div>
+      <div class="mb-2 col-md-6">
+        <label for="phone" class="form-label fs-6 text-uppercase fw-bold text-black">Phone</label>
+        <input id="phone" type="text" name="phone" class="form-control" formControlName="phone">
+        @if (validationErrors.phone) {
+        <span class="text-danger">{{ validationErrors.phone[0] }}</span>
+        }
+      </div>
 
-        <div class="mb-2 col-md-6">
-            <label for="address" class="form-label fs-6 text-uppercase fw-bold text-black">Address</label>
-            <input id="address" type="text" name="address" class="form-control" formControlName="address">
-
-            @if(registerForm.get('address')?.invalid &&
-            (registerForm.get('address')?.touched || submitted)){
-            <div id="addressErrors" class="form-text text-danger">
-                @if(registerForm.get('address')?.hasError('required')){
-                <span>Address is Required</span>
-                }
-            </div>
-            }
-        </div>
-        <div class="mb-2 col-md-6">
-            <label for="phone" class="form-label fs-6 text-uppercase fw-bold text-black">phone</label>
-            <input id="phone" type="text" name="phone" class="form-control" formControlName="phone">
-
-            @if(registerForm.get('phone')?.invalid &&
-            (registerForm.get('phone')?.touched || submitted)){
-            <div id="phoneErrors" class="form-text text-danger">
-                @if(registerForm.get('phone')?.hasError('required')){
-                <span>Phone is Required</span>
-                }
-                @if(registerForm.get('phone')?.hasError('minLength')){
-                <span>Phone Must be 11 digit</span>
-                }
-            </div>
-            }
-        </div>
-
-        <div class="mb-2 col-md-6">
+      <div class="mb-2 col-md-6">
         <label for="company_name" class="form-label fs-6 text-uppercase fw-bold text-black">Company Name</label>
         <input id="company_name" type="text" name="company_name" class="form-control" formControlName="company_name">
-
-        @if(registerForm.get('company_name')?.invalid &&
-        (registerForm.get('company_name')?.touched || submitted)){
-        <div id="company_nameErrors" class="form-text text-danger">
-            @if(registerForm.get('company_name')?.hasError('required')){
-            <span>Company Name is Required</span>
-            }
-        </div>
+        @if (validationErrors.company_name) {
+        <span class="text-danger">{{ validationErrors.company_name[0] }}</span>
         }
-    </div>
-    <div class="mb-2 col-md-6">
-        <label for="exampleInputEmail1" class="form-label fs-6 text-uppercase fw-bold text-black">Email address</label>
-        <input type="email" name="email" class="form-control" formControlName="email" id="exampleInputEmail1"
-            aria-describedby="emailHelp">
+      </div>
 
-        @if(registerForm.get('email')?.invalid &&
-        (registerForm.get('email')?.touched || submitted)){
-        <div id="emailErrors" class="form-text text-danger">
-            @if(registerForm.get('email')?.hasError('required')){
-            <span>Email is Required</span>
-            }
-            @if(registerForm.get('email')?.hasError('pattern')){
-                <span>Email is not valid</span>
-                }
-
-
-        </div>
+      <div class="mb-2 col-md-6">
+        <label for="email" class="form-label fs-6 text-uppercase fw-bold text-black">Email address</label>
+        <input type="email" name="email" class="form-control" formControlName="email" id="email" aria-describedby="emailHelp">
+        @if (validationErrors.email) {
+        <span class="text-danger">{{ validationErrors.email[0] }}</span>
         }
-    </div>
-    <div class="mb-2 col-md-6">
+      </div>
+
+      <div class="mb-2 col-md-6">
         <label for="gender" class="form-label fs-6 text-uppercase fw-bold text-black">Gender</label>
         <select id="gender" name="gender" class="form-control" formControlName="gender">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
         </select>
-
-        @if(registerForm.get('gender')?.invalid &&
-        (registerForm.get('gender')?.touched || submitted)){
-        <div id="genderErrors" class="form-text text-danger">
-            @if(registerForm.get('gender')?.hasError('required')){
-            <span>Gender is Required</span>
-            }
-        </div>
+        @if (validationErrors.gender) {
+        <span class="text-danger">{{ validationErrors.gender[0] }}</span>
         }
-    </div>
+      </div>
 
-
-    <div class="mb-2 col-md-12">
-        <label for="image" class="form-label fs-6 text-uppercase fw-bold text-black">Image</label>
-        <input type="file" id="image" class="form-control" (change)="onFileChange($event)">
-
-
-        @if(registerForm.get('image')?.invalid &&
-        (registerForm.get('image')?.touched || submitted)){
-        <div id="imageErrors" class="form-text text-danger">
-            @if(registerForm.get('image')?.hasError('required')){
-            <span>Image is Required</span>
-            }
-
-        </div>
-        }
-    </div>
-    <div class="mb-2 col-md-12">
-        <label for="description" class="form-label fs-6 text-uppercase fw-bold text-black">Description </label>
+      <div class="mb-2 col-md-12">
+        <label for="description" class="form-label fs-6 text-uppercase fw-bold text-black">Description</label>
         <input id="description" type="text" name="description" class="form-control" formControlName="description">
-
-        @if(registerForm.get('description')?.invalid &&
-        (registerForm.get('description')?.touched || submitted)){
-        <div id="descriptionErrors" class="form-text text-danger">
-            @if(registerForm.get('description')?.hasError('required')){
-            <span>Description is Required</span>
-            }
-        </div>
+        @if (validationErrors.description) {
+        <span class="text-danger">{{ validationErrors.description[0] }}</span>
         }
-    </div>
-    <input type="hidden" name="role" value="owner" formControlName="role">
-    <div class="mb-2 col-md-6">
-        <label for="exampleInputPassword1" class="form-label fs-6 text-uppercase fw-bold text-black">Password</label>
-        <input type="password" name="password" class="form-control" formControlName="password"
-            id="exampleInputPassword1">
+      </div>
 
-
-        @if(registerForm.get('password')?.invalid &&
-        (registerForm.get('password')?.touched || submitted)){
-        <div id="passwordErrors" class="form-text text-danger">
-            @if(registerForm.get('password')?.hasError('required')){
-            <span>Password is Required</span>
-            }
-            @if(registerForm.get('password')?.hasError('minlength')){
-            <span>password must be at least 8 characters
-            </span>
-            }
-
-
-        </div>
+      <div class="mb-2 col-md-12">
+        <label for="password" class="form-label fs-6 text-uppercase fw-bold text-black">Password</label>
+        <input id="password" type="password" name="password" class="form-control" formControlName="password">
+        @if (validationErrors.password) {
+        <span class="text-danger">{{ validationErrors.password[0] }}</span>
         }
-    </div>
-    <div class="mb-2 col-md-6">
-        <label for="exampleInputPassword1" class="form-label fs-6 text-uppercase fw-bold text-black">Confirm Password</label>
-        <input id="exampleInputPassword1" type="password" name="password_confirmation" class="form-control" formControlName="password_confirmation"
-            >
+      </div>
 
-
-        @if(registerForm.get('password_confirmation')?.invalid &&
-        (registerForm.get('password_confirmation')?.touched || submitted)){
-        <div id="password_confirmationErrors" class="form-text text-danger">
-            @if(registerForm.get('password_confirmation')?.hasError('required')){
-            <span>Password is Required</span>
-            }
-            @if(registerForm.get('password_confirmation')?.hasError('minlength')){
-            <span>password must be at least 8 characters
-            </span>
-            }
-
-
-        </div>
+      <div class="mb-2 col-md-12">
+        <label for="confirm_password" class="form-label fs-6 text-uppercase fw-bold text-black">Confirm Password</label>
+        <input id="confirm_password" type="password" name="confirm_password" class="form-control" formControlName="password_confirmation">
+        @if (validationErrors.password_confirmation) {
+        <span class="text-danger">{{ validationErrors.password_confirmation[0] }}</span>
         }
+      </div>
+
+      <input type="submit" value="Edit Profile" class="btn btn-primary text-uppercase fw-bold">
     </div>
-    <div class="d-flex justify-content-center my-3">
-        <button type="submit" class="btn btn-lg btn-primary w-50 m-auto ">Edit</button>
-    </div>
-</div>
-</form>
+  </form>
 </div>

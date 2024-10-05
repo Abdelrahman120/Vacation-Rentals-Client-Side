@@ -79,18 +79,16 @@
               >
               
               <ul class="dropdown-menu">
-                <li>
-                  <a
-                    routerLink="/login/owner"
-                    class="dropdown-item poppins-medium"
-                    >Owner</a
-                  >
+                <li >
+                  <a routerLink="/login/owner" class="dropdown-item poppins-medium">Owner</a>
+                </li>
+                <li >
+                  <a routerLink="/login" class="dropdown-item poppins-medium">Travellersss</a>
                 </li>
                 <li>
-                  <a routerLink="/login" class="dropdown-item poppins-medium"
-                    >Traveller</a
-                  >
+                  <button class="dropdown-item poppins-medium" (click)="onLogout()">Logout</button>
                 </li>
+                
               </ul>
             </li>
           </ul>
