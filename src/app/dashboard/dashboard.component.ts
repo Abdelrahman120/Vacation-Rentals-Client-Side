@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { LoginUserService } from '../Services/login-user.service';
+import { LoginUserService } from '../services/login-user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -41,5 +41,7 @@ export class DashboardComponent {
     localStorage.removeItem('userEmail');
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
+    localStorage.removeItem('owner_auth_token');
+    localStorage.removeItem('user_role');
   }
 }

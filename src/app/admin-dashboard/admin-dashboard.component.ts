@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SidebarComponent } from "./sidebar/sidebar.component";
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { LoginUserService } from '../services/login-user.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -10,7 +11,22 @@ import { RouterLink } from '@angular/router';
   styleUrl: './admin-dashboard.component.css'
 })
 export class AdminDashboardComponent {
-
+  constructor (private authService : LoginUserService , private router : Router) {}
+  onOwnerLogout() {
+    this.authService.logout().subscribe(
+      (response) => {
+        console.log('Owner Logout successful', response);
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('token'); 
+        localStorage.removeItem('role'); 
+        this.router.navigate(['/login/owner']); 
+      },
+      (error) => {
+        console.log('Owner Logout failed', error);
+      }
+    );
+  }
 }
 
  
