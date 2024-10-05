@@ -1,36 +1,22 @@
-<div class="mt-4">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" placeholder="FirstName" />
-        <label for="FirstName">FirstName</label>
-      </div>
-      <div class="form-floating">
-        <input type="text" class="form-control" placeholder="Lastname" />
-        <label for="LastName">LastName</label>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-floating mb-3">
-        <input type="email" class="form-control" placeholder="Email" />
-        <label for="Email">Email</label>
-      </div>
-      <div class="form-floating">
-        <input type="text" class="form-control" placeholder="Phone" />
-        <label for="Phone">Phone</label>
+<form (submit)="submitImages($event)">
+  <div class="mt-4">
+    <div class="row">
+      <div class="col-md-12">
+        <label for="propertyImages">Property Images</label>
+        <input
+          type="file"
+          name="images[]"
+          class="form-control"
+          placeholder="propertyImages"
+          multiple
+          (change)="onFileChange($event)"
+        />
       </div>
     </div>
   </div>
-</div>
-<div class="d-flex justify-content-between flex-row mb-5 mt-4">
-  <button class="btn btn-outline-danger rounded-1 fs-5" cdkStepperPrevious>
-    <i class="fa fa-angle-left"></i> Previous
-  </button>
-  <button
-    class="btn btn-outline-primary rounded-1 fs-5"
-    (click)="submitPics()"
-    cdkStepperNext
-  >
-    Next <i class="fa fa-angle-right"></i>
-  </button>
-</div>
+  <div class="d-flex justify-content-end flex-row mb-5 mt-4">
+    <button class="btn btn-outline-primary rounded-1 fs-5" type="submit">
+      Next <i class="fa fa-angle-right"></i>
+    </button>
+  </div>
+</form>

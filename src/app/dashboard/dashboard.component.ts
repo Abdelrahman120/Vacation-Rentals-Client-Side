@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { LoginUserService } from '../Services/login-user.service';
+import { LoginUserService } from '../services/login-user.service';
 
 @Component({
   selector: 'app-dashboard',

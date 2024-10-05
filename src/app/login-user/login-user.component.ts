@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginUserService } from '../Services/login-user.service';
+import { LoginUserService } from '../services/login-user.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -19,7 +19,7 @@ export class LoginUserComponent {
     private loginservice: LoginUserService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {

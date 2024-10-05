@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginUserService } from '../Services/login-user.service';
+import { LoginUserService } from '../services/login-user.service';
 
 @Component({
   selector: 'app-owner-dashboard',
@@ -10,7 +10,7 @@ import { LoginUserService } from '../Services/login-user.service';
   styleUrl: './owner-dashboard.component.css'
 })
 export class OwnerDashboardComponent {
-  constructor(private authService: LoginUserService, private router: Router ) {}
+  constructor(private authService: LoginUserService, private router: Router) { }
   onOwnerLogout() {
     this.authService.logout().subscribe(
       (response) => {

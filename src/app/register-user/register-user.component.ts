@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RegisterUserService } from '../Services/register-user.service';
+import { RegisterUserService } from '../services/register-user.service';
 
 @Component({
   selector: 'app-register-user',
@@ -24,7 +24,7 @@ export class RegisterUserComponent {
   constructor(
     private authService: RegisterUserService,
     private router: Router
-  ) {}
+  ) { }
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];

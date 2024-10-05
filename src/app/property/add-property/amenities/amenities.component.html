@@ -1,69 +1,29 @@
-<div class="mt-4">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-floating mb-3">
+<form (submit)="submitAmenity()">
+  <div class="mt-4 h-25 overflow-hidden scroll-y">
+    <div class="row">
+      @for (amenity of amenities; track amenity.id) {
+      <div class="col-md-4">
         <input
-          type="text"
-          id="FirstName"
-          class="form-control"
-          placeholder="FirstName"
-          [(ngModel)]="firstName"
-          required
+          type="checkbox"
+          class="form-check me-1 visually-hidden"
+          name="amenities[]"
+          id="amenity{{ amenity.id }}"
+          [(ngModel)]="amenity.isChecked"
         />
-        <label for="FirstName">FirstName</label>
+        <label
+          class="form-label checkbox-label m-2 text-center p-3 rounded"
+          for="amenity{{ amenity.id }}"
+          [ngClass]="{ 'checked-bg': amenity.isChecked }"
+          >{{ amenity.name }}</label
+        >
       </div>
-      <div class="form-floating">
-        <input
-          type="text"
-          id="LastName"
-          class="form-control"
-          placeholder="LastName"
-          [(ngModel)]="lastName"
-          required
-        />
-        <label for="LastName">LastName</label>
-      </div>
+      }
     </div>
 
-    <div class="col-md-6">
-      <div class="form-floating mb-3">
-        <input
-          type="email"
-          id="Email"
-          class="form-control"
-          placeholder="Email"
-          [(ngModel)]="email"
-          required
-          email
-        />
-        <label for="Email">Email</label>
-      </div>
-      <div class="form-floating">
-        <input
-          type="text"
-          id="Phone"
-          class="form-control"
-          placeholder="Phone"
-          [(ngModel)]="phone"
-          required
-          pattern="[0-9]{10}"
-        />
-        <label for="Phone">Phone</label>
-      </div>
+    <div class="d-flex justify-content-end flex-row mb-5 mt-4">
+      <button class="btn btn-outline-primary rounded-1 fs-5" type="submit">
+        Next <i class="fa fa-angle-right"></i>
+      </button>
     </div>
   </div>
-</div>
-
-<div class="d-flex justify-content-between flex-row mb-5 mt-4">
-  <button class="btn btn-outline-danger rounded-1 fs-5" cdkStepperPrevious>
-    <i class="fa fa-angle-left"></i> Previous
-  </button>
-
-  <button
-    class="btn btn-outline-primary rounded-1 fs-5"
-    (click)="submitAmenity()"
-    cdkStepperNext
-  >
-    Next <i class="fa fa-angle-right"></i>
-  </button>
-</div>
+</form>
