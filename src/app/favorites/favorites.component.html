@@ -1,0 +1,62 @@
+<div class="container-fluid tw-mt-20">
+    <div class="container w-75">
+      
+    </div>
+    <div class="container">
+      <div class="row">
+        @if (favoriteProperties.length > 0) { @for (property of favoriteProperties; track $index)
+        {
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3 my-2">
+            <div class="card border-0 position-relative my-2">
+                
+                  <img
+                    src="https://media.vrbo.com/lodging/19000000/19000000/18993500/18993474/aa22ec86.jpg?impolicy=resizecrop&rw=1200&ra=fit"
+                    class="card-img-top rounded-3 shadow-lg position-relative"
+                    alt="{{ property.properties.title }} property image"
+                  />
+                
+                  <fa-icon
+                    [icon]="faHeart"
+                    class="fs-4 position-absolute rounded-3 text-light hover-effect"
+                    style="top: 2%; right: 4%"
+                    (click)="toggleFavorite(property.properties.id)">
+                
+                  ></fa-icon>
+                  <div class="card-body p-1">
+                    <span class="text-light" style="font-size: 14px">{{ property.properties.city }}</span>
+                    <p class="roboto-bold" style="bottom: 2rem; font-size: 1rem">{{ property.properties.name }}</p>
+                    <div class="d-flex justify-content-between" style="font-size: 0.8rem">
+                      <div class="card-text text-light">
+                        <fa-icon [icon]="faHouse" class="rounded-3 text-light"></fa-icon>
+                        {{ property.properties.property_type }} |
+                        <fa-icon [icon]="faBed" class="rounded-3 text-light"></fa-icon>
+                        {{ property.properties.bedrooms }} |
+                        <fa-icon [icon]="faBath" class="rounded-3 text-light"></fa-icon>
+                        {{ property.properties.bathrooms }} | Sleeps: {{ property.properties.sleeps }}
+                      </div>
+                      <div class="text-end fw-bold text-light" style="font-size: 0.8rem">
+                        {{ property.properties.night_rate }}$
+                      </div>
+                      
+                    </div>
+                  </div>
+               
+              </div>
+              
+        </div>
+        } } @else {
+        <div
+          class="d-flex justify-content-center align-items-center flex-column text-center"
+          style="height: 45rem"
+        >
+          <div class="mb-3">
+            <h3>We don't have any available properties for your search</h3>
+          </div>
+          <div>
+            <p>Try changing your dates or use the map to search nearby</p>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>

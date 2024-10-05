@@ -5,10 +5,13 @@
       class="card-img-top rounded-3 shadow-lg position-relative"
       alt="{{ property.title }} property image"
     />
+  </a>
     <fa-icon
       [icon]="faHeart"
       class="fs-4 position-absolute rounded-3 text-light hover-effect"
       style="top: 2%; right: 4%"
+      (click)="toggleFavorite(property.id)">
+  {{ isFavorite(property.id) ? 'Remove from Favorites' : 'Add to Favorites' }}
     ></fa-icon>
     <div class="card-body p-1">
       <span class="text-light" style="font-size: 14px">{{
@@ -31,5 +34,5 @@
         </div>
       </div>
     </div>
-  </a>
+
 </div>
