@@ -25,12 +25,12 @@ export class LoginComponent {
     this.authService.login(form.value).subscribe(
       (response: boolean) => {
         if (response) {
-          const role = localStorage.getItem('user_role');
+          const role = localStorage.getItem('role');
 
           if (role === 'admin') {
             this.router.navigate(['/admin-dashboard']);
           } else if (role === 'owner') {
-            this.router.navigate(['/properties']);
+            this.router.navigate(['/owner-dashboard']);
           }
         }
       },
