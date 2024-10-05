@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FavoriteService } from '../services/favorite.service';
+import { FavoriteService } from '../Services/favorite.service';
 import { NgFor } from '@angular/common';
-import { CardItemComponent } from "../property/property-card/card-item.component";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faBath, faBed, faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -9,7 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [NgFor, CardItemComponent,FontAwesomeModule],
+  imports: [NgFor,FontAwesomeModule],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.css'
 })
