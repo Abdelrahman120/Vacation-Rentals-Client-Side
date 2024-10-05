@@ -23,7 +23,7 @@ export class LoginComponent {
     console.log(form.value);
 
     this.authService.login(form.value).subscribe(
-      (response: boolean) => {
+      (response: any) => {
         if (response) {
           const role = localStorage.getItem('role');
 
@@ -39,6 +39,7 @@ export class LoginComponent {
       }
     );
   }
+
   loginWithGoogleForOwner() {
     window.location.href = `${environment.BACKEND_URL}/api/owner/gmail/login`;
   }

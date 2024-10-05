@@ -33,7 +33,7 @@ export class EditUserProfileComponent implements OnInit {
       +this.router.routerState.snapshot.root.firstChild?.params['id']!;
     if (!this.userId) {
       console.error('User ID is not found in the route parameters.');
-      return; // أو توجيه المستخدم إلى صفحة أخرى
+      return;
     }
     this.getUserData(this.userId);
   }

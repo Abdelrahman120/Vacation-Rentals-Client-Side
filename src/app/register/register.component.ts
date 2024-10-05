@@ -63,41 +63,37 @@ export class RegisterComponent {
     this.submitted = true;
 
     if (this.registerForm.valid) {
-        const formData = new FormData();
-        Object.keys(this.registerForm.value).forEach(key => {
-            formData.append(key, this.registerForm.get(key)?.value);
-        });
+      const formData = new FormData();
+      Object.keys(this.registerForm.value).forEach(key => {
+        formData.append(key, this.registerForm.get(key)?.value);
+      });
 
-        this.authService.register(formData).subscribe(
-            response => {
-                console.log('Registration successful:', response);
-                this.router.navigate(['/login/owner']);
-            },
-            error => {
-                console.error('Registration failed:', error);
+      this.authService.register(formData).subscribe(
+        (response: any) => {
+          console.log('Registration successful:', response);
 
-                // Check if the error has the expected structure
-                if (error.status === 422 && error.error && error.error.errors) {
-                    const validationErrors = error.error.errors;
-                    console.log('Validation errors:', validationErrors);
+          localStorage.setItem('owner_id', response.owner.id);
 
-                    // Set the error on the corresponding form controls
-                    Object.keys(validationErrors).forEach((key) => {
-                        const formControl = this.registerForm.get(key);
-                        if (formControl) {
-                            const errorMessage = validationErrors[key][0]; // Make sure this is safe
-                            formControl.setErrors({ serverError: errorMessage });
-                        } else {
-                            console.warn(`No form control found for key: ${key}`);
-                        }
-                    });
-                } else {
-                    console.error('Something went wrong; please try again later.');
-                }
-            }
-        );
+          this.router.navigate(['/login/owner']);
+        },
+        error => {
+          console.error('Registration failed:', error);
+          if (error.status === 422 && error.error && error.error.errors) {
+            const validationErrors = error.error.errors;
+            Object.keys(validationErrors).forEach((key) => {
+              const formControl = this.registerForm.get(key);
+              if (formControl) {
+                const errorMessage = validationErrors[key][0];
+                formControl.setErrors({ serverError: errorMessage });
+              }
+            });
+          } else {
+            console.error('Something went wrong; please try again later.');
+          }
+        }
+      );
     }
-}
+  }
 
 
 
