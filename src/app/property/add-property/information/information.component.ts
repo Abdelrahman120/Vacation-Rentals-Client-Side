@@ -15,7 +15,6 @@ import { PropertyService } from '../../../services/propertyService/property.serv
 export class InformationComponent {
 
   propertyForm!: FormGroup;
-  // @ViewChild('appStepper') stepper!: CdkStepper;
   @Output() formSubmitted = new EventEmitter<void>();
   constructor(private fb: FormBuilder, private PropertyService: PropertyService) { }
 
@@ -44,14 +43,16 @@ export class InformationComponent {
       console.log("All fields are required");
       return;
     }
-    this.formSubmitted.emit();
     const formData = new FormData();
     Object.keys(this.propertyForm.value).forEach(key => {
       formData.append(key, this.propertyForm.get(key)?.value);
     });
     this.PropertyService.addProperty(formData).subscribe(
-      response => {
+      (response: any) => {
         console.log('property added successfully:', response);
+        const propertyId = response.data['id'];
+        this.PropertyService.setPropertyId(propertyId);
+        this.formSubmitted.emit();
       },
       error => {
         console.error("Error Property wasn't added:", error);

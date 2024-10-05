@@ -14,8 +14,12 @@
   {{ isFavorite(property.id) ? 'Remove from Favorites' : 'Add to Favorites' }}
     ></fa-icon>
     <div class="card-body p-1">
-      <span class="text-light" style="font-size: 14px">{{ property.city }}</span>
-      <p class="roboto-bold" style="bottom: 2rem; font-size: 1rem">{{ property.name }}</p>
+      <span class="text-light" style="font-size: 14px">{{
+        property.city
+      }}</span>
+      <p class="roboto-bold" style="bottom: 2rem; font-size: 1rem">
+        {{ property.name }}
+      </p>
       <div class="d-flex justify-content-between" style="font-size: 0.8rem">
         <div class="card-text text-light">
           <fa-icon [icon]="faHouse" class="rounded-3 text-light"></fa-icon>
@@ -26,9 +30,9 @@
           {{ property.bathrooms }} | Sleeps: {{ property.sleeps }}
         </div>
         <div class="text-end fw-bold text-light" style="font-size: 0.8rem">
-          {{ property.night_rate }}$
+          {{ property.nightRate }}$
         </div>
       </div>
     </div>
- 
+
 </div>

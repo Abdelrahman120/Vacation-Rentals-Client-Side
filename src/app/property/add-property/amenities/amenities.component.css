@@ -1,0 +1,17 @@
+.checkbox-label {
+  gap: 10px;
+  background-color: #2c2c2c;
+  transition: background-color 0.3s ease;
+}
+
+.checked-bg {
+  background-color: #5a995a;
+  color: white;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}

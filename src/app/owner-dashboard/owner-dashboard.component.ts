@@ -10,7 +10,7 @@ import { LoginUserService } from '../services/login-user.service';
   styleUrl: './owner-dashboard.component.css'
 })
 export class OwnerDashboardComponent {
-  constructor(private authService: LoginUserService, private router: Router ) {}
+  constructor(private authService: LoginUserService, private router: Router) { }
   onOwnerLogout() {
     this.authService.logout().subscribe(
       (response) => {

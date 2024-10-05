@@ -1,13 +1,51 @@
 import { CdkStepperNext, CdkStepperPrevious } from '@angular/cdk/stepper';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { PropertyService } from '../../../services/propertyService/property.service';
 
 @Component({
   selector: 'app-pictures',
   standalone: true,
   imports: [CdkStepperNext, CdkStepperPrevious],
   templateUrl: './pictures.component.html',
-  styleUrl: './pictures.component.css'
+  styleUrls: ['./pictures.component.css']
 })
 export class PicturesComponent {
-  submitPics() { }
+  images: File[] = [];
+  propertyId: string = '';
+  @Output() imageFormSubmitted = new EventEmitter<void>();
+
+  constructor(private PropertyService: PropertyService) { }
+
+  onFileChange(event: any) {
+    // Convert FileList to array
+    this.images = Array.from(event.target.files);
+  }
+
+  submitImages(event: Event) {
+    event.preventDefault();
+
+    if (this.images.length === 0) {
+      console.error('No images selected.');
+      return;
+    }
+
+    const formData = new FormData();
+    for (const image of this.images) {
+      formData.append('images[]', image);
+    }
+
+    this.propertyId = this.PropertyService.getPropertyId();
+
+    this.PropertyService.setImages(this.propertyId, formData)
+      .subscribe(response => {
+        console.log('Images uploaded successfully', response);
+        this.imageFormSubmitted.emit();
+
+      }, error => {
+        console.error('Error uploading images', error);
+        if (error.error && error.error.errors) {
+          console.error('Validation Errors:', error.error.errors);
+        }
+      });
+  }
 }
