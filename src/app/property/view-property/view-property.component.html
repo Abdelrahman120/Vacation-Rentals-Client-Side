@@ -196,21 +196,21 @@
         <div class="bordered-container shadow-lg">
           <div class="price-section">
             <p class="text-decoration-line-through m-0">$158</p>
-            <p class="fw-bold m-0">$120 per night</p>
+            <p class="fw-bold m-0">${{propertyDetails.nightRate}} per night</p>
           </div>
           <hr />
           <div class="d-flex justify-content-between">
-            <input type="date" class="form-control me-2" />
-            <input type="date" class="form-control" />
+            <input type="date" class="form-control me-2" [(ngModel)]="startDate" (change)="calculateTotalPrice()"/>
+            <input type="date" class="form-control"  [(ngModel)]="endDate" (change)="calculateTotalPrice()"/>
           </div>
           <div class="mt-3">
             <label for="guests" class="form-label">Number of guests</label>
-            <input type="number" id="guests" class="form-control" />
+            <input type="number" id="guests" class="form-control" [(ngModel)]="sleeps" />
           </div>
           <div class="mt-4">
             <div class="d-flex justify-content-between total">
               <span>Total</span>
-              <span>$965</span>
+              <span>${{totalPrice}}</span>
             </div>
             <small>Total includes fees, not tax</small>
             <a class="text-decoration-underline d-block mt-1" href="#"
@@ -218,12 +218,12 @@
             >
           </div>
           <div class="mt-4">
-            <button class="btn btn-primary rounded-pill w-100">
+            <button class="btn btn-primary rounded-pill w-100" (click)="navigateToPayment()">
               Book now
             </button>
             <small class="d-block text-center mt-2"
               >You will not be charged yet</small
-            >
+            >  
           </div>
         </div>
       </div>

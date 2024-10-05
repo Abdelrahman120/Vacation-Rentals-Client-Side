@@ -85,9 +85,9 @@ export class SearchComponent implements OnInit {
       };
 
 
-      if (this.destination && this.input.startDate && this.input.endDate) {
-        this.propertyService.getPropertyByDate(this.input).subscribe(data => {
-          this.result = data;
+      if (this.input.destination && this.input.startDate && this.input.endDate) {
+        this.propertyService.getPropertyByDate(this.input).subscribe((res: any) => {
+          this.result = res.data;
         });
       }
     });

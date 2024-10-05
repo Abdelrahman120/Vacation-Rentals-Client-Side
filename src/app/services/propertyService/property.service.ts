@@ -12,13 +12,18 @@ export class PropertyService {
     return this.http.get('http://127.0.0.1:8000/api/property')
   }
 
-  getPropertyByDate(input: any) {
-    if (input.startDate && input.endDate && input.destination) {
+  getPropertyByDate(input?: any) {
+    let checkDest = Object.keys(input.destination);
+    let checkSleeps = Object.keys(input.sleeps);
+    let sleepsLength = checkSleeps.length;
+    let destLength = checkDest.length;
+
+    if (input.startDate && input.endDate && destLength > 0) {
       return this.http.get(`http://127.0.0.1:8000/api/properties/search?city=${input.destination}&start_date=${input.startDate}&end_date=${input.endDate}`)
-    } else if (input.startDate && input.endDate && input.destination && input.sleeps) {
+    } else if (input.startDate && input.endDate && destLength > 0 && sleepsLength > 0) {
       return this.http.get(`http://127.0.0.1:8000/api/properties/search?city=${input.city}&start_date=${input.startDate}&end_date=${input.endDate}&sleeps=${input.sleeps}`)
     }
-    return this.http.get(`http://127.0.0.1:8000/api/properties/search?start_date=${input.startDate}&end_date=${input.endDate}`);
+    return this.http.get(`http://127.0.0.1:8000/api/property`);
   }
 
   addProperty(property: any) {

@@ -36,12 +36,19 @@ export class CardListComponent implements OnInit {
       };
 
       if (this.input.destination && this.input.startDate && this.input.endDate) {
-        this.propertyService.getPropertyByDate(this.input).subscribe(data => {
-          this.properties = data;
-          console.log(this.properties);
+        this.propertyService.getPropertyByDate(this.input).subscribe((res: any) => {
+          this.properties = res.data;
+          console.log(res.data);
 
         });
       }
+      else if (!this.input.destination && !this.input.startDate && !this.input.endDate) {
+        this.propertyService.getProperty().subscribe((res: any) => {
+          this.properties = res.data;
+          console.log(res.data);
+        });
+      }
+
     });
   }
 

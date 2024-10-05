@@ -188,9 +188,9 @@
 :root {
   --accent-color: #1aa090;
   /* --secondary-color: #E2EAF1; */
-  --dark-color: #121b25;
+  --dark-color: #4d93df;
   --grey-color: #83898f;
-  --body-text-color: #ffffff;
+  --body-text-color: #b1b1b1;
   --light-text-color: #d6d6d6;
   --link-color: #092035;
 }
@@ -858,3 +858,6 @@ iconify-icon.property-icon {
   color: var(--body-text-color);
   font-size: 30px;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
