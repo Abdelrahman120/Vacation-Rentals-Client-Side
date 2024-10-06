@@ -3,7 +3,7 @@ import { PropertyService } from '../../services/propertyService/property.service
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
-import { FavoriteService } from '../../Services/favorite.service';
+import { FavoriteService } from '../../services/favorite.service';
 
 @Component({
   selector: 'app-view-property',
