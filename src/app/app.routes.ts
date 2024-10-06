@@ -34,6 +34,8 @@ import { CancleComponent } from './payment/cancle/cancle.component';
 import { userGuard } from './guards/user.guard';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { Path } from 'leaflet';
+import { OwnerInfoComponent } from './owner-info/owner-info.component';
 
 export const routes: Routes = [
   {
@@ -182,7 +184,10 @@ export const routes: Routes = [
     path : 'user/info', 
     component: UserInfoComponent
   },
-
+  {
+    path: 'owner/info',
+    component: OwnerInfoComponent
+  },
   {
     path: '**',
     component: NotFoundComponent,
