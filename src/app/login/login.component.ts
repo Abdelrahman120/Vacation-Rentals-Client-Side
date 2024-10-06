@@ -35,7 +35,7 @@ export class LoginComponent {
         }
       },
       (error) => {
-        console.error('Login failed', error);
+        console.log('Login failed', error.error);
       }
     );
   }
@@ -51,14 +51,14 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      const token = params['token'];
+      const token = params['owner_auth_token'];
       const name = params['name'];
       const email = params['email'];
       const role = params['role'] || 'user'; // Default role is 'user'
 
       if (token) {
         // Store the token, user data, and role
-        localStorage.setItem('token', token);
+        localStorage.setItem('owner_auth_token', token);
         localStorage.setItem('userName', name);
         localStorage.setItem('userEmail', email);
         localStorage.setItem('role', role); // Store the role (user or owner)

@@ -1,1 +1,16 @@
-<p>recommendation works!</p>
+<div class="container mt-5  ">
+    <h2>Recommendations</h2>
+    <div class="carousel mt-5 p-2">
+        @for (property of properties; track property.id) {
+          
+    
+
+            <app-item-card class="ms-2" [property]="property"></app-item-card>
+              
+                    
+        }    </div>
+</div>
+
+
+
+
