@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { LoginUserService } from '../services/login-user.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login-user',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink,NgIf],
   templateUrl: './login-user.component.html',
   styleUrl: './login-user.component.css',
 })
@@ -14,7 +15,7 @@ export class LoginUserComponent {
   email: string = '';
   password: string = '';
   validationErrors: any = {};
-
+  errorMessage: string = '';
   constructor(
     private loginservice: LoginUserService,
     private router: Router,
@@ -65,8 +66,13 @@ export class LoginUserComponent {
         this.router.navigate(['/dashboard']);
       },
       (error) => {
-        console.log('Login failed', error);
-      }
+        if (error.status === 401) {
+          this.errorMessage = 'Invalid email or password';
+          console.log(this.errorMessage);
+          
+        } else {
+          this.errorMessage = 'An unexpected error occurred';
+        }      }
     );
   }
 

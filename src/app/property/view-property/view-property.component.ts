@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { PropertyService } from '../../services/propertyService/property.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
+import { FavoriteService } from '../../Services/favorite.service';
 
 @Component({
   selector: 'app-view-property',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule , DatePipe ,NgFor , NgIf],
   templateUrl: './view-property.component.html',
   styleUrls: ['./view-property.component.css']
 })
@@ -18,10 +20,17 @@ export class ViewPropertyComponent implements OnInit {
   end_date: string = '';
   city: string = '';
   sleeps: number = 0;
-
+  reviews: any[] = [];
+   newReview: any = {
+    rating: 5,
+    review: ''
+  };
   totalPrice: number = 0; 
 
-  constructor(private propertyService: PropertyService, private route: ActivatedRoute , private router: Router) { }
+  constructor(private propertyService: PropertyService, private route: ActivatedRoute , private router: Router,
+   private favouriteService: FavoriteService
+
+  ) { }
 
   ngOnInit(): void {
     this.propertyId = this.route.snapshot.paramMap.get('id') || '';
@@ -45,6 +54,8 @@ export class ViewPropertyComponent implements OnInit {
         this.calculateTotalPrice();
       });
     });
+
+ this.loadReviews();
   }
 
   calculateTotalPrice() {
@@ -78,4 +89,50 @@ export class ViewPropertyComponent implements OnInit {
       }
     });
   }
+
+  loadReviews() {
+    this.favouriteService.getReviews(Number(this.propertyId)).subscribe(
+      (response) => {
+        
+      
+        this.reviews = response;
+      },
+      (error) => {
+        console.error('Error fetching reviews:', error);
+      }
+    );
+  }
+  deleteReview(id: number) {
+    this.favouriteService.deleteReview(id).subscribe(() => {
+      this.reviews = this.reviews.filter(review => review.id !== id);
+    });
+  }
+ 
+  addReview() {
+    const reviewPayload = {
+      property_id: Number(this.propertyId),
+      rating: this.newReview.rating,
+      review: this.newReview.review
+    };
+
+    this.favouriteService.addReview(reviewPayload).subscribe(
+      (response) => {
+        console.log('Review added successfully:', response);
+        // Assuming the response contains the new review data
+        this.reviews.push(response);
+        this.loadReviews();
+
+        // Reset the form
+        this.newReview = {
+          rating: 5,
+          review: ''
+        };
+      },
+      (error) => {
+        console.error('Error adding review:', error);
+      }
+    );
+  }
+
+
 }
