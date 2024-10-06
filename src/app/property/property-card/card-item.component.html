@@ -1,9 +1,9 @@
 <div class="card border-0 position-relative my-2">
   <a (click)="goToDetails(property.id)">
     <img
-      src="https://media.vrbo.com/lodging/19000000/19000000/18993500/18993474/aa22ec86.jpg?impolicy=resizecrop&rw=1200&ra=fit"
+      src="http://127.0.0.1:8000{{ property.images[0]['image'] }}"
       class="card-img-top rounded-3 shadow-lg position-relative"
-      alt="{{ property.title }} property image"
+      alt="{{ property.name }} property image"
     />
   </a>
     <fa-icon
@@ -30,7 +30,7 @@
           {{ property.bathrooms }} | Sleeps: {{ property.sleeps }}
         </div>
         <div class="text-end fw-bold text-light" style="font-size: 0.8rem">
-          {{ property.nightRate }}$
+          {{ property.night_rate }}$
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ import { FavoriteService } from '../../Services/favorite.service';
 @Component({
   selector: 'app-view-property',
   standalone: true,
-  imports: [FormsModule , DatePipe ,NgFor , NgIf],
+  imports: [FormsModule, DatePipe, NgFor, NgIf],
   templateUrl: './view-property.component.html',
   styleUrls: ['./view-property.component.css']
 })
@@ -21,14 +21,14 @@ export class ViewPropertyComponent implements OnInit {
   city: string = '';
   sleeps: number = 0;
   reviews: any[] = [];
-   newReview: any = {
+  newReview: any = {
     rating: 5,
     review: ''
   };
-  totalPrice: number = 0; 
+  totalPrice: number = 0;
 
-  constructor(private propertyService: PropertyService, private route: ActivatedRoute , private router: Router,
-   private favouriteService: FavoriteService
+  constructor(private propertyService: PropertyService, private route: ActivatedRoute, private router: Router,
+    private favouriteService: FavoriteService
 
   ) { }
 
@@ -40,40 +40,40 @@ export class ViewPropertyComponent implements OnInit {
       this.start_date = params['start_date'] || '';
       this.end_date = params['end_date'] || '';
       this.city = params['city'] || '';
-      this.sleeps = +params['sleeps'] || 0; 
+      this.sleeps = +params['sleeps'] || 0;
 
       console.log("Start Date:", this.start_date);
       console.log("End Date:", this.end_date);
       console.log("City:", this.city);
       console.log("Sleeps:", this.sleeps);
-      
+
       this.propertyService.viewProperty(Number(this.propertyId)).subscribe((res: any) => {
         this.propertyDetails = res.data;
         console.log("Property Details:", this.propertyDetails);
-
+        console.log(this.propertyDetails.images);
         this.calculateTotalPrice();
       });
     });
 
- this.loadReviews();
+    this.loadReviews();
   }
 
   calculateTotalPrice() {
     const start = new Date(this.start_date);
     const end = new Date(this.end_date);
-    
+
     if (isNaN(start.getTime()) || isNaN(end.getTime())) {
       console.error("Invalid dates");
       this.totalPrice = 0;
       return;
     }
 
-    const timeDifference = end.getTime() - start.getTime(); 
-    const numberOfDays = timeDifference / (1000 * 3600 * 24); 
+    const timeDifference = end.getTime() - start.getTime();
+    const numberOfDays = timeDifference / (1000 * 3600 * 24);
     if (numberOfDays > 0 && this.propertyDetails.nightRate) {
       this.totalPrice = numberOfDays * this.propertyDetails.nightRate;
     } else {
-      this.totalPrice = 0; 
+      this.totalPrice = 0;
     }
 
   }
@@ -83,9 +83,9 @@ export class ViewPropertyComponent implements OnInit {
       queryParams: {
         product_name: this.propertyDetails.name,
         sleeps: this.sleeps,
-        total_price: this.totalPrice ,
-        start_date: this.start_date,  
-        end_date: this.end_date 
+        total_price: this.totalPrice,
+        start_date: this.start_date,
+        end_date: this.end_date
       }
     });
   }
@@ -93,8 +93,8 @@ export class ViewPropertyComponent implements OnInit {
   loadReviews() {
     this.favouriteService.getReviews(Number(this.propertyId)).subscribe(
       (response) => {
-        
-      
+
+
         this.reviews = response;
       },
       (error) => {
@@ -107,7 +107,7 @@ export class ViewPropertyComponent implements OnInit {
       this.reviews = this.reviews.filter(review => review.id !== id);
     });
   }
- 
+
   addReview() {
     const reviewPayload = {
       property_id: Number(this.propertyId),

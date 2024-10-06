@@ -17,6 +17,7 @@ export class CardListComponent implements OnInit {
   city: any;
   input: any;
   objLength: string[] = [];
+  images: object[] = [];
 
   constructor(
     private propertyService: PropertyService,
@@ -40,16 +41,14 @@ export class CardListComponent implements OnInit {
         this.propertyService.getPropertyByDate(this.input).subscribe((res: any) => {
           this.properties = res.data;
           console.log(res.data);
-
         });
       }
       else if (!this.input.destination && !this.input.startDate && !this.input.endDate) {
-        this.propertyService.getProperty().subscribe((res: any) => {
+        this.propertyService.getProperties().subscribe((res: any) => {
           this.properties = res.data;
-          console.log(res.data);
+          console.log(this.properties[0]['images'][0].image);
         });
       }
-
     });
   }
 

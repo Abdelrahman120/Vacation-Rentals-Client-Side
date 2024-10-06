@@ -24,7 +24,8 @@ export class TestComponent implements OnInit {
     const propertyId = this.route.snapshot.params['id'];
 
     this.testService.getProperty(propertyId).subscribe((data) => {
-      this.property = data;
+      this.property = data.data;
+      console.log(data.data);
 
       this.initMap(this.property.latitude, this.property.longitude);
     });

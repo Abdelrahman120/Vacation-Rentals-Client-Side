@@ -10,7 +10,11 @@ export class PropertyService {
   BACKEND_API = environment.BACKEND_URL;
   private propertyId: string = '';
 
-  getProperty() {
+  getCategories() {
+    return this.http.get(`${this.BACKEND_API}/api/categories`)
+  }
+
+  getProperties() {
     return this.http.get(`${this.BACKEND_API}/api/property`)
   }
 
@@ -31,27 +35,21 @@ export class PropertyService {
   addProperty(property: any) {
     return this.http.post(`${this.BACKEND_API}/api/property`, property)
   }
-
   updateProperty(property: any, id: number) {
     return this.http.post(`${this.BACKEND_API}/api/property/${id}`, property)
   }
-
   deleteProperty(id: number) {
     return this.http.delete(`${this.BACKEND_API}/api/property/${id}`)
   }
-
   viewProperty(id: number) {
     return this.http.get(`${this.BACKEND_API}/api/property/${id}`)
   }
-
   getAmenities() {
     return this.http.get(`${this.BACKEND_API}/api/amenities`)
   }
-
   setAmenities(id: string, value: any) {
     return this.http.post(`${this.BACKEND_API}/api/property/${id}/amenities`, value)
   }
-
   setPropertyId(id: string) {
     this.propertyId = id
   }
