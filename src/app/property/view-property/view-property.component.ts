@@ -19,9 +19,9 @@ export class ViewPropertyComponent implements OnInit {
   city: string = '';
   sleeps: number = 0;
 
-  totalPrice: number = 0; 
+  totalPrice: number = 0;
 
-  constructor(private propertyService: PropertyService, private route: ActivatedRoute , private router: Router) { }
+  constructor(private propertyService: PropertyService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.propertyId = this.route.snapshot.paramMap.get('id') || '';
@@ -31,17 +31,17 @@ export class ViewPropertyComponent implements OnInit {
       this.startDate = params['start_date'] || '';
       this.endDate = params['end_date'] || '';
       this.city = params['city'] || '';
-      this.sleeps = +params['sleeps'] || 0; 
+      this.sleeps = +params['sleeps'] || 0;
 
       console.log("Start Date:", this.startDate);
       console.log("End Date:", this.endDate);
       console.log("City:", this.city);
       console.log("Sleeps:", this.sleeps);
-      
+
       this.propertyService.viewProperty(Number(this.propertyId)).subscribe((res: any) => {
         this.propertyDetails = res.data;
         console.log("Property Details:", this.propertyDetails);
-
+        console.log(this.propertyDetails.images);
         this.calculateTotalPrice();
       });
     });
@@ -50,19 +50,19 @@ export class ViewPropertyComponent implements OnInit {
   calculateTotalPrice() {
     const start = new Date(this.startDate);
     const end = new Date(this.endDate);
-    
+
     if (isNaN(start.getTime()) || isNaN(end.getTime())) {
       console.error("Invalid dates");
       this.totalPrice = 0;
       return;
     }
 
-    const timeDifference = end.getTime() - start.getTime(); 
-    const numberOfDays = timeDifference / (1000 * 3600 * 24); 
+    const timeDifference = end.getTime() - start.getTime();
+    const numberOfDays = timeDifference / (1000 * 3600 * 24);
     if (numberOfDays > 0 && this.propertyDetails.nightRate) {
       this.totalPrice = numberOfDays * this.propertyDetails.nightRate;
     } else {
-      this.totalPrice = 0; 
+      this.totalPrice = 0;
     }
 
   }
