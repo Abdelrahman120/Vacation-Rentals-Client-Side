@@ -22,7 +22,6 @@ export class ForgetPasswordUserComponent {
 
     this.submitted = true;
       console.log(form.value);
-      alert("Check your email for reset password link");
 
     
         return this.authService.forgetPassword(form.value.email).subscribe((data) => {
@@ -34,8 +33,6 @@ export class ForgetPasswordUserComponent {
            
              this.errorMessage = 'No user found with that email';
             console.log(this.errorMessage);
-          } else {
-            this.errorMessage = 'An unexpected error occurred';
           }        }); 
  
 
