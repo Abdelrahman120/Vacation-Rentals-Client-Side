@@ -252,15 +252,16 @@
       </div>
       <div class="col-md-4">
         <div class="form-floating">
-          <input
+          <input type="hidden" name="owner_id" FormControlName = "owner_id"  value="{{owner_id}}">
+          <!-- <input
             type="text"
             id="owner_id"
             class="form-control"
             placeholder="owner_id"
             formControlName="owner_id"
             required
-          />
-          <label for="owner_id">owner id</label>
+          /> -->
+          <!-- <label for="owner_id">owner id</label>
           <span
             class="text-danger float-end"
             *ngIf="
@@ -270,7 +271,7 @@
             "
           >
             *owner id is required.
-          </span>
+          </span> -->
         </div>
       </div>
     </div>

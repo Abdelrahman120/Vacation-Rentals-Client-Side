@@ -18,7 +18,7 @@ export class RecommendationComponent {
   }
 
   ngOnInit(): void {
-    this.propertyservice.getProperty().subscribe((data: any) => {
+    this.propertyservice.getProperties().subscribe((data: any) => {
       this.properties = data.data;
        console.log(this.properties);
       

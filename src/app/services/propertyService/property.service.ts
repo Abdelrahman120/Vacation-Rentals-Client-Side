@@ -62,9 +62,14 @@ export class PropertyService {
     return this.http.get(`${this.BACKEND_API}/api/amenities`);
   }
   setAmenities(id: string, value: any) {
+    const token = localStorage.getItem('owner_auth_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+
+    });
     return this.http.post(
       `${this.BACKEND_API}/api/property/${id}/amenities`,
-      value
+      value , {headers}
     );
   }
   setPropertyId(id: string) {
@@ -74,9 +79,14 @@ export class PropertyService {
     return this.propertyId;
   }
   setImages(id: string, formData: FormData) {
+    const token = localStorage.getItem('owner_auth_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+
+    });
     return this.http.post(
       `${this.BACKEND_API}/api/property/${id}/images`,
-      formData
+      formData , {headers}
     );
   }
 }
