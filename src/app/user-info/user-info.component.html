@@ -1,0 +1,34 @@
+<div class="mt-5">
+    <div class="mt-5">
+        <h1>User Information</h1>
+        
+        <div *ngIf="userDetails">
+            <h2>User Details</h2>
+            <p><strong>Name:</strong> {{ userDetails.name }}</p>
+            <p><strong>Email:</strong> {{ userDetails.email }}</p>
+            <p><strong>Phone:</strong> {{ userDetails.phone }}</p>
+            <p><strong>Address:</strong> {{ userDetails.address }}</p>
+            <p><strong>Gender:</strong> {{ userDetails.gender }}</p>
+            <img *ngIf="userDetails.image" [src]="userDetails.image" alt="User Image" width="100" /><br/>
+            <hr>
+        </div>
+
+        <div *ngIf="userPayments && userPayments.length > 0">
+            <h3>Your Payments</h3>
+            <ul>
+              <li *ngFor="let payment of userPayments">
+                <strong>{{ payment.product_name }}</strong><br>
+                Amount: {{ payment.amount }} {{ payment.currency }}<br>
+                Status: {{ payment.payment_status }}<br>
+                Payment Method: {{ payment.payment_method }}<br>
+                Start Date: {{ payment.start_date }}<br>
+                End Date: {{ payment.end_date }}<br>
+                <hr>
+              </li>
+            </ul>
+        </div>
+        <div *ngIf="!userPayments || userPayments.length === 0">
+            <p>No payments found.</p>
+        </div>
+    </div>
+</div>

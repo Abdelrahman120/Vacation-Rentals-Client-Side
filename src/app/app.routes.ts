@@ -33,6 +33,7 @@ import { SuccessComponent } from './payment/success/success.component';
 import { CancleComponent } from './payment/cancle/cancle.component';
 import { userGuard } from './guards/user.guard';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 export const routes: Routes = [
   {
@@ -176,6 +177,10 @@ export const routes: Routes = [
   {
     path: 'favorite',
     component: FavoritesComponent
+  },
+  {
+    path : 'user/info', 
+    component: UserInfoComponent
   },
 
   {
