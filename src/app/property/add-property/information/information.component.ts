@@ -1,6 +1,6 @@
 import { CdkStepper, CdkStepperNext } from '@angular/cdk/stepper';
 import { AfterViewInit, Component, EventEmitter, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StepperComponent } from '../../stepper/stepper.component';
 import { CommonModule } from '@angular/common';
 import { PropertyService } from '../../../services/propertyService/property.service';
@@ -8,11 +8,12 @@ import { PropertyService } from '../../../services/propertyService/property.serv
 @Component({
   selector: 'app-information',
   standalone: true,
-  imports: [CdkStepperNext, FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [CdkStepperNext, FormsModule, ReactiveFormsModule, CommonModule ],
   templateUrl: './information.component.html',
   styleUrl: './information.component.css'
 })
 export class InformationComponent {
+  owner_id : string = '';
 
   categories: any;
   propertyForm!: FormGroup;
@@ -31,7 +32,7 @@ export class InformationComponent {
       bathrooms: ['', Validators.required, Validators.min(1)],
       night_rate: ['', Validators.required, Validators.min(0)],
       description: ['', Validators.required],
-      owner_id: ['', Validators.required,]
+      // owner_id: ['', Validators.required,]
     });
     this.getCategories();
   }
