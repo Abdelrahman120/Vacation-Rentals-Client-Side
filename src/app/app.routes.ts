@@ -36,6 +36,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { Path } from 'leaflet';
 import { OwnerInfoComponent } from './owner-info/owner-info.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 export const routes: Routes = [
   {
@@ -187,6 +188,10 @@ export const routes: Routes = [
   {
     path: 'owner/info',
     component: OwnerInfoComponent
+  },
+  {
+    path:'user/:id',
+    component: UserDetailComponent
   },
   {
     path: '**',

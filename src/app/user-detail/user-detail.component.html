@@ -1,0 +1,32 @@
+<!-- src/app/user-detail/user-detail.component.html -->
+
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="!loading && user">
+  <h2>User Details</h2>
+  <div>
+    <img [src]="user.image" alt="User Image" *ngIf="user.image" />
+    <h3>{{ user.name }}</h3>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Phone:</strong> {{ user.phone }}</p>
+    <p><strong>Address:</strong> {{ user.address }}</p>
+    <p><strong>Gender:</strong> {{ user.gender }}</p>
+    <h4>Payments</h4>
+    <ul>
+      <li *ngFor="let payment of user.payments">
+        Amount: {{ payment.amount }} {{ payment.currency }} - Status: {{ payment.status }}
+      </li>
+    </ul>
+    <h4>Favorites</h4>
+    <ul>
+      <li *ngFor="let favorite of user.favorites">
+        {{ favorite.property_name }}
+      </li>
+    </ul>
+    <h4>Reviews</h4>
+    <ul>
+      <li *ngFor="let review of user.reviews">
+        {{ review.review }} (Rating: {{ review.rating }})
+      </li>
+    </ul>
+  </div>
+</div>
