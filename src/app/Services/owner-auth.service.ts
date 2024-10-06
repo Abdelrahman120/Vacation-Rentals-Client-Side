@@ -47,10 +47,7 @@ export class OwnerAuthService {
         }
         return false;
       }),
-      catchError(error => {
-        console.error('Login failed:', error);
-        return of(false);
-      })
+     
     );
   }
 
@@ -106,7 +103,6 @@ export class OwnerAuthService {
 
 forgetPassword(email: any): Observable<any> {
   return this.http.post<any>('http://127.0.0.1:8000/api/owners/password/email', { email }).pipe(
-    catchError(this.handleError)
   );
 }
 resetPassword(email: any, token: any, password: any, password_confirmation: any): Observable<any> {
