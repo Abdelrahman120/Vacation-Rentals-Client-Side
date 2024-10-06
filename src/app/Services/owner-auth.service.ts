@@ -12,7 +12,7 @@ export class OwnerAuthService {
   constructor(private router: Router,private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object,) { }
 
   private apiUrl = 'http://127.0.0.1:8000/api';
-  private tokenKey = 'token';
+  private tokenKey = 'owner_auth_token';
   private roleKey = 'role'; 
 
   register(userData: any): Observable<any> {

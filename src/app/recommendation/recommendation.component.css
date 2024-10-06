@@ -1,22 +1,4 @@
-.scrollable-container {
-    overflow-x: auto;       /* Enable horizontal scrolling */
-    width: 80%;             /* Adjust the width as needed */
-    white-space: nowrap;     /* Ensure cards stay in one row */
-  }
-  
-  .row.flex-nowrap {
-    display: flex;
-    flex-wrap: nowrap;      /* Ensure no wrapping to new rows */
-  }
-  
-  .card {
-    height: auto;          /* Let the card height adjust automatically to fit the content */
-    overflow: visible;     /* Ensure that content is not hidden */
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .card-body, .list-group-item {
-    flex-grow: 1;          /* Ensure these elements take available space */
-  }
-  
+.carousel img {
+  width: 100%;
+  height: auto;
+}
