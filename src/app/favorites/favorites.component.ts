@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FavoriteService } from '../services/favorite.service';
+import { FavoriteService } from '../Services/favorite.service';
 import { NgFor } from '@angular/common';
 import { CardItemComponent } from "../property/property-card/card-item.component";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";

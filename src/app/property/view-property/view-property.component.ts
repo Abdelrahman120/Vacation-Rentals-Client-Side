@@ -14,8 +14,8 @@ export class ViewPropertyComponent implements OnInit {
   propertyId: string = '';
   propertyDetails: any = {};
 
-  startDate: string = '';
-  endDate: string = '';
+  start_date: string = '';
+  end_date: string = '';
   city: string = '';
   sleeps: number = 0;
 
@@ -28,13 +28,13 @@ export class ViewPropertyComponent implements OnInit {
 
     // Capture query parameters
     this.route.queryParams.subscribe(params => {
-      this.startDate = params['start_date'] || '';
-      this.endDate = params['end_date'] || '';
+      this.start_date = params['start_date'] || '';
+      this.end_date = params['end_date'] || '';
       this.city = params['city'] || '';
       this.sleeps = +params['sleeps'] || 0; 
 
-      console.log("Start Date:", this.startDate);
-      console.log("End Date:", this.endDate);
+      console.log("Start Date:", this.start_date);
+      console.log("End Date:", this.end_date);
       console.log("City:", this.city);
       console.log("Sleeps:", this.sleeps);
       
@@ -48,8 +48,8 @@ export class ViewPropertyComponent implements OnInit {
   }
 
   calculateTotalPrice() {
-    const start = new Date(this.startDate);
-    const end = new Date(this.endDate);
+    const start = new Date(this.start_date);
+    const end = new Date(this.end_date);
     
     if (isNaN(start.getTime()) || isNaN(end.getTime())) {
       console.error("Invalid dates");
@@ -72,7 +72,9 @@ export class ViewPropertyComponent implements OnInit {
       queryParams: {
         product_name: this.propertyDetails.name,
         sleeps: this.sleeps,
-        total_price: this.totalPrice // Pass the total price as well
+        total_price: this.totalPrice ,
+        start_date: this.start_date,  
+        end_date: this.end_date 
       }
     });
   }
