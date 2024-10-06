@@ -33,9 +33,7 @@ export class ForgetPasswordComponent {
             this.errorMessage = 'No user found with that email';
             console.log(this.errorMessage);
             
-          } else {
-            this.errorMessage = 'An unexpected error occurred';
-          }        }); 
+          }         }); 
  
 
   }

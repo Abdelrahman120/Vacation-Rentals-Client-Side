@@ -22,6 +22,8 @@ export class PropertiesComponent {
     this.adminServices.getProperties().subscribe(
       (response) => {
         this.properties = response.data; // Access the data from the response object
+        console.log(this.properties);
+        
       },
       (error) => {
         console.error('Error fetching properties:', error);
