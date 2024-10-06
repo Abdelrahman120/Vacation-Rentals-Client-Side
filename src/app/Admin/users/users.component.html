@@ -1,36 +1,28 @@
-<div class="container-fluid  " style="margin-top: 70px;"  >
+<div class="container-fluid" style="margin-top: 70px;">
   <div class="row">
-    <div class="col-3 ">
+    <div class="col-3">
       <app-sidebar></app-sidebar>
-
     </div>
-<div class="col-8  ">
+    <div class="col-8">
+      <h2 class="text-center text-white">Users</h2>
+      <div class="row mt-5 d-flex justify-content-center">
+        <div class="col-md-3 border m-3 shadow" *ngFor="let user of users">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">{{ user.name }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ user.email }}</h6>
+              <p class="card-text">ID: {{ user.id }}</p>
+              <p class="card-text">Phone: {{ user.phone }}</p>
 
-
-    <h2 class="text-center  text-white">Users</h2>
-    <table class="table mt-5 ">
-        <thead>
-          <tr>
-            <th class="text-center" scope="col">ID</th>
-            <th class="text-center" scope="col">Name</th>
-            <th class="text-center" scope="col">Email</th>
-            <th class="text-center" scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of users">
-                <th scope="row" class="text-center">{{user.id}}</th>
-                <td class="text-center">{{user.name}}</td>
-                <td class="text-center">{{user.email}}</td>
-                <td class="text-center">
-                    <button  class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
-                </td>
-
-              </tr>
-      
-       
-        </tbody>
-      </table>
-</div>
-</div>
+              <div class="text-center">
+                
+                <button class="btn btn-danger me-2" (click)="deleteUser(user.id)">Delete</button>
+                <a [routerLink]="['/user', user.id]" class="btn btn-info">View Details</a> <!-- Navigate to user details -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

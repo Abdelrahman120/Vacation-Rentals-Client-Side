@@ -19,12 +19,13 @@ import { CardListComponent } from "./property/list-property/card-list.component"
 import { RegisterUserComponent } from "./register-user/register-user.component";
 import { PaymentComponent } from './Stripe/payment/payment.component';
 import { CdkStepperModule } from "@angular/cdk/stepper";
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, HeroComponent, LoginComponent, RegisterComponent, AddPropertyComponent, EditPropertyComponent, NotAuthorizedComponent, PropertiesComponent, CategoryComponent, AddCategoryComponent, EditCategoryComponent, ListComponent, AboutComponent, CardListComponent, RegisterUserComponent, PaymentComponent, CdkStepperModule],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, HeroComponent, LoginComponent, RegisterComponent, AddPropertyComponent, EditPropertyComponent, NotAuthorizedComponent, PropertiesComponent, CategoryComponent, AddCategoryComponent, EditCategoryComponent, ListComponent, AboutComponent, CardListComponent, RegisterUserComponent, PaymentComponent, CdkStepperModule , UserDetailComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
