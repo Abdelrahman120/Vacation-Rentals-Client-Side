@@ -16,10 +16,15 @@ export class ViewPropertyComponent implements OnInit {
   propertyId: string = '';
   propertyDetails: any = {};
 
- 
+  start_date: string = '';
+  end_date: string = '';
   city: string = '';
   sleeps: number = 0;
-
+  reviews: any[] = [];
+   newReview: any = {
+    rating: 5,
+    review: ''
+  };
   totalPrice: number = 0; 
 
   constructor(private propertyService: PropertyService, private route: ActivatedRoute , private router: Router,
