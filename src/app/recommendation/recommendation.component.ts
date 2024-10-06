@@ -14,14 +14,14 @@ export class RecommendationComponent {
 
   properties: any[] = [];
   constructor(protected propertyservice: PropertyService ) {
-    
+
   }
 
   ngOnInit(): void {
     this.propertyservice.getProperties().subscribe((data: any) => {
       this.properties = data.data;
        console.log(this.properties);
-      
+
     });
  }
   ngAfterViewInit() {
