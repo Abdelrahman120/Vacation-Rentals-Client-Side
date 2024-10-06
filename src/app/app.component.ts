@@ -14,7 +14,7 @@ import { AddCategoryComponent } from "./add-category/add-category.component";
 import { EditCategoryComponent } from "./edit-category/edit-category.component";
 import { ListComponent } from "./list/list.component";
 import { AboutComponent } from "./about/about.component";
-import { RecommendationComponent } from "./recommendation/recommendation.component";
+// import { RecommendationComponent } from "./recommendation/recommendation.component";
 import { CardListComponent } from "./property/list-property/card-list.component";
 import { RegisterUserComponent } from "./register-user/register-user.component";
 import { PaymentComponent } from './Stripe/payment/payment.component';
@@ -24,7 +24,7 @@ import { CdkStepperModule } from "@angular/cdk/stepper";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, HeroComponent, LoginComponent, RegisterComponent, AddPropertyComponent, EditPropertyComponent, NotAuthorizedComponent, PropertiesComponent, CategoryComponent, AddCategoryComponent, EditCategoryComponent, ListComponent, AboutComponent, RecommendationComponent, CardListComponent, RegisterUserComponent, PaymentComponent, CdkStepperModule],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, HeroComponent, LoginComponent, RegisterComponent, AddPropertyComponent, EditPropertyComponent, NotAuthorizedComponent, PropertiesComponent, CategoryComponent, AddCategoryComponent, EditCategoryComponent, ListComponent, AboutComponent, CardListComponent, RegisterUserComponent, PaymentComponent, CdkStepperModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

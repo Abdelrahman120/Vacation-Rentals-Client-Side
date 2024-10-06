@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { OwnerAuthService } from '../Services/owner-auth.service';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-forget-password',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,NgIf],
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.css'
 })
@@ -15,17 +16,27 @@ export class ForgetPasswordComponent {
 
   submitted = false;
   user: any;
- 
+  errorMessage: string = '';
+
   handleSubmit(form:NgForm){
 
     this.submitted = true;
       console.log(form.value);
-      alert("Check your email for reset password link");
 
     
         return this.authService.forgetPassword(form.value.email).subscribe((data) => {
           console.log(data);
-        });  
+          this.errorMessage = data.message;
+
+        },(error) => {
+          if (error.status === 400) {
+            this.errorMessage = 'No user found with that email';
+            console.log(this.errorMessage);
+            
+          } else {
+            this.errorMessage = 'An unexpected error occurred';
+          }        }); 
+ 
 
   }
 

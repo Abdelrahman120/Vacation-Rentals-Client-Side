@@ -38,4 +38,12 @@ export class AdminServicesService {
   rejectProperty(id: number): Observable<any> {
     return this.http.post(`http://127.0.0.1:8000/api/properties/${id}/reject`, {});
   }
+
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete(`${this.url}/deleteuser/${id}`, { headers: this.getAuthHeaders() });
+  }
+
+  deleteOwner(id: number): Observable<any> {
+    return this.http.delete(`${this.url}/deleteowner/${id}`, { headers: this.getAuthHeaders() });
+  }
 }

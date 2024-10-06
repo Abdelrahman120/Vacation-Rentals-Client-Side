@@ -43,7 +43,7 @@ export class ResetPasswordComponent implements OnInit {
     this.ownerAuthService.resetPassword(this.email, this.token, this.password, this.password_confirmation).subscribe({
       next: (response: any) => {
         console.log('Password reset successful', response);
-       this.router.navigate(['/login']);
+       this.router.navigate(['/login/owner']);
         // Optionally handle success (e.g., redirect or show success message)
       },
       error: (err) => {

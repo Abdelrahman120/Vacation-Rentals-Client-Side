@@ -3,10 +3,11 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { OwnerAuthService } from '../Services/owner-auth.service';
 import { environment } from '../../environments/environment.development';
+import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink,NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -17,6 +18,7 @@ export class LoginComponent {
 
   submitted = false;
   user: any;
+  errorMessage: string = '';
 
   handleSubmit(form: NgForm) {
     this.submitted = true;
@@ -35,8 +37,13 @@ export class LoginComponent {
         }
       },
       (error) => {
-        console.error('Login failed', error);
-      }
+        if (error.status === 401) {
+          this.errorMessage = 'Invalid email or password';
+          console.log(this.errorMessage);
+          
+        } else {
+          this.errorMessage = 'An unexpected error occurred';
+        }        }
     );
   }
 
@@ -51,14 +58,14 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      const token = params['token'];
+      const token = params['owner_auth_token'];
       const name = params['name'];
       const email = params['email'];
       const role = params['role'] || 'user'; // Default role is 'user'
 
       if (token) {
         // Store the token, user data, and role
-        localStorage.setItem('token', token);
+        localStorage.setItem('owner_auth_token', token);
         localStorage.setItem('userName', name);
         localStorage.setItem('userEmail', email);
         localStorage.setItem('role', role); // Store the role (user or owner)

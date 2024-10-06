@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-card-list',
   standalone: true,
   imports: [CardItemComponent, SearchComponent],
+
   templateUrl: './card-list.component.html',
   styleUrls: ['./card-list.component.css'] // Note: 'styleUrls' should be plural
 })

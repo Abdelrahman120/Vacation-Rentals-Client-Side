@@ -2,8 +2,7 @@
 <div class="container mt-5">
   <div class="mt-5">
     <h1 class="text-center">Payment Page</h1>  
-    <form class="w-50 mx-auto" (ngSubmit)="makePayment(product_name, price, quantity)">
-      <div class="mb-2"> 
+    <form class="w-50 mx-auto" (ngSubmit)="makePayment(product_name, price, quantity, start_date, end_date)">      <div class="mb-2"> 
         <label for="product_name" class="form-label fs-4">Property Name</label>
         <input class="form-control" type="text" [(ngModel)]="product_name"  name="product_name" required />
       </div>
@@ -14,7 +13,16 @@
       </div>
 
       <div class="mb-2">
-
+        <div class="mb-2">
+          <label for="start_date" class="form-label fs-4">Start Date</label>
+          <input type="date" [(ngModel)]="start_date" class="form-control" name="start_date" required />
+        </div>
+        
+        <div class="mb-2">
+          <label for="end_date" class="form-label fs-4">End Date</label>
+          <input type="date" [(ngModel)]="end_date" class="form-control" name="end_date" required />
+        </div>
+        
       </div>
       
       <input type="hidden" [(ngModel)]="quantity" placeholder="Quantity" name="quantity" />
