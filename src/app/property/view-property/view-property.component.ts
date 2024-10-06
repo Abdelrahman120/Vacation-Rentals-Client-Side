@@ -85,7 +85,8 @@ export class ViewPropertyComponent implements OnInit {
         sleeps: this.sleeps,
         total_price: this.totalPrice ,
         start_date: this.start_date,  
-        end_date: this.end_date 
+        end_date: this.end_date,
+        propertyId: this.propertyId  
       }
     });
   }

@@ -22,6 +22,8 @@ export class PaymentComponent {
   totalPrice: number = 0
   sleeps: number = 0
   name: string = ''
+  user_id :string = ''
+  propertyId : string = '';
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -31,10 +33,15 @@ export class PaymentComponent {
       this.totalPrice = this.price
       this.start_date = params['start_date'];
       this.end_date = params['end_date'];
+      this.propertyId = params['propertyId'];
+    
     });
+    console.log(this.propertyId);
+    
   }
-  async makePayment(product_name: string, price: number, quantity: number, start_date: string, end_date: string) {
-    this.stripeService.createCheckoutSession(product_name, price, quantity, start_date, end_date)
+  
+  async makePayment(product_name: string, price: number, quantity: number, start_date: string, end_date: string , user_id : string ,propertyId :string ) {
+    this.stripeService.createCheckoutSession(product_name, price, quantity, start_date, end_date , user_id ,propertyId)
       .subscribe(async (response: any) => {
         if (response.status === 'success') {
           const stripe = await loadStripe('pk_test_51OVzXxEJU94mdRatoMSYRwVFpGOp9kSY2kkFizH2X0EYgZkcvVQu9If5m1R2Teb2hNQG0tZac0iOoMGaopRbGLTo00fKadYhK8');

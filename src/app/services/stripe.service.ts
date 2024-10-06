@@ -9,17 +9,32 @@ export class StripeService {
 
   private url = 'http://127.0.0.1:8000/api';
   constructor(private http: HttpClient) { }
+  
+  // logout(): Observable<any> {
+  //   const token = localStorage.getItem('owner_auth_token');
+  //   const headers = new HttpHeaders({
+  //     Authorization: `Bearer ${token}`
+  //   });
+  //   return this.http.post(`${this.url}/logout`, {} , { headers });
+  // }
 
-  createCheckoutSession(product_name: string, price: number, quantity: number, start_date: string, end_date: string) {
-    // Ensure credentials are included in the request
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
+  
+  createCheckoutSession(product_name: string, price: number, quantity: number, start_date: string, end_date: string , user_id : string , propertyId:string ) {
+    // Ensure credentials are included in the request.
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
     return this.http.post(`${this.url}/stripe`, {
       product_name,
       price,
       quantity,
       start_date,
       end_date,
+      user_id,
+      propertyId,
+           
     }, {
       headers,
       withCredentials: true 

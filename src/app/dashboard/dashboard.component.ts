@@ -24,7 +24,7 @@ export class DashboardComponent {
   }
 
   onLogout(): void {
-    this.authService.logout().subscribe(
+    this.authService.logoutUser().subscribe(
       (response) => {
         console.log('Logout successful', response);
         this.clearLocalStorage();

@@ -16,13 +16,20 @@ export class LoginUserService {
 }
 
 logout(): Observable<any> {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('owner_auth_token');
   const headers = new HttpHeaders({
     Authorization: `Bearer ${token}`
   });
   return this.http.post(`${this.url}/logout`, {} , { headers });
 }
 
+logoutUser(): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+  return this.http.post(`${this.url}/logout`, {} , { headers });
+}
 
 
 

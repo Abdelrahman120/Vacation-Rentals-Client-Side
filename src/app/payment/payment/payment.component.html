@@ -2,16 +2,16 @@
 <div class="container mt-5">
   <div class="mt-5">
     <h1 class="text-center">Payment Page</h1>  
-    <form class="w-50 mx-auto" (ngSubmit)="makePayment(product_name, price, quantity, start_date, end_date)">      <div class="mb-2"> 
+    <form class="w-50 mx-auto" (ngSubmit)="makePayment(product_name, price, quantity, start_date, end_date , user_id , propertyId )">      
+      <div class="mb-2"> 
         <label for="product_name" class="form-label fs-4">Property Name</label>
         <input class="form-control" type="text" [(ngModel)]="product_name"  name="product_name" required />
       </div>
-
       <div class="mb-2">
         <label for="price" class="form-label fs-4">Price</label>
         <input type="number" [(ngModel)]="price"  class="form-control" name="price" required disabled/>
       </div>
-
+      <input type="hidden" name="propertyId" [(ngModel)] = "propertyId">
       <div class="mb-2">
         <div class="mb-2">
           <label for="start_date" class="form-label fs-4">Start Date</label>
