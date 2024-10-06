@@ -10,9 +10,20 @@ export class StripeService {
   private url = 'http://127.0.0.1:8000/api';
   constructor(private http: HttpClient) { }
 
-  createCheckoutSession(product_name : string , price: number , quantity: number = 1) {
-    const headers = new HttpHeaders({'content-type': 'application/json'});
-    return this.http.post<any>(`${this.url}/stripe`, {product_name, price, quantity}, {headers}); 
+  createCheckoutSession(product_name: string, price: number, quantity: number, start_date: string, end_date: string) {
+    // Ensure credentials are included in the request
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.post(`${this.url}/stripe`, {
+      product_name,
+      price,
+      quantity,
+      start_date,
+      end_date,
+    }, {
+      headers,
+      withCredentials: true 
+    });
   }
 
   handlePaymentSuccess(session_id: string): Observable<any> 
