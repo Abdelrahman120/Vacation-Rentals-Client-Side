@@ -10,32 +10,32 @@
             <div class="card border-0 position-relative my-2">
                 
                   <img
-                    src="https://media.vrbo.com/lodging/19000000/19000000/18993500/18993474/aa22ec86.jpg?impolicy=resizecrop&rw=1200&ra=fit"
+                    src="http://127.0.0.1:8000{{ property.images[0]['image'] }}"
                     class="card-img-top rounded-3 shadow-lg position-relative"
-                    alt="{{ property.properties.title }} property image"
+                    
                   />
                 
                   <fa-icon
                     [icon]="faHeart"
                     class="fs-4 position-absolute rounded-3 text-light hover-effect"
                     style="top: 2%; right: 4%"
-                    (click)="toggleFavorite(property.properties.id)">
+                    (click)="toggleFavorite(property.property_id)">
                 
                   ></fa-icon>
                   <div class="card-body p-1">
-                    <span class="text-light" style="font-size: 14px">{{ property.properties.city }}</span>
-                    <p class="roboto-bold" style="bottom: 2rem; font-size: 1rem">{{ property.properties.name }}</p>
+                    <span class="text-light" style="font-size: 14px">{{ property.city }}</span>
+                    <p class="roboto-bold" style="bottom: 2rem; font-size: 1rem">{{ property.property_name }}</p>
                     <div class="d-flex justify-content-between" style="font-size: 0.8rem">
                       <div class="card-text text-light">
                         <fa-icon [icon]="faHouse" class="rounded-3 text-light"></fa-icon>
-                        {{ property.properties.property_type }} |
+                        {{ property.property_type }} |
                         <fa-icon [icon]="faBed" class="rounded-3 text-light"></fa-icon>
-                        {{ property.properties.bedrooms }} |
+                        {{ property.bedrooms }} |
                         <fa-icon [icon]="faBath" class="rounded-3 text-light"></fa-icon>
-                        {{ property.properties.bathrooms }} | Sleeps: {{ property.properties.sleeps }}
+                        {{ property.bathrooms }} | Sleeps: {{ property.sleeps }}
                       </div>
                       <div class="text-end fw-bold text-light" style="font-size: 0.8rem">
-                        {{ property.properties.night_rate }}$
+                        {{ property.night_rate }}$
                       </div>
                       
                     </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FavoriteService } from '../Services/favorite.service';
+import { FavoriteService } from '../services/favorite.service';
 import { NgFor } from '@angular/common';
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faBath, faBed, faHouse } from "@fortawesome/free-solid-svg-icons";
@@ -27,7 +27,8 @@ export class FavoritesComponent implements OnInit {
 
   loadFavorites() {
     this.favoriteService.getUserFavorites().subscribe((favorites: any) => {
-      this.favoriteProperties = favorites;
+      this.favoriteProperties = favorites.data;
+      console.log(this.favoriteProperties)
     });
   }
   toggleFavorite(propertyId: number) {
@@ -37,6 +38,7 @@ export class FavoritesComponent implements OnInit {
         this.loadFavorites();
 
       });
+
     
   }
 
