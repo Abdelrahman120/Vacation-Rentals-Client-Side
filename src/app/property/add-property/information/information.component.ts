@@ -14,6 +14,7 @@ import { PropertyService } from '../../../services/propertyService/property.serv
 })
 export class InformationComponent {
 
+  categories: any;
   propertyForm!: FormGroup;
   @Output() formSubmitted = new EventEmitter<void>();
   constructor(private fb: FormBuilder, private PropertyService: PropertyService) { }
@@ -30,12 +31,17 @@ export class InformationComponent {
       bathrooms: ['', Validators.required, Validators.min(1)],
       night_rate: ['', Validators.required, Validators.min(0)],
       description: ['', Validators.required],
-      longitude: ['', Validators.required],
-      latitude: ['', Validators.required],
       owner_id: ['', Validators.required,]
     });
+    this.getCategories();
   }
 
+  getCategories() {
+    this.PropertyService.getCategories().subscribe((res: any) => {
+      this.categories = res.data;
+      console.log(this.categories);
+    });
+  }
 
   submitInfo() {
     if (this.propertyForm.invalid) {
@@ -43,6 +49,7 @@ export class InformationComponent {
       console.log("All fields are required");
       return;
     }
+
     const formData = new FormData();
     Object.keys(this.propertyForm.value).forEach(key => {
       formData.append(key, this.propertyForm.get(key)?.value);

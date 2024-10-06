@@ -100,7 +100,7 @@ export class EditOwnerProfileComponent implements OnInit {
       this.ownerProfileService.updateOwner(ownerId, formData).subscribe(
         (response) => {
           console.log('Update successful:', response);
-          this.router.navigate(['/profile/owner']);
+          this.router.navigate(['/add-property']);
         },
         (error) => {
           console.error('Update failed:', error);

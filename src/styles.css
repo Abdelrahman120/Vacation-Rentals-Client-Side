@@ -190,8 +190,8 @@
   --secondary-color: #E2EAF1;
   --dark-color: white;
   --grey-color: #83898f;
-  --body-text-color: #b1b1b1;
-  --light-text-color: #d6d6d6;
+  --body-text-color: #868686;
+  --light-text-color: #ececec;
   --link-color: #092035;
 }
 
@@ -859,5 +859,11 @@ iconify-icon.property-icon {
   font-size: 30px;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

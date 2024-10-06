@@ -10,8 +10,12 @@ export class PropertyService {
   BACKEND_API = environment.BACKEND_URL;
   private propertyId: string = '';
 
-  getProperty() {
-    return this.http.get(`${this.BACKEND_API}/api/property`);
+  getCategories() {
+    return this.http.get(`${this.BACKEND_API}/api/categories`)
+  }
+
+  getProperties() {
+    return this.http.get(`${this.BACKEND_API}/api/property`)
   }
 
   getPropertyByDate(input?: any) {
@@ -45,30 +49,24 @@ export class PropertyService {
     });
     return this.http.post(`${this.BACKEND_API}/api/property`, property , {headers});
   }
-
   updateProperty(property: any, id: number) {
     return this.http.post(`${this.BACKEND_API}/api/property/${id}`, property);
   }
-
   deleteProperty(id: number) {
     return this.http.delete(`${this.BACKEND_API}/api/property/${id}`);
   }
-
   viewProperty(id: number) {
     return this.http.get(`${this.BACKEND_API}/api/property/${id}`);
   }
-
   getAmenities() {
     return this.http.get(`${this.BACKEND_API}/api/amenities`);
   }
-
   setAmenities(id: string, value: any) {
     return this.http.post(
       `${this.BACKEND_API}/api/property/${id}/amenities`,
       value
     );
   }
-
   setPropertyId(id: string) {
     this.propertyId = id;
   }

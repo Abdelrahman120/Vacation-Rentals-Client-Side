@@ -106,9 +106,9 @@
             style="margin-top: 6px"
           >
             <option selected disabled>Select Property Category</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            @for (category of categories; track category.id){
+            <option value="{{ category.id }}">{{ category.name }}</option>
+            }
           </select>
           <span
             class="text-danger float-end"
@@ -247,52 +247,6 @@
             "
           >
             *Description is required.
-          </span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-floating">
-          <input
-            type="text"
-            id="longitude"
-            class="form-control"
-            placeholder="longitude"
-            formControlName="longitude"
-            required
-          />
-          <label for="longitude">longitude</label>
-          <span
-            class="text-danger float-end"
-            *ngIf="
-              propertyForm.controls['longitude'].invalid &&
-              (propertyForm.controls['longitude'].touched ||
-                propertyForm.controls['longitude'].dirty)
-            "
-          >
-            *longitude is required.
-          </span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-floating">
-          <input
-            type="text"
-            id="latitude"
-            class="form-control"
-            placeholder="latitude"
-            formControlName="latitude"
-            required
-          />
-          <label for="latitude">latitude</label>
-          <span
-            class="text-danger float-end"
-            *ngIf="
-              propertyForm.controls['latitude'].invalid &&
-              (propertyForm.controls['latitude'].touched ||
-                propertyForm.controls['latitude'].dirty)
-            "
-          >
-            *latitude is required.
           </span>
         </div>
       </div>
