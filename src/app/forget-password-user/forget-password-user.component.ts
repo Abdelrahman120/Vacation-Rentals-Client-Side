@@ -31,9 +31,9 @@ export class ForgetPasswordUserComponent {
 
         },(error) => {
           if (error.status === 400) {
-            this.errorMessage = 'No user found with that email';
+           
+             this.errorMessage = 'No user found with that email';
             console.log(this.errorMessage);
-            
           } else {
             this.errorMessage = 'An unexpected error occurred';
           }        }); 
