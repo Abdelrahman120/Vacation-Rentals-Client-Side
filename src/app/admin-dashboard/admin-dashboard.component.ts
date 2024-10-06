@@ -18,7 +18,7 @@ export class AdminDashboardComponent {
         console.log('Owner Logout successful', response);
         localStorage.removeItem('userName');
         localStorage.removeItem('userEmail');
-        localStorage.removeItem('token'); 
+        localStorage.removeItem('owner_auth_token'); 
         localStorage.removeItem('role'); 
         this.router.navigate(['/login/owner']); 
       },

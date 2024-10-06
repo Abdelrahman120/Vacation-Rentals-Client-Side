@@ -187,8 +187,8 @@
 
 :root {
   --accent-color: #1aa090;
-  /* --secondary-color: #E2EAF1; */
-  --dark-color: #22364b;
+  --secondary-color: #E2EAF1;
+  --dark-color: white;
   --grey-color: #83898f;
   --body-text-color: #868686;
   --light-text-color: #ececec;

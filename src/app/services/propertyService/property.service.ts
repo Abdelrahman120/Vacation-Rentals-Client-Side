@@ -1,12 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PropertyService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   BACKEND_API = environment.BACKEND_URL;
   private propertyId: string = '';
 
@@ -25,39 +25,58 @@ export class PropertyService {
     let destLength = checkDest.length;
 
     if (input.startDate && input.endDate && destLength > 0) {
-      return this.http.get(`${this.BACKEND_API}/api/properties/search?city=${input.destination}&start_date=${input.startDate}&end_date=${input.endDate}`)
-    } else if (input.startDate && input.endDate && destLength > 0 && sleepsLength > 0) {
-      return this.http.get(`${this.BACKEND_API}/api/properties/search?city=${input.city}&start_date=${input.startDate}&end_date=${input.endDate}&sleeps=${input.sleeps}`)
+      return this.http.get(
+        `${this.BACKEND_API}/api/properties/search?city=${input.destination}&start_date=${input.startDate}&end_date=${input.endDate}`
+      );
+    } else if (
+      input.startDate &&
+      input.endDate &&
+      destLength > 0 &&
+      sleepsLength > 0
+    ) {
+      return this.http.get(
+        `${this.BACKEND_API}/api/properties/search?city=${input.city}&start_date=${input.startDate}&end_date=${input.endDate}&sleeps=${input.sleeps}`
+      );
     }
     return this.http.get(`${this.BACKEND_API}/api/property`);
   }
 
   addProperty(property: any) {
-    return this.http.post(`${this.BACKEND_API}/api/property`, property)
+    const token = localStorage.getItem('owner_auth_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+
+    });
+    return this.http.post(`${this.BACKEND_API}/api/property`, property , {headers});
   }
   updateProperty(property: any, id: number) {
-    return this.http.post(`${this.BACKEND_API}/api/property/${id}`, property)
+    return this.http.post(`${this.BACKEND_API}/api/property/${id}`, property);
   }
   deleteProperty(id: number) {
-    return this.http.delete(`${this.BACKEND_API}/api/property/${id}`)
+    return this.http.delete(`${this.BACKEND_API}/api/property/${id}`);
   }
   viewProperty(id: number) {
-    return this.http.get(`${this.BACKEND_API}/api/property/${id}`)
+    return this.http.get(`${this.BACKEND_API}/api/property/${id}`);
   }
   getAmenities() {
-    return this.http.get(`${this.BACKEND_API}/api/amenities`)
+    return this.http.get(`${this.BACKEND_API}/api/amenities`);
   }
   setAmenities(id: string, value: any) {
-    return this.http.post(`${this.BACKEND_API}/api/property/${id}/amenities`, value)
+    return this.http.post(
+      `${this.BACKEND_API}/api/property/${id}/amenities`,
+      value
+    );
   }
   setPropertyId(id: string) {
-    this.propertyId = id
+    this.propertyId = id;
   }
   getPropertyId(): string {
-    return this.propertyId
+    return this.propertyId;
   }
   setImages(id: string, formData: FormData) {
-    return this.http.post(`${this.BACKEND_API}/api/property/${id}/images`, formData);
+    return this.http.post(
+      `${this.BACKEND_API}/api/property/${id}/images`,
+      formData
+    );
   }
-
 }
