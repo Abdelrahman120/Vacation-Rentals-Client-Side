@@ -29,17 +29,17 @@ export class OwnersComponent {
     );
   }
 
-  deleteUser(id: number): void {
-    // if (confirm('Are you sure you want to delete this user?')) {
-    //   this.adminServices.deleteUser(id).subscribe(
-    //     (response) => {
-    //       console.log('User deleted:', response);
-    //       this.getUsers();
-    //     },
-    //     (error) => {
-    //       console.error('Error deleting user:', error);
-    //     }
-    //   );
-    // }
+  deleteOwner(id: number): void {
+    if (confirm('Are you sure you want to delete this Owner?')) {
+      this.adminServices.deleteOwner(id).subscribe(
+        (response) => {
+          console.log('Owner deleted:', response);
+          this.getOwners();
+        },
+        (error) => {
+          console.error('Error deleting Owner:', error);
+        }
+      );
+    }
   }
 }

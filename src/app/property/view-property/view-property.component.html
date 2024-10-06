@@ -27,7 +27,7 @@
           </h3>
         </div>
 
-        <!-- Review Section -->
+        <!-- comment Section -->
         <div class="review-section my-4">
           <div>
             <span class="badge bg-success p-2">10</span>
@@ -230,4 +230,50 @@
     </div>
   </div>
   
+<!-- ////////////////////////////// -->
+<!-- Reviews Section -->
 
+
+  <!-- List Reviews -->
+   <div class="container"><div class="mt-5">
+  <h2>Reviews</h2>
+  <div class="review-list mb-4">
+    <div class="review" *ngFor="let review of reviews">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+          <h5>{{review.user.name}}</h5>
+          <p class="ms-3 mt">{{review.created_at | date:'mediumDate'}}</p>
+        </div>
+        <div>
+          <button  class="btn btn-danger btn-sm" (click)="deleteReview(review.id)">Delete</button>
+        </div>
+      </div>
+      <p>{{review.review}}</p>
+      <div>
+        <span class="badge bg-warning text-dark">{{review.rating}}/5</span>
+      </div>
+      <hr />
+    </div>
+  </div>
+
+  <!-- Add a Review Form -->
+  <div class="add-review mt-4">
+    <h4>Leave a Review</h4>
+    <form (submit)="addReview()">
+      <div class="form-group mb-3">
+        <label for="rating">Rating</label>
+        <select class="form-select" id="rating" [(ngModel)]="newReview.rating" name="rating">
+          <option *ngFor="let rating of [1, 2, 3, 4, 5]" [value]="rating">{{rating}}</option>
+        </select>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="review">Comment</label>
+        <textarea class="form-control" id="review" [(ngModel)]="newReview.review" name="review" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit comment</button>
+    </form>
+  </div>
+</div>
+</div>
