@@ -15,21 +15,36 @@ export class LoginUserService {
     return this.http.post(`${this.url}/login`, { email, password });
 }
 
+// logout(): Observable<any> {
+//   const token = localStorage.getItem('owner_auth_token');
+//   const headers = new HttpHeaders({
+//     Authorization: `Bearer ${token}`
+//   });
+//   return this.http.post(`${this.url}/logout`, {} , { headers });
+// }
+
+// logoutUser(): Observable<any> {
+//   const token = localStorage.getItem('token');
+//   const headers = new HttpHeaders({
+//     Authorization: `Bearer ${token}`
+//   });
+//   return this.http.post(`${this.url}/logout`, {} , { headers });
+// }
+
 logout(): Observable<any> {
-  const token = localStorage.getItem('owner_auth_token');
+  const token = localStorage.getItem('owner_auth_token') || localStorage.getItem('token');
+  
+  if (!token) {
+    throw new Error('No valid token found');
+  }
+
   const headers = new HttpHeaders({
     Authorization: `Bearer ${token}`
   });
-  return this.http.post(`${this.url}/logout`, {} , { headers });
+
+  return this.http.post(`${this.url}/logout`, {}, { headers });
 }
 
-logoutUser(): Observable<any> {
-  const token = localStorage.getItem('token');
-  const headers = new HttpHeaders({
-    Authorization: `Bearer ${token}`
-  });
-  return this.http.post(`${this.url}/logout`, {} , { headers });
-}
 
 
 

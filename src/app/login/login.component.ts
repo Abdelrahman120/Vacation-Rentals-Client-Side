@@ -48,7 +48,7 @@ export class LoginComponent {
   }
 
   loginWithGoogleForOwner() {
-    window.location.href = `${environment.BACKEND_URL}/api/owner/gmail/login`;
+    window.location.href = `http://127.0.0.1:8000/api/owner/gmail/login`;
   }
 
   canActivate(): boolean {
@@ -58,10 +58,10 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      const token = params['owner_auth_token'];
+      const token = params['token'];
       const name = params['name'];
       const email = params['email'];
-      const role = params['role'] || 'user'; // Default role is 'user'
+      const role = params['role'] || 'user'; 
 
       if (token) {
         // Store the token, user data, and role

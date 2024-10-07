@@ -37,6 +37,7 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { Path } from 'leaflet';
 import { OwnerInfoComponent } from './owner-info/owner-info.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { ownerGuardGuard } from './guards/owner-guard.guard';
 
 export const routes: Routes = [
   {
@@ -58,11 +59,13 @@ export const routes: Routes = [
     path: 'update-property/:id',
     component: UpdatePropertyComponent,
     title: 'Update Property',
+    canActivate: [ownerGuardGuard]
   },
   {
     path: 'add-property',
     component: AddPropertyComponent,
     title: 'Add new property',
+    canActivate: [ownerGuardGuard]
   },
   {
     path: 'login/owner',
@@ -93,6 +96,8 @@ export const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     title: 'Dashboard',
+    canActivate: [userGuard]
+
   },
   {
     path: 'category',
@@ -103,26 +108,31 @@ export const routes: Routes = [
     path: 'add-category',
     component: AddCategoryComponent,
     title: 'Add Category',
+    canActivate: [AuthGuard],
   },
   {
     path: 'edit-category/:id',
     component: EditCategoryComponent,
     title: 'Edit Category',
+    canActivate: [AuthGuard],
   },
   {
     path: 'edit-Owner-profile/:id',
     component: EditOwnerProfileComponent,
     title: 'Edit Profile',
+    canActivate: [ownerGuardGuard]
   },
   {
     path: 'edit-user-profile/:id',
     component: EditUserProfileComponent,
     title: 'Edit Profile',
+    canActivate:[userGuard]
   },
   {
     path: 'owner-dashboard',
     component: OwnerDashboardComponent,
     title: 'Dashboard',
+    canActivate: [ownerGuardGuard]
   },
   {
     path: 'admin-dashboard',
@@ -179,19 +189,23 @@ export const routes: Routes = [
   },
   {
     path: 'favorite',
-    component: FavoritesComponent
+    component: FavoritesComponent,
+    canActivate: [userGuard]
   },
   {
     path : 'user/info', 
-    component: UserInfoComponent
+    component: UserInfoComponent,
+    canActivate: [userGuard]
   },
   {
     path: 'owner/info',
-    component: OwnerInfoComponent
+    component: OwnerInfoComponent,
+    canActivate: [ownerGuardGuard]
   },
   {
     path:'user/:id',
-    component: UserDetailComponent
+    component: UserDetailComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: '**',
