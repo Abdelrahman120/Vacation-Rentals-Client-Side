@@ -38,6 +38,8 @@ import { Path } from 'leaflet';
 import { OwnerInfoComponent } from './owner-info/owner-info.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { ownerGuardGuard } from './guards/owner-guard.guard';
+import { AdminPropertyDetailsComponent } from './admin-property-details/admin-property-details.component';
+import { SendEmailComponent } from './send-email/send-email.component';
 
 export const routes: Routes = [
   {
@@ -207,6 +209,8 @@ export const routes: Routes = [
     component: UserDetailComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'admin/details/:id', component: AdminPropertyDetailsComponent },
+  { path: 'send-email/:id', component: SendEmailComponent }, // Adjust to your actual component
   {
     path: '**',
     component: NotFoundComponent,

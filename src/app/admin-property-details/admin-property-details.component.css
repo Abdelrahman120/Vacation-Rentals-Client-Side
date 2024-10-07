@@ -1,0 +1,27 @@
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.header {
+    margin-bottom: 1.5rem;
+}
+
+.details, .comments-section {
+    margin-top: 1.5rem;
+}
+
+.status-menu {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.comment {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
