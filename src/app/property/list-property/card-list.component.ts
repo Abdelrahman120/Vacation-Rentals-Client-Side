@@ -3,29 +3,36 @@ import { PropertyService } from '../../services/propertyService/property.service
 import { CardItemComponent } from "../property-card/card-item.component";
 import { SearchComponent } from "../../search/search.component";
 import { ActivatedRoute } from '@angular/router';
+import { FilterService } from '../../services/propertyService/filter.service';
+import { FilterComponent } from "../filter/filter.component"; // Import the service
 
 @Component({
   selector: 'app-card-list',
   standalone: true,
-  imports: [CardItemComponent, SearchComponent],
+  imports: [CardItemComponent, SearchComponent, FilterComponent],
 
   templateUrl: './card-list.component.html',
-  styleUrls: ['./card-list.component.css'] // Note: 'styleUrls' should be plural
+  styleUrls: ['./card-list.component.css']
 })
 export class CardListComponent implements OnInit {
-  properties: any;
-  city: any;
+  properties: any[] = []; // Initialize as an empty array
   input: any;
-  objLength: string[] = [];
-  images: object[] = [];
 
   constructor(
     private propertyService: PropertyService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private filterService: FilterService // Inject the service
   ) { }
 
   ngOnInit(): void {
     this.loadData();
+    this.filterService.filteredProperties$.subscribe(filteredProperties => {
+      if (filteredProperties.length > 0) {
+        this.properties = filteredProperties; // Use filtered properties if available
+      } else {
+        this.loadData(); // Otherwise, load the default properties
+      }
+    });
   }
 
   loadData() {
@@ -50,13 +57,5 @@ export class CardListComponent implements OnInit {
         });
       }
     });
-  }
-
-  objectLength() {
-    this.objLength = Object.keys(this.properties);
-    if (this.objLength.length > 0) {
-      return true;
-    }
-    return false;
   }
 }

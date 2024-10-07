@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DatePipe, DecimalPipe, NgClass } from '@angular/common';
+import { DatePipe, DecimalPipe, NgClass, NgIf } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Router, RouterLink } from '@angular/router';
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -10,15 +10,15 @@ import { FavoriteService } from '../../Services/favorite.service';
 @Component({
   selector: 'app-item-card',
   standalone: true,
-  imports: [DatePipe, FontAwesomeModule, DecimalPipe, NgClass, RouterLink],
+  imports: [DatePipe, FontAwesomeModule, DecimalPipe, NgClass, RouterLink, NgIf],
   templateUrl: './card-item.component.html',
   styleUrl: './card-item.component.css'
 })
 
-export class CardItemComponent implements OnInit{
-  constructor(private router: Router, private favoriteService:FavoriteService) {
-   
-   }
+export class CardItemComponent implements OnInit {
+  constructor(private router: Router, private favoriteService: FavoriteService) {
+
+  }
   @Input() property: any;
   faHeart = faHeart;
   faBed = faBed;
@@ -42,7 +42,7 @@ export class CardItemComponent implements OnInit{
       },
     });
   }
-  
+
 
   ngOnInit() {
     this.loadFavorites(); // Load favorites when the component initializes
@@ -87,6 +87,6 @@ export class CardItemComponent implements OnInit{
   // goToDetails(id: string) {
   //   this.router.navigate(['/property-details', id]);
   // }
-  
-  
+
+
 }
