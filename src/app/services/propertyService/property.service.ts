@@ -46,7 +46,6 @@ export class PropertyService {
     const token = localStorage.getItem('owner_auth_token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
-
     });
     return this.http.post(`${this.BACKEND_API}/api/property`, property, { headers });
   }

@@ -45,7 +45,7 @@ export class CardItemComponent implements OnInit {
 
 
   ngOnInit() {
-    this.loadFavorites(); // Load favorites when the component initializes
+    this.loadFavorites();
   }
 
   loadFavorites() {

@@ -15,22 +15,22 @@ import { FilterComponent } from "../filter/filter.component"; // Import the serv
   styleUrls: ['./card-list.component.css']
 })
 export class CardListComponent implements OnInit {
-  properties: any[] = []; // Initialize as an empty array
+  properties: any[] = [];
   input: any;
 
   constructor(
     private propertyService: PropertyService,
     private activatedRoute: ActivatedRoute,
-    private filterService: FilterService // Inject the service
+    private filterService: FilterService
   ) { }
 
   ngOnInit(): void {
     this.loadData();
     this.filterService.filteredProperties$.subscribe(filteredProperties => {
       if (filteredProperties.length > 0) {
-        this.properties = filteredProperties; // Use filtered properties if available
+        this.properties = filteredProperties;
       } else {
-        this.loadData(); // Otherwise, load the default properties
+        this.loadData();
       }
     });
   }

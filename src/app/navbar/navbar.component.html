@@ -58,15 +58,14 @@
             </li>
             <li class="nav-item">
               <a
-            routerLink="favorite"
-            
-            class="nav-link d-flex roboto-regular align-items-center me-3"
-            href="#"
-          >
-            <fa-icon [icon]="faHeart" class="fs-3"></fa-icon>
-            <span class="ms-1">watchlist</span>
-            <!-- <span class="badge bg-danger ms-2">{{ cartLength }}</span> -->
-          </a>
+                routerLink="favorite"
+                class="nav-link d-flex roboto-regular align-items-center me-3"
+                href="#"
+              >
+                <fa-icon [icon]="faHeart" class="fs-3"></fa-icon>
+                <span class="ms-1">Favorite</span>
+                <!-- <span class="badge bg-danger ms-2">{{ cartLength }}</span> -->
+              </a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -77,27 +76,37 @@
                 aria-expanded="false"
                 >Account</a
               >
-            
+
               <ul class="dropdown-menu">
                 <!-- Show login/register links if not logged in -->
                 <ng-container *ngIf="!isLoggedIn(); else loggedInTemplate">
                   <li>
-                    <a routerLink="/login/owner" class="dropdown-item poppins-medium">Owner</a>
+                    <a
+                      routerLink="/login/owner"
+                      class="dropdown-item poppins-medium"
+                      >Owner</a
+                    >
                   </li>
                   <li>
-                    <a routerLink="/login" class="dropdown-item poppins-medium">Travellers</a>
+                    <a routerLink="/login" class="dropdown-item poppins-medium"
+                      >Travellers</a
+                    >
                   </li>
                 </ng-container>
-            
+
                 <!-- Show logout button if logged in -->
                 <ng-template #loggedInTemplate>
                   <li>
-                    <button class="dropdown-item poppins-medium" (click)="onLogout()">Logout</button>
+                    <button
+                      class="dropdown-item poppins-medium"
+                      (click)="onLogout()"
+                    >
+                      Logout
+                    </button>
                   </li>
                 </ng-template>
               </ul>
             </li>
-            
           </ul>
         </div>
       </div>

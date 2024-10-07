@@ -8,13 +8,12 @@ import { PropertyService } from '../../../services/propertyService/property.serv
 @Component({
   selector: 'app-information',
   standalone: true,
-  imports: [CdkStepperNext, FormsModule, ReactiveFormsModule, CommonModule ],
+  imports: [CdkStepperNext, FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './information.component.html',
   styleUrl: './information.component.css'
 })
 export class InformationComponent {
-  owner_id : string = '';
-
+  owner_id: string = '';
   categories: any;
   propertyForm!: FormGroup;
   @Output() formSubmitted = new EventEmitter<void>();
@@ -26,10 +25,11 @@ export class InformationComponent {
       name: ['', Validators.required],
       city: ['', Validators.required],
       bedrooms: ['', Validators.required, Validators.min(1)],
+      bathrooms: ['', Validators.required, Validators.min(1)],
+      sleeps: ['', Validators.required, Validators.min(1)],
       category_id: ['', Validators.required],
       address: ['', Validators.required],
       country: ['', Validators.required],
-      bathrooms: ['', Validators.required, Validators.min(1)],
       night_rate: ['', Validators.required, Validators.min(0)],
       description: ['', Validators.required],
       // owner_id: ['', Validators.required,]
@@ -45,6 +45,8 @@ export class InformationComponent {
   }
 
   submitInfo() {
+    console.log(this.propertyForm.controls["sleeps"].value);
+
     if (this.propertyForm.invalid) {
       this.propertyForm.markAllAsTouched();
       console.log("All fields are required");
@@ -54,6 +56,7 @@ export class InformationComponent {
     const formData = new FormData();
     Object.keys(this.propertyForm.value).forEach(key => {
       formData.append(key, this.propertyForm.get(key)?.value);
+      console.log(formData);
     });
     this.PropertyService.addProperty(formData).subscribe(
       (response: any) => {

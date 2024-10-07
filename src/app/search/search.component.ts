@@ -64,7 +64,6 @@ export class SearchComponent implements OnInit {
 
     this.destination = this.location.toLowerCase();
 
-    // Navigating with queryParams
     this.route.navigate(['/properties'], {
       queryParams: {
         start_date: formatStrDate,
