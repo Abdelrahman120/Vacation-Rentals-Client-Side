@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PropertyService } from '../Services/propertyService/property.service';
+import { PropertyService } from '../services/propertyService/property.service';
 import { CardItemComponent } from "../property/property-card/card-item.component";
 declare var $: any;
 
@@ -13,17 +13,17 @@ declare var $: any;
 export class RecommendationComponent {
 
   properties: any[] = [];
-  constructor(protected propertyservice: PropertyService ) {
+  constructor(protected propertyservice: PropertyService) {
 
   }
 
   ngOnInit(): void {
     this.propertyservice.getProperties().subscribe((data: any) => {
       this.properties = data.data;
-       console.log(this.properties);
+      console.log(this.properties);
 
     });
- }
+  }
   ngAfterViewInit() {
     setTimeout(() => {
       $('.carousel').slick({

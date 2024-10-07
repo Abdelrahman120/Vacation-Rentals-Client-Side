@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
     private route: Router,
     private propertyService: PropertyService,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.fetchData();

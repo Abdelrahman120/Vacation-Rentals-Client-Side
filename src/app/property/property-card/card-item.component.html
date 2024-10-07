@@ -1,15 +1,50 @@
-
 <div class="card border-0 position-relative my-2">
-  <a (click)="goToDetails(property.id)">
-    <img
-      [src]="'http://localhost:8000' + property.images[0].image"
-      alt="Property Image"
-      class="rounded-1"
-    />
-  </a>
+  <!-- <a (click)="goToDetails(property.id)"> -->
+  <div
+    id="carouselExampleControls{{ property.id }}"
+    class="carousel slide mb-1"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner">
+      <ng-container *ngFor="let item of property.images; let i = index">
+        <div class="carousel-item" [class.active]="i === 0">
+          <img
+            [src]="'http://127.0.0.1:8000' + item.image"
+            class="d-block w-100 img-fluid"
+            [alt]="item.name || 'Property Image'"
+            loading="lazy"
+          />
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- Previous Button -->
+    <button
+      class="carousel-control-prev"
+      type="button"
+      [attr.data-bs-target]="'#carouselExampleControls' + property.id"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <!-- Next Button -->
+    <button
+      class="carousel-control-next"
+      type="button"
+      [attr.data-bs-target]="'#carouselExampleControls' + property.id"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- </a> -->
   <fa-icon
     [icon]="faHeart"
-    class="fs-4 position-absolute rounded-3 text-light hover-effect"
+    class="fs-4 position-absolute rounded-3 text-light hover-effect z-3"
     style="top: 2%; right: 4%"
     (click)="toggleFavorite(property.id)"
   >

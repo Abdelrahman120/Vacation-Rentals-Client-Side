@@ -24,6 +24,7 @@
           </span>
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="form-floating mb-4">
           <input
@@ -44,28 +45,6 @@
             "
           >
             *Property name is required.
-          </span>
-        </div>
-
-        <div class="form-floating mb-4">
-          <input
-            type="text"
-            id="city"
-            class="form-control"
-            placeholder="City"
-            formControlName="city"
-            required
-          />
-          <label for="city">City</label>
-          <span
-            class="text-danger float-end"
-            *ngIf="
-              propertyForm.controls['city'].invalid &&
-              (propertyForm.controls['city'].touched ||
-                propertyForm.controls['city'].dirty)
-            "
-          >
-            *City is required.
           </span>
         </div>
 
@@ -126,48 +105,33 @@
       <div class="col-md-6">
         <div class="form-floating mb-4">
           <input
-            type="text"
-            id="address"
+            type="number"
+            id="sleeps"
             class="form-control"
-            placeholder="Address"
-            formControlName="address"
+            placeholder="Sleeps"
+            formControlName="sleeps"
+            name="sleeps"
             required
+            min="1"
           />
-          <label for="address">Address</label>
+          <label for="sleeps">Sleeps</label>
           <span
             class="text-danger float-end"
             *ngIf="
-              propertyForm.controls['address'].invalid &&
-              (propertyForm.controls['address'].touched ||
-                propertyForm.controls['address'].dirty)
+              propertyForm.controls['sleeps'].invalid &&
+              (propertyForm.controls['sleeps'].touched ||
+                propertyForm.controls['sleeps'].dirty)
             "
           >
-            *Address is required.
+            *Sleeps are required.
           </span>
-        </div>
-
-        <div class="form-floating mb-4">
-          <input
-            type="text"
-            id="country"
-            class="form-control"
-            placeholder="Country"
-            formControlName="country"
-            required
-          />
-          <label for="country">Country</label>
           <span
             class="text-danger float-end"
-            *ngIf="
-              propertyForm.controls['country'].invalid &&
-              (propertyForm.controls['country'].touched ||
-                propertyForm.controls['country'].dirty)
-            "
+            *ngIf="propertyForm.controls['sleeps'].errors?.['min']"
           >
-            *Country is required.
+            *Minimum number of sleeps is 1.
           </span>
         </div>
-
         <div class="form-floating mb-4">
           <input
             type="number"
@@ -227,52 +191,111 @@
         </div>
       </div>
 
-      <div class="col-md-12">
-        <div class="form-floating">
-          <textarea
-            id="Description"
-            class="form-control mb-4"
-            placeholder="Description"
-            formControlName="description"
+      <div class="col-md-4">
+        <div class="form-floating mb-4">
+          <input
+            type="text"
+            id="address"
+            class="form-control"
+            placeholder="Address"
+            formControlName="address"
             required
-            style="height: 150px"
-          ></textarea>
-          <label for="Description">Description</label>
+          />
+          <label for="address">Address</label>
           <span
             class="text-danger float-end"
             *ngIf="
-              propertyForm.controls['description'].invalid &&
-              (propertyForm.controls['description'].touched ||
-                propertyForm.controls['description'].dirty)
+              propertyForm.controls['address'].invalid &&
+              (propertyForm.controls['address'].touched ||
+                propertyForm.controls['address'].dirty)
             "
           >
-            *Description is required.
+            *Address is required.
           </span>
         </div>
       </div>
+
       <div class="col-md-4">
-        <div class="form-floating">
-          <input type="hidden" name="owner_id" FormControlName = "owner_id"  value="{{owner_id}}">
-          <!-- <input
+        <div class="form-floating mb-4">
+          <input
             type="text"
-            id="owner_id"
+            id="city"
             class="form-control"
-            placeholder="owner_id"
-            formControlName="owner_id"
+            placeholder="City"
+            formControlName="city"
             required
-          /> -->
-          <!-- <label for="owner_id">owner id</label>
+          />
+          <label for="city">City</label>
           <span
             class="text-danger float-end"
             *ngIf="
-              propertyForm.controls['owner_id'].invalid &&
-              (propertyForm.controls['owner_id'].touched ||
-                propertyForm.controls['owner_id'].dirty)
+              propertyForm.controls['city'].invalid &&
+              (propertyForm.controls['city'].touched ||
+                propertyForm.controls['city'].dirty)
             "
           >
-            *owner id is required.
-          </span> -->
+            *City is required.
+          </span>
         </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-floating mb-4">
+          <input
+            type="text"
+            id="country"
+            class="form-control"
+            placeholder="Country"
+            formControlName="country"
+            required
+          />
+          <label for="country">Country</label>
+          <span
+            class="text-danger float-end"
+            *ngIf="
+              propertyForm.controls['country'].invalid &&
+              (propertyForm.controls['country'].touched ||
+                propertyForm.controls['country'].dirty)
+            "
+          >
+            *Country is required.
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-floating">
+        <textarea
+          id="Description"
+          class="form-control mb-4"
+          placeholder="Description"
+          formControlName="description"
+          required
+          style="height: 150px"
+        ></textarea>
+        <label for="Description">Description</label>
+        <span
+          class="text-danger float-end"
+          *ngIf="
+            propertyForm.controls['description'].invalid &&
+            (propertyForm.controls['description'].touched ||
+              propertyForm.controls['description'].dirty)
+          "
+        >
+          *Description is required.
+        </span>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-floating">
+        <input
+          type="hidden"
+          name="owner_id"
+          FormControlName="owner_id"
+          value="{{ owner_id }}"
+        />
       </div>
     </div>
   </div>
