@@ -3,7 +3,7 @@ import { PropertyService } from '../../services/propertyService/property.service
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Amenity } from '../../interface/amenity';
-import { FilterService } from '../../services/propertyService/filter.service'; // Import the service
+import { FilterService } from '../../services/propertyService/filter.service';
 
 @Component({
   selector: 'app-filter',
@@ -45,7 +45,7 @@ export class FilterComponent {
         (res: any) => {
           this.loading = false;
           console.log('Filtered Properties:', res.data);
-          this.filterService.updateFilteredProperties(res.data); // Update the service with filtered properties
+          this.filterService.updateFilteredProperties(res.data);
         },
         (error) => {
           this.loading = false;

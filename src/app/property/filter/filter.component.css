@@ -1,9 +1,9 @@
 .bg-checked {
-  background-color: #325f20; /* Change to desired checked color */
-  color: #ffffff; /* Text color when checked */
+  background-color: #325f20;
+  color: #ffffff;
 }
 
 .bg-black {
-  background-color: #000000; /* Background color when not checked */
-  color: #ffffff; /* Text color when not checked */
+  background-color: #000000;
+  color: #ffffff;
 }
