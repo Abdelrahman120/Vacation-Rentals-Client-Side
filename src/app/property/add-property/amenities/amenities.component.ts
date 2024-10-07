@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { PropertyService } from '../../../services/propertyService/property.service';
 
 
-
 @Component({
   selector: 'app-amenities',
   standalone: true,
