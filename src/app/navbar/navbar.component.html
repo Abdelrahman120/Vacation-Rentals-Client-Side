@@ -1,11 +1,11 @@
 <header id="nav" class="site-header position-fixed text-white bg-dark">
   <nav
     id="navbar-example2"
-    class="navbar navbar-expand-lg py-2"
+    class="navbar navbar-expand-lg p-3 fs-4"
     style="background-color: #3b5899"
   >
     <div class="container">
-      <a class="navbar-brand poppins-bold" href="/">VacationRentals</a>
+      <a class="navbar-brand poppins-bold fs-3 text-white" href="/">VacationRentals</a>
 
       <button
         class="navbar-toggler text-white"
@@ -36,68 +36,84 @@
           <ul
             class="navbar-nav align-items-center justify-content-end align-items-center flex-grow-1"
           >
+            <!-- Restored routes -->
             <li class="nav-item">
-              <a class="nav-link me-md-4 poppins-medium" routerLink="/">Home</a>
+              <a class="nav-link me-md-4 poppins-medium fs-5" routerLink="/">Home</a>
             </li>
             <li class="nav-item">
               <a
-                class="nav-link me-md-4 poppins-medium"
+                class="nav-link me-md-4 poppins-medium fs-5"
                 routerLink="/properties"
                 >Properties</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link me-md-4 poppins-medium" href="#about-us"
+              <a class="nav-link me-md-4 poppins-medium fs-5" href="#about-us"
                 >About</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link me-md-4 poppins-medium" href="#help"
+              <a class="nav-link fs-5 me-md-4 poppins-medium" href="#help"
                 >Contact</a
               >
             </li>
             <li class="nav-item">
               <a
-            routerLink="favorite"
-            
-            class="nav-link d-flex roboto-regular align-items-center me-3"
-            href="#"
-          >
-            <fa-icon [icon]="faHeart" class="fs-3"></fa-icon>
-            <span class="ms-1">watchlist</span>
-            <!-- <span class="badge bg-danger ms-2">{{ cartLength }}</span> -->
-          </a>
+                routerLink="favorite"
+                class="nav-link d-flex roboto-regular align-items-center me-3"
+              >
+                <fa-icon [icon]="faHeart" class="fs-3"></fa-icon>
+                <span class="ms-1 fs-5">watchlist</span>
+                <!-- <span class="badge bg-danger ms-2">{{ cartLength }}</span> -->
+              </a>
             </li>
+
+            <!-- Dropdown for Account -->
             <li class="nav-item dropdown">
               <a
-                class="nav-link me-md-4 text-center dropdown-toggle poppins-medium"
+                class="nav-link fs-5 me-md-4 text-center dropdown-toggle poppins-medium"
                 data-bs-toggle="dropdown"
                 href="#"
                 role="button"
                 aria-expanded="false"
-                >Account</a
+              >Account</a
               >
-            
               <ul class="dropdown-menu">
                 <!-- Show login/register links if not logged in -->
                 <ng-container *ngIf="!isLoggedIn(); else loggedInTemplate">
                   <li>
-                    <a routerLink="/login/owner" class="dropdown-item poppins-medium">Owner</a>
+                    <a routerLink="/login/owner" class="fs-6 dropdown-item poppins-medium">Owner</a>
                   </li>
                   <li>
-                    <a routerLink="/login" class="dropdown-item poppins-medium">Travellers</a>
+                    <a routerLink="/login" class="dropdown-item fs-6 poppins-medium">Travellers</a>
                   </li>
                 </ng-container>
-            
+
                 <!-- Show logout button if logged in -->
                 <ng-template #loggedInTemplate>
                   <li>
-                    <button class="dropdown-item poppins-medium" (click)="onLogout()">Logout</button>
+                    <button class="dropdown-item poppins-medium fs-6" (click)="onLogout()">Logout</button>
+                  </li>
+                  <li class="d-flex justify-content-center fs-5" *ngIf="isOwner()">
+                    Name : {{ owner.name }}
+                  </li>
+                  <li class="d-flex justify-content-center fs-6" *ngIf="isOwner()">
+                    ${{ owner.wallet }}
                   </li>
                 </ng-template>
               </ul>
             </li>
-            
+
+            <!-- Owner image section -->
+            <li *ngIf="isOwner()">
+              <img [src]="owner.image" alt="Owner Image" class="rounded" width="40" />
+            </li>
+
+            <!-- User info section -->
+            <div *ngIf="isUser()">
+              <span>{{ user.name }}</span>
+              <img [src]="user.image" alt="User Image" class="rounded" width="40" />
+            </div>
           </ul>
         </div>
       </div>
