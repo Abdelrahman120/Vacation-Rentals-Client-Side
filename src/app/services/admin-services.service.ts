@@ -46,4 +46,7 @@ export class AdminServicesService {
   deleteOwner(id: number): Observable<any> {
     return this.http.delete(`${this.url}/deleteowner/${id}`, { headers: this.getAuthHeaders() });
   }
-}
+
+  getOwnerDetails(ownerId: string): Observable<any> {
+    return this.http.get<any>(`${this.url}/owner/${ownerId}`);
+  }}
