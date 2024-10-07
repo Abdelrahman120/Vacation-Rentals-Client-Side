@@ -1,38 +1,38 @@
+
 <div class="card border-0 position-relative my-2">
   <a (click)="goToDetails(property.id)">
     <img
-      src="http://127.0.0.1:8000{{ property.images[0]['image'] }}"
-      class="card-img-top rounded-3 shadow-lg position-relative"
-      alt="{{ property.name }} property image"
+      [src]="'http://localhost:8000' + property.images[0].image"
+      alt="Property Image"
+      class="rounded-1"
     />
   </a>
-    <fa-icon
-      [icon]="faHeart"
-      class="fs-4 position-absolute rounded-3 text-light hover-effect"
-      style="top: 2%; right: 4%"
-      (click)="toggleFavorite(property.id)">
-  {{ isFavorite(property.id) ? 'Remove from Favorites' : 'Add to Favorites' }}
-    ></fa-icon>
-    <div class="card-body p-1">
-      <span class="text-light" style="font-size: 14px">{{
-        property.city
-      }}</span>
-      <p class="roboto-bold" style="bottom: 2rem; font-size: 1rem">
-        {{ property.name }}
-      </p>
-      <div class="d-flex justify-content-between" style="font-size: 0.8rem">
-        <div class="card-text text-light">
-          <fa-icon [icon]="faHouse" class="rounded-3 text-light"></fa-icon>
-          {{ property.property_type }} |
-          <fa-icon [icon]="faBed" class="rounded-3 text-light"></fa-icon>
-          {{ property.bedrooms }} |
-          <fa-icon [icon]="faBath" class="rounded-3 text-light"></fa-icon>
-          {{ property.bathrooms }} | Sleeps: {{ property.sleeps }}
-        </div>
-        <div class="text-end fw-bold text-light" style="font-size: 0.8rem">
-          {{ property.night_rate }}$
-        </div>
+  <fa-icon
+    [icon]="faHeart"
+    class="fs-4 position-absolute rounded-3 text-light hover-effect"
+    style="top: 2%; right: 4%"
+    (click)="toggleFavorite(property.id)"
+  >
+    {{ isFavorite(property.id) ? "Remove from Favorites" : "Add to Favorites" }}
+    ></fa-icon
+  >
+  <div class="card-body p-1">
+    <span class="text-dark" style="font-size: 14px">{{ property.city }}</span>
+    <p class="roboto-bold text-dark" style="bottom: 2rem; font-size: 1rem">
+      {{ property.name }}
+    </p>
+    <div class="d-flex justify-content-between" style="font-size: 0.8rem">
+      <div class="card-text text-dark">
+        <fa-icon [icon]="faHouse" class="rounded-3 text-dark"></fa-icon>
+        {{ property.property_type }} |
+        <fa-icon [icon]="faBed" class="rounded-3 text-dark"></fa-icon>
+        {{ property.bedrooms }} |
+        <fa-icon [icon]="faBath" class="rounded-3 text-dark"></fa-icon>
+        {{ property.bathrooms }} | Sleeps: {{ property.sleeps }}
+      </div>
+      <div class="text-end fw-bold text-dark" style="font-size: 0.8rem">
+        {{ property.night_rate }}$
       </div>
     </div>
-
+  </div>
 </div>
