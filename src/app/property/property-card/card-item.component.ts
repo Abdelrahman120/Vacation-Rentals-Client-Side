@@ -4,7 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Router, RouterLink } from '@angular/router';
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faBath, faBed, faHouse } from "@fortawesome/free-solid-svg-icons";
-import { FavoriteService } from '../../services/favorite.service';
+import { FavoriteService } from '../../Services/favorite.service';
 
 
 @Component({

@@ -19,6 +19,7 @@ export class OwnerDashboardComponent {
         localStorage.removeItem('userEmail');
         localStorage.removeItem('token'); 
         localStorage.removeItem('role'); 
+        localStorage.removeItem('owner_auth_token');
         this.router.navigate(['/login/owner']); 
       },
       (error) => {

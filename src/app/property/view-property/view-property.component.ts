@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PropertyService } from '../../services/propertyService/property.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { FavoriteService } from '../../Services/favorite.service';
@@ -10,7 +10,7 @@ import * as L from 'leaflet';
 @Component({
   selector: 'app-view-property',
   standalone: true,
-  imports: [FormsModule, DatePipe, NgFor, NgIf],
+  imports: [FormsModule, DatePipe, NgFor, NgIf , RouterModule],
   templateUrl: './view-property.component.html',
   styleUrls: ['./view-property.component.css'],
 })
