@@ -49,6 +49,16 @@ export class FavoriteService {
    .pipe(catchError(this.handleError));
   ;
 }
+
+togleFavorite(propertyId: number): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+  return this.http.post(`${this.apiUrl}/favorites/toggle`, { property_id: propertyId }, { headers })
+    .pipe(catchError(this.handleError));
+}
+
 private handleError(error: any): Observable<never> {
   console.error('An error occurred:', error);
   return throwError(error);
