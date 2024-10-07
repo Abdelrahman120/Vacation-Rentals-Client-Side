@@ -106,13 +106,18 @@
 
             <!-- Owner image section -->
             <li *ngIf="isOwner()">
+              @if (owner.image) {
               <img [src]="owner.image" alt="Owner Image" class="rounded" width="40" />
+
+              }
             </li>
 
             <!-- User info section -->
             <div *ngIf="isUser()">
               <span>{{ user.name }}</span>
+              @if (user.image) {
               <img [src]="user.image" alt="User Image" class="rounded" width="40" />
+              }
             </div>
           </ul>
         </div>
