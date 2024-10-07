@@ -4,12 +4,13 @@ import { CardItemComponent } from "../property-card/card-item.component";
 import { SearchComponent } from "../../search/search.component";
 import { ActivatedRoute } from '@angular/router';
 import { FilterService } from '../../services/propertyService/filter.service';
-import { FilterComponent } from "../filter/filter.component"; // Import the service
+import { FilterComponent } from "../filter/filter.component";
+import { FilterCategoryComponent } from "../filter-category/filter-category.component"; // Import the service
 
 @Component({
   selector: 'app-card-list',
   standalone: true,
-  imports: [CardItemComponent, SearchComponent, FilterComponent],
+  imports: [CardItemComponent, SearchComponent, FilterComponent, FilterCategoryComponent],
 
   templateUrl: './card-list.component.html',
   styleUrls: ['./card-list.component.css']

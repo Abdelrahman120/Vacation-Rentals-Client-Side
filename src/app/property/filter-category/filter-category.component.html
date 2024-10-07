@@ -1,0 +1,22 @@
+<div class="row bg-secondary p-1 rounded-1" style="width: 270px">
+  <span class="text-center mb-3 text-dark roboto-bold fs-4">Categories</span>
+  @for (category of categories; track $index) {
+  <div class="col-md-6">
+    <div class="d-flex justify-content-start">
+      <input
+        type="radio"
+        class="visually-hidden"
+        id="category{{ $index }}"
+        name="category"
+      />
+      <label
+        for="category{{ $index }}"
+        class="bg-black text-light p-3 me-2 rounded-1 text-center"
+        style="min-width: 7rem"
+      >
+        {{ category.name }}
+      </label>
+    </div>
+  </div>
+  }
+</div>
