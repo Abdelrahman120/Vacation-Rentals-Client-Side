@@ -1,32 +1,69 @@
-<!-- src/app/user-detail/user-detail.component.html -->
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div *ngIf="loading" class="text-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
 
-<div *ngIf="loading">Loading...</div>
-<div *ngIf="!loading && user">
-  <h2>User Details</h2>
-  <div>
-    <img [src]="user.image" alt="User Image" *ngIf="user.image" />
-    <h3>{{ user.name }}</h3>
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Phone:</strong> {{ user.phone }}</p>
-    <p><strong>Address:</strong> {{ user.address }}</p>
-    <p><strong>Gender:</strong> {{ user.gender }}</p>
-    <h4>Payments</h4>
-    <ul>
-      <li *ngFor="let payment of user.payments">
-        Amount: {{ payment.amount }} {{ payment.currency }} - Status: {{ payment.status }}
-      </li>
-    </ul>
-    <h4>Favorites</h4>
-    <ul>
-      <li *ngFor="let favorite of user.favorites">
-        {{ favorite.property_name }}
-      </li>
-    </ul>
-    <h4>Reviews</h4>
-    <ul>
-      <li *ngFor="let review of user.reviews">
-        {{ review.review }} (Rating: {{ review.rating }})
-      </li>
-    </ul>
+      <div *ngIf="!loading && user">
+        <!-- User Details -->
+        <div class="card p-4 shadow-sm border-0 mb-4">
+          <div class="text-center">
+            <img [src]="'http://localhost:8000/images/posts/' + user.image" alt="Owner Image" />
+            <h3>{{ user.name }}</h3>
+          </div>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>Phone:</strong> {{ user.phone }}</p>
+          <p><strong>Address:</strong> {{ user.address }}</p>
+          <p><strong>Gender:</strong> {{ user.gender }}</p>
+        </div>
+
+        <!-- Payments Section -->
+        <div class="card p-4 shadow-sm border-0 mb-4">
+          <h4 class="mb-3">Payments</h4>
+          <ul class="list-unstyled">
+            <li *ngFor="let payment of user.payments" class="mb-2">
+              <p>
+                <strong class="text-dark">Amount:</strong> {{ payment.product_name }}<br>
+                <strong class="text-dark">Amount:</strong> {{ payment.amount }} {{ payment.currency }}<br>
+              </p>
+              <hr>
+            </li>
+          </ul>
+          <div *ngIf="user.payments.length === 0">
+            <p class="text-muted">No payments found.</p>
+          </div>
+        </div>
+
+        <!-- Favorites Section -->
+        <div class="card p-4 shadow-sm border-0 mb-4">
+          <h4 class="mb-3">Favorites</h4>
+          <ul class="list-unstyled">
+            <li *ngFor="let favorite of user.favorites" class="mb-2">
+              {{ favorite.property_name }}
+            </li>
+          </ul>
+          <div *ngIf="user.favorites.length === 0">
+            <p class="text-muted">No favorites found.</p>
+          </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <div class="card p-4 shadow-sm border-0 mb-4">
+          <h4 class="mb-3">Reviews</h4>
+          <ul class="list-unstyled">
+            <li *ngFor="let review of user.reviews" class="mb-2">
+              <p>{{ review.review }} <br><strong>Rating:</strong> {{ review.rating }}</p>
+              <hr>
+            </li>
+          </ul>
+          <div *ngIf="user.reviews.length === 0">
+            <p class="text-muted">No reviews found.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

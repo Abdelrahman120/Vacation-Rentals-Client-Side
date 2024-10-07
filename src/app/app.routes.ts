@@ -40,6 +40,10 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { ownerGuardGuard } from './guards/owner-guard.guard';
 import { AdminPropertyDetailsComponent } from './admin-property-details/admin-property-details.component';
 import { SendEmailComponent } from './send-email/send-email.component';
+import { OwnerDetailsComponent } from './owner-details/owner-details.component';
+
+
+
 
 export const routes: Routes = [
   {
@@ -211,6 +215,10 @@ export const routes: Routes = [
   },
   { path: 'admin/details/:id', component: AdminPropertyDetailsComponent },
   { path: 'send-email/:id', component: SendEmailComponent }, // Adjust to your actual component
+  {
+    path: 'admin/owner/:id',
+    component : OwnerDetailsComponent
+  },
   {
     path: '**',
     component: NotFoundComponent,

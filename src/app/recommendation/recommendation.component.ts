@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PropertyService } from '../services/propertyService/property.service';
+import { PropertyService } from '../Services/propertyService/property.service';
 import { CardItemComponent } from "../property/property-card/card-item.component";
 declare var $: any;
 

@@ -67,4 +67,7 @@ export class AdminServicesService {
   }
   showowner(id: number): Observable<any> {
     return this.http.get(`${this.url}/showowner/${id}`, { headers: this.getAuthHeaders() });
-}}
+}
+  getOwnerDetails(ownerId: string): Observable<any> {
+    return this.http.get<any>(`${this.url}/owner/${ownerId}`);
+  }}
