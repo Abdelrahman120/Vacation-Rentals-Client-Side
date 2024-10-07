@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PropertyService } from '../../services/propertyService/property.service';
+import { PropertyService } from '../../Services/propertyService/property.service';
 import { CardItemComponent } from "../property-card/card-item.component";
 import { SearchComponent } from "../../search/search.component";
 import { ActivatedRoute } from '@angular/router';
