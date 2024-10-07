@@ -1,7 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +16,11 @@ export class PropertyService {
   private propertyId: string = '';
 
   getCategories() {
-    return this.http.get(`${this.BACKEND_API}/api/categories`)
+    return this.http.get(`${this.BACKEND_API}/api/categories`);
   }
 
   getProperties() {
-    return this.http.get(`${this.BACKEND_API}/api/property`)
+    return this.http.get(`${this.BACKEND_API}/api/property`);
   }
 
   getPropertyByDate(input?: any) {
@@ -64,8 +68,7 @@ export class PropertyService {
   setAmenities(id: string, value: any) {
     const token = localStorage.getItem('owner_auth_token');
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-
+      Authorization: `Bearer ${token}`,
     });
     return this.http.post(
       `${this.BACKEND_API}/api/property/${id}/amenities`,
@@ -81,8 +84,7 @@ export class PropertyService {
   setImages(id: string, formData: FormData) {
     const token = localStorage.getItem('owner_auth_token');
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-
+      Authorization: `Bearer ${token}`,
     });
     return this.http.post(
       `${this.BACKEND_API}/api/property/${id}/images`,
@@ -92,5 +94,16 @@ export class PropertyService {
 
   getPropertiesByAmenity(amenityIds: number[]) {
     return this.http.post(`${this.BACKEND_API}/api/properties/filter`, { amenity: amenityIds });
+  }
+
+  getSuggestions(query: string) {
+    return this.http
+      .get(`${this.BACKEND_API}/api/location-suggestions?query=${query}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    console.error('Error occurred:', error);
+    return throwError('An error occurred; please try again later.');
   }
 }

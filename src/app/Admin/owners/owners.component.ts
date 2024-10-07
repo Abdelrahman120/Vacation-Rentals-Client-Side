@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { AdminServicesService } from '../../services/admin-services.service';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from "../../admin-dashboard/sidebar/sidebar.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-owners',
   standalone: true,
-  imports: [CommonModule, SidebarComponent],
+  imports: [CommonModule, SidebarComponent , RouterLink],
   templateUrl: './owners.component.html',
   styleUrl: './owners.component.css'
 })

@@ -24,7 +24,13 @@
                 <td class="text-center">{{owner.email}}</td>
                 <td class="text-center">
                   <button class="btn btn-danger" (click)="deleteOwner(owner.id)">Delete</button>
-              </td>            </tr>
+                  <button
+                  class="btn btn-primary"
+                  [routerLink]="['/admin/owner', owner.id]"
+                >
+                  View Details
+                </button>
+                </td>            </tr>
       
        
         </tbody>

@@ -1,0 +1,50 @@
+<div class="container mt-5">
+    <div *ngIf="loading" class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  
+    <div  *ngIf="!loading && owner">
+        <h3></h3>
+      <h2 class="text-center m-4">Owner Details</h2>
+      <div class="card p-4 shadow-sm border-0 mb-4">
+        <div class="text-center">
+            <img [src]="'http://localhost:8000/images/posts/' + owner.image" alt="Owner Image" />
+
+          <h3>{{ owner.name }}</h3>
+        </div>
+        <p><strong>Email:</strong> {{ owner.email }}</p>
+        <p><strong>Phone:</strong> {{ owner.phone }}</p>
+        <p><strong>Address:</strong> {{ owner.address }}</p>
+        <p><strong>Gender:</strong> {{ owner.gender }}</p>
+        <p><strong>Company Name:</strong> {{ owner.company_name }}</p>
+        <p><strong>Description:</strong> {{ owner.description }}</p>
+        <p><strong>Wallet:</strong> ${{ owner.wallet }}</p>
+      </div>
+  
+      <!-- Properties Section -->
+      <div
+        *ngIf="owner.properties && owner.properties.length > 0"
+        class="card p-4 shadow-sm border-0 mb-4"
+      >
+        <h4 class="mb-3">Properties</h4>
+        <ul class="list-unstyled">
+          <li *ngFor="let property of owner.properties" class="mb-3">
+            <p><strong>Name:</strong> {{ property.name }}</p>
+            <p><strong>Headline:</strong> {{ property.headline }}</p>
+            <p><strong>Description:</strong> {{ property.description }}</p>
+            <p><strong>City:</strong> {{ property.city }}, {{ property.country }}</p>
+            <p><strong>Address:</strong> {{ property.address }}</p>
+            <p><strong>Night Rate:</strong> ${{ property.night_rate }}</p>
+            <p><strong>Status:</strong> {{ property.status }}</p>
+            <hr />
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="!owner.properties || owner.properties.length === 0">
+        <p class="text-muted">No properties found.</p>
+      </div>
+    </div>
+  </div>
+  
