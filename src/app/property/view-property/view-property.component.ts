@@ -1,21 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { PropertyService } from '../../services/propertyService/property.service';
+import { PropertyService } from '../../Services/propertyService/property.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { FavoriteService } from '../../services/favorite.service';
+import { TestService } from '../../test.service';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-view-property',
   standalone: true,
-  imports: [FormsModule, DatePipe, NgFor, NgIf , RouterLink],
+  imports: [FormsModule, DatePipe, NgFor, NgIf, RouterLink],
   templateUrl: './view-property.component.html',
-  styleUrls: ['./view-property.component.css']
+  styleUrls: ['./view-property.component.css'],
 })
 export class ViewPropertyComponent implements OnInit {
   propertyId: string = '';
   propertyDetails: any = {};
-
+  property: any;
+  map: any;
   start_date: string = '';
   end_date: string = '';
   city: string = '';
@@ -23,36 +26,50 @@ export class ViewPropertyComponent implements OnInit {
   reviews: any[] = [];
   newReview: any = {
     rating: 5,
-    review: ''
+    review: '',
   };
   totalPrice: number = 0;
 
-  constructor(private propertyService: PropertyService, private route: ActivatedRoute, private router: Router,
-    private favouriteService: FavoriteService
-
-  ) { }
+  constructor(
+    private propertyService: PropertyService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private favouriteService: FavoriteService,
+    private testService: TestService
+  ) {}
 
   ngOnInit(): void {
     this.propertyId = this.route.snapshot.paramMap.get('id') || '';
+    const propertyId = this.route.snapshot.params['id'];
 
-    // Capture query parameters
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.start_date = params['start_date'] || '';
       this.end_date = params['end_date'] || '';
       this.city = params['city'] || '';
       this.sleeps = +params['sleeps'] || 0;
 
-      console.log("Start Date:", this.start_date);
-      console.log("End Date:", this.end_date);
-      console.log("City:", this.city);
-      console.log("Sleeps:", this.sleeps);
+      console.log('Start Date:', this.start_date);
+      console.log('End Date:', this.end_date);
+      console.log('City:', this.city);
+      console.log('Sleeps:', this.sleeps);
 
-      this.propertyService.viewProperty(Number(this.propertyId)).subscribe((res: any) => {
-        this.propertyDetails = res.data;
-        console.log("Property Details:", this.propertyDetails);
-        console.log(this.propertyDetails.images);
-        this.calculateTotalPrice();
-      });
+      this.propertyService
+        .viewProperty(Number(this.propertyId))
+        .subscribe((res: any) => {
+          this.propertyDetails = res.data;
+          console.log('Property Details:', this.propertyDetails);
+          console.log(this.propertyDetails.images);
+          this.calculateTotalPrice();
+        });
+
+      this.testService
+        .getProperty(Number(this.propertyId))
+        .subscribe((data) => {
+          this.property = data.data;
+          console.log(data.data);
+
+          this.initMap(this.property.latitude, this.property.longitude);
+        });
     });
 
     this.loadReviews();
@@ -61,47 +78,43 @@ export class ViewPropertyComponent implements OnInit {
   calculateTotalPrice() {
     const start = new Date(this.start_date);
     const end = new Date(this.end_date);
-  
-    // Check if the date parsing was successful
+
     if (isNaN(start.getTime()) || isNaN(end.getTime())) {
-      console.error("Invalid dates");
+      console.error('Invalid dates');
       this.totalPrice = 0;
       return;
     }
-  
+
     const timeDifference = end.getTime() - start.getTime();
-  
+
     const numberOfDays = timeDifference / (1000 * 3600 * 24);
-  
+
     if (numberOfDays > 0 && this.propertyDetails.night_rate) {
       this.totalPrice = numberOfDays * this.propertyDetails.night_rate;
     } else {
       this.totalPrice = 0;
     }
-  
+
     console.log(`Number of days: ${numberOfDays}`);
     console.log(`Total price: ${this.totalPrice}`);
   }
-  
 
   navigateToPayment() {
     this.router.navigate(['/payment'], {
       queryParams: {
         product_name: this.propertyDetails.name,
         sleeps: this.sleeps,
-        total_price: this.totalPrice ,
-        start_date: this.start_date,  
+        total_price: this.totalPrice,
+        start_date: this.start_date,
         end_date: this.end_date,
-        propertyId: this.propertyId  
-      }
+        propertyId: this.propertyId,
+      },
     });
   }
 
   loadReviews() {
     this.favouriteService.getReviews(Number(this.propertyId)).subscribe(
       (response) => {
-
-
         this.reviews = response;
       },
       (error) => {
@@ -111,7 +124,7 @@ export class ViewPropertyComponent implements OnInit {
   }
   deleteReview(id: number) {
     this.favouriteService.deleteReview(id).subscribe(() => {
-      this.reviews = this.reviews.filter(review => review.id !== id);
+      this.reviews = this.reviews.filter((review) => review.id !== id);
     });
   }
 
@@ -119,20 +132,18 @@ export class ViewPropertyComponent implements OnInit {
     const reviewPayload = {
       property_id: Number(this.propertyId),
       rating: this.newReview.rating,
-      review: this.newReview.review
+      review: this.newReview.review,
     };
 
     this.favouriteService.addReview(reviewPayload).subscribe(
       (response) => {
         console.log('Review added successfully:', response);
-        // Assuming the response contains the new review data
         this.reviews.push(response);
         this.loadReviews();
 
-        // Reset the form
         this.newReview = {
           rating: 5,
-          review: ''
+          review: '',
         };
       },
       (error) => {
@@ -141,5 +152,16 @@ export class ViewPropertyComponent implements OnInit {
     );
   }
 
+  initMap(lat: number, lng: number): void {
+    this.map = L.map('map').setView([lat, lng], 13);
 
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+    }).addTo(this.map);
+
+    L.marker([lat, lng])
+      .addTo(this.map)
+      .bindPopup('Property Location')
+      .openPopup();
+  }
 }

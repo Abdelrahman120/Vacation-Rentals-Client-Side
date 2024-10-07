@@ -5,7 +5,7 @@ import {
   NgxDaterangepickerBootstrapDirective,
   NgxDaterangepickerBootstrapComponent,
 } from 'ngx-daterangepicker-bootstrap';
-import { PropertyService } from '../services/propertyService/property.service';
+import { PropertyService } from '../Services/propertyService/property.service';
 import { format } from 'date-fns';
 import { CommonModule } from '@angular/common';
 
