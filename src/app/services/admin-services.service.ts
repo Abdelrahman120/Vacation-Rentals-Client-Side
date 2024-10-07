@@ -29,9 +29,9 @@ export class AdminServicesService {
   }
 
   // Fetch properties from API
-  getProperties(): Observable<any> {
-    return this.http.get(`${this.url}/properties`, { headers: this.getAuthHeaders() }); // Add headers
-  }
+  // getProperties(): Observable<any> {
+  //   return this.http.get(`${this.url}/properties`, { headers: this.getAuthHeaders() }); // Add headers
+  // }
   acceptProperty(id: number): Observable<any> {
     return this.http.post(`http://127.0.0.1:8000/api/properties/${id}/accept`, {});
   }
@@ -47,6 +47,27 @@ export class AdminServicesService {
     return this.http.delete(`${this.url}/deleteowner/${id}`, { headers: this.getAuthHeaders() });
   }
 
+  getProperties(status?: string): Observable<any> {
+    let url = `${this.url}/properties`;
+    if (status) {
+      url += `?status=${status}`;
+    }
+    return this.http.get(url, { headers: this.getAuthHeaders() });
+  }
+
+  getPropertyDetails(id: number): Observable<any> {
+    return this.http.get(`${this.url}/properties/${id}`, { headers: this.getAuthHeaders() });
+  }
+  updatePropertyStatus(id: number, formData: FormData): Observable<any> {
+   
+    return this.http.post(`${this.url}/properties/${id}/update-status`, formData, { headers: this.getAuthHeaders() });
+  }
+  sendEmail(id: number, formData: FormData): Observable<any> {
+    return this.http.post(`${this.url}/send-email/${id}`, formData, { headers: this.getAuthHeaders() });
+  }
+  showowner(id: number): Observable<any> {
+    return this.http.get(`${this.url}/showowner/${id}`, { headers: this.getAuthHeaders() });
+}
   getOwnerDetails(ownerId: string): Observable<any> {
     return this.http.get<any>(`${this.url}/owner/${ownerId}`);
   }}

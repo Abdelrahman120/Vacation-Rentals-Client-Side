@@ -1,0 +1,52 @@
+<div class="container " style="margin-top: 70px;">
+    <div class="header bg-light p-4 rounded shadow">
+      <h2>{{ property.name }}</h2>
+      <h5>{{ property.property_type }}</h5>
+      <div class="d-flex justify-content-between">
+        <h5><i class="fa-regular fa-calendar-days me-2 text-dark"></i>Create Date: <small class="text-info">{{ property.createdAt | date: 'shortDate' }}</small></h5>
+        <h5><i class="fa-regular fa-user me-2 text-dark"></i>Owner : <small class="text-info">{{ property.owner_name }}</small></h5>
+      </div>
+      <div class="d-flex justify-content-between">
+        <h5><i class="fa-regular fa-building me-2 text-dark"></i>Company Name: <small class="text-info">{{ property.owner_company_name }}</small></h5>
+        <h5><i class="fa-solid fa-at me-2 text-dark"></i>Owner Email: <small class="text-info">{{ property.owner_email }}</small></h5>
+        <h5><i class="fa-solid fa-phone me-2 text-dark"></i>Phone: <small class="text-info">{{ property.owner_phone }}</small></h5>
+      </div>
+    </div>
+  
+    <div class="status-menu mt-4">
+        <form (ngSubmit)="updateStatus(statusForm)" #statusForm="ngForm">
+            <select class="form-select" [(ngModel)]="property.status" name="status" required>
+              <option disabled value="">{{ property.status || 'Select Status' }}</option>
+              <option value="accepted">Accept</option>
+              <option value="rejected">Reject</option>
+            </select>
+            <button type="submit" class="btn btn-primary mt-3">Submit & Mail</button>
+          </form>
+    </div>
+  
+    <div class="details bg-light mt-4 rounded p-4 shadow ">
+      <h4>Description</h4>
+      <p class="text-dark">{{ property.description }}</p>
+      <h4>Amenities</h4>
+      <ol>
+        <li *ngFor="let amenity of property.amenities">{{ amenity.name }}</li>
+      </ol>
+    </div>
+  
+    <!-- <div class="comments-section bg-light mt-4 rounded p-4 shadow">
+      <h4>Comments</h4>
+      <div *ngIf="property.comments.length > 0; else noComments">
+        <div *ngFor="let comment of property.comments" class="comment d-flex justify-content-between">
+          <div>
+            <strong>{{ comment.user.name }}:</strong>
+            <p>{{ comment.body }}</p>
+          </div>
+          <button (click)="deleteComment(comment.id)" class="btn btn-link text-danger">Delete</button>
+        </div>
+      </div>
+      <ng-template #noComments>
+        <p>No comments yet.</p>
+      </ng-template>
+    </div> -->
+  </div>
+  
