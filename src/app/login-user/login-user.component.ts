@@ -7,7 +7,7 @@ import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-login-user',
   standalone: true,
-  imports: [FormsModule, RouterLink,NgIf],
+  imports: [FormsModule, RouterLink, NgIf],
   templateUrl: './login-user.component.html',
   styleUrl: './login-user.component.css',
 })
@@ -32,7 +32,7 @@ export class LoginUserComponent {
         localStorage.setItem('token', token);
         localStorage.setItem('userName', name);
         localStorage.setItem('userEmail', email);
-        localStorage.setItem('role' , 'user');
+        localStorage.setItem('role', 'user');
         this.router.navigate(['/dashboard']);
       }
     });
@@ -69,10 +69,11 @@ export class LoginUserComponent {
         if (error.status === 401) {
           this.errorMessage = 'Invalid email or password';
           console.log(this.errorMessage);
-          
+
         } else {
           this.errorMessage = 'An unexpected error occurred';
-        }      }
+        }
+      }
     );
   }
 

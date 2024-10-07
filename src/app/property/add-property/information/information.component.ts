@@ -83,6 +83,7 @@ export class InformationComponent {
     const formData = new FormData();
     Object.keys(this.propertyForm.value).forEach((key) => {
       formData.append(key, this.propertyForm.get(key)?.value);
+      console.log(formData);
     });
 
     this.PropertyService.addProperty(formData).subscribe(

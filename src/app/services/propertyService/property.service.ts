@@ -11,7 +11,7 @@ import { catchError, Observable, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class PropertyService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   BACKEND_API = environment.BACKEND_URL;
   private propertyId: string = '';
 
@@ -49,11 +49,9 @@ export class PropertyService {
   addProperty(property: any) {
     const token = localStorage.getItem('owner_auth_token');
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`
     });
-    return this.http.post(`${this.BACKEND_API}/api/property`, property, {
-      headers,
-    });
+    return this.http.post(`${this.BACKEND_API}/api/property`, property, { headers });
   }
   updateProperty(property: any, id: number) {
     return this.http.post(`${this.BACKEND_API}/api/property/${id}`, property);
@@ -74,8 +72,7 @@ export class PropertyService {
     });
     return this.http.post(
       `${this.BACKEND_API}/api/property/${id}/amenities`,
-      value,
-      { headers }
+      value, { headers }
     );
   }
   setPropertyId(id: string) {
@@ -91,15 +88,12 @@ export class PropertyService {
     });
     return this.http.post(
       `${this.BACKEND_API}/api/property/${id}/images`,
-      formData,
-      { headers }
+      formData, { headers }
     );
   }
 
   getPropertiesByAmenity(amenityIds: number[]) {
-    return this.http.post(`${this.BACKEND_API}/api/properties/filter`, {
-      amenity: amenityIds,
-    });
+    return this.http.post(`${this.BACKEND_API}/api/properties/filter`, { amenity: amenityIds });
   }
 
   getSuggestions(query: string) {
@@ -113,4 +107,3 @@ export class PropertyService {
     return throwError('An error occurred; please try again later.');
   }
 }
-

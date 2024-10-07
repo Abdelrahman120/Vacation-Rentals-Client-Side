@@ -1,12 +1,13 @@
-<div class="container-fluid tw-mt-20">
-  <div class="container w-75">
+<div class="container-fluid tw-mt-32">
+  <div class="container w-100">
     <app-search></app-search>
+    <app-filter></app-filter>
   </div>
   <div class="container">
     <div class="row">
-      @if (properties?.length > 0) { @for (property of properties; track $index)
+      @if (properties.length > 0) { @for (property of properties; track $index)
       {
-      <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3 my-2">
+      <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 my-2">
         <app-item-card [property]="property"></app-item-card>
       </div>
       } } @else {

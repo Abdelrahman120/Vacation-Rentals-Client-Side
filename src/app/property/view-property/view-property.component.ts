@@ -3,7 +3,7 @@ import { PropertyService } from '../../Services/propertyService/property.service
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
-import { FavoriteService } from '../../Services/favorite.service';
+import { FavoriteService } from '../../services/favorite.service';
 import { TestService } from '../../test.service';
 import * as L from 'leaflet';
 

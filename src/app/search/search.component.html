@@ -1,21 +1,54 @@
-<form class="input-group p-2 rounded-pill shadow-lg bg-white mt-3 w-50 mx-auto d-flex justify-content-between">
+<form
+  class="input-group p-2 rounded-pill shadow-lg bg-white w-50 mx-auto d-flex justify-content-between"
+>
   <div class="position-relative">
-    <input type="text" class="form-control border me-2 rounded-pill" placeholder="Where to?" aria-label="Location"
-      name="location" [(ngModel)]="location" (input)="getLocationSuggestions()" />
+    <input
+      type="text"
+      class="form-control border me-2 rounded-pill"
+      placeholder="Where to?"
+      aria-label="Location"
+      name="location"
+      [(ngModel)]="location"
+      (input)="getLocationSuggestions()"
+    />
 
-      <ul *ngIf="suggestions.length > 0" class="list-group position-absolute w-100" style="z-index: 1000;">
-        <li *ngFor="let suggestion of suggestions" class="list-group-item list-group-item-action"
-            (click)="selectSuggestion(suggestion)">
-          {{ suggestion.display_name }}
-        </li>
-      </ul>
-
+    <ul
+      *ngIf="suggestions.length > 0"
+      class="list-group position-absolute w-100"
+      style="z-index: 1000"
+    >
+      <li
+        *ngFor="let suggestion of suggestions"
+        class="list-group-item list-group-item-action"
+        (click)="selectSuggestion(suggestion)"
+      >
+        {{ suggestion.display_name }}
+      </li>
+    </ul>
   </div>
 
-  <input class="form-control border me-2 rounded-pill" placeholder="Dates" ngxDaterangepickerBootstrap name="dates"
-    [(ngModel)]="dates" (ngModelChange)="onDateChange()" />
+  <input
+    class="form-control border me-2 rounded-pill"
+    placeholder="Dates"
+    ngxDaterangepickerBootstrap
+    name="dates"
+    [(ngModel)]="dates"
+    (ngModelChange)="onDateChange()"
+  />
 
-  <input type="text" class="form-control border me-2 rounded-pill" placeholder="Travelers" aria-label="Travelers"
-    name="travelers" [(ngModel)]="travelers" (ngModelChange)="onTravelersChange()" />
-  <input class="btn btn-primary rounded-pill ms-1 px-4" value="Search" type="button" (click)="search()" />
+  <input
+    type="text"
+    class="form-control border me-2 rounded-pill"
+    placeholder="Travelers"
+    aria-label="Travelers"
+    name="travelers"
+    [(ngModel)]="travelers"
+    (ngModelChange)="onTravelersChange()"
+  />
+  <input
+    class="btn btn-primary rounded-pill ms-1 px-4"
+    value="Search"
+    type="button"
+    (click)="search()"
+  />
 </form>

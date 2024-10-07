@@ -14,6 +14,58 @@
             *headline is required.
           </span>
         </div>
+
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating mb-4">
+          <input type="number" id="bedrooms" class="form-control" placeholder="Bedrooms" formControlName="bedrooms"
+            required min="1" />
+          <label for="bedrooms">Bedrooms</label>
+          <span class="text-danger float-end" *ngIf="
+                                      propertyForm.controls['bedrooms'].invalid &&
+                                      (propertyForm.controls['bedrooms'].touched ||
+                                        propertyForm.controls['bedrooms'].dirty)
+                                    ">
+            *Required field
+          </span>
+          <span class="text-danger float-end" *ngIf="propertyForm.controls['bedrooms'].errors?.['min']">
+            *Minimum number of bedrooms is 1.
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating mb-4">
+          <input type="number" id="bathrooms" class="form-control" placeholder="Bathrooms" formControlName="bathrooms"
+            required min="1" />
+          <label for="bathrooms">Bathrooms</label>
+          <span class="text-danger float-end" *ngIf="
+                                              propertyForm.controls['bathrooms'].invalid &&
+                                              (propertyForm.controls['bathrooms'].touched ||
+                                                propertyForm.controls['bathrooms'].dirty)
+                                            ">
+            *Bathrooms are required.
+          </span>
+          <span class="text-danger float-end" *ngIf="propertyForm.controls['bathrooms'].errors?.['min']">
+            *Minimum number of bathrooms is 1.
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating mb-4">
+          <input type="number" id="sleeps" class="form-control" placeholder="Sleeps" formControlName="sleeps"
+            name="sleeps" required min="1" />
+          <label for="sleeps">Sleeps</label>
+          <span class="text-danger float-end" *ngIf="
+                                      propertyForm.controls['sleeps'].invalid &&
+                                      (propertyForm.controls['sleeps'].touched ||
+                                        propertyForm.controls['sleeps'].dirty)
+                                    ">
+            *Sleeps are required.
+          </span>
+          <span class="text-danger float-end" *ngIf="propertyForm.controls['sleeps'].errors?.['min']">
+            *Minimum number of sleeps is 1.
+          </span>
+        </div>
       </div>
       <div class="col-md-6">
         <div class="form-floating mb-4">
@@ -29,21 +81,7 @@
           </span>
         </div>
 
-        <div class="form-floating mb-4">
-          <input type="number" id="bedrooms" class="form-control" placeholder="Bedrooms" formControlName="bedrooms"
-            required min="1" />
-          <label for="bedrooms">Bedrooms</label>
-          <span class="text-danger float-end" *ngIf="
-              propertyForm.controls['bedrooms'].invalid &&
-              (propertyForm.controls['bedrooms'].touched ||
-                propertyForm.controls['bedrooms'].dirty)
-            ">
-            *Required field
-          </span>
-          <span class="text-danger float-end" *ngIf="propertyForm.controls['bedrooms'].errors?.['min']">
-            *Minimum number of bedrooms is 1.
-          </span>
-        </div>
+
 
         <div class="form-control mb-4 px-0" style="margin-top: 1rem">
           <select class="form-select" name="category_id" formControlName="category_id" style="margin-top: 6px">
@@ -85,21 +123,7 @@
 
 
 
-        <div class="form-floating mb-4">
-          <input type="number" id="bathrooms" class="form-control" placeholder="Bathrooms" formControlName="bathrooms"
-            required min="1" />
-          <label for="bathrooms">Bathrooms</label>
-          <span class="text-danger float-end" *ngIf="
-              propertyForm.controls['bathrooms'].invalid &&
-              (propertyForm.controls['bathrooms'].touched ||
-                propertyForm.controls['bathrooms'].dirty)
-            ">
-            *Bathrooms are required.
-          </span>
-          <span class="text-danger float-end" *ngIf="propertyForm.controls['bathrooms'].errors?.['min']">
-            *Minimum number of bathrooms is 1.
-          </span>
-        </div>
+
 
         <div class="form-floating mb-4">
           <input type="number" id="night_rate" class="form-control" placeholder="Night Rate"
@@ -138,6 +162,11 @@
 
         </div>
       </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-floating">
+      <input type="hidden" name="owner_id" FormControlName="owner_id" value="{{ owner_id }}" />
     </div>
   </div>
 
