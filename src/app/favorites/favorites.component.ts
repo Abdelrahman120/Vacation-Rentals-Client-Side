@@ -8,7 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [NgFor,FontAwesomeModule],
+  imports: [NgFor, FontAwesomeModule],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.css'
 })
@@ -19,7 +19,7 @@ export class FavoritesComponent implements OnInit {
   faBath = faBath;
   faHouse = faHouse;
   faHeart = faHeart;
-  constructor(private favoriteService: FavoriteService) {}
+  constructor(private favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
     this.loadFavorites();
@@ -32,14 +32,14 @@ export class FavoritesComponent implements OnInit {
     });
   }
   toggleFavorite(propertyId: number) {
-   
-      this.favoriteService.removeFromFavorites(propertyId).subscribe(() => {
-        //this.favoriteProperties = this.favoriteProperties.filter(property => property.id !== propertyId);
-        this.loadFavorites();
 
-      });
+    this.favoriteService.removeFromFavorites(propertyId).subscribe(() => {
+      //this.favoriteProperties = this.favoriteProperties.filter(property => property.id !== propertyId);
+      this.loadFavorites();
 
-    
+    });
+
+
   }
 
 }

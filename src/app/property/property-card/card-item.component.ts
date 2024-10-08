@@ -1,6 +1,6 @@
 
 import { Component, Input, OnInit } from '@angular/core';
-import { DatePipe, DecimalPipe, CommonModule } from '@angular/common';
+import { DatePipe, DecimalPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Router, RouterLink } from '@angular/router';
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -11,7 +11,7 @@ import { FavoriteService } from '../../Services/favorite.service';
 @Component({
   selector: 'app-item-card',
   standalone: true,
-  imports: [DatePipe, FontAwesomeModule, DecimalPipe, CommonModule, RouterLink],
+  imports: [DatePipe, FontAwesomeModule, DecimalPipe, NgClass, RouterLink, NgIf, NgFor],
   templateUrl: './card-item.component.html',
   styleUrl: './card-item.component.css'
 })
@@ -43,7 +43,6 @@ export class CardItemComponent implements OnInit {
       },
     });
   }
-
 
 
   ngOnInit() {
@@ -84,6 +83,11 @@ export class CardItemComponent implements OnInit {
 
   updateLocalStorage() {
     localStorage.setItem('favoriteProperties', JSON.stringify(this.favoriteProperties));
+  }
+  toggleFavorites(propertyId: number) {
+    this.favoriteService.togleFavorite(propertyId).subscribe(() => {
+
+    })
   }
 
 }

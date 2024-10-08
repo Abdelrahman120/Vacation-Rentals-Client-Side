@@ -5,15 +5,14 @@ import { SearchComponent } from "../../search/search.component";
 import { ActivatedRoute } from '@angular/router';
 import { FilterService } from '../../services/propertyService/filter.service';
 import { FilterComponent } from "../filter/filter.component";
-import { FilterCategoryComponent } from "../filter-category/filter-category.component"; // Import the service
+import { FilterCategoryComponent } from "../filter-category/filter-category.component";
 
 @Component({
   selector: 'app-card-list',
   standalone: true,
   imports: [CardItemComponent, SearchComponent, FilterComponent, FilterCategoryComponent],
-
   templateUrl: './card-list.component.html',
-  styleUrls: ['./card-list.component.css']
+  styleUrls: ['./card-list.component.css'],
 })
 export class CardListComponent implements OnInit {
   properties: any[] = [];
@@ -27,7 +26,7 @@ export class CardListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-    this.filterService.filteredProperties$.subscribe(filteredProperties => {
+    this.filterService.filteredProperties$.subscribe((filteredProperties) => {
       if (filteredProperties.length > 0) {
         this.properties = filteredProperties;
       } else {
@@ -41,17 +40,26 @@ export class CardListComponent implements OnInit {
       this.input = {
         startDate: params['start_date'],
         endDate: params['end_date'],
-        destination: params["city"],
-        sleeps: params["sleeps"]
+        location: params['location'],
+        sleeps: params['sleeps'],
       };
 
-      if (this.input.destination && this.input.startDate && this.input.endDate) {
-        this.propertyService.getPropertyByDate(this.input).subscribe((res: any) => {
-          this.properties = res.data;
-          console.log(res.data);
-        });
-      }
-      else if (!this.input.destination && !this.input.startDate && !this.input.endDate) {
+      if (
+        this.input.location &&
+        this.input.startDate &&
+        this.input.endDate
+      ) {
+        this.propertyService
+          .getPropertyByDate(this.input)
+          .subscribe((res: any) => {
+            this.properties = res.data;
+            console.log(res.data);
+          });
+      } else if (
+        !this.input.location &&
+        !this.input.startDate &&
+        !this.input.endDate
+      ) {
         this.propertyService.getProperties().subscribe((res: any) => {
           this.properties = res.data;
           console.log(this.properties[0]['images'][0].image);
