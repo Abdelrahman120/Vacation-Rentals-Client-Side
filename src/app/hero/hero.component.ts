@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { SearchComponent } from "../search/search.component";
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [],
+  imports: [SearchComponent],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css'
 })

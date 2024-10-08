@@ -20,6 +20,7 @@ export class NavbarComponent {
   owner: any = {};
   user: any;
   faHeart = faHeart;
+  ownerId: number | null = null;
 
   private loadUserId(): void {
     const userId = localStorage.getItem('userId');
@@ -35,6 +36,10 @@ export class NavbarComponent {
     private userService: UserProfileService
   ) {
     this.loadUserId();
+    const storedOwnerId = localStorage.getItem('ownerid');
+    if (storedOwnerId) {
+      this.ownerId = +storedOwnerId;
+    }
   }
 
   ngOnInit(): void {
@@ -75,7 +80,10 @@ export class NavbarComponent {
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('owner_auth_token') || !!localStorage.getItem('token');
+    return (
+      !!localStorage.getItem('owner_auth_token') ||
+      !!localStorage.getItem('token')
+    );
   }
 
   isOwner(): boolean {
@@ -105,7 +113,6 @@ export class NavbarComponent {
         } else {
           this.router.navigate(['/login']);
         }
-        // window.location.reload();
       },
       (error) => {
         console.log('Logout failed', error);
@@ -118,5 +125,12 @@ export class NavbarComponent {
   }
   navigateToOwnerProfile(): void {
     this.router.navigate(['owner/info']);
+  }
+  navigateToEditProfile() {
+    if (this.ownerId !== null) {
+      this.router.navigate(['/edit-Owner-profile', this.ownerId]);
+    } else {
+      console.error('Owner ID not found');
+    }
   }
 }

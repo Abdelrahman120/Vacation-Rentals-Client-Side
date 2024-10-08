@@ -2,21 +2,20 @@ import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { OwnerAuthService } from '../Services/owner-auth.service';
-import { environment } from '../../environments/environment.development';
 import { NgIf } from '@angular/common';
-import { faGoogle } from '@fortawesome/free-brands-svg-icons'; // Ensure this import is present
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterLink, NgIf , FontAwesomeModule],
+  imports: [FormsModule, RouterLink, NgIf, FontAwesomeModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
   credentials = { email: '', password: '' };
-  faGoogle = faGoogle; // Make sure this line is present
+  faGoogle = faGoogle;
   constructor(
     private authService: OwnerAuthService,
     private router: Router,
@@ -33,7 +32,9 @@ export class LoginComponent {
 
     this.authService.login(form.value).subscribe(
       (response: any) => {
+        console.log('ddd', response);
         if (response) {
+          // localStorage.setItem('id', response.id);
           const role = localStorage.getItem('role');
 
           if (role === 'admin') {
@@ -68,20 +69,20 @@ export class LoginComponent {
       const token = params['token'];
       const name = params['name'];
       const email = params['email'];
+      const id = params['id'];
       const role = params['role'] || 'user';
 
       if (token) {
-        // Store the token, user data, and role
         localStorage.setItem('owner_auth_token', token);
         localStorage.setItem('userName', name);
         localStorage.setItem('userEmail', email);
-        localStorage.setItem('role', role); // Store the role (user or owner)
+        localStorage.setItem('ownerid', id);
+        localStorage.setItem('role', role);
 
-        // Redirect based on the role (you can customize this part)
         if (role === 'owner') {
-          this.router.navigate(['/owner-dashboard']);
+          this.router.navigate(['/add-property']);
         } else {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/properties']);
         }
       }
     });

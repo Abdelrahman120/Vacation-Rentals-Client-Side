@@ -126,6 +126,12 @@
                     >
                       Edit Profile
                     </button>
+                    <button
+                      class="btn btn-danger dropdown-item poppins-medium fs-6"
+                      [routerLink]="['/edit-user-profile', id]"
+                    >
+                      Edit Profile
+                    </button>
                   </li>
 
                   <!-- Owner-specific actions -->
@@ -136,7 +142,27 @@
                     >
                       Profile
                     </button>
+                    <button
+                      class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
+                      (click)="navigateToOwnerProfile()"
+                    >
+                      Profile
+                    </button>
                   </li>
+                  <li *ngIf="isOwner()">
+                    <button
+                      class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
+                      (click)="navigateToOwnerProfile()"
+                      (click)="navigateToEditProfile()"
+                    >
+                      Edit Profile
+                    </button>
+                  </li>
+                  <li
+                    class="d-flex justify-content-center fs-5 dropdown-item poppins-medium fs-6"
+                    *ngIf="isOwner()"
+                  ></li>
+
                   <li
                     class="d-flex justify-content-center fs-5 dropdown-item poppins-medium fs-6"
                     *ngIf="isOwner()"
