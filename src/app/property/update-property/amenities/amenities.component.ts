@@ -9,34 +9,36 @@ import { PropertyService } from '../../../services/propertyService/property.serv
   standalone: true,
   imports: [CdkStepperNext, CdkStepperPrevious, FormsModule, NgClass],
   templateUrl: './amenities.component.html',
-  styleUrl: './amenities.component.css',
+  styleUrls: ['./amenities.component.css'],
 })
 export class AmenitiesComponent {
-  constructor(private PropertyService: PropertyService) {}
   @Output() AmenityFormSubmitted = new EventEmitter<void>();
-  amenities: any;
+
+  amenities: any[] = [];
   amenityError = false;
   propertyId: string = '';
+
+  constructor(private propertyService: PropertyService) { }
 
   ngOnInit(): void {
     this.getAmenities();
   }
 
   getAmenities() {
-    this.PropertyService.getAmenities().subscribe((amenities: any) => {
-      this.amenities = amenities.data;
-      console.log('amenities:', amenities.data);
+    this.propertyService.getAmenities().subscribe((response: any) => {
+      this.amenities = response.data.map((amenity: any) => ({
+        ...amenity,
+        isChecked: false // Ensure all amenities are unchecked by default
+      }));
+      console.log('Amenities fetched:', this.amenities);
     });
   }
 
   submitAmenity() {
-    const selectedAmenities = this.amenities.filter(
-      (amenity: any) => amenity.isChecked
-    );
-    const selectedAmenityIds = selectedAmenities.map(
-      (amenity: any) => amenity.id
-    );
-    console.log(selectedAmenityIds);
+    const selectedAmenities = this.amenities.filter(amenity => amenity.isChecked);
+    const selectedAmenityIds = selectedAmenities.map(amenity => amenity.id);
+
+    console.log('Selected Amenities:', selectedAmenityIds);
 
     if (selectedAmenities.length === 0) {
       this.amenityError = true;
@@ -44,16 +46,19 @@ export class AmenitiesComponent {
     }
 
     this.amenityError = false;
-    this.propertyId = this.PropertyService.getPropertyId();
-    this.PropertyService.setAmenities(this.propertyId, {
+    this.propertyId = this.propertyService.getPropertyId();
+
+    const data = {
       amenities: selectedAmenityIds,
-    }).subscribe(
+    };
+
+    this.propertyService.updateAmenities(this.propertyId, data).subscribe(
       (response) => {
-        console.log('Amenities submitted successfully', response);
+        console.log('Amenities submitted successfully:', response);
         this.AmenityFormSubmitted.emit();
       },
       (error) => {
-        console.error('Error submitting amenities', error);
+        console.error('Error submitting amenities:', error);
       }
     );
   }

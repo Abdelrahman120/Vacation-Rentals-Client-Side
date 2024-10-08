@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PropertyService } from '../../../services/propertyService/property.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-information',
@@ -23,15 +24,19 @@ export class InformationComponent {
   propertyForm!: FormGroup;
   locationSuggestions: any[] = [];
   highlightedIndex: number | null = null;
+  property_id: string = "";
+  id: string = "";
 
   @Output() formSubmitted = new EventEmitter<void>();
 
   constructor(
     private fb: FormBuilder,
-    private PropertyService: PropertyService
-  ) {}
+    private PropertyService: PropertyService,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
+    this.property_id = this.route.snapshot.params["id"];
     this.propertyForm = this.fb.group({
       headline: ['', Validators.required],
       name: ['', Validators.required],
@@ -89,11 +94,10 @@ export class InformationComponent {
       console.log(formData);
     });
 
-    this.PropertyService.addProperty(formData).subscribe(
+    this.PropertyService.updateProperty(this.property_id, formData).subscribe(
       (response: any) => {
-        console.log('Property added successfully:', response);
-        const propertyId = response.data['id'];
-        this.PropertyService.setPropertyId(propertyId);
+        console.log(this.property_id);
+        this.PropertyService.setPropertyId(this.property_id)
         this.formSubmitted.emit();
       },
       (error) => {

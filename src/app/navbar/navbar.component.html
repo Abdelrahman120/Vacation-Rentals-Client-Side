@@ -5,7 +5,9 @@
     style="background-color: #3b5899"
   >
     <div class="container">
-      <a class="navbar-brand poppins-bold fs-3 text-white" href="/">VacationRentals</a>
+      <a class="navbar-brand poppins-bold fs-3 text-white" href="/"
+        >VacationRentals</a
+      >
 
       <button
         class="navbar-toggler text-white"
@@ -33,18 +35,30 @@
           ></button>
         </div>
         <div class="offcanvas-body">
-          <ul class="navbar-nav align-items-center justify-content-end align-items-center flex-grow-1">
+          <ul
+            class="navbar-nav align-items-center justify-content-end align-items-center flex-grow-1"
+          >
             <li class="nav-item">
-              <a class="nav-link me-md-4 poppins-medium fs-5" routerLink="/">Home</a>
+              <a class="nav-link me-md-4 poppins-medium fs-5" routerLink="/"
+                >Home</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link me-md-4 poppins-medium fs-5" routerLink="/properties">Properties</a>
+              <a
+                class="nav-link me-md-4 poppins-medium fs-5"
+                routerLink="/properties"
+                >Properties</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link me-md-4 poppins-medium fs-5" href="#about-us">About</a>
+              <a class="nav-link me-md-4 poppins-medium fs-5" href="#about-us"
+                >About</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-5 me-md-4 poppins-medium" href="#help">Contact</a>
+              <a class="nav-link fs-5 me-md-4 poppins-medium" href="#help"
+                >Contact</a
+              >
             </li>
             <li class="nav-item">
               <a
@@ -52,7 +66,7 @@
                 class="nav-link d-flex roboto-regular align-items-center me-3"
               >
                 <fa-icon [icon]="faHeart" class="fs-3"></fa-icon>
-                <span class="ms-1 fs-5">watchlist</span>
+                <span class="ms-1 fs-5">Favorite</span>
               </a>
             </li>
 
@@ -64,7 +78,8 @@
                 href="#"
                 role="button"
                 aria-expanded="false"
-              >Account</a>
+                >Account</a
+              >
               <ul class="dropdown-menu">
                 <!-- Show login/register links if not logged in -->
                 <ng-container *ngIf="!isLoggedIn(); else loggedInTemplate">
@@ -72,13 +87,15 @@
                     <a
                       routerLink="/login/owner"
                       class="fs-6 dropdown-item poppins-medium"
-                    >Owner</a>
+                      >Owner</a
+                    >
                   </li>
                   <li>
                     <a
                       routerLink="/login"
                       class="dropdown-item fs-6 poppins-medium"
-                    >Travellers</a>
+                      >Travellers</a
+                    >
                   </li>
                 </ng-container>
 
@@ -98,13 +115,17 @@
                     <button
                       class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
                       (click)="navigateToPayments()"
-                    >Payments</button>
+                    >
+                      Payments
+                    </button>
                   </li>
                   <li *ngIf="isUser()">
                     <button
                       class="btn btn-danger dropdown-item poppins-medium fs-6"
                       [routerLink]="['/edit-user-profile', id]"
-                    >Edit Profile</button>
+                    >
+                      Edit Profile
+                    </button>
                   </li>
 
                   <!-- Owner-specific actions -->
@@ -112,12 +133,20 @@
                     <button
                       class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
                       (click)="navigateToOwnerProfile()"
-                    >Profile</button>
+                    >
+                      Profile
+                    </button>
                   </li>
-                  <li class="d-flex justify-content-center fs-5 dropdown-item poppins-medium fs-6" *ngIf="isOwner()">
+                  <li
+                    class="d-flex justify-content-center fs-5 dropdown-item poppins-medium fs-6"
+                    *ngIf="isOwner()"
+                  >
                     Name : {{ owner.name }}
                   </li>
-                  <li class="d-flex justify-content-center fs-6 dropdown-item poppins-medium fs-6" *ngIf="isOwner()">
+                  <li
+                    class="d-flex justify-content-center fs-6 dropdown-item poppins-medium fs-6"
+                    *ngIf="isOwner()"
+                  >
                     ${{ owner.wallet }}
                   </li>
                 </ng-template>

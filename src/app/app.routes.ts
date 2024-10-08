@@ -185,8 +185,8 @@ export const routes: Routes = [
     component: CancleComponent,
   },
   {
-    path : 'user/payments',
-    component : UserProfileComponent
+    path: 'user/payments',
+    component: UserProfileComponent
   },
   {
     path: 'favorite',
@@ -221,7 +221,7 @@ export const routes: Routes = [
     component: OwnerDetailsComponent,
   },
   {
-    path: 'owner/update-property',
+    path: 'owner/update-property/:id',
     component: UpdatePropertyComponent,
     title: 'Update Property',
   },

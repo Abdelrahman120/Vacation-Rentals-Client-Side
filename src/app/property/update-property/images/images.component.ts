@@ -14,7 +14,7 @@ export class ImagesComponent {
   propertyId: string = '';
   @Output() imageFormSubmitted = new EventEmitter<void>();
 
-  constructor(private PropertyService: PropertyService) {}
+  constructor(private PropertyService: PropertyService) { }
 
   onFileChange(event: any) {
     this.images = Array.from(event.target.files);
@@ -35,9 +35,9 @@ export class ImagesComponent {
 
     this.propertyId = this.PropertyService.getPropertyId();
 
-    this.PropertyService.setImages(this.propertyId, formData).subscribe(
+    this.PropertyService.updateImages(this.propertyId, formData).subscribe(
       (response) => {
-        console.log('Images uploaded successfully', response);
+        console.log('Images updated successfully', response);
         this.imageFormSubmitted.emit();
       },
       (error) => {
