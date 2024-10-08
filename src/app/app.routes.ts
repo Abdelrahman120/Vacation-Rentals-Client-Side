@@ -20,12 +20,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginUserComponent } from './login-user/login-user.component';
 import { UsersComponent } from './Admin/users/users.component';
 import { OwnersComponent } from './Admin/owners/owners.component';
-import { ShowPropertiesComponent } from './Admin/show-properties/show-properties.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgetPasswordUserComponent } from './forget-password-user/forget-password-user.component';
 import { ResetPasswordUserComponent } from './reset-password-user/reset-password-user.component';
-import { TestBed } from '@angular/core/testing';
 import { TestComponent } from './test/test.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PaymentComponent } from './payment/payment/payment.component';
@@ -34,7 +32,6 @@ import { CancleComponent } from './payment/cancle/cancle.component';
 import { userGuard } from './guards/user.guard';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { UserInfoComponent } from './user-info/user-info.component';
-import { Path } from 'leaflet';
 import { OwnerInfoComponent } from './owner-info/owner-info.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { ownerGuardGuard } from './guards/owner-guard.guard';
@@ -42,14 +39,11 @@ import { AdminPropertyDetailsComponent } from './admin-property-details/admin-pr
 import { SendEmailComponent } from './send-email/send-email.component';
 import { OwnerDetailsComponent } from './owner-details/owner-details.component';
 
-
-
-
 export const routes: Routes = [
   {
     path: '',
     component: MasterComponent,
-    title: 'Home',  
+    title: 'Home',
   },
   {
     path: 'property-details/:id',
@@ -65,13 +59,13 @@ export const routes: Routes = [
     path: 'update-property/:id',
     component: UpdatePropertyComponent,
     title: 'Update Property',
-    canActivate: [ownerGuardGuard]
+    canActivate: [ownerGuardGuard],
   },
   {
     path: 'add-property',
     component: AddPropertyComponent,
     title: 'Add new property',
-    canActivate: [ownerGuardGuard]
+    canActivate: [ownerGuardGuard],
   },
   {
     path: 'login/owner',
@@ -102,8 +96,7 @@ export const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     title: 'Dashboard',
-    canActivate: [userGuard]
-
+    canActivate: [userGuard],
   },
   {
     path: 'category',
@@ -126,26 +119,25 @@ export const routes: Routes = [
     path: 'edit-Owner-profile/:id',
     component: EditOwnerProfileComponent,
     title: 'Edit Profile',
-    canActivate: [ownerGuardGuard]
+    canActivate: [ownerGuardGuard],
   },
   {
     path: 'edit-user-profile/:id',
     component: EditUserProfileComponent,
     title: 'Edit Profile',
-    canActivate:[userGuard]
+    canActivate: [userGuard],
   },
   {
     path: 'owner-dashboard',
     component: OwnerDashboardComponent,
     title: 'Dashboard',
-    canActivate: [ownerGuardGuard]
+    canActivate: [ownerGuardGuard],
   },
   {
     path: 'admin-dashboard',
     component: AdminDashboardComponent,
     title: 'Dashboard',
     canActivate: [AuthGuard],
-
   },
   {
     path: 'admin/users',
@@ -157,11 +149,6 @@ export const routes: Routes = [
     component: OwnersComponent,
     canActivate: [AuthGuard],
   },
-  // {
-  //   path : 'admin/properties',
-  //   component: ShowPropertiesComponent,
-  //   canActivate: [AuthGuard],
-  // },
   {
     path: 'test/:id',
     component: TestComponent,
@@ -175,7 +162,10 @@ export const routes: Routes = [
     path: 'forget_password_user',
     component: ForgetPasswordUserComponent,
   },
-  { path: 'password-reset/owners/:token', component: ResetPasswordComponent },
+  {
+    path: 'password-reset/owners/:token',
+    component: ResetPasswordComponent,
+  },
   {
     path: 'password-reset/users/:token',
     component: ResetPasswordUserComponent,
@@ -196,33 +186,43 @@ export const routes: Routes = [
   {
     path: 'favorite',
     component: FavoritesComponent,
-    canActivate: [userGuard]
+    canActivate: [userGuard],
   },
   {
-    path : 'user/info', 
+    path: 'user/info',
     component: UserInfoComponent,
-    canActivate: [userGuard]
+    canActivate: [userGuard],
   },
   {
     path: 'owner/info',
     component: OwnerInfoComponent,
-    canActivate: [ownerGuardGuard]
+    canActivate: [ownerGuardGuard],
   },
   {
-    path:'user/:id',
+    path: 'user/:id',
     component: UserDetailComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'admin/details/:id', component: AdminPropertyDetailsComponent },
-  { path: 'send-email/:id', component: SendEmailComponent }, // Adjust to your actual component
+  {
+    path: 'admin/details/:id',
+    component: AdminPropertyDetailsComponent,
+  },
+  {
+    path: 'send-email/:id',
+    component: SendEmailComponent,
+  },
   {
     path: 'admin/owner/:id',
-    component : OwnerDetailsComponent
+    component: OwnerDetailsComponent,
+  },
+  {
+    path: 'owner/update-property',
+    component: UpdatePropertyComponent,
+    title: 'Update Property',
   },
   {
     path: '**',
     component: NotFoundComponent,
     title: 'Not Found',
   },
-  
 ];

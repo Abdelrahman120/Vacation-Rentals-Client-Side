@@ -7,17 +7,16 @@ import { PropertyService } from '../../../services/propertyService/property.serv
   standalone: true,
   imports: [CdkStepperNext, CdkStepperPrevious],
   templateUrl: './pictures.component.html',
-  styleUrls: ['./pictures.component.css']
+  styleUrls: ['./pictures.component.css'],
 })
 export class PicturesComponent {
   images: File[] = [];
   propertyId: string = '';
   @Output() imageFormSubmitted = new EventEmitter<void>();
 
-  constructor(private PropertyService: PropertyService) { }
+  constructor(private PropertyService: PropertyService) {}
 
   onFileChange(event: any) {
-    // Convert FileList to array
     this.images = Array.from(event.target.files);
   }
 
@@ -36,16 +35,17 @@ export class PicturesComponent {
 
     this.propertyId = this.PropertyService.getPropertyId();
 
-    this.PropertyService.setImages(this.propertyId, formData)
-      .subscribe(response => {
+    this.PropertyService.setImages(this.propertyId, formData).subscribe(
+      (response) => {
         console.log('Images uploaded successfully', response);
         this.imageFormSubmitted.emit();
-
-      }, error => {
+      },
+      (error) => {
         console.error('Error uploading images', error);
         if (error.error && error.error.errors) {
           console.error('Validation Errors:', error.error.errors);
         }
-      });
+      }
+    );
   }
 }

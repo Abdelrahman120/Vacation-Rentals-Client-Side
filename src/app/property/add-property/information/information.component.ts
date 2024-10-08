@@ -29,7 +29,7 @@ export class InformationComponent {
   constructor(
     private fb: FormBuilder,
     private PropertyService: PropertyService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.propertyForm = this.fb.group({
@@ -41,7 +41,7 @@ export class InformationComponent {
       bathrooms: ['', [Validators.required, Validators.min(1)]],
       night_rate: ['', [Validators.required, Validators.min(0)]],
       description: ['', Validators.required],
-      sleeps: ["", [Validators.required,]]
+      sleeps: ['', [Validators.required]],
     });
     this.getCategories();
   }
@@ -55,9 +55,8 @@ export class InformationComponent {
   onLocationInput() {
     const query = this.propertyForm.get('location')?.value;
 
-    console.log("log:", query);
+    console.log('log:', query);
     if (query && query.length > 2) {
-
       this.PropertyService.getSuggestions(query).subscribe(
         (res: any) => {
           this.locationSuggestions = res;

@@ -12,7 +12,7 @@ import { Category } from '../../interface/propertyRelated';
   providedIn: 'root',
 })
 export class PropertyService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   BACKEND_API = environment.BACKEND_URL;
   private propertyId: string = '';
 
@@ -52,9 +52,11 @@ export class PropertyService {
   addProperty(property: any) {
     const token = localStorage.getItem('owner_auth_token');
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     });
-    return this.http.post(`${this.BACKEND_API}/api/property`, property, { headers });
+    return this.http.post(`${this.BACKEND_API}/api/property`, property, {
+      headers,
+    });
   }
   updateProperty(property: any, id: number) {
     return this.http.post(`${this.BACKEND_API}/api/property/${id}`, property);
@@ -68,6 +70,7 @@ export class PropertyService {
   getAmenities() {
     return this.http.get(`${this.BACKEND_API}/api/amenities`);
   }
+
   setAmenities(id: string, value: any) {
     const token = localStorage.getItem('owner_auth_token');
     const headers = new HttpHeaders({
@@ -75,7 +78,19 @@ export class PropertyService {
     });
     return this.http.post(
       `${this.BACKEND_API}/api/property/${id}/amenities`,
-      value, { headers }
+      value,
+      { headers }
+    );
+  }
+  updateAmenities(id: string, value: any) {
+    const token = localStorage.getItem('owner_auth_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.post(
+      `${this.BACKEND_API}/api/property/${id}/updateamenities`,
+      value,
+      { headers }
     );
   }
   setPropertyId(id: string) {
@@ -89,14 +104,27 @@ export class PropertyService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.post(
+    return this.http.put(
       `${this.BACKEND_API}/api/property/${id}/images`,
-      formData, { headers }
+      formData,
+      { headers }
     );
   }
-
+  updateImages(id: string, formData: FormData) {
+    const token = localStorage.getItem('owner_auth_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.put(
+      `${this.BACKEND_API}/api/property/${id}/updateimages`,
+      formData,
+      { headers }
+    );
+  }
   getPropertiesByAmenity(amenityIds: number[]) {
-    return this.http.post(`${this.BACKEND_API}/api/properties/filter`, { amenity: amenityIds });
+    return this.http.post(`${this.BACKEND_API}/api/properties/filter`, {
+      amenity: amenityIds,
+    });
   }
 
   getPropertiesByCategory(categoryId: number) {
