@@ -73,7 +73,7 @@ export class EditOwnerProfileComponent implements OnInit {
   }
 
   getOwnerIdFromLocalStorage(): number {
-    const ownerId = +localStorage.getItem('owner_id')!;
+    const ownerId = +localStorage.getItem('ownerid')!;
     console.log('Owner ID from localStorage:', ownerId);
     return ownerId;
   }
