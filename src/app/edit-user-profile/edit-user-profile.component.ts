@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfileService } from '../Services/user-profile.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -32,24 +37,27 @@ export class EditUserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userId = +this.router.routerState.snapshot.root.firstChild?.params['id']!;
+    this.userId =
+      +this.router.routerState.snapshot.root.firstChild?.params['id']!;
+
     if (!this.userId) {
       console.error('User ID is not found in the route parameters.');
       return;
     }
+
     this.getUserData(this.userId);
   }
 
   getUserData(id: number): void {
     this.userProfileService.getUser(id).subscribe(
       (response) => {
-        console.log(response);
+        console.log('User data received:', response);
         this.editProfile.patchValue({
           name: response.name || '',
           email: response.email || '',
           phone: response.phone || '',
           address: response.address || '',
-          gender: response.gender || ''
+          gender: response.gender || '',
         });
       },
       (error) => {
@@ -68,13 +76,19 @@ export class EditUserProfileComponent implements OnInit {
     if (this.editProfile.invalid) {
       Object.keys(this.editProfile.controls).forEach((key) => {
         if (this.editProfile.controls[key].invalid) {
-          this.validationErrors[key] = [`${key.charAt(0).toUpperCase() + key.slice(1)} is required.`];
+          this.validationErrors[key] = [
+            `${key.charAt(0).toUpperCase() + key.slice(1)} is required.`,
+          ];
         }
       });
       return;
     }
 
     const userData = this.editProfile.value;
+
+    if (this.selectedFile) {
+      userData.image = this.selectedFile;
+    }
 
     this.userProfileService.updateUser(this.userId, userData).subscribe(
       (response) => {
