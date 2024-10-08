@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StripeService } from '../../services/stripe.service';
 import { NgIf } from '@angular/common';
 
@@ -13,7 +13,7 @@ import { NgIf } from '@angular/common';
 export class SuccessComponent {
   paymentDetails: any;
 
-  constructor(private route: ActivatedRoute, private stripeService: StripeService) {}
+  constructor(private router : Router,private route: ActivatedRoute, private stripeService: StripeService) {}
 
   ngOnInit(): void {
     const session_id = this.route.snapshot.queryParamMap.get('session_id');
@@ -25,5 +25,7 @@ export class SuccessComponent {
       });
     }
   }
-
+  goToPage(pageUrl: string): void {
+    this.router.navigate(['properties']);
+  }
 }

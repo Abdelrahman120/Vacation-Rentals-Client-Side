@@ -16,16 +16,26 @@ import { UserProfileService } from '../Services/user-profile.service';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
+  id: number = 0;
   owner: any = {};
   user: any;
   faHeart = faHeart;
+
+  private loadUserId(): void {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      this.id = +userId;
+    }
+  }
 
   constructor(
     private authService: LoginUserService,
     private router: Router,
     private ownerService: OwnerProfileService,
     private userService: UserProfileService
-  ) {}
+  ) {
+    this.loadUserId();
+  }
 
   ngOnInit(): void {
     this.loadOwnerDetails();
@@ -95,11 +105,15 @@ export class NavbarComponent {
         } else {
           this.router.navigate(['/login']);
         }
-        window.location.reload();
+        // window.location.reload();
       },
       (error) => {
         console.log('Logout failed', error);
       }
     );
+  }
+
+  navigateToPayments(): void {
+    this.router.navigate(['/user/payments']);
   }
 }

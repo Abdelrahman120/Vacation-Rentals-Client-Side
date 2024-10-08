@@ -1,0 +1,59 @@
+<div class="profile-container">
+    <div class="profile-card">
+      <img
+      [src]="'http://localhost:8000/images/posts/' + user.image"
+        alt="Profile Image"
+        class="profile-image"
+        *ngIf="user.image; else defaultImage"
+      />
+      <ng-template #defaultImage>
+        <img src="assets/default-avatar.png" alt="Default Image" class="profile-image" />
+      </ng-template>
+  
+      <h2 class="profile-name text-dark">{{ user.name }}</h2>
+      <p class="profile-email text-dark">{{ user.email }}</p>
+      <p class="profile-phone text-dark">{{ user.phone }}</p>
+      <p class="profile-address text-dark">Address: {{ user.address }}</p>
+      <p class="profile-gender text-dark">Gender: {{ user.gender }}</p>
+      
+      <!-- Payments Section -->
+      <h3>Payments</h3>
+      <div *ngIf="payments.length > 0; else noPayments">
+        <ul>
+          <li *ngFor="let payment of payments">
+            Payment Name: {{ payment.product_name }} - Amount: {{ payment.amount }} - Date: {{ payment.start_date }}
+          </li>
+        </ul>
+      </div>
+      <ng-template #noPayments>
+        <p class="text-dark">No payments found.</p>
+      </ng-template>
+  
+      <!-- Favorites Section -->
+      <h3>Favorites</h3>
+      <div *ngIf="favorites.length > 0; else noFavorites">
+        <ul>
+          <li *ngFor="let favorite of favorites">
+            Favorite ID: {{ favorite.id }} - Name: {{ favorite.name }}
+          </li>
+        </ul>
+      </div>
+      <ng-template #noFavorites>
+        <p class="text-dark">No favorites found.</p>
+      </ng-template>
+  
+      <!-- Reviews Section -->
+      <h3>Reviews</h3>
+      <div *ngIf="reviews.length > 0; else noReviews">
+        <ul>
+          <li *ngFor="let review of reviews">
+            Review ID: {{ review.id }} - Content: {{ review.review }} - Rating: {{ review.rating }}
+          </li>
+        </ul>
+      </div>
+      <ng-template #noReviews>
+        <p>No reviews found.</p>
+      </ng-template>
+    </div>
+  </div>
+  

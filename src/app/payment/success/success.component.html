@@ -1,8 +1,15 @@
-<div *ngIf="paymentDetails">
-    <h2>Payment Successful</h2>
-    <p>Product: {{ paymentDetails.product_name }}</p>
-    <p>Amount: {{ paymentDetails.amount  }} {{ paymentDetails.currency }}</p>
-    <p>Quantity: {{ paymentDetails.quantity }}</p>
-    <p>Payer Name: {{ paymentDetails.payer_name }}</p>
-    <p>Payer Email: {{ paymentDetails.payer_email }}</p>
+<div class="payment-success-container text-center shadow-lg">
+  <!-- Success Message -->
+  <h2 class="text-success mb-4 fw-bold">Payment Successful!</h2>
+  <p class="lead mb-4 text-dark">Thank you for your payment. Your transaction was completed successfully.</p>
+  
+  <!-- Success Icon -->
+  <div class="success-icon mb-4">
+    <i class="fa fa-check-circle fa-5x text-success"></i>
   </div>
+
+  <!-- Back to Home or Another Page Button -->
+  <button class="btn btn-primary btn-lg" (click)="goToPage('/home')">
+    Return to Home
+  </button>
+</div>

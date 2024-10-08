@@ -1,0 +1,21 @@
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .payment-success-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 20px; /* Optional: Add some padding inside the div */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+    border-radius: 10px; /* Optional: Add rounded corners */
+  }
+  
+  .success-icon i {
+    color: #28a745; /* Success icon color */
+  }
+  
