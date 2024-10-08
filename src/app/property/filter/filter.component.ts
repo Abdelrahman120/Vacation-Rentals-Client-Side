@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { PropertyService } from '../../Services/propertyService/property.service';
+import { PropertyService } from '../../services/propertyService/property.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Amenity } from '../../interface/amenity';
-import { FilterService } from '../../Services/propertyService/filter.service';
+import { FilterService } from '../../services/propertyService/filter.service';
 
 @Component({
   selector: 'app-filter',
@@ -19,7 +19,7 @@ export class FilterComponent {
   constructor(
     private propertyService: PropertyService,
     private filterService: FilterService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getAmenities();

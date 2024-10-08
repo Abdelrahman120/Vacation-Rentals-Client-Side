@@ -3,98 +3,161 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-floating mb-4">
-          <input type="text" id="headline" class="form-control" placeholder="Property name" formControlName="headline"
-            required />
+          <input
+            type="text"
+            id="headline"
+            class="form-control"
+            placeholder="Property name"
+            formControlName="headline"
+            required
+          />
           <label for="headline">headline</label>
-          <span class="text-danger float-end" *ngIf="
+          <span
+            class="text-danger float-end"
+            *ngIf="
               propertyForm.controls['headline'].invalid &&
               (propertyForm.controls['headline'].touched ||
                 propertyForm.controls['headline'].dirty)
-            ">
+            "
+          >
             *headline is required.
           </span>
         </div>
-
       </div>
       <div class="col-md-4">
         <div class="form-floating mb-4">
-          <input type="number" id="bedrooms" class="form-control" placeholder="Bedrooms" formControlName="bedrooms"
-            required min="1" />
+          <input
+            type="number"
+            id="bedrooms"
+            class="form-control"
+            placeholder="Bedrooms"
+            formControlName="bedrooms"
+            required
+            min="1"
+          />
           <label for="bedrooms">Bedrooms</label>
-          <span class="text-danger float-end" *ngIf="
-                                      propertyForm.controls['bedrooms'].invalid &&
-                                      (propertyForm.controls['bedrooms'].touched ||
-                                        propertyForm.controls['bedrooms'].dirty)
-                                    ">
+          <span
+            class="text-danger float-end"
+            *ngIf="
+              propertyForm.controls['bedrooms'].invalid &&
+              (propertyForm.controls['bedrooms'].touched ||
+                propertyForm.controls['bedrooms'].dirty)
+            "
+          >
             *Required field
           </span>
-          <span class="text-danger float-end" *ngIf="propertyForm.controls['bedrooms'].errors?.['min']">
+          <span
+            class="text-danger float-end"
+            *ngIf="propertyForm.controls['bedrooms'].errors?.['min']"
+          >
             *Minimum number of bedrooms is 1.
           </span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-floating mb-4">
-          <input type="number" id="bathrooms" class="form-control" placeholder="Bathrooms" formControlName="bathrooms"
-            required min="1" />
+          <input
+            type="number"
+            id="bathrooms"
+            class="form-control"
+            placeholder="Bathrooms"
+            formControlName="bathrooms"
+            required
+            min="1"
+          />
           <label for="bathrooms">Bathrooms</label>
-          <span class="text-danger float-end" *ngIf="
-                                              propertyForm.controls['bathrooms'].invalid &&
-                                              (propertyForm.controls['bathrooms'].touched ||
-                                                propertyForm.controls['bathrooms'].dirty)
-                                            ">
+          <span
+            class="text-danger float-end"
+            *ngIf="
+              propertyForm.controls['bathrooms'].invalid &&
+              (propertyForm.controls['bathrooms'].touched ||
+                propertyForm.controls['bathrooms'].dirty)
+            "
+          >
             *Bathrooms are required.
           </span>
-          <span class="text-danger float-end" *ngIf="propertyForm.controls['bathrooms'].errors?.['min']">
+          <span
+            class="text-danger float-end"
+            *ngIf="propertyForm.controls['bathrooms'].errors?.['min']"
+          >
             *Minimum number of bathrooms is 1.
           </span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-floating mb-4">
-          <input type="number" id="sleeps" class="form-control" placeholder="Sleeps" formControlName="sleeps"
-            name="sleeps" required min="1" />
+          <input
+            type="number"
+            id="sleeps"
+            class="form-control"
+            placeholder="Sleeps"
+            formControlName="sleeps"
+            name="sleeps"
+            required
+            min="1"
+          />
           <label for="sleeps">Sleeps</label>
-          <span class="text-danger float-end" *ngIf="
-                                      propertyForm.controls['sleeps'].invalid &&
-                                      (propertyForm.controls['sleeps'].touched ||
-                                        propertyForm.controls['sleeps'].dirty)
-                                    ">
+          <span
+            class="text-danger float-end"
+            *ngIf="
+              propertyForm.controls['sleeps'].invalid &&
+              (propertyForm.controls['sleeps'].touched ||
+                propertyForm.controls['sleeps'].dirty)
+            "
+          >
             *Sleeps are required.
           </span>
-          <span class="text-danger float-end" *ngIf="propertyForm.controls['sleeps'].errors?.['min']">
+          <span
+            class="text-danger float-end"
+            *ngIf="propertyForm.controls['sleeps'].errors?.['min']"
+          >
             *Minimum number of sleeps is 1.
           </span>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-floating mb-4">
-          <input type="text" id="FirstName" class="form-control" placeholder="Property name" formControlName="name"
-            required />
+          <input
+            type="text"
+            id="FirstName"
+            class="form-control"
+            placeholder="Property name"
+            formControlName="name"
+            required
+          />
           <label for="FirstName">Property Name</label>
-          <span class="text-danger float-end" *ngIf="
+          <span
+            class="text-danger float-end"
+            *ngIf="
               propertyForm.controls['name'].invalid &&
               (propertyForm.controls['name'].touched ||
                 propertyForm.controls['name'].dirty)
-            ">
+            "
+          >
             *Property name is required.
           </span>
         </div>
 
-
-
         <div class="form-control mb-4 px-0" style="margin-top: 1rem">
-          <select class="form-select" name="category_id" formControlName="category_id" style="margin-top: 6px">
-            <option selected disabled>Select Property Category</option>
+          <select
+            class="form-select"
+            name="category_id"
+            formControlName="category_id"
+            style="margin-top: 6px"
+          >
+            <option disabled>Select Property Category</option>
             @for (category of categories; track category.id){
             <option value="{{ category.id }}">{{ category.name }}</option>
             }
           </select>
-          <span class="text-danger float-end" *ngIf="
+          <span
+            class="text-danger float-end"
+            *ngIf="
               propertyForm.controls['category_id'].invalid &&
               (propertyForm.controls['category_id'].touched ||
                 propertyForm.controls['category_id'].dirty)
-            ">
+            "
+          >
             *Category is required.
           </span>
         </div>
@@ -102,41 +165,73 @@
 
       <div class="col-md-6">
         <div class="form-floating mb-4">
-          <input type="text" id="location" class="form-control" placeholder="Location" formControlName="location"
-            (keyup)="onLocationInput()" required />
+          <input
+            type="text"
+            id="location"
+            class="form-control"
+            placeholder="Location"
+            formControlName="location"
+            (keyup)="onLocationInput()"
+            required
+          />
           <label for="location">Location</label>
-          <span class="text-danger float-end" *ngIf="
+          <span
+            class="text-danger float-end"
+            *ngIf="
               propertyForm.controls['location'].invalid &&
-              (propertyForm.controls['location'].touched || propertyForm.controls['location'].dirty)
-            ">
+              (propertyForm.controls['location'].touched ||
+                propertyForm.controls['location'].dirty)
+            "
+          >
             *Location is required.
           </span>
         </div>
 
-        <ul *ngIf="locationSuggestions.length > 0" class="suggestions-list"
-          style="list-style: none; padding: 0; margin: 0;">
-          <li *ngFor="let suggestion of locationSuggestions" (click)="selectLocation(suggestion)"
-            style="cursor: pointer; padding: 10px; border: 1px solid #ddd; background: #fff; margin-top: 2px;">
+        <ul
+          *ngIf="locationSuggestions.length > 0"
+          class="suggestions-list"
+          style="list-style: none; padding: 0; margin: 0"
+        >
+          <li
+            *ngFor="let suggestion of locationSuggestions"
+            (click)="selectLocation(suggestion)"
+            style="
+              cursor: pointer;
+              padding: 10px;
+              border: 1px solid #ddd;
+              background: #fff;
+              margin-top: 2px;
+            "
+          >
             {{ suggestion.display_name }}
           </li>
         </ul>
 
-
-
-
-
         <div class="form-floating mb-4">
-          <input type="number" id="night_rate" class="form-control" placeholder="Night Rate"
-            formControlName="night_rate" required min="0" />
+          <input
+            type="number"
+            id="night_rate"
+            class="form-control"
+            placeholder="Night Rate"
+            formControlName="night_rate"
+            required
+            min="0"
+          />
           <label for="night_rate">Night Rate</label>
-          <span class="text-danger float-end" *ngIf="
+          <span
+            class="text-danger float-end"
+            *ngIf="
               propertyForm.controls['night_rate'].invalid &&
               (propertyForm.controls['night_rate'].touched ||
                 propertyForm.controls['night_rate'].dirty)
-            ">
+            "
+          >
             *Night rate is required.
           </span>
-          <span class="text-danger float-end" *ngIf="propertyForm.controls['night_rate'].errors?.['min']">
+          <span
+            class="text-danger float-end"
+            *ngIf="propertyForm.controls['night_rate'].errors?.['min']"
+          >
             *Night rate must be 0 or more.
           </span>
         </div>
@@ -144,29 +239,47 @@
 
       <div class="col-md-12">
         <div class="form-floating">
-          <textarea id="Description" class="form-control mb-4" placeholder="Description" formControlName="description"
-            required style="height: 150px"></textarea>
+          <textarea
+            id="Description"
+            class="form-control mb-4"
+            placeholder="Description"
+            formControlName="description"
+            required
+            style="height: 150px"
+          ></textarea>
           <label for="Description">Description</label>
-          <span class="text-danger float-end" *ngIf="
+          <span
+            class="text-danger float-end"
+            *ngIf="
               propertyForm.controls['description'].invalid &&
               (propertyForm.controls['description'].touched ||
                 propertyForm.controls['description'].dirty)
-            ">
+            "
+          >
             *Description is required.
           </span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-floating">
-          <input type="hidden" name="owner_id" FormControlName="owner_id" value="{{owner_id}}">
-
+          <input
+            type="hidden"
+            name="owner_id"
+            FormControlName="owner_id"
+            value="{{ owner_id }}"
+          />
         </div>
       </div>
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-floating">
-      <input type="hidden" name="owner_id" FormControlName="owner_id" value="{{ owner_id }}" />
+      <input
+        type="hidden"
+        name="owner_id"
+        FormControlName="owner_id"
+        value="{{ owner_id }}"
+      />
     </div>
   </div>
 

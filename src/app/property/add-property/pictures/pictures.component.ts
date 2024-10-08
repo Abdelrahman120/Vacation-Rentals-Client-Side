@@ -1,6 +1,6 @@
 import { CdkStepperNext, CdkStepperPrevious } from '@angular/cdk/stepper';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { PropertyService } from '../../../Services/propertyService/property.service';
+import { PropertyService } from '../../../services/propertyService/property.service';
 
 @Component({
   selector: 'app-pictures',

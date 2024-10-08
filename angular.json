@@ -35,8 +35,8 @@
               "src/styles.css",
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/slick-carousel/slick/slick.css",
-              "node_modules/slick-carousel/slick/slick-theme.css"
-              ,  "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+              "node_modules/slick-carousel/slick/slick-theme.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",

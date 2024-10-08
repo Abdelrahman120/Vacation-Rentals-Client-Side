@@ -5,13 +5,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Router, RouterLink } from '@angular/router';
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faBath, faBed, faHouse } from "@fortawesome/free-solid-svg-icons";
-import { FavoriteService } from '../../services/favorite.service';
+import { FavoriteService } from '../../Services/favorite.service';
 
 
 @Component({
   selector: 'app-item-card',
   standalone: true,
-  imports: [DatePipe, FontAwesomeModule, DecimalPipe, NgClass, RouterLink, NgIf,NgFor],
+  imports: [DatePipe, FontAwesomeModule, DecimalPipe, NgClass, RouterLink, NgIf, NgFor],
   templateUrl: './card-item.component.html',
   styleUrl: './card-item.component.css'
 })
@@ -86,7 +86,7 @@ export class CardItemComponent implements OnInit {
   }
   toggleFavorites(propertyId: number) {
     this.favoriteService.togleFavorite(propertyId).subscribe(() => {
-      
+
     })
   }
 

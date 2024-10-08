@@ -2,7 +2,7 @@ import { CdkStepperNext, CdkStepperPrevious } from '@angular/cdk/stepper';
 import { CommonModule, NgClass } from '@angular/common';
 import { Component, EventEmitter, NgModule, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { PropertyService } from '../../../Services/propertyService/property.service';
+import { PropertyService } from '../../../services/propertyService/property.service';
 
 
 @Component({

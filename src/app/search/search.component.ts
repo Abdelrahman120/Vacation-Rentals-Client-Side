@@ -5,7 +5,7 @@ import {
   NgxDaterangepickerBootstrapDirective,
   NgxDaterangepickerBootstrapComponent,
 } from 'ngx-daterangepicker-bootstrap';
-import { PropertyService } from '../Services/propertyService/property.service';
+import { PropertyService } from '../services/propertyService/property.service';
 import { format } from 'date-fns';
 import { CommonModule } from '@angular/common';
 
@@ -23,12 +23,11 @@ import { CommonModule } from '@angular/common';
 })
 export class SearchComponent implements OnInit {
   location = '';
-  travelers = '';
+  sleeps = '';
   result: any;
   dates: any = { startDate: null, endDate: null };
   input: any;
   selectedDates: any;
-  destination: any;
   suggestions: any[] = [];
 
   constructor(
@@ -38,17 +37,25 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.dates = { startDate: null, endDate: null };
     this.fetchData();
     this.activatedRoute.queryParams.subscribe((params) => {
       this.input = {
         startDate: params['start_date'],
         endDate: params['end_date'],
-        destination: params['city'],
+        location: params['location'],
         sleeps: params['sleeps'],
       };
 
+      if (this.input.startDate && this.input.endDate) {
+        this.dates = {
+          startDate: new Date(this.input.startDate),
+          endDate: new Date(this.input.endDate),
+        };
+      }
+
       if (
-        this.input.destination &&
+        this.input.location &&
         this.input.startDate &&
         this.input.endDate
       ) {
@@ -60,6 +67,7 @@ export class SearchComponent implements OnInit {
       }
     });
   }
+
 
   getLocationSuggestions() {
     if (this.location.length > 0) {
@@ -86,8 +94,8 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    if (!this.dates.startDate || !this.dates.endDate) {
-      console.error('Dates are not selected!');
+    if (!this.dates || !this.dates.startDate || !this.dates.endDate) {
+      console.error('Dates are not selected or initialized!');
       return;
     }
 
@@ -117,48 +125,56 @@ export class SearchComponent implements OnInit {
       return;
     }
 
-    this.destination = this.location.toLowerCase();
-
     this.route.navigate(['/properties'], {
       queryParams: {
         start_date: formatStrDate,
         end_date: formatEndDate,
-        city: this.destination,
-        sleeps: this.travelers,
+        location: this.location,
+        sleeps: this.sleeps,
       },
     });
   }
+
 
   onDateChange() {
     this.search();
   }
 
-  onTravelersChange() {
+  onSleepsChange() {
     this.search();
   }
 
   fetchData() {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.input = {
-        startDate: params['start_date'],
-        endDate: params['end_date'],
-        destination: params['city'],
-        sleeps: params['sleeps'],
+        startDate: params['start_date'] || null,
+        endDate: params['end_date'] || null,
+        location: params['location'] || '',
+        sleeps: params['sleeps'] || '',
       };
 
       if (
-        this.input.destination &&
+        this.input.location &&
         this.input.startDate &&
         this.input.endDate
       ) {
-        this.propertyService
-          .getPropertyByDate(this.input)
-          .subscribe((res: any) => {
-            this.result = res.data;
-          });
+        this.propertyService.getPropertyByDate(this.input).subscribe(
+          (res: any) => {
+            if (res && res.data) {
+              this.result = res.data;
+            } else {
+              console.error('No data received from API');
+            }
+          },
+          (error) => {
+            console.error("Error fetching property data:", error);
+          }
+        );
+
       }
     });
   }
+
 }
 
 
