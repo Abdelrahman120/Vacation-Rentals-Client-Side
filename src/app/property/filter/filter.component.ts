@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { PropertyService } from '../../services/propertyService/property.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Amenity } from '../../interface/amenity';
+import { Amenity } from '../../interface/propertyRelated';
 import { FilterService } from '../../services/propertyService/filter.service';
 
 @Component({

@@ -13,7 +13,23 @@
       <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 my-2">
         <app-item-card [property]="property"></app-item-card>
       </div>
-      } } @else {
+      } } @else if (isFilteringByCategory && noPropertiesInCategory) {
+      <div
+        class="d-flex justify-content-center align-items-center flex-column text-center"
+        style="height: 30rem"
+      >
+        <div class="mb-3">
+          <h3 class="text-dark">
+            No properties available in the selected category
+          </h3>
+        </div>
+        <div>
+          <p class="text-dark">
+            Try selecting a different category or adjusting your filters.
+          </p>
+        </div>
+      </div>
+      } @else {
       <div
         class="d-flex justify-content-center align-items-center flex-column text-center"
         style="height: 45rem"

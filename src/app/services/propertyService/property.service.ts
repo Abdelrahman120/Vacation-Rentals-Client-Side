@@ -6,6 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { catchError, Observable, throwError } from 'rxjs';
+import { Category } from '../../interface/propertyRelated';
 
 @Injectable({
   providedIn: 'root',
@@ -124,6 +125,10 @@ export class PropertyService {
     return this.http.post(`${this.BACKEND_API}/api/properties/filter`, {
       amenity: amenityIds,
     });
+  }
+
+  getPropertiesByCategory(categoryId: number) {
+    return this.http.post(`${this.BACKEND_API}/api/properties/category`, { category: categoryId })
   }
 
   getSuggestions(query: string) {
