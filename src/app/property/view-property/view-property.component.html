@@ -67,10 +67,10 @@
       <div class="mt-5">
         <div class="row g-4 d-flex justify-content-center text-dark">
           <div class="col-md-6">
-            <div id="map" style="height: 450px; width: 400px"></div>
+            <div id="map" style="height: 450px; width: 500px"></div>
           </div>
           <div class="col-md-6 d-flex flex-column">
-            <span>City : {{propertyDetails.city}}</span>
+            <span>City : {{propertyDetails.location}}</span>
             <span> Country :
               {{propertyDetails.country}}
             </span>
@@ -183,7 +183,7 @@
       <div class="bordered-container shadow-lg">
         <div class="price-section">
           <p class="text-decoration-line-through m-0">$158</p>
-          <p class="fw-bold m-0">${{propertyDetails.night_rate}} per night</p>
+          <p class="fw-bold m-2 text-dark">${{propertyDetails.night_rate}} per night</p>
         </div>
         <hr />
         <div class="d-flex justify-content-between">
