@@ -1,40 +1,45 @@
 <!-- owner-info.component.html -->
-<div class="mt-5">
-    <h1>Owner Information</h1>
+<div class="container mt-5">
+    <h1 class="text-center m-4"></h1>
     
-    <div *ngIf="ownerInfo">
-        <h2>{{ ownerInfo.name }}</h2>
-        <p><strong>Email:</strong> {{ ownerInfo.email }}</p>
-        <p><strong>Phone:</strong> {{ ownerInfo.phone }}</p>
-        <p><strong>Address:</strong> {{ ownerInfo.address }}</p>
-        <p><strong>Gender:</strong> {{ ownerInfo.gender }}</p>
-        <p><strong>Company Name:</strong> {{ ownerInfo.company_name }}</p>
-        <p><strong>Wallet:</strong> {{ ownerInfo.wallet }}</p>
-        <p><strong>Description:</strong> {{ ownerInfo.description }}</p>
-        <img *ngIf="ownerInfo.image" [src]="ownerInfo.image" alt="Owner Image" width="100" /><br/>
+    <div *ngIf="ownerInfo" class="card p-4 shadow-sm">
+        <h2 class="text-center">{{ ownerInfo.name }}</h2>
+        <div class="text-center mb-3">
+            <img *ngIf="ownerInfo.image" [src]="'http://localhost:8000/images/posts/' + ownerInfo.image" alt="Owner Image" class="rounded-circle" width="150" />
+        </div>
+        <p class="text-dark"><strong>Email:</strong> {{ ownerInfo.email }}</p>
+        <p class="text-dark"><strong>Phone:</strong> {{ ownerInfo.phone }}</p>
+        <p class="text-dark"><strong>Address:</strong> {{ ownerInfo.address }}</p>
+        <p class="text-dark"><strong>Gender:</strong> {{ ownerInfo.gender }}</p>
+        <p class="text-dark"><strong>Company Name:</strong> {{ ownerInfo.company_name }}</p>
+        <p class="text-dark"><strong>Wallet:</strong> {{ ownerInfo.wallet }}</p>
+        <p class="text-dark"><strong>Description:</strong> {{ ownerInfo.description }}</p>
         <hr>
 
         <h3>Your Properties</h3>
-        <div *ngFor="let property of ownerInfo.properties">
+        <div *ngFor="let property of ownerInfo.properties" class="property-card mb-3 p-3 border rounded">
             <h4>{{ property.property_name }}</h4>
-            <p><strong>City:</strong> {{ property.city }}</p>
-            <p><strong>Country:</strong> {{ property.country }}</p>
-            <p><strong>Night Rate:</strong> {{ property.night_rate }}</p>
-            <p><strong>Status:</strong> {{ property.status }}</p>
+            <!-- <p class="text-dark"><strong>City:</strong> {{ property.address }}</p> -->
+            <!-- <p><strong>Country:</strong> {{ property.country }}</p> -->
+            <p class="text-dark"><strong>Night Rate:</strong> {{ property.night_rate }}</p>
+            <p class="text-dark"><strong>Status:</strong> {{ property.status }}</p>
             <h5>Bookings</h5>
-            <ul>
-                <li *ngFor="let booking of property.bookings">
-                    <strong>User:</strong> {{ booking.user_name }}<br>
-                    <strong>Start Date:</strong> {{ booking.start_date }}<br>
-                    <strong>End Date:</strong> {{ booking.end_date }}<br>
-                    <strong>Status:</strong> {{ booking.status }}<br>
+            <ul class="list-unstyled">
+                <li *ngFor="let booking of property.bookings" class="mb-2">
+                    <div class="booking-details p-2 border rounded">
+                        <strong>User:</strong> {{ booking.user_name }}<br>
+                        <!-- <strong>User:</strong> {{  }}<br> -->
+                        <strong>Start Date:</strong> {{ booking.start_date }}<br>
+                        <strong>End Date:</strong> {{ booking.end_date }}<br>
+                        <strong>Status:</strong> {{ booking.status }}<br>
+                    </div>
                 </li>
             </ul>
             <hr>
         </div>
     </div>
 
-    <div *ngIf="!ownerInfo">
+    <div *ngIf="!ownerInfo" class="text-center">
         <p>No owner details found.</p>
     </div>
 </div>

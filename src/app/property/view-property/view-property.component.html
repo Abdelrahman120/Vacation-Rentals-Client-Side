@@ -23,7 +23,8 @@
       <div class="book-info">
         <span class="text-muted">Cabin</span>
         <h3 class="fw-bold">
-          Tiny house on private 20 acres along the Klamath River.
+          {{propertyDetails.headline}}
+          <!-- Tiny house on private 20 acres along the Klamath River. -->
         </h3>
       </div>
 
@@ -56,7 +57,6 @@
         @for (item of propertyDetails.amenities; track $index) {
         <div class="d-flex justify-content-between mb-2">
           <span><i class="fa-solid fa-car me-2"></i> {{item.name}}</span>
-          <span><i class="fa-solid fa-droplet me-2"></i> {{item.name}}</span>
         </div>
         }
 
@@ -70,14 +70,12 @@
             <div id="map" style="height: 450px; width: 400px"></div>
           </div>
           <div class="col-md-6 d-flex flex-column">
-            <span><i class="fa-solid fa-location-dot me-2"></i> Southern Oregon
-              University 63 min drive</span>
-            <span><i class="fa-solid fa-location-dot me-2"></i> Oregon
-              Shakespeare Festival 67 min drive</span>
-            <span><i class="fa-solid fa-location-dot me-2"></i> Mount Ashland
-              Ski Area 68 min drive</span>
-            <span><i class="fa-solid fa-location-dot me-2"></i> Ashland, OR
-              (AHM-Sumner Parker Field) 63 min drive</span>
+            <span>City : {{propertyDetails.city}}</span>
+            <span> Country :
+              {{propertyDetails.country}}
+            </span>
+            <span> Address : {{propertyDetails.address}}</span>
+            
           </div>
         </div>
       </div>
@@ -85,7 +83,7 @@
       <!-- details Section -->
       <div class="mt-5 d-flex flex-column">
         <div>
-          <h3>1 bedroom (4 sleeps)</h3>
+          <h3>1 bedroom {{propertyDetails.sleeps}} Sleeps</h3>
           <p class="fw-bold text-dark">Bedroom {{propertyDetails.bedrooms}}</p>
           <span>1 Double Futon and 1 Twin Bunk Bed</span>
         </div>
@@ -102,7 +100,7 @@
       <div class="mt-5">
         <h2>About this property</h2>
         <div>
-          <h3>Tiny house on private 20 acres along the Klamath River.</h3>
+          <h3>{{propertyDetails.headline}}</h3>
           <p class="text-dark">
             {{propertyDetails.description}}
           </p>

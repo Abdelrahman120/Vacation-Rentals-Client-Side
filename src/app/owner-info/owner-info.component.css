@@ -1,0 +1,21 @@
+/* owner-info.component.css */
+.card {
+    background-color: #f8f9fa; 
+}
+
+.property-card {
+    background-color: #ffffff; 
+    transition: box-shadow 0.3s;
+}
+
+.property-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.booking-details {
+    background-color: #e9ecef; 
+}
+
+.booking-details strong {
+    color: #343a40; 
+}
