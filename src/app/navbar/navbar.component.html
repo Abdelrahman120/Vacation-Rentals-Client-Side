@@ -1,4 +1,4 @@
-<header id="nav" class="site-header position-fixed text-white bg-dark">
+<header id="nav" class="site-header position-fixed text-white bg-dark mb-4">
   <nav
     id="navbar-example2"
     class="navbar navbar-expand-lg p-3 fs-4"
@@ -111,6 +111,12 @@
                       Logout
                     </button>
                   </li>
+                  <li>
+                    <button class="btn btn-danger"  [routerLink]="['/edit-user-profile', id]" class="btn btn-primary">Edit Profile</button>
+                  </li>
+                  <li>
+                    <button class="btn btn-link nav-link" (click)="navigateToPayments()">Payments</button>
+                  </li>
                   <li
                     class="d-flex justify-content-center fs-5"
                     *ngIf="isOwner()"
@@ -141,7 +147,7 @@
             </li>
 
             <!-- User info section -->
-            <div *ngIf="isUser()">
+            <!-- <div *ngIf="isUser()">
               <span>{{ user.name }}</span>
               @if (user.image) {
               <img
@@ -151,7 +157,7 @@
                 width="40"
               />
               }
-            </div>
+            </div> -->
           </ul>
         </div>
       </div>

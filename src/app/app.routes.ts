@@ -38,6 +38,7 @@ import { ownerGuardGuard } from './guards/owner-guard.guard';
 import { AdminPropertyDetailsComponent } from './admin-property-details/admin-property-details.component';
 import { SendEmailComponent } from './send-email/send-email.component';
 import { OwnerDetailsComponent } from './owner-details/owner-details.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 export const routes: Routes = [
   {
@@ -182,6 +183,10 @@ export const routes: Routes = [
   {
     path: 'cancel',
     component: CancleComponent,
+  },
+  {
+    path : 'user/payments',
+    component : UserProfileComponent
   },
   {
     path: 'favorite',
