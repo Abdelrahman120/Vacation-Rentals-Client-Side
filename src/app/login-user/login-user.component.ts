@@ -32,11 +32,13 @@ export class LoginUserComponent {
       const token = params['token'];
       const name = params['name'];
       const email = params['email'];
+      const userId = params['userId'];
 
       if (token) {
         localStorage.setItem('token', token);
         localStorage.setItem('userName', name);
         localStorage.setItem('userEmail', email);
+        localStorage.setItem('userId', userId);
         localStorage.setItem('role', 'user');
         this.router.navigate(['/dashboard']);
       }
@@ -68,6 +70,7 @@ export class LoginUserComponent {
       (response) => {
         console.log('Login successful', response);
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('userId', response.data.id);
         this.router.navigate(['/dashboard']);
       },
       (error) => {
