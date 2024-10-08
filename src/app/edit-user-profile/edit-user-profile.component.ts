@@ -7,6 +7,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -40,6 +46,9 @@ export class EditUserProfileComponent implements OnInit {
     this.userId =
       +this.router.routerState.snapshot.root.firstChild?.params['id']!;
 
+    this.userId =
+      +this.router.routerState.snapshot.root.firstChild?.params['id']!;
+
     if (!this.userId) {
       console.error('User ID is not found in the route parameters.');
       return;
@@ -51,7 +60,7 @@ export class EditUserProfileComponent implements OnInit {
   getUserData(id: number): void {
     this.userProfileService.getUser(id).subscribe(
       (response) => {
-        console.log(response);
+        console.log('User data received:', response);
         this.editProfile.patchValue({
           name: response.data.name || '',
           email: response.data.email || '',
@@ -79,12 +88,19 @@ export class EditUserProfileComponent implements OnInit {
           this.validationErrors[key] = [
             `${key.charAt(0).toUpperCase() + key.slice(1)} is required.`,
           ];
+          this.validationErrors[key] = [
+            `${key.charAt(0).toUpperCase() + key.slice(1)} is required.`,
+          ];
         }
       });
       return;
     }
 
     const userData = this.editProfile.value;
+
+    if (this.selectedFile) {
+      userData.image = this.selectedFile;
+    }
 
     if (this.selectedFile) {
       userData.image = this.selectedFile;

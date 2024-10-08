@@ -1,49 +1,54 @@
 <div class="container mt-4">
-    <h2 class="text-center">Properties Recommendation</h2>
-    <div class="row">
-      <div class="carousel">
-      <div *ngFor="let property of properties" class="col-md-3 mb-4">
-        <div class="card h-100 shadow rounded-3"> 
+  <h2 class="text-center">Properties Recommendation</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-4 mb-4" *ngFor="let property of properties">
+      <div class="property-card shadow rounded-3">
+        <!-- Image section -->
+        <div class="image-container">
           <a (click)="goToDetails(property.id)">
-          <img
-            [src]="'http://127.0.0.1:8000' + property.images[0].image"
-            class="card-img-top img-fluid "  style="height: 300px;object-fit: cover;"
-            [alt]="property.name || 'Property Image'"
-          />
+            <img
+              [src]="'http://127.0.0.1:8000' + property.images[0].image"
+              class="property-image img-fluid"
+              [alt]="property.name || 'Property Image'"
+            />
           </a>
-          <div class="card-body d-flex flex-column justify-content-center">
-            <h5 class="card-title ">{{ property.name }}</h5>
-            
-            <p class="card-text mb-1 text-dark">
-                <i class="fas fa-map-marker-alt text-dark"></i> {{ property.location }}
-              </p>
-              <fa-icon
-              [icon]="faHeart"
-              class="fs-4 position-absolute rounded-3 text-light hover-effect z-3"
-              style="top: 2%; right: 4%"
-              (click)="toggleFavorites(property.id)"
-            >
-              ></fa-icon
-            >
-            <div class="mt-auto">
-              <div class="d-flex justify-content-between align-items-center mb-2">
-               
-                <span>
-                  <i class="fas fa-home text-dark"></i> {{ property.property_type }}
-                </span>
-                <span>
-                  <i class="fas fa-bed text-dark"></i> {{ property.bedrooms }} 
-                  <i class="fas fa-bath text-dark"></i> {{ property.bathrooms }}
-                </span>
-              </div>
-              <div class="text-end text-primary fw-bold">
-                {{ property.night_rate }}$ / night
-              </div>
-            </div>
+        </div>
+
+        <!-- Card body section -->
+        <div class="property-info p-3">
+          <!-- Rating -->
+          <div class="rating mb-2">
+            <span class="rating-score fw-bold">10.0</span>
+            <span class="rating-text">Exceptional</span>
+            <span class="review-count">(56 reviews)</span>
+          </div>
+
+          <!-- Property Name -->
+          <h5 class="property-title text-dark">{{ property.name }}</h5>
+
+          <!-- Location -->
+          <p class="property-location text-muted mb-1">
+            <i class="fas fa-map-marker-alt"></i> {{ property.location }}
+          </p>
+
+          <!-- Property Details (type, bedrooms, bathrooms) -->
+          <div class="property-details d-flex justify-content-between align-items-center mb-2">
+            <span class="text-muted"><i class="fas fa-home"></i> {{ property.property_type }}</span>
+            <span>
+              <i class="fas fa-bed"></i> {{ property.bedrooms }} 
+              <i class="fas fa-bath"></i> {{ property.bathrooms }}
+            </span>
+          </div>
+
+          <!-- Price section -->
+          <div class="price text-end text-primary fw-bold">
+            {{ property.night_rate }}$ / night
+          </div>
+          <div class="total-price text-end text-secondary">
+            ${{ property.night_rate * 7 }} total for 7 nights
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-  

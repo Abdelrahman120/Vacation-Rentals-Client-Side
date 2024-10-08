@@ -71,7 +71,7 @@ export class LoginUserComponent {
         console.log('Login successful', response);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userId', response.data.id);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/properties']);
       },
       (error) => {
         if (error.status === 401) {

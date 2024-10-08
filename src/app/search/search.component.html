@@ -1,54 +1,70 @@
-<form
-  class="input-group p-2 rounded-pill shadow-lg bg-white w-50 mx-auto d-flex justify-content-between"
->
-  <div class="position-relative">
-    <input
-      type="text"
-      class="form-control border me-2 rounded-pill"
-      placeholder="Where to?"
-      aria-label="Location"
-      name="location"
-      [(ngModel)]="location"
-      (input)="getLocationSuggestions()"
-    />
 
-    <ul
-      *ngIf="suggestions.length > 0"
-      class="list-group position-absolute w-100"
-      style="z-index: 1000"
-    >
-      <li
-        *ngFor="let suggestion of suggestions"
-        class="list-group-item list-group-item-action"
-        (click)="selectSuggestion(suggestion)"
-      >
+
+
+<form class="input-group p-2 rounded-pill shadow-lg bg-white w-100 mx-auto d-flex justify-content-between align-items-center">
+  <!-- Location Input -->
+  <div class="position-relative w-25">
+    <div class="input-group">
+      <span class="input-group-text bg-white border-0 ps-3">
+        <i class="fas fa-map-marker-alt"></i>
+      </span>
+      <input
+        type="text"
+        class="form-control border-0 ps-2 rounded-pill"
+        placeholder="Where to?"
+        aria-label="Location"
+        name="location"
+        [(ngModel)]="location"
+        (input)="getLocationSuggestions()"
+        style="border-top-left-radius: 20px; border-bottom-left-radius: 20px;"
+      />
+    </div>
+
+    <!-- Suggestions List -->
+    <ul *ngIf="suggestions.length > 0" class="list-group position-absolute w-100 shadow" style="z-index: 1000; max-height: 200px; overflow-y: auto;">
+      <li *ngFor="let suggestion of suggestions" class="list-group-item list-group-item-action" (click)="selectSuggestion(suggestion)">
         {{ suggestion.display_name }}
       </li>
     </ul>
   </div>
 
-  <input
-    class="form-control border me-2 rounded-pill"
-    placeholder="Dates"
-    ngxDaterangepickerBootstrap
-    name="dates"
-    [(ngModel)]="dates"
-    (ngModelChange)="onDateChange()"
-  />
+  <!-- Date Input -->
+  <div class="w-25">
+    <div class="input-group">
+      <span class="input-group-text bg-white border-0 ps-3">
+        <i class="fas fa-calendar-alt"></i>
+      </span>
+      <input
+        class="form-control border-0 ps-2 rounded-pill"
+        placeholder="Dates"
+        ngxDaterangepickerBootstrap
+        name="dates"
+        [(ngModel)]="dates"
+        (ngModelChange)="onDateChange()"
+      />
+    </div>
+  </div>
 
-  <input
-    type="text"
-    class="form-control border me-2 rounded-pill"
-    placeholder="Sleeps"
-    aria-label="Sleeps"
-    name="sleeps"
-    [(ngModel)]="sleeps"
-    (ngModelChange)="onSleepsChange()"
-  />
-  <input
-    class="btn btn-primary rounded-pill ms-1 px-4"
-    value="Search"
-    type="button"
-    (click)="search()"
-  />
+  <!-- Sleeps Input -->
+  <div class="w-20">
+    <div class="input-group">
+      <span class="input-group-text bg-white border-0 ps-3">
+        <i class="fas fa-user-friends"></i>
+      </span>
+      <input
+        type="text"
+        class="form-control border-0 ps-2 rounded-pill"
+        placeholder="Sleeps"
+        aria-label="Sleeps"
+        name="sleeps"
+        [(ngModel)]="sleeps"
+        (ngModelChange)="onSleepsChange()"
+      />
+    </div>
+  </div>
+
+  <!-- Search Button -->
+  <div class="ms-3">
+    <input class="btn btn-primary rounded-pill px-4" value="Search" type="button" (click)="search()" />
+  </div>
 </form>
