@@ -1,21 +1,22 @@
 <div class="card border-0 position-relative my-2">
-  <!-- <a (click)="goToDetails(property.id)"> -->
   <div
     id="carouselExampleControls{{ property.id }}"
     class="carousel slide mb-1"
     data-bs-ride="carousel"
   >
     <div class="carousel-inner">
-      <ng-container *ngFor="let item of property.images; let i = index">
-        <div class="carousel-item" [class.active]="i === 0">
-          <img
-            [src]="'http://127.0.0.1:8000' + item.image"
-            class="d-block w-100 img-fluid"
-            [alt]="item.name || 'Property Image'"
-            loading="lazy"
-          />
-        </div>
-      </ng-container>
+      <a (click)="goToDetails(property.id)">
+        <ng-container *ngFor="let item of property.images; let i = index">
+          <div class="carousel-item" [class.active]="i === 0">
+            <img
+              [src]="'http://127.0.0.1:8000' + item.image"
+              class="d-block w-100 img-fluid"
+              [alt]="item.name || 'Property Image'"
+              loading="lazy"
+            />
+          </div>
+        </ng-container>
+      </a>
     </div>
 
     <button
@@ -50,7 +51,9 @@
     ></fa-icon
   >
   <div class="card-body p-1">
-    <span class="text-dark" style="font-size: 14px">{{ property.city }}</span>
+    <span class="text-dark" style="font-size: 14px">{{
+      property.location
+    }}</span>
     <p class="roboto-bold text-dark" style="bottom: 2rem; font-size: 1rem">
       {{ property.name }}
     </p>

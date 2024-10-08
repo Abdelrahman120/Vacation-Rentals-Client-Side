@@ -18,7 +18,7 @@
         <th>Country</th>
         <th>City</th>
         <!-- <th>Adress</th> -->
-        <!-- <th>Status</th>
+<!-- <th>Status</th>
        
         <th>View</th>
         <th>Action</th>
@@ -35,7 +35,7 @@
         <td class="text-center align-middle">{{item.owner_name}}</td> 
         <<td>22</td>
         <td>55</td> -->
-        <!-- <td class="text-center align-middle">{{item.country}}</td>
+<!-- <td class="text-center align-middle">{{item.country}}</td>
         <td class="text-center align-middle">{{item.city}}</td>
         <td class="text-center align-middle">{{item.status}}</td>
 
@@ -51,38 +51,62 @@
         </td>
       </tr> -->
 
-      <!-- } -->
-    <!-- </tbody>
+<!-- } -->
+<!-- </tbody>
   </table>
 </div>
 </div>
-</div> --> 
-<div class="container" style="margin-top: 70px;">
+</div> -->
+<div class="container tw-mt-32">
   <div class="alert alert-success" *ngIf="successMessage">
     {{ successMessage }}
   </div>
 
   <div class="btn-group container mb-4" role="group" aria-label="Status Filter">
-    <button class="btn btn-secondary me-2" (click)="filterProperties()">All</button>
-    <button class="btn btn-primary me-2" (click)="filterProperties('pending')">Pending</button>
-    <button class="btn btn-success me-2" (click)="filterProperties('accepted')">Accepted</button>
-    <button class="btn btn-danger me-2" (click)="filterProperties('rejected')">Rejected</button>
+    <button
+      class="btn btn-secondary me-2 rounded-start"
+      (click)="filterProperties()"
+    >
+      All
+    </button>
+    <button class="btn btn-primary me-2" (click)="filterProperties('pending')">
+      Pending
+    </button>
+    <button class="btn btn-success me-2" (click)="filterProperties('accepted')">
+      Accepted
+    </button>
+    <button
+      class="btn btn-danger me-2 rounded-end"
+      (click)="filterProperties('rejected')"
+    >
+      Rejected
+    </button>
   </div>
 
-  <div class="row d-flex justify-content-between ">
-    <div class="col-md-4  p-0 card shadow-sm rounded" *ngFor="let property of properties">
+  <div class="row d-flex justify-content-evenly">
+    <div
+      class="col-md-3 p-2 shadow-sm border-1 rounded"
+      *ngFor="let property of properties"
+      style="margin: 10px; width: 420px; background-color: #f0f0f0"
+    >
       <div class="card-body p-3">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <div>
             <h5 class="card-title">{{ property.name }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ property.property_type }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+              {{ property.property_type }}
+            </h6>
           </div>
-          <a [routerLink]="['/admin/details', property.id]" class="btn btn-outline-dark">Details</a>
+          <a
+            [routerLink]="['/admin/details', property.id]"
+            class="btn btn-outline-dark"
+            >Details</a
+          >
         </div>
 
-        <p class="mb-2 text-dark" >
+        <p class="mb-2 text-dark">
           <i class="fa-regular fa-user me-2 text-dark"></i>
-          Owner: <b >{{ property.owner_name }}</b>
+          Owner: <b>{{ property.owner_name }}</b>
         </p>
 
         <p class="mb-2 text-dark">
@@ -91,14 +115,16 @@
         </p>
       </div>
 
-      <div class="card-footer bg-light d-flex justify-content-between align-items-center p-2">
+      <div
+        class="card-footer bg-light d-flex justify-content-between align-items-center p-2"
+      >
         <div>
           <i class="fa-solid fa-map-marker-alt me-2 text-secondary"></i>
-          {{ property.country }}, {{ property.city }}
+          {{ property.location }}
         </div>
         <div>
           <i class="fa-regular fa-calendar me-2 text-secondary"></i>
-          {{ property.createdAt | date: 'EEE, d MMM y' }}
+          {{ property.createdAt | date : "EEE, d MMM y" }}
         </div>
       </div>
     </div>
