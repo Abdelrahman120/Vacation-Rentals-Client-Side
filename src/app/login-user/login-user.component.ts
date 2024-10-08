@@ -3,11 +3,13 @@ import { LoginUserService } from '../services/login-user.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faHeart } from '@fortawesome/free-regular-svg-icons'; // Heart icon
+import { faGoogle } from '@fortawesome/free-brands-svg-icons'; // Change this line
 @Component({
   selector: 'app-login-user',
   standalone: true,
-  imports: [FormsModule, RouterLink, NgIf],
+  imports: [FormsModule, RouterLink, NgIf , FontAwesomeModule],
   templateUrl: './login-user.component.html',
   styleUrl: './login-user.component.css',
 })
@@ -15,7 +17,10 @@ export class LoginUserComponent {
   email: string = '';
   password: string = '';
   validationErrors: any = {};
+  faHeart = faHeart;
+  faGoogle = faGoogle;
   errorMessage: string = '';
+  
   constructor(
     private loginservice: LoginUserService,
     private router: Router,

@@ -12,3 +12,20 @@
   
     padding-top: 50px;
 }
+.btn-success {
+    background-color: #4285F4; /* Google blue */
+    border-color: #4285F4; /* Google blue */
+    color: white; /* Text color */
+    display: flex; /* Align icon and text */
+    align-items: center; /* Center icon and text vertically */
+  }
+  
+  .btn-success:hover {
+    background-color: #357ae8; /* Darker blue on hover */
+    border-color: #357ae8; /* Darker blue on hover */
+  }
+  
+  .btn-success:focus {
+    box-shadow: 0 0 0 0.2rem rgba(66, 133, 244, 0.5); /* Focus shadow */
+  }
+  
