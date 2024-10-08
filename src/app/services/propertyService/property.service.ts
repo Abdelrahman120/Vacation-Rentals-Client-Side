@@ -12,7 +12,7 @@ import { Category } from '../../interface/propertyRelated';
   providedIn: 'root',
 })
 export class PropertyService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   BACKEND_API = environment.BACKEND_URL;
   private propertyId: string = '';
 
@@ -58,8 +58,8 @@ export class PropertyService {
       headers,
     });
   }
-  updateProperty(property: any, id: number) {
-    return this.http.post(`${this.BACKEND_API}/api/property/${id}`, property);
+  updateProperty(id: string, property: any) {
+    return this.http.put(`${this.BACKEND_API}/api/property/${id}`, property);
   }
   deleteProperty(id: number) {
     return this.http.delete(`${this.BACKEND_API}/api/property/${id}`);
@@ -87,8 +87,8 @@ export class PropertyService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.post(
-      `${this.BACKEND_API}/api/property/${id}/updateamenities`,
+    return this.http.put(
+      `${this.BACKEND_API}/api/property/${id}/update-amenities`,
       value,
       { headers }
     );
@@ -116,8 +116,9 @@ export class PropertyService {
       Authorization: `Bearer ${token}`,
     });
     return this.http.put(
-      `${this.BACKEND_API}/api/property/${id}/updateimages`,
-      formData,
+      `${this.BACKEND_API}/api/property/${id}/update-images`,
+      // { formData },
+      { formData, _method: "PUT" },
       { headers }
     );
   }
