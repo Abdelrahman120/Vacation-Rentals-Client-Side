@@ -37,9 +37,13 @@
       <button type="submit" class="btn btn-primary btn-lg  text-uppercase btn-rounded-none fs-6 ">Log
         In</button>
     </div>
-    <div class="text-center">
-      <button type="button" class="btn btn-success mt-3" (click)="loginWithGoogle()">Login with Google</button>
+    <div class="text-center d-flex justify-content-center">
+      <button type="button" class="btn btn-google mt-3" (click)="loginWithGoogle()">
+        <fa-icon [icon]="['fab', 'google']" class="me-2"></fa-icon>
+        Login with Google
+      </button>
     </div>
+    
     <div id="passwordHelpBlock">
       <a routerLink="/register/user" class="text-dark fs-5">Sign Up</a>
     </div>

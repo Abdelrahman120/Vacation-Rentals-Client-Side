@@ -4,16 +4,19 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { OwnerAuthService } from '../Services/owner-auth.service';
 import { environment } from '../../environments/environment.development';
 import { NgIf } from '@angular/common';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons'; // Ensure this import is present
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterLink, NgIf],
+  imports: [FormsModule, RouterLink, NgIf , FontAwesomeModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
   credentials = { email: '', password: '' };
-
+  faGoogle = faGoogle; // Make sure this line is present
   constructor(
     private authService: OwnerAuthService,
     private router: Router,

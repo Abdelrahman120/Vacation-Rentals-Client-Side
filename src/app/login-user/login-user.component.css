@@ -12,3 +12,27 @@
   
     padding-top: 50px;
 }
+
+/* Google Login Button Styles */
+.btn-google {
+    background-color: #4285F4; 
+    color: #ffffff; 
+    border: none; 
+    border-radius: 5px; 
+    padding: 10px 20px; 
+    font-size: 1rem;
+    display: flex; 
+    align-items: center; 
+    transition: background-color 0.3s ease; 
+  }
+  
+  /* Button hover effect */
+  .btn-google:hover {
+    background-color: #357ae8; 
+  }
+  
+  /* Font Awesome icon style */
+  .btn-google fa-icon {
+    font-size: 1.2rem; 
+  }
+  

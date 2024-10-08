@@ -116,4 +116,7 @@ export class NavbarComponent {
   navigateToPayments(): void {
     this.router.navigate(['/user/payments']);
   }
+  navigateToOwnerProfile(): void {
+    this.router.navigate(['owner/info']);
+  }
 }
