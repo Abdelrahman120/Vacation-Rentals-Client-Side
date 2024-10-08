@@ -41,6 +41,7 @@ export class InformationComponent {
       bathrooms: ['', [Validators.required, Validators.min(1)]],
       night_rate: ['', [Validators.required, Validators.min(0)]],
       description: ['', Validators.required],
+      sleeps: ['', [Validators.required, Validators.min(1)]],
     });
     this.getCategories();
   }
