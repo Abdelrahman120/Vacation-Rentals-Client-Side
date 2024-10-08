@@ -56,6 +56,7 @@
           <ul class="list-unstyled">
             <li *ngFor="let review of user.reviews" class="mb-2">
               <p>{{ review.review }} <br><strong>Rating:</strong> {{ review.rating }}</p>
+              <p>Property Name : {{review.property_name}}</p>
               <hr>
             </li>
           </ul>

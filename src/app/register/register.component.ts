@@ -1,13 +1,11 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule,
-
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
-
-
+  AbstractControl,
+  ValidationErrors,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OwnerAuthService } from '../Services/owner-auth.service';
@@ -15,41 +13,30 @@ import { OwnerAuthService } from '../Services/owner-auth.service';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule,NgIf],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
 
-  // list :Array<any> = [];
-
-
   registerForm: FormGroup;
+  submitted = false;
 
   constructor(private fb: FormBuilder, private router: Router, private authService: OwnerAuthService) {
     this.registerForm = this.fb.group({
-      company_name : ['', Validators.required],
+      company_name: ['', Validators.required],
       name: ['', Validators.required],
       address: ['', Validators.required],
-      phone: ['', [Validators.required,Validators.minLength(11)]],
+      phone: ['', [Validators.required, Validators.minLength(11)]],
       description: ['', Validators.required],
-      role:['owner'],
-      image: ['', [Validators.required,]],
-      gender: ['', [Validators.required,]],
-
-      email: ['', [Validators.required, Validators.email,Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(8),
-      ]],
-      password_confirmation: ['', [
-        Validators.required,
-        Validators.minLength(8),
-      ]],
-
-    });
+      role: ['owner'],
+      image: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      password_confirmation: ['', [Validators.required, Validators.minLength(8)]],
+    }, { validators: this.passwordMatchValidator }); // Add custom validator here
   }
-
 
   onFileChange(event: any): void {
     const file = event.target.files[0];
@@ -58,7 +45,12 @@ export class RegisterComponent {
     });
   }
 
-  submitted = false
+  passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('password_confirmation')?.value;
+    return password === confirmPassword ? null : { mismatch: true };
+  }
+
   handleSubmit() {
     this.submitted = true;
 
@@ -71,9 +63,7 @@ export class RegisterComponent {
       this.authService.register(formData).subscribe(
         (response: any) => {
           console.log('Registration successful:', response);
-
           localStorage.setItem('owner_id', response.owner.id);
-
           this.router.navigate(['/login/owner']);
         },
         error => {
@@ -94,13 +84,4 @@ export class RegisterComponent {
       );
     }
   }
-
-
-
-
-
-
-
-
 }
-
