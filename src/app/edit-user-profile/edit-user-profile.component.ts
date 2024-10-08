@@ -7,6 +7,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -40,6 +46,9 @@ export class EditUserProfileComponent implements OnInit {
     this.userId =
       +this.router.routerState.snapshot.root.firstChild?.params['id']!;
 
+    this.userId =
+      +this.router.routerState.snapshot.root.firstChild?.params['id']!;
+
     if (!this.userId) {
       console.error('User ID is not found in the route parameters.');
       return;
@@ -53,11 +62,11 @@ export class EditUserProfileComponent implements OnInit {
       (response) => {
         console.log('User data received:', response);
         this.editProfile.patchValue({
-          name: response.name || '',
-          email: response.email || '',
-          phone: response.phone || '',
-          address: response.address || '',
-          gender: response.gender || '',
+          name: response.data.name || '',
+          email: response.data.email || '',
+          phone: response.data.phone || '',
+          address: response.data.address || '',
+          gender: response.data.gender || '',
         });
       },
       (error) => {
@@ -79,12 +88,19 @@ export class EditUserProfileComponent implements OnInit {
           this.validationErrors[key] = [
             `${key.charAt(0).toUpperCase() + key.slice(1)} is required.`,
           ];
+          this.validationErrors[key] = [
+            `${key.charAt(0).toUpperCase() + key.slice(1)} is required.`,
+          ];
         }
       });
       return;
     }
 
     const userData = this.editProfile.value;
+
+    if (this.selectedFile) {
+      userData.image = this.selectedFile;
+    }
 
     if (this.selectedFile) {
       userData.image = this.selectedFile;
