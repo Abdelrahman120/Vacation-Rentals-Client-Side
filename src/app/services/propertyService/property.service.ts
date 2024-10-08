@@ -104,7 +104,7 @@ export class PropertyService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.put(
+    return this.http.post(
       `${this.BACKEND_API}/api/property/${id}/images`,
       formData,
       { headers }
