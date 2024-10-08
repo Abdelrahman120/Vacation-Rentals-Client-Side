@@ -1,0 +1,7 @@
+.text-dark p {
+    max-width: 90%; /* Adjust width as needed */
+    margin: 0 auto; /* Center the paragraph */
+    text-align: left; /* Left-align the text */
+    line-height: 1.5; /* Increase line height */
+    padding: 10px 0; /* Add padding for spacing */
+}

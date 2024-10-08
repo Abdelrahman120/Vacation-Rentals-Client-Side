@@ -9,6 +9,7 @@ import { catchError } from 'rxjs/operators';
 export class OwnerProfileService {
   private apiUrl = 'http://localhost:8000/api/owners';
   private Url = 'http://localhost:8000/api/owner';
+  private baseUrl = 'http://localhost:8000/api';
   constructor(private http: HttpClient) {}
 
   getOwner(ownerId: number): Observable<any> {
@@ -34,5 +35,8 @@ export class OwnerProfileService {
   private handleError(error: any) {
     console.error('An error occurred', error);
     return throwError(() => new Error(error.message || 'Something went wrong'));
+  }
+  deleteProperty(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/properties/${id}`);
   }
 }

@@ -19,3 +19,21 @@
 .booking-details strong {
     color: #343a40; 
 }
+
+.notification {
+    background-color: #28a745; /* Success green color */
+    color: white;
+    padding: 15px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+  
+  .notification.hide {
+    opacity: 0;
+  }
+  

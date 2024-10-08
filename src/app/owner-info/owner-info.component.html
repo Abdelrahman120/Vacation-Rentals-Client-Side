@@ -23,6 +23,7 @@
             <!-- <p><strong>Country:</strong> {{ property.country }}</p> -->
             <p class="text-dark"><strong>Night Rate:</strong> {{ property.night_rate }}</p>
             <p class="text-dark"><strong>Status:</strong> {{ property.status }}</p>
+            <button (click)="deleteProperty(property.id)" class="btn btn-danger rounded m-1">delete</button>
             <h5>Bookings</h5>
             <ul class="list-unstyled">
                 <li *ngFor="let booking of property.bookings" class="mb-2">
@@ -36,6 +37,10 @@
                 </li>
             </ul>
             <hr>
+            <div *ngIf="showNotification" class="notification">
+                Property deleted successfully!
+              </div>
+              
         </div>
     </div>
 

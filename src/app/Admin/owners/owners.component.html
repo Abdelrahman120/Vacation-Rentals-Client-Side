@@ -4,35 +4,32 @@
       <app-sidebar></app-sidebar>
     </div>
     <div class="col-8">
-      <h2 class="text-center text-white">Owners</h2>
-      <table class="table mt-5">
-        <thead>
-          <tr>
-            <th class="text-center" scope="col">ID</th>
-            <th class="text-center" scope="col">Name</th>
-            <th class="text-center" scope="col">Email</th>
-            <th class="text-center" scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let owner of owners">
-            <th scope="row" class="text-center">{{ owner.id }}</th>
-            <td class="text-center">{{ owner.name }}</td>
-            <td class="text-center">{{ owner.email }}</td>
-            <td class="text-center">
-              <button class="btn btn-danger" (click)="deleteOwner(owner.id)">
-                Delete
-              </button>
-              <button
-                class="btn btn-primary"
-                [routerLink]="['/admin/owner', owner.id]"
-              >
-                View Details
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <h2 class="text-center text-dark fw-bold">Owners</h2>
+      
+      <div class="row d-flex justify-content-evenly mt-5">
+        <div class="col-md-3 p-2 shadow-sm border-1 rounded" *ngFor="let owner of owners" style="margin: 10px; width: 420px; background-color: #f0f0f0">
+          <div class="card-body p-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <h5 class="card-title">{{ owner.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                  {{ owner.email }}
+                </h6>
+              </div>
+            </div>
+
+            <p class="mb-2 text-dark">
+              <i class="fa-regular fa-user me-2 text-dark"></i>
+              Owner Phone: <b>{{ owner.phone }}</b>
+            </p>
+          </div>
+
+          <div class="card-footer bg-light d-flex justify-content-between align-items-center p-2">
+            <button class="btn btn-danger" (click)="deleteOwner(owner.id)">Delete</button>
+            <button class="btn btn-outline-dark" [routerLink]="['/admin/owner', owner.id]">View Details</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
