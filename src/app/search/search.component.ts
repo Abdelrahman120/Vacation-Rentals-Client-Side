@@ -73,7 +73,7 @@ export class SearchComponent implements OnInit {
     if (this.location.length > 0) {
       this.propertyService.getSuggestions(this.location).subscribe(
         (res: any) => {
-          console.log('Response from API:', res);
+          console.log('API Response:', res);
           this.suggestions = res;
         },
         (error) => {
@@ -156,12 +156,15 @@ export class SearchComponent implements OnInit {
       if (
         this.input.location &&
         this.input.startDate &&
-        this.input.endDate
+        this.input.endDate &&
+        this.input.sleeps
       ) {
         this.propertyService.getPropertyByDate(this.input).subscribe(
           (res: any) => {
             if (res && res.data) {
               this.result = res.data;
+              console.log("API Search result:", this.result);
+
             } else {
               console.error('No data received from API');
             }

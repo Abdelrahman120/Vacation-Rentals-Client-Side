@@ -1,14 +1,11 @@
-
-<div class="container-fluid  " style="margin-top: 70px;"  >
+<div class="container-fluid" style="margin-top: 70px">
   <div class="row">
-    <div class="col-3 ">
+    <div class="col-3">
       <app-sidebar></app-sidebar>
-
     </div>
-<div class="col-8  ">
-
-    <h2 class="text-center  text-white">Owners</h2>
-    <table class="table mt-5">
+    <div class="col-8">
+      <h2 class="text-center text-white">Owners</h2>
+      <table class="table mt-5">
         <thead>
           <tr>
             <th class="text-center" scope="col">ID</th>
@@ -18,23 +15,24 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let owner of owners">
-                <th scope="row" class="text-center">{{owner.id}}</th>
-                <td class="text-center">{{owner.name}}</td>
-                <td class="text-center">{{owner.email}}</td>
-                <td class="text-center">
-                  <button class="btn btn-danger" (click)="deleteOwner(owner.id)">Delete</button>
-                  <button
-                  class="btn btn-primary"
-                  [routerLink]="['/admin/owner', owner.id]"
-                >
-                  View Details
-                </button>
-                </td>            </tr>
-      
-       
+          <tr *ngFor="let owner of owners">
+            <th scope="row" class="text-center">{{ owner.id }}</th>
+            <td class="text-center">{{ owner.name }}</td>
+            <td class="text-center">{{ owner.email }}</td>
+            <td class="text-center">
+              <button class="btn btn-danger" (click)="deleteOwner(owner.id)">
+                Delete
+              </button>
+              <button
+                class="btn btn-primary"
+                [routerLink]="['/admin/owner', owner.id]"
+              >
+                View Details
+              </button>
+            </td>
+          </tr>
         </tbody>
       </table>
-</div>
-</div>
+    </div>
+  </div>
 </div>
