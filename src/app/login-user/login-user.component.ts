@@ -40,7 +40,7 @@ export class LoginUserComponent {
         localStorage.setItem('userEmail', email);
         localStorage.setItem('userId', userId);
         localStorage.setItem('role', 'user');
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/properties']);
       }
     });
   }
