@@ -7,14 +7,18 @@ import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterLink,NgIf],
+  imports: [FormsModule, RouterLink, NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
   credentials = { email: '', password: '' };
 
-  constructor(private authService: OwnerAuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private authService: OwnerAuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   submitted = false;
   user: any;
@@ -32,7 +36,7 @@ export class LoginComponent {
           if (role === 'admin') {
             this.router.navigate(['/admin-dashboard']);
           } else if (role === 'owner') {
-            this.router.navigate(['/owner-dashboard']);
+            this.router.navigate(['/add-property']);
           }
         }
       },
@@ -40,10 +44,10 @@ export class LoginComponent {
         if (error.status === 401) {
           this.errorMessage = 'Invalid email or password';
           console.log(this.errorMessage);
-          
         } else {
           this.errorMessage = 'An unexpected error occurred';
-        }        }
+        }
+      }
     );
   }
 
@@ -57,11 +61,11 @@ export class LoginComponent {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const token = params['token'];
       const name = params['name'];
       const email = params['email'];
-      const role = params['role'] || 'user'; 
+      const role = params['role'] || 'user';
 
       if (token) {
         // Store the token, user data, and role
