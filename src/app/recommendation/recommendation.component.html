@@ -1,16 +1,49 @@
-<div class="container mt-5  ">
-    <h2>Recommendations</h2>
-    <div class="carousel mt-5 p-2">
-        @for (property of properties; track property.id) {
-          
-    
-
-            <app-item-card class="ms-2" [property]="property"></app-item-card>
-              
-                    
-        }    </div>
+<div class="container mt-4">
+    <h2 class="text-center">Properties Recommendation</h2>
+    <div class="row">
+      <div class="carousel">
+      <div *ngFor="let property of properties" class="col-md-3 mb-4">
+        <div class="card h-100 shadow rounded-3"> 
+          <a (click)="goToDetails(property.id)">
+          <img
+            [src]="'http://127.0.0.1:8000' + property.images[0].image"
+            class="card-img-top img-fluid "  style="height: 300px;object-fit: cover;"
+            [alt]="property.name || 'Property Image'"
+          />
+          </a>
+          <div class="card-body d-flex flex-column justify-content-center">
+            <h5 class="card-title ">{{ property.name }}</h5>
+            
+            <p class="card-text mb-1 text-dark">
+                <i class="fas fa-map-marker-alt text-dark"></i> {{ property.location }}
+              </p>
+              <fa-icon
+              [icon]="faHeart"
+              class="fs-4 position-absolute rounded-3 text-light hover-effect z-3"
+              style="top: 2%; right: 4%"
+              (click)="toggleFavorites(property.id)"
+            >
+              ></fa-icon
+            >
+            <div class="mt-auto">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+               
+                <span>
+                  <i class="fas fa-home text-dark"></i> {{ property.property_type }}
+                </span>
+                <span>
+                  <i class="fas fa-bed text-dark"></i> {{ property.bedrooms }} 
+                  <i class="fas fa-bath text-dark"></i> {{ property.bathrooms }}
+                </span>
+              </div>
+              <div class="text-end text-primary fw-bold">
+                {{ property.night_rate }}$ / night
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-
-
+  
