@@ -24,14 +24,16 @@ export class PropertyService {
   }
 
   getPropertyByDate(input?: any) {
-    let checkDest = Object.keys(input.destination);
+    let checkDest = Object.keys(input.location);
     let checkSleeps = Object.keys(input.sleeps);
     let sleepsLength = checkSleeps.length;
     let destLength = checkDest.length;
 
     if (input.startDate && input.endDate && destLength > 0) {
+      console.log(input.startDate);
+
       return this.http.get(
-        `${this.BACKEND_API}/api/properties/search?city=${input.destination}&start_date=${input.startDate}&end_date=${input.endDate}`
+        `${this.BACKEND_API}/api/properties/search?location=${input.location}&start_date=${input.startDate}&end_date=${input.endDate}`
       );
     } else if (
       input.startDate &&
@@ -40,7 +42,7 @@ export class PropertyService {
       sleepsLength > 0
     ) {
       return this.http.get(
-        `${this.BACKEND_API}/api/properties/search?city=${input.city}&start_date=${input.startDate}&end_date=${input.endDate}&sleeps=${input.sleeps}`
+        `${this.BACKEND_API}/api/properties/search?location=${input.location}&start_date=${input.startDate}&end_date=${input.endDate}&sleeps=${input.sleeps}`
       );
     }
     return this.http.get(`${this.BACKEND_API}/api/property`);

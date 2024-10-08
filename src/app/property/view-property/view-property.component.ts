@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PropertyService } from '../../Services/propertyService/property.service';
+import { PropertyService } from '../../services/propertyService/property.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
-import { FavoriteService } from '../../services/favorite.service';
+import { FavoriteService } from '../../Services/favorite.service';
 import { TestService } from '../../test.service';
 import * as L from 'leaflet';
 
@@ -36,7 +36,7 @@ export class ViewPropertyComponent implements OnInit {
     private router: Router,
     private favouriteService: FavoriteService,
     private testService: TestService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.propertyId = this.route.snapshot.paramMap.get('id') || '';

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { PropertyService } from '../../Services/propertyService/property.service';
-import { CardItemComponent } from '../property-card/card-item.component';
-import { SearchComponent } from '../../search/search.component';
+import { PropertyService } from '../../services/propertyService/property.service';
+import { CardItemComponent } from "../property-card/card-item.component";
+import { SearchComponent } from "../../search/search.component";
 import { ActivatedRoute } from '@angular/router';
-import { FilterService } from '../../Services/propertyService/filter.service';
-import { FilterComponent } from '../filter/filter.component';
+import { FilterService } from '../../services/propertyService/filter.service';
+import { FilterComponent } from "../filter/filter.component";
+import { FilterCategoryComponent } from "../filter-category/filter-category.component";
 
 @Component({
   selector: 'app-card-list',
   standalone: true,
-  imports: [CardItemComponent, SearchComponent, FilterComponent],
-
+  imports: [CardItemComponent, SearchComponent, FilterComponent, FilterCategoryComponent],
   templateUrl: './card-list.component.html',
   styleUrls: ['./card-list.component.css'],
 })
@@ -22,7 +22,7 @@ export class CardListComponent implements OnInit {
     private propertyService: PropertyService,
     private activatedRoute: ActivatedRoute,
     private filterService: FilterService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -40,12 +40,12 @@ export class CardListComponent implements OnInit {
       this.input = {
         startDate: params['start_date'],
         endDate: params['end_date'],
-        destination: params['city'],
+        location: params['location'],
         sleeps: params['sleeps'],
       };
 
       if (
-        this.input.destination &&
+        this.input.location &&
         this.input.startDate &&
         this.input.endDate
       ) {
@@ -56,7 +56,7 @@ export class CardListComponent implements OnInit {
             console.log(res.data);
           });
       } else if (
-        !this.input.destination &&
+        !this.input.location &&
         !this.input.startDate &&
         !this.input.endDate
       ) {
