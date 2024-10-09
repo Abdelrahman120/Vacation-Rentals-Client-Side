@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ForgetUserPasswordService } from '../services/forget-user-password.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-reset-password-user',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,NgIf],
   templateUrl: './reset-password-user.component.html',
   styleUrl: './reset-password-user.component.css'
 })

@@ -29,11 +29,7 @@ export class ForgetPasswordUserComponent {
           this.errorMessage = data.message;
 
         },(error) => {
-          if (error.status === 400) {
-           
-             this.errorMessage = 'No user found with that email';
-            console.log(this.errorMessage);
-          }        }); 
+                }); 
  
 
   }
