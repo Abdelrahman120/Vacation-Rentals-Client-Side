@@ -1,28 +1,39 @@
 import { Component } from '@angular/core';
 import { UserDetailsService } from '../services/user-details.service';
 import { CommonModule } from '@angular/common';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FontAwesomeModule, RouterLink],
   templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.css'
+  styleUrl: './user-profile.component.css',
 })
 export class UserProfileComponent {
-
-  constructor (private userService : UserDetailsService) {}
-  user: any = {}; // Store user info
-  payments: any[] = []; // Store payments
-  favorites: any[] = []; // Store favorites
-  reviews: any[] = []; // Store reviews
+  private loadUserId(): void {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      this.id = userId;
+    }
+  }
+  constructor(private userService: UserDetailsService) {
+    this.loadUserId();
+  }
+  faHeart = faHeart;
+  id: string = '';
+  user: any = {};
+  payments: any[] = [];
+  favorites: any[] = [];
+  reviews: any[] = [];
   ngOnInit(): void {
     this.userService.getUserWithPayments().subscribe(
       (response) => {
-        this.user = response.data;  // Set user data from the API
-        this.payments = this.user.payments; // Set payments from the user data
-        this.favorites = this.user.favorites; // Set favorites from the user data
-        this.reviews = this.user.reviews; // Set reviews from the user data
+        this.user = response.data;
+        this.payments = this.user.payments;
+        this.favorites = this.user.favorites;
+        this.reviews = this.user.reviews;
       },
       (error) => {
         console.error('Error fetching user details', error);

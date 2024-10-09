@@ -1,184 +1,93 @@
 <header id="nav" class="site-header position-fixed text-white bg-dark mb-4">
-  <nav
-    id="navbar-example2"
-    class="navbar navbar-expand-lg p-3 fs-4"
-    style="background-color: #3b5899"
-  >
+  <nav id="navbar-example2" class="navbar navbar-expand-lg p-3 fs-4" style="background-color: #3b5899">
     <div class="container">
-      <a class="navbar-brand poppins-bold fs-3 text-white" href="/"
-        >VacationRentals</a
-      >
+      <a class="navbar-brand poppins-bold fs-3 text-white" href="/">VacationRentals</a>
 
-      <button
-        class="navbar-toggler text-white"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasNavbar2"
-        aria-controls="offcanvasNavbar2"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
         xx
       </button>
-      <div
-        class="offcanvas offcanvas-end"
-        tabindex="-1"
-        id="offcanvasNavbar2"
-        aria-labelledby="offcanvasNavbar2Label"
-      >
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
-          <button
-            type="button"
-            class="btn-close btn-close-white"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <ul
-            class="navbar-nav align-items-center justify-content-end align-items-center flex-grow-1"
-          >
+          <ul class="navbar-nav align-items-center justify-content-end align-items-center flex-grow-1">
             <li class="nav-item">
-              <a class="nav-link me-md-4 poppins-medium fs-5" routerLink="/"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link me-md-4 poppins-medium fs-5"
-                routerLink="/properties"
-                >Properties</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link me-md-4 poppins-medium fs-5" href="#about-us"
-                >About</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-5 me-md-4 poppins-medium" href="#help"
-                >Contact</a
-              >
-            </li>
-            <li *ngIf="isOwner()">
-              <a
-                class="nav-link fs-5 me-md-4 poppins-medium"
-                [routerLink]="['/add-property']"
-              >
-                Add Property
-              </a>
-            </li>
-            <li *ngIf="isOwner()">
-              <a
-                class="nav-link fs-5 me-md-4 poppins-medium"
-                [routerLink]="['/add-property']"
-              >
-                Add Property
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                routerLink="favorite"
-                class="nav-link d-flex roboto-regular align-items-center me-3"
-              >
-                <fa-icon [icon]="faHeart" class="fs-3"></fa-icon>
-                <span class="ms-1 fs-5">Favorite</span>
-              </a>
+              <a class="nav-link me-md-4 poppins-medium fs-5" routerLink="/" routerLinkActive="text-dark poppins-bold"
+                [routerLinkActiveOptions]="{exact: true}">Home</a>
             </li>
 
-            <!-- Dropdown for Account -->
+            <li class="nav-item">
+              <a class="nav-link me-md-4 poppins-medium fs-5" routerLink="/properties"
+                routerLinkActive="text-dark poppins-bold" [routerLinkActiveOptions]="{exact: true}">Properties</a>
+
+            </li>
+            <li>
+              <a *ngIf="isUser()" class="nav-link me-md-4 poppins-medium fs-5" routerLink="/bookings"
+                routerLinkActive="text-dark" [routerLinkActiveOptions]="{exact: true}">
+                Bookings
+              </a>
+            </li>
+            <li>
+              <a *ngIf="isOwner()" class="nav-link me-md-4 poppins-medium fs-5" routerLinkActive="text-dark"
+                [routerLinkActiveOptions]="{exact: true}" routerLink="/add-property">
+                Add Property
+              </a>
+            </li>
+            <li>
+              <a *ngIf="isOwner()" class="nav-link me-md-4 poppins-medium fs-5" routerLink="/my-properties"
+                routerLinkActive="text-dark poppins-bold" [routerLinkActiveOptions]="{exact: true}">
+                My Properties
+              </a>
+            </li>
             <li class="nav-item dropdown">
-              <a
-                class="nav-link fs-5 me-md-4 text-center dropdown-toggle poppins-medium"
-                data-bs-toggle="dropdown"
-                href="#"
-                role="button"
-                aria-expanded="false"
-                >Account</a
-              >
+
+              <a class="nav-link fs-5 me-md-4 text-center dropdown-toggle poppins-medium" data-bs-toggle="dropdown"
+                *ngIf="isUser()" href="#" role="button" aria-expanded="false">{{ user.name }}</a>
+              <a class="nav-link fs-5 me-md-4 text-center dropdown-toggle poppins-medium" data-bs-toggle="dropdown"
+                *ngIf="isOwner()" href="#" role="button" aria-expanded="false">{{ owner.name }}</a>
+              <a class="nav-link fs-5 me-md-4 text-center dropdown-toggle poppins-medium" data-bs-toggle="dropdown"
+                *ngIf="!isOwner() && !isUser()" href="#" role="button" aria-expanded="false">Login</a>
               <ul class="dropdown-menu">
+
                 <!-- Show login/register links if not logged in -->
                 <ng-container *ngIf="!isLoggedIn(); else loggedInTemplate">
                   <li>
-                    <a
-                      routerLink="/login/owner"
-                      class="fs-6 dropdown-item poppins-medium"
-                      >Owner</a
-                    >
+                    <a routerLink="/login/owner" class="fs-6 dropdown-item poppins-medium">Owner</a>
                   </li>
                   <li>
-                    <a
-                      routerLink="/login"
-                      class="dropdown-item fs-6 poppins-medium"
-                      >Travelers</a
-                    >
+                    <a routerLink="/login" class="dropdown-item fs-6 poppins-medium">Travelers</a>
                   </li>
                 </ng-container>
 
                 <!-- Show logout button if logged in -->
                 <ng-template #loggedInTemplate>
-                  <li>
-                    <button
-                      class="dropdown-item poppins-medium fs-6"
-                      (click)="onLogout()"
-                    >
-                      Logout
-                    </button>
-                  </li>
+
 
                   <!-- User-specific actions -->
                   <li *ngIf="isUser()">
-                    <button
-                      class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
-                      (click)="navigateToPayments()"
-                    >
-                      Payments
-                    </button>
-                  </li>
-                  <li *ngIf="isUser()">
-                    <button
-                      class="btn btn-danger dropdown-item poppins-medium fs-6"
-                      [routerLink]="['/edit-user-profile', id]"
-                    >
-                      Edit Profile
-                    </button>
-                  </li>
-                  <li
-                    class="d-flex justify-content-center fs-5 dropdown-item poppins-medium fs-6"
-                    *ngIf="isUser()"
-                  >
-                    Name : {{ user.name }}
-                  </li>
-                  <!-- Owner-specific actions -->
-                  <li *ngIf="isOwner()">
-                    <button
-                      class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
-                      (click)="navigateToOwnerProfile()"
-                    >
+                    <button class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
+                      (click)="navigateToPayments()">
                       Profile
                     </button>
                   </li>
-                  <li *ngIf="isOwner()">
-                    <button
-                      class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
-                      (click)="navigateToOwnerProfile()"
-                      (click)="navigateToEditProfile()"
-                    >
-                      Edit Profile
-                    </button>
-                  </li>
 
-                  <li
-                    class="d-flex justify-content-center fs-5 dropdown-item poppins-medium fs-6"
-                    *ngIf="isOwner()"
-                  >
-                    Name : {{ owner.name }}
+
+                  <!-- Owner-specific actions -->
+                  <li *ngIf="isOwner()">
+                    <button class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
+                      (click)="navigateToOwnerProfile()">
+                      Profile
+                    </button>
+
                   </li>
-                  <li
-                    class="d-flex justify-content-center fs-6 dropdown-item poppins-medium fs-6"
-                    *ngIf="isOwner()"
-                  >
-                    ${{ owner.wallet }}
+                  <li>
+                    <button class="dropdown-item poppins-medium fs-6" (click)="onLogout()">
+                      Logout
+                    </button>
                   </li>
                 </ng-template>
               </ul>
