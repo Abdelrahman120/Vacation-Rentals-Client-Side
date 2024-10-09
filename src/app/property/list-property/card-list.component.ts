@@ -28,6 +28,10 @@ export class CardListComponent implements OnInit {
     private filterService: FilterService
   ) { }
 
+  trackByPropertyId(index: number, property: any): number {
+    return property.id;
+  }
+
   ngOnInit(): void {
     this.filterService.filteredProperties$.subscribe((filteredProperties) => {
       this.isFilteringByCategory = true;
@@ -81,7 +85,7 @@ export class CardListComponent implements OnInit {
     this.loading = true;
     this.propertyService.getProperties().subscribe(
       (res: any) => {
-        this.properties = res.data;
+        this.properties = Array.isArray(res.data) ? res.data : [];
         this.loading = false;
         this.isFilteringByCategory = false;
       },
