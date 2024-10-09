@@ -3,13 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { OwnerAuthService } from '../Services/owner-auth.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.css'],
   imports: [
-    FormsModule
+    FormsModule,NgIf
   ],
   standalone: true,
 

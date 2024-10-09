@@ -6,6 +6,8 @@ import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { FavoriteService } from '../../Services/favorite.service';
 import { TestService } from '../../test.service';
 import * as L from 'leaflet';
+import { UserInfo } from '../../user-info';
+import { UserInfoService } from '../../service/user-info.service';
 
 @Component({
   selector: 'app-view-property',
@@ -29,13 +31,15 @@ export class ViewPropertyComponent implements OnInit {
     review: '',
   };
   totalPrice: number = 0;
-
+ user:string = '';
   constructor(
     private propertyService: PropertyService,
     private route: ActivatedRoute,
     private router: Router,
     private favouriteService: FavoriteService,
-    private testService: TestService
+    private testService: TestService , 
+    private userInfoService: UserInfoService
+
   ) { }
 
   ngOnInit(): void {
@@ -73,8 +77,24 @@ export class ViewPropertyComponent implements OnInit {
     });
 
     this.loadReviews();
+    const token = localStorage.getItem('token'); // Retrieve token from localStorage
+    if (token) {
+      this.getUserInfo(token); // Call method to get user info
+    }
   }
+  userDetails: UserInfo['data'] | null = null; 
 
+  getUserInfo(token: string): void {
+    this.userInfoService.getUserInfo(token).subscribe(
+      (response) => {
+        this.userDetails = response.data;
+        console.log('User Details:', this.userDetails.id);
+      },
+      error => {
+        console.error('Error fetching user info:', error);
+      }
+    );
+  }
   calculateTotalPrice() {
     const start = new Date(this.start_date);
     const end = new Date(this.end_date);

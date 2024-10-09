@@ -40,7 +40,7 @@ export class LoginUserComponent {
         localStorage.setItem('userEmail', email);
         localStorage.setItem('userId', userId);
         localStorage.setItem('role', 'user');
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/properties']);
       }
     });
   }
@@ -74,12 +74,12 @@ export class LoginUserComponent {
         this.router.navigate(['/properties']);
       },
       (error) => {
-        if (error.status === 401) {
+        if (error.message == 'user cradentials not match') {
           this.errorMessage = 'Invalid email or password';
-          console.log(this.errorMessage);
+          console.log(error);
 
         } else {
-          this.errorMessage = 'An unexpected error occurred';
+          this.errorMessage = 'Invalid email or password';
         }
       }
     );

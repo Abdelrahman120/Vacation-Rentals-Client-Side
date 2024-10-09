@@ -60,6 +60,22 @@
                 >Contact</a
               >
             </li>
+            <li *ngIf="isOwner()">
+              <a
+                class="nav-link fs-5 me-md-4 poppins-medium"
+                [routerLink]="['/add-property']"
+              >
+                Add Property
+              </a>
+            </li>
+            <li *ngIf="isOwner()">
+              <a
+                class="nav-link fs-5 me-md-4 poppins-medium"
+                [routerLink]="['/add-property']"
+              >
+                Add Property
+              </a>
+            </li>
             <li class="nav-item">
               <a
                 routerLink="favorite"
@@ -127,15 +143,14 @@
                       Edit Profile
                     </button>
                   </li>
-
+                  <li
+                    class="d-flex justify-content-center fs-5 dropdown-item poppins-medium fs-6"
+                    *ngIf="isUser()"
+                  >
+                    Name : {{ user.name }}
+                  </li>
                   <!-- Owner-specific actions -->
                   <li *ngIf="isOwner()">
-                    <button
-                      class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
-                      (click)="navigateToOwnerProfile()"
-                    >
-                      Profile
-                    </button>
                     <button
                       class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
                       (click)="navigateToOwnerProfile()"
@@ -152,10 +167,6 @@
                       Edit Profile
                     </button>
                   </li>
-                  <li
-                    class="d-flex justify-content-center fs-5 dropdown-item poppins-medium fs-6"
-                    *ngIf="isOwner()"
-                  ></li>
 
                   <li
                     class="d-flex justify-content-center fs-5 dropdown-item poppins-medium fs-6"

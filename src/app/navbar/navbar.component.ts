@@ -16,7 +16,7 @@ import { UserProfileService } from '../Services/user-profile.service';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-  id: number = 0;
+  id: string = '';
   owner: any = {};
   user: any;
   faHeart = faHeart;
@@ -25,7 +25,7 @@ export class NavbarComponent {
   private loadUserId(): void {
     const userId = localStorage.getItem('userId');
     if (userId) {
-      this.id = +userId;
+      this.id = userId;
     }
   }
 

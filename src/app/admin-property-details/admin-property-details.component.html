@@ -57,19 +57,25 @@
     </ol>
   </div>
 
-  <!-- <div class="comments-section bg-light mt-4 rounded p-4 shadow">
+  <div class="comments-section bg-light mt-4 rounded p-4 shadow">
       <h4>Comments</h4>
-      <div *ngIf="property.comments.length > 0; else noComments">
-        <div *ngFor="let comment of property.comments" class="comment d-flex justify-content-between">
-          <div>
-            <strong>{{ comment.user.name }}:</strong>
-            <p>{{ comment.body }}</p>
+      <div *ngIf="reviews.length > 0; else noComments">
+        <div *ngFor="let comment of reviews" class="comment ">
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex">
+            
+            <h5>{{comment.user.name}}</h5>
+            <p class="ms-3 mt-2 text-dark">{{comment.created_at | date:'mediumDate'}}</p>
           </div>
-          <button (click)="deleteComment(comment.id)" class="btn btn-link text-danger">Delete</button>
+            <button (click)="deleteComment(comment.id)" class="btn btn-danger ">Delete</button>
+
+          </div>
+          <p class="text-dark">{{comment.review}}</p>
+
         </div>
       </div>
       <ng-template #noComments>
-        <p>No comments yet.</p>
+        <p class="text-dark">No comments yet.</p>
       </ng-template>
-    </div> -->
+    </div>
 </div>
