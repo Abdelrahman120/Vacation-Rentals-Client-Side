@@ -27,6 +27,11 @@
             <li class="nav-item">
               <a class="nav-link fs-5 me-md-4 poppins-medium" href="#help">Contact</a>
             </li>
+            <li *ngIf="isOwner()">
+              <a class="nav-link fs-5 me-md-4 poppins-medium" [routerLink]="['/add-property']">
+                Add Property
+              </a>
+            </li>
             <li class="nav-item">
               <a routerLink="favorite" class="nav-link d-flex roboto-regular align-items-center me-3">
                 <fa-icon [icon]="faHeart" class="fs-3"></fa-icon>
@@ -70,7 +75,9 @@
                       Edit Profile
                     </button>
                   </li>
-
+                  <li class="d-flex justify-content-center fs-5 dropdown-item poppins-medium fs-6" *ngIf="isUser()">
+                    Name : {{ user.name }}
+                  </li>
                   <!-- Owner-specific actions -->
                   <li *ngIf="isOwner()">
                     <button class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
