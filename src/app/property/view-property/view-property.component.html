@@ -229,7 +229,15 @@
             <p class="ms-3 mt">{{review.created_at | date:'mediumDate'}}</p>
           </div>
           <div>
-            <button class="btn btn-danger btn-sm" (click)="deleteReview(review.id)">Delete</button>
+            @if(review.user.id == userDetails?.id ) {
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="deleteReview(review.id)"
+            >
+              Delete
+            </button>
+
+            }
           </div>
         </div>
         <p>{{review.review}}</p>

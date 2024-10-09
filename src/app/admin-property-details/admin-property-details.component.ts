@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AdminServicesService } from '../services/admin-services.service';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
+import { FavoriteService } from '../Services/favorite.service';
 
 @Component({
   selector: 'app-admin-property-details',
@@ -15,10 +16,16 @@ export class AdminPropertyDetailsComponent {
   property: any = {
     status: '', // Initialize status to handle the binding
   };  
-  constructor(private route: ActivatedRoute, private propertyService: AdminServicesService,private router : Router) {}
+  constructor(private route: ActivatedRoute, private propertyService: AdminServicesService,private router : Router
+    ,    private favouriteService: FavoriteService
+
+  ) {}
+  reviews : any[] = [];
   ngOnInit(): void {
     const propertyId = this.route.snapshot.paramMap.get('id');
     this.loadPropertyDetails(propertyId);
+    this.loadReviews(propertyId);
+
   }
 
   loadPropertyDetails(id: string | null): void {
@@ -38,6 +45,7 @@ export class AdminPropertyDetailsComponent {
       this.propertyService.updatePropertyStatus(this.property.id, formData).subscribe({
         next: (response) => {
           console.log('Status updated successfully:', response);
+
           // Optionally show a success message to the user
           this.router.navigate(['/send-email', this.property.owner_id]); // Adjust the route path as needed
         },
@@ -50,7 +58,19 @@ export class AdminPropertyDetailsComponent {
       console.log('Form is invalid');
       // Handle form invalid case (e.g., show a message to the user)
     }}
+    loadReviews(propertyId: string | null) {
+      this.favouriteService.getReviews(Number(propertyId)).subscribe(
+        (response) => {
+          this.reviews = response;
+        },
+        (error) => {
+          console.error('Error fetching reviews:', error);
+        }
+      );
+    }
   deleteComment(id: number): void {
-   
+    this.favouriteService.deleteReview(id).subscribe(() => {
+      this.reviews = this.reviews.filter((review) => review.id !== id);
+    });
   }
 }
