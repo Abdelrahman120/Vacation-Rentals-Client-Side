@@ -29,7 +29,7 @@ export class InformationComponent {
   constructor(
     private fb: FormBuilder,
     private PropertyService: PropertyService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.propertyForm = this.fb.group({
@@ -54,8 +54,6 @@ export class InformationComponent {
 
   onLocationInput() {
     const query = this.propertyForm.get('location')?.value;
-
-    console.log('log:', query);
     if (query && query.length > 2) {
       this.PropertyService.getSuggestions(query).subscribe(
         (res: any) => {
@@ -79,19 +77,16 @@ export class InformationComponent {
   submitInfo() {
     if (this.propertyForm.invalid) {
       this.propertyForm.markAllAsTouched();
-      console.log('All fields are required');
       return;
     }
 
     const formData = new FormData();
     Object.keys(this.propertyForm.value).forEach((key) => {
       formData.append(key, this.propertyForm.get(key)?.value);
-      console.log(formData);
     });
 
     this.PropertyService.addProperty(formData).subscribe(
       (response: any) => {
-        console.log('Property added successfully:', response);
         const propertyId = response.data['id'];
         this.PropertyService.setPropertyId(propertyId);
         this.formSubmitted.emit();

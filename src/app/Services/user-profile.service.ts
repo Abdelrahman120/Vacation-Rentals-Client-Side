@@ -10,7 +10,7 @@ export class UserProfileService {
   private apiUrl = 'http://localhost:8000/api/users';
   private Url = 'http://localhost:8000/api/user';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getUser(id: number): Observable<any> {
     const headers = new HttpHeaders({
@@ -23,8 +23,19 @@ export class UserProfileService {
   }
 
   getUserDetails(): Observable<any> {
+    // const headers = new HttpHeaders({
+    //   Authorization: `Bearer ${localStorage.getItem('token')}`,
+    // });
+    // return this.http.get(this.Url, { headers });
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('No token found. Please log in.');
+      return new Observable(observer => {
+        observer.error({ message: 'Unauthenticated. No token found.' });
+      });
+    }
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${token}`
     });
     return this.http.get(this.Url, { headers });
   }

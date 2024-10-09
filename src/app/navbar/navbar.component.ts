@@ -63,7 +63,12 @@ export class NavbarComponent {
   loadUserDetails() {
     this.userService.getUserDetails().subscribe((data) => {
       this.user = data;
-      console.log('data' + data);
+    }, (error) => {
+      console.log("error loading user details:", error);
+      if (error.status === 401) {
+        console.log("please login first.");
+      }
+
     });
   }
 
