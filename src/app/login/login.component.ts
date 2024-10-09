@@ -45,11 +45,12 @@ export class LoginComponent {
         }
       },
       (error) => {
-        if (error.status === 401) {
+        if (error.message == 'user cradentials not match') {
           this.errorMessage = 'Invalid email or password';
-          console.log(this.errorMessage);
+          console.log(error);
+
         } else {
-          this.errorMessage = 'An unexpected error occurred';
+          this.errorMessage = 'Invalid email or password';
         }
       }
     );
