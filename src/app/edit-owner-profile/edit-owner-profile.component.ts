@@ -29,6 +29,7 @@ export class EditOwnerProfileComponent implements OnInit {
     this.registerForm = this.fb.group({
       company_name: ['', Validators.required],
       name: ['', Validators.required],
+      owner_image: [''],
       address: ['', Validators.required],
       phone: ['', [Validators.required, Validators.minLength(11)]],
       description: ['', Validators.required],
@@ -61,6 +62,7 @@ export class EditOwnerProfileComponent implements OnInit {
           email: data.email,
           phone: data.phone,
           address: data.address,
+          owner_image: data.owner_image,
           company_name: data.company_name,
           gender: data.gender,
           description: data.description,
