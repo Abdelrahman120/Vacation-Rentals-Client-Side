@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
+import { Favorite } from '../User/favorite';
 @Injectable({
   providedIn: 'root'
 })
@@ -29,7 +30,7 @@ export class FavoriteService {
   const headers = new HttpHeaders({
     Authorization: `Bearer ${token}`
   });
-    return this.http.get(`${this.apiUrl}/favorites`,{ headers });
+    return this.http.get<Favorite>(`${this.apiUrl}/favorites`,{ headers });
   }
  
   getReviews(property_id: number): Observable<any> {
