@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit {
     private route: Router,
     private propertyService: PropertyService,
     private activatedRoute: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.dates = { startDate: null, endDate: null };
@@ -54,11 +54,7 @@ export class SearchComponent implements OnInit {
         };
       }
 
-      if (
-        this.input.location &&
-        this.input.startDate &&
-        this.input.endDate
-      ) {
+      if (this.input.location && this.input.startDate && this.input.endDate) {
         this.propertyService
           .getPropertyByDate(this.input)
           .subscribe((res: any) => {
@@ -67,7 +63,6 @@ export class SearchComponent implements OnInit {
       }
     });
   }
-
 
   getLocationSuggestions() {
     if (this.location.length > 0) {
@@ -86,11 +81,9 @@ export class SearchComponent implements OnInit {
     }
   }
 
-
   selectSuggestion(suggestion: any) {
     this.location = suggestion.display_name;
     this.suggestions = [];
-    this.search();
   }
 
   search() {
@@ -135,15 +128,6 @@ export class SearchComponent implements OnInit {
     });
   }
 
-
-  onDateChange() {
-    this.search();
-  }
-
-  onSleepsChange() {
-    this.search();
-  }
-
   fetchData() {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.input = {
@@ -163,21 +147,16 @@ export class SearchComponent implements OnInit {
           (res: any) => {
             if (res && res.data) {
               this.result = res.data;
-              console.log("API Search result:", this.result);
-
+              console.log('API Search result:', this.result);
             } else {
               console.error('No data received from API');
             }
           },
           (error) => {
-            console.error("Error fetching property data:", error);
+            console.error('Error fetching property data:', error);
           }
         );
-
       }
     });
   }
-
 }
-
-

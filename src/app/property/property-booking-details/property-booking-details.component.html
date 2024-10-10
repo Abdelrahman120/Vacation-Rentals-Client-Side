@@ -1,0 +1,34 @@
+<ng-container
+  *ngIf="
+    property && property.bookings && property.bookings.length > 0;
+    else noBookings
+  "
+>
+  <h5>Bookings</h5>
+  <ul class="mt-5">
+    <li *ngFor="let booking of property.bookings" class="mb-2">
+      <div class="booking-details p-2 border rounded text-dark">
+        <strong>User:</strong> {{ booking.user_name }}<br />
+        <strong>Email:</strong> {{ booking.user_email }}<br />
+        <strong>Phone:</strong> {{ booking.user_phone }}<br />
+        <strong>Booking date:</strong>
+        {{ booking.book_date | date : "yyyy-MM-dd" }}<br />
+        <strong>Check-in:</strong> {{ booking.start_date }}<br />
+        <strong>Check-out:</strong> {{ booking.end_date }}<br />
+        <strong>Status:</strong>
+        {{ checkBookStatus(booking.start_date, booking.end_date) }}<br />
+        <strong>Booking ends in:</strong> {{ getTimeLeft(booking.end_date)
+        }}<br />
+      </div>
+    </li>
+  </ul>
+  <hr />
+</ng-container>
+
+<ng-template #noBookings>
+  <div
+    class="no-bookings d-flex justify-content-center align-items-center h-100"
+  >
+    <h1 class="text-dark">No bookings available for this property.</h1>
+  </div>
+</ng-template>
