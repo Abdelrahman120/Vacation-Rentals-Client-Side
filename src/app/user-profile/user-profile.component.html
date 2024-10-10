@@ -17,20 +17,22 @@
             <div class="col-md-9">
               <div class="ms-3">
                 <div>
-                  <h4 class="card-title mb-2">Biography</h4>
-
+                  <div class="d-flex">
+                    <h4 class="card-title mb-2">Biography</h4>
+                    <div class="d-flex  ms-auto">
+                      <a [routerLink]="['/edit-user-profile', id]"
+                        class="btn btn-secondary d-flex roboto-regular align-items-center me-3">
+                        <span class="ms-1 fs-5">Edit Profile</span>
+                      </a>
+                    </div>
+                  </div>
                   <p class="profile-email text-dark">Email : {{ user.email }}</p>
                   <p class="profile-phone text-dark"> Phone :{{ user.phone }}</p>
                   <p class="profile-address text-dark">Address: {{ user.address }}</p>
                   <p class="profile-gender text-dark">Gender: {{ user.gender }}</p>
                 </div>
-                <div class="d-flex align-items-center mx-auto ">
-                  <a [routerLink]="['/edit-user-profile', id]"
-                    class="btn btn-secondary d-flex roboto-regular align-items-center me-3">
-
-                    <span class="ms-1 fs-5">Edit Profile</span>
-                  </a>
-                  <a [routerLink]="['/favorite']" class="btn btn-info d-flex roboto-regular align-items-center me-3 ">
+                <div class=" d-flex ms-auto mb-2">
+                  <a [routerLink]="['/favorite']" class="btn btn-light d-flex roboto-regular align-items-center me-3 ">
                     <fa-icon [icon]="faHeart" class="fs-3"></fa-icon>
                     <span class="ms-1 fs-5">Favorite</span>
                   </a>
