@@ -2,17 +2,18 @@ import { Component } from '@angular/core';
 import { OwnerInfo } from '../owner-info';
 import { OwnerInfoService } from '../services/owner-info.service';
 import { OwnerProfileService } from '../Services/owner-profile.service';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-property-booking-details',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './property-booking-details.component.html',
   styleUrl: './property-booking-details.component.css',
 })
 export class PropertyBookingDetailsComponent {
   ownerInfo: OwnerInfo | null = null;
-  constructor(private ownerInfoService: OwnerInfoService) {}
+  constructor(private ownerInfoService: OwnerInfoService) { }
   ngOnInit(): void {
     this.loadOwnerInfo();
   }

@@ -39,7 +39,7 @@ import { AdminPropertyDetailsComponent } from './admin-property-details/admin-pr
 import { SendEmailComponent } from './send-email/send-email.component';
 import { OwnerDetailsComponent } from './owner-details/owner-details.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { MyPropertiesComponent } from './my-properties/my-properties.component';
+import { MyPropertiesComponent } from './property/my-properties/my-properties.component';
 import { PropertyBookingDetailsComponent } from './property-booking-details/property-booking-details.component';
 import { UserBookingsComponent } from './user-bookings/user-bookings.component';
 
