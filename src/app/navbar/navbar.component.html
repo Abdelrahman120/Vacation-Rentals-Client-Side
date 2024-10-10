@@ -32,14 +32,15 @@
               </a>
             </li>
             <li>
-              <a *ngIf="isOwner()" class="nav-link me-md-4 poppins-medium fs-5" routerLinkActive="text-dark"
-                [routerLinkActiveOptions]="{exact: true}" routerLink="/add-property">
+              <a *ngIf="isOwner() && !isAdmin()" class="nav-link me-md-4 poppins-medium fs-5"
+                routerLinkActive="text-dark" [routerLinkActiveOptions]="{exact: true}" routerLink="/add-property">
                 Add Property
               </a>
             </li>
             <li>
-              <a *ngIf="isOwner()" class="nav-link me-md-4 poppins-medium fs-5" routerLink="/my-properties"
-                routerLinkActive="text-dark poppins-bold" [routerLinkActiveOptions]="{exact: true}">
+              <a *ngIf="isOwner()  && !isAdmin()" class="nav-link me-md-4 poppins-medium fs-5"
+                routerLink="/my-properties" routerLinkActive="text-dark poppins-bold"
+                [routerLinkActiveOptions]="{exact: true}">
                 My Properties
               </a>
             </li>
@@ -48,9 +49,27 @@
               <a class="nav-link fs-5 me-md-4 text-center dropdown-toggle poppins-medium" data-bs-toggle="dropdown"
                 *ngIf="isUser()" href="#" role="button" aria-expanded="false">{{ user.name }}</a>
               <a class="nav-link fs-5 me-md-4 text-center dropdown-toggle poppins-medium" data-bs-toggle="dropdown"
-                *ngIf="isOwner()" href="#" role="button" aria-expanded="false">{{ owner.name }}</a>
+                *ngIf="isOwner()  && !isAdmin()" href="#" role="button" aria-expanded="false">{{ owner.name }}</a>
               <a class="nav-link fs-5 me-md-4 text-center dropdown-toggle poppins-medium" data-bs-toggle="dropdown"
                 *ngIf="!isOwner() && !isUser()" href="#" role="button" aria-expanded="false">Login</a>
+              <div class="nav-item dropdown no-arrow" *ngIf="isAdmin() ">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small fw-bold fs-4">Admin</span>
+                  <!-- <div>
+                    <img class="img-profile rounded-circle" src="imgg/undraw_profile.svg" alt="Profile Picture">
+                  </div> -->
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+
+                  <a (click)="onLogout()" class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                  </a>
+
+                </div>
+              </div>
+
               <ul class="dropdown-menu">
 
                 <!-- Show login/register links if not logged in -->

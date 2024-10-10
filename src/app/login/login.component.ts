@@ -34,7 +34,6 @@ export class LoginComponent {
       (response: any) => {
         console.log('ddd', response);
         if (response) {
-          // localStorage.setItem('id', response.id);
           const role = localStorage.getItem('role');
 
           if (role === 'admin') {
@@ -48,7 +47,6 @@ export class LoginComponent {
         if (error.message == 'user cradentials not match') {
           this.errorMessage = 'Invalid email or password';
           console.log(error);
-
         } else {
           this.errorMessage = 'Invalid email or password';
         }
