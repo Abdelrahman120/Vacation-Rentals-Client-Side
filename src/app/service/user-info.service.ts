@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserInfo } from '../user-info';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserInfoService {
+  BACKEND_API = environment.BACKEND_URL;
 
-  private url = 'http://127.0.0.1:8000/api/user/payments';
+  private url = `${this.BACKEND_API}/api/user/payments`;
 
   constructor(private http: HttpClient) { }
 
