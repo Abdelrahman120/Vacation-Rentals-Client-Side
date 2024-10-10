@@ -79,6 +79,10 @@ export class NavbarComponent {
     return !!localStorage.getItem('owner_auth_token');
   }
 
+  isAdmin(): boolean {
+    return localStorage.getItem('role') === 'admin';
+  }
+
   isUser(): boolean {
     return !!localStorage.getItem('token') && !this.isOwner();
   }

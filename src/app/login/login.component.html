@@ -34,12 +34,6 @@
 
         <span class="text-danger">password is required</span>
         }
-
-        @if(password.hasError('minlength')) {
-
-        <span class="text-danger">password must be at least 8 characters</span>
-        }
-
       </div>
       }
       <div *ngIf="errorMessage" class="alert alert-danger">
@@ -63,9 +57,9 @@
         Login with Google
       </button>
     </div>
-    
-  
-    <div id="passwordHelpBlock" >
+
+
+    <div id="passwordHelpBlock">
       <a routerLink="/register/owner" class="text-dark fs-5">Sign Up</a>
     </div>
   </form>
