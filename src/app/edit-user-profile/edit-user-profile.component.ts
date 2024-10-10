@@ -103,7 +103,7 @@ export class EditUserProfileComponent implements OnInit {
     this.userProfileService.updateUser(this.userId, userData).subscribe(
       (response) => {
         console.log('Update successful', response);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/user/payments']);
       },
       (error) => {
         this.validationErrors = error.error.errors || {};
