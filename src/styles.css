@@ -187,7 +187,7 @@
 
 :root {
   --accent-color: #1aa090;
-  --secondary-color: #E2EAF1;
+  --secondary-color: #e2eaf1;
   --dark-color: #f0f0f0;
   --grey-color: #83898f;
   --body-text-color: #868686;
@@ -463,7 +463,7 @@ button.btn.btn-primary.btn-lg.billboard-search {
   --bs-card-border-width: none;
   --bs-card-border-radius: none;
   --bs-card-inner-border-radius: none;
-  background-color: transparent !important;
+  /* background-color: transparent !important; */
 }
 
 .card-title {
