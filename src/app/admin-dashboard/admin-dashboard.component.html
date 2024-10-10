@@ -1,106 +1,103 @@
-
-
 <div id="page-top" [style]="{'margin-top': '50px'}">
   <div>
     <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
-     <app-sidebar></app-sidebar>
+      <app-sidebar></app-sidebar>
       <!-- End of Sidebar -->
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
           <!-- Topbar -->
-          <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-            <!-- Sidebar Toggle (Topbar) -->
+          <!-- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" title="Toggle Sidebar">
               <i class="fa fa-bars"></i>
             </button>
-            <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
-              <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small fw-bold fs-4">Admin</span>
                   <img class="img-profile rounded-circle" src="imgg/undraw_profile.svg" alt="Profile Picture">
                 </a>
-                <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 
-                  <a  class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <a (click)="onOwnerLogout()" class="dropdown-item" href="#" data-toggle="modal"
+                    data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                   </a>
-                  <button class="btn btn-primart" (click)="onOwnerLogout()">Logout</button>
 
                 </div>
               </li>
             </ul>
 
-          </nav>
-          <div class="container-fluid shadow-lg p-4 bg-primary rounded d-flex flex-column justify-content-center" style="width: 50%;">
-              <h3 class="text-light text-center">Admin Dashboard</h3>
-            
+          </nav> -->
+          <div class="container-fluid  mt-5 shadow-lg p-4 bg-primary rounded d-flex flex-column justify-content-center"
+            style="width: 50%;">
+            <h3 class="text-light text-center">Admin Dashboard</h3>
+
+          </div>
+          <div class="mt-4 d-flex justify-content-center container">
+            <div class="row g-5">
+              <div class="col-sm-12  col-md-3">
+                <div class="card">
+                  <img
+                    src="https://img.freepik.com/premium-vector/man-traveler-walking-city-carry-suitcase_80802-316.jpg"
+                    class="card-img-top img-fluid" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">All Traveler</h5>
+                    <p class="text-black">all Traveleres in the system</p>
+                    <a routerLink="/admin/users" class="btn btn-primary">Show</a>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-sm-12 col-md-3">
+                <div class="card">
+                  <img src="/images/group.png" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">All Category</h5>
+                    <p class="text-black">all Categories in the system</p>
+                    <a routerLink="/category" class="btn btn-primary">Show</a>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-sm-12 col-md-3 ">
+                <div class="card">
+                  <img src="/images/owners.jpeg" class="card-img-top img-fluid" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">All Owners</h5>
+                    <p class="text-black">all owners in the system</p>
+                    <a routerLink="/admin/owners" class="btn btn-primary">Show</a>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-sm-12 col-md-3 ">
+                <div class="card">
+                  <img src="/images/billboard.png" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">All Properties</h5>
+                    <p class="text-black">all properties in the system</p>
+                    <a routerLink="/admin/properties" class="btn btn-primary">Show</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="mt-4 d-flex justify-content-center container" >
-          <div class="row g-5">
-            <div class="col-sm-12  col-md-3">
-              <div class="card" >
-                <img  src="https://img.freepik.com/premium-vector/man-traveler-walking-city-carry-suitcase_80802-316.jpg" class="card-img-top img-fluid" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">All Traveler</h5>
-                  <p class="text-black">all Traveleres in the system</p>
-                  <a routerLink="/admin/users" class="btn btn-primary">Show</a>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-sm-12 col-md-3">
-              <div class="card" >
-                <img  src="/images/group.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">All Category</h5>
-                  <p class="text-black">all Categories in the system</p>
-                  <a routerLink="/category" class="btn btn-primary">Show</a>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-sm-12 col-md-3 ">
-              <div class="card" >
-                <img src="https://lh3.googleusercontent.com/proxy/3xgraJcWg1BTOL3NPDgBgHActoCLKrvel9CucFnMYsHLs7nX_Qg-BmQmbUS0YjuuA0FTF2P20fruPsWRuETswHOVuL90RKOuKTUf_K3PgJ9bg48" class="card-img-top img-fluid" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">All Owners</h5>
-                  <p class="text-black">all owners in the system</p>
-                  <a routerLink="/admin/owners" class="btn btn-primary">Show</a>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-sm-12 col-md-3 ">
-              <div class="card" >
-                <img src="/images/billboard.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">All Properties</h5>
-                  <p class="text-black">all properties in the system</p>
-                  <a routerLink="/admin/properties" class="btn btn-primary">Show</a>
-                </div>
-              </div>
-
-            </div>
-        </div>
-    </div>
       </div>
     </div>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+
+
   </div>
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-
-
-</div>
 </div>

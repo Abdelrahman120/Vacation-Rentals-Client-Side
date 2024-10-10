@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { OwnerInfo } from '../owner-info';
 import { OwnerInfoService } from '../services/owner-info.service';
-import { OwnerProfileService } from '../Services/owner-profile.service';
 
 @Component({
   selector: 'app-property-booking-details',
