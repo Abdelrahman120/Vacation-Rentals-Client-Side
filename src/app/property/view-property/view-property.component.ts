@@ -31,16 +31,15 @@ export class ViewPropertyComponent implements OnInit {
     review: '',
   };
   totalPrice: number = 0;
- user:string = '';
+  user: string = '';
   constructor(
     private propertyService: PropertyService,
     private route: ActivatedRoute,
     private router: Router,
     private favouriteService: FavoriteService,
-    private testService: TestService , 
+    private testService: TestService,
     private userInfoService: UserInfoService
-
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.propertyId = this.route.snapshot.paramMap.get('id') || '';
@@ -58,7 +57,7 @@ export class ViewPropertyComponent implements OnInit {
       console.log('Sleeps:', this.sleeps);
 
       this.propertyService
-        .viewProperty(Number(this.propertyId))
+        .viewProperty(this.propertyId)
         .subscribe((res: any) => {
           this.propertyDetails = res.data;
           console.log('Property Details:', this.propertyDetails);
@@ -82,7 +81,7 @@ export class ViewPropertyComponent implements OnInit {
       this.getUserInfo(token); // Call method to get user info
     }
   }
-  userDetails: UserInfo['data'] | null = null; 
+  userDetails: UserInfo['data'] | null = null;
 
   getUserInfo(token: string): void {
     this.userInfoService.getUserInfo(token).subscribe(
@@ -90,7 +89,7 @@ export class ViewPropertyComponent implements OnInit {
         this.userDetails = response.data;
         console.log('User Details:', this.userDetails.id);
       },
-      error => {
+      (error) => {
         console.error('Error fetching user info:', error);
       }
     );

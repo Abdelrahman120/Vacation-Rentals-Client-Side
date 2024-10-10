@@ -1,7 +1,6 @@
-
-
-
-<form class="input-group p-2 rounded-pill shadow-lg bg-white w-100 mx-auto d-flex justify-content-between align-items-center">
+<form
+  class="input-group p-2 rounded-pill shadow-lg bg-white w-100 mx-auto d-flex justify-content-between align-items-center"
+>
   <!-- Location Input -->
   <div class="position-relative w-25">
     <div class="input-group">
@@ -16,13 +15,21 @@
         name="location"
         [(ngModel)]="location"
         (input)="getLocationSuggestions()"
-        style="border-top-left-radius: 20px; border-bottom-left-radius: 20px;"
+        style="border-top-left-radius: 20px; border-bottom-left-radius: 20px"
       />
     </div>
 
     <!-- Suggestions List -->
-    <ul *ngIf="suggestions.length > 0" class="list-group position-absolute w-100 shadow" style="z-index: 1000; max-height: 200px; overflow-y: auto;">
-      <li *ngFor="let suggestion of suggestions" class="list-group-item list-group-item-action" (click)="selectSuggestion(suggestion)">
+    <ul
+      *ngIf="suggestions.length > 0"
+      class="list-group position-absolute w-100 shadow"
+      style="z-index: 1000; max-height: 200px; overflow-y: auto"
+    >
+      <li
+        *ngFor="let suggestion of suggestions"
+        class="list-group-item list-group-item-action"
+        (click)="selectSuggestion(suggestion)"
+      >
         {{ suggestion.display_name }}
       </li>
     </ul>
@@ -40,7 +47,6 @@
         ngxDaterangepickerBootstrap
         name="dates"
         [(ngModel)]="dates"
-        (ngModelChange)="onDateChange()"
       />
     </div>
   </div>
@@ -58,13 +64,17 @@
         aria-label="Sleeps"
         name="sleeps"
         [(ngModel)]="sleeps"
-        (ngModelChange)="onSleepsChange()"
       />
     </div>
   </div>
 
   <!-- Search Button -->
   <div class="ms-3">
-    <input class="btn btn-primary rounded-pill px-4" value="Search" type="button" (click)="search()" />
+    <input
+      class="btn btn-primary rounded-pill px-4"
+      value="Search"
+      type="button"
+      (click)="search()"
+    />
   </div>
 </form>

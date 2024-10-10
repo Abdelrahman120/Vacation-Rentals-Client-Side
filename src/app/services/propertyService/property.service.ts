@@ -6,13 +6,17 @@ import {
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Category } from '../../interface/propertyRelated';
+import { Property } from '../../owner-info';
+
+export interface PropertyResponse {
+  data: Property;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class PropertyService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   BACKEND_API = environment.BACKEND_URL;
   private propertyId: string = '';
 
@@ -64,8 +68,10 @@ export class PropertyService {
   deleteProperty(id: number) {
     return this.http.delete(`${this.BACKEND_API}/api/property/${id}`);
   }
-  viewProperty(id: number) {
-    return this.http.get(`${this.BACKEND_API}/api/property/${id}`);
+  viewProperty(id: string): Observable<PropertyResponse> {
+    return this.http.get<PropertyResponse>(
+      `${this.BACKEND_API}/api/property/${id}`
+    );
   }
   getAmenities() {
     return this.http.get(`${this.BACKEND_API}/api/amenities`);
@@ -118,7 +124,7 @@ export class PropertyService {
     return this.http.put(
       `${this.BACKEND_API}/api/property/${id}/update-images`,
       // { formData },
-      { formData, _method: "PUT" },
+      { formData, _method: 'PUT' },
       { headers }
     );
   }
@@ -129,7 +135,9 @@ export class PropertyService {
   }
 
   getPropertiesByCategory(categoryId: number) {
-    return this.http.post(`${this.BACKEND_API}/api/properties/category`, { category: categoryId })
+    return this.http.post(`${this.BACKEND_API}/api/properties/category`, {
+      category: categoryId,
+    });
   }
 
   getSuggestions(query: string) {
