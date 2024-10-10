@@ -20,9 +20,8 @@ export class OwnerProfileService {
 
   getOwnerDetails(): Observable<any> {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('owner_auth_token')}`  // Assuming the token is stored in localStorage
+      Authorization: `Bearer ${localStorage.getItem('owner_auth_token')}`,
     });
-    // console.log('Using token:', `${localStorage.getItem('owner_auth_token')}`); // Debug the token value
     return this.http.get<any>(this.Url, { headers });
   }
 

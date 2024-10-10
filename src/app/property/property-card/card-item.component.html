@@ -1,59 +1,39 @@
 <div class="card border-0 position-relative my-2">
-  <div
-    id="carouselExampleControls{{ property.id }}"
-    class="carousel slide mb-1"
-    data-bs-ride="carousel"
-  >
+  <div id="carouselExampleControls{{ property.id }}" class="carousel slide mb-1" data-bs-ride="carousel">
     <div class="carousel-inner">
       <a (click)="goToDetails(property.id)">
         <ng-container *ngFor="let item of property.images; let i = index">
           <div class="carousel-item" [class.active]="i === 0">
-            <img
-              [src]="'http://127.0.0.1:8000' + item.image"
-              class="d-block w-100 img-fluid"
-              [alt]="item.name || 'Property Image'"
-              loading="lazy"
-            />
+            <img [src]="'http://127.0.0.1:8000' + item.image" class="d-block w-100 img-fluid"
+              [alt]="item.name || 'Property Image'" loading="lazy" />
           </div>
         </ng-container>
       </a>
     </div>
 
-    <button
-      class="carousel-control-prev"
-      type="button"
-      [attr.data-bs-target]="'#carouselExampleControls' + property.id"
-      data-bs-slide="prev"
-    >
+    <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExampleControls' + property.id"
+      data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
 
-    <button
-      class="carousel-control-next"
-      type="button"
-      [attr.data-bs-target]="'#carouselExampleControls' + property.id"
-      data-bs-slide="next"
-    >
+    <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExampleControls' + property.id"
+      data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
 
   <!-- </a> -->
-  <fa-icon
-    [icon]="faHeart"
-    class="fs-4 position-absolute rounded-3 text-light hover-effect z-3"
-    style="top: 2%; right: 4%"
-    (click)="toggleFavorites(property.id)"
-  >
+  <fa-icon [icon]="faHeart" class="fs-4 position-absolute rounded-3 text-light hover-effect z-3"
+    style="top: 2%; right: 4%" (click)="toggleFavorites(property.id)">
     {{ isFavorite(property.id) ? "Remove from Favorites" : "Add to Favorites" }}
-    ></fa-icon
-  >
+    ></fa-icon>
   <div class="card-body p-1">
+    <i class="fas fa-map-marker-alt text-dark me-1"></i>
     <span class="text-dark" style="font-size: 14px">{{
       property.location
-    }}</span>
+      }}</span>
     <p class="roboto-bold text-dark" style="bottom: 2rem; font-size: 1rem">
       {{ property.name }}
     </p>

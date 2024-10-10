@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import { OwnerAuthService } from '../Services/owner-auth.service';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { LoginUserService } from '../services/login-user.service';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { CommonModule } from '@angular/common';
 import { OwnerProfileService } from '../Services/owner-profile.service';
 import { UserProfileService } from '../Services/user-profile.service';
@@ -11,36 +8,21 @@ import { UserProfileService } from '../Services/user-profile.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, FontAwesomeModule, CommonModule],
+  imports: [RouterLink, CommonModule, RouterLinkActive],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-  id: string = '';
   owner: any = {};
   user: any;
-  faHeart = faHeart;
   ownerId: number | null = null;
-
-  private loadUserId(): void {
-    const userId = localStorage.getItem('userId');
-    if (userId) {
-      this.id = userId;
-    }
-  }
 
   constructor(
     private authService: LoginUserService,
     private router: Router,
     private ownerService: OwnerProfileService,
     private userService: UserProfileService
-  ) {
-    this.loadUserId();
-    const storedOwnerId = localStorage.getItem('ownerid');
-    if (storedOwnerId) {
-      this.ownerId = +storedOwnerId;
-    }
-  }
+  ) {}
 
   ngOnInit(): void {
     this.loadOwnerDetails();
@@ -61,15 +43,17 @@ export class NavbarComponent {
   }
 
   loadUserDetails() {
-    this.userService.getUserDetails().subscribe((data) => {
-      this.user = data;
-    }, (error) => {
-      console.log("error loading user details:", error);
-      if (error.status === 401) {
-        console.log("please login first.");
+    this.userService.getUserDetails().subscribe(
+      (data) => {
+        this.user = data;
+      },
+      (error) => {
+        console.log('error loading user details:', error);
+        if (error.status === 401) {
+          console.log('please login first.');
+        }
       }
-
-    });
+    );
   }
 
   loadOwnerDetails() {
@@ -130,12 +114,5 @@ export class NavbarComponent {
   }
   navigateToOwnerProfile(): void {
     this.router.navigate(['owner/info']);
-  }
-  navigateToEditProfile() {
-    if (this.ownerId !== null) {
-      this.router.navigate(['/edit-Owner-profile', this.ownerId]);
-    } else {
-      console.error('Owner ID not found');
-    }
   }
 }
