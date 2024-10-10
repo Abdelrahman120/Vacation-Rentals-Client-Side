@@ -34,6 +34,8 @@ export class UserProfileComponent {
         this.payments = this.user.payments;
         this.favorites = this.user.favorites;
         this.reviews = this.user.reviews;
+        console.log(this.reviews);
+        
       },
       (error) => {
         console.error('Error fetching user details', error);
