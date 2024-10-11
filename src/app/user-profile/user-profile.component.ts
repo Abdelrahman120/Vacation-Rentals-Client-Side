@@ -13,10 +13,7 @@ import { RouterLink } from '@angular/router';
 })
 export class UserProfileComponent {
   isUser() {
-    if (localStorage.getItem('userId') == undefined) {
-      return true;
-    }
-    return false;
+    return localStorage.getItem('userId') !== 'undefined';
   }
   private loadUserId(): void {
     const userId = localStorage.getItem('userId');
