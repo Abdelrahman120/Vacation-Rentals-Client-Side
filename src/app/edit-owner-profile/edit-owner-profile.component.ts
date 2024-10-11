@@ -54,12 +54,14 @@ export class EditOwnerProfileComponent implements OnInit {
 
   loadOwnerData(): void {
     const ownerId = this.getOwnerIdFromLocalStorage();
+    const namegoogle = localStorage.getItem('userName');
+    const emailgoogle = localStorage.getItem('userEmail');
     this.ownerProfileService.getOwner(ownerId).subscribe(
       (data) => {
         console.log('Owner data:', data);
         this.registerForm.patchValue({
-          name: data.name,
-          email: data.email,
+          name: data.name || namegoogle,
+          email: data.email || emailgoogle,
           phone: data.phone,
           address: data.address,
           owner_image: data.owner_image,
