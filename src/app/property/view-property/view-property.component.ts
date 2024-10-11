@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PropertyService } from '../../services/propertyService/property.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { DatePipe, NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf, DecimalPipe } from '@angular/common';
 import { FavoriteService } from '../../Services/favorite.service';
 import { TestService } from '../../test.service';
 import * as L from 'leaflet';
@@ -15,7 +15,16 @@ import {
 @Component({
   selector: 'app-view-property',
   standalone: true,
-  imports: [FormsModule, DatePipe, NgFor, NgIf, RouterLink , NgxDaterangepickerBootstrapDirective ,NgxDaterangepickerBootstrapComponent ],
+  imports: [
+    FormsModule,
+    DatePipe,
+    NgFor,
+    NgIf,
+    DecimalPipe,
+    RouterLink,
+    NgxDaterangepickerBootstrapDirective,
+    NgxDaterangepickerBootstrapComponent,
+  ],
   templateUrl: './view-property.component.html',
   styleUrls: ['./view-property.component.css'],
 })
@@ -51,11 +60,14 @@ export class ViewPropertyComponent implements OnInit {
     const propertyId = this.route.snapshot.params['id'];
 
     this.route.queryParams.subscribe((params) => {
-      this.dates.startDate = params['start_date'] ? new Date(params['start_date']) : null;
-      this.dates.endDate = params['end_date'] ? new Date(params['end_date']) : null;
+      this.dates.startDate = params['start_date']
+        ? new Date(params['start_date'])
+        : null;
+      this.dates.endDate = params['end_date']
+        ? new Date(params['end_date'])
+        : null;
       this.city = params['city'] || '';
       this.sleeps = +params['sleeps'] || 0;
-
 
       this.propertyService
         .viewProperty(this.propertyId)
@@ -77,9 +89,9 @@ export class ViewPropertyComponent implements OnInit {
     });
 
     this.loadReviews();
-    const token = localStorage.getItem('token'); 
+    const token = localStorage.getItem('token');
     if (token) {
-      this.getUserInfo(token); 
+      this.getUserInfo(token);
     }
   }
   userDetails: UserInfo['data'] | null = null;
@@ -100,38 +112,35 @@ export class ViewPropertyComponent implements OnInit {
     const end = new Date(this.dates.endDate);
 
     if (isNaN(start.getTime()) || isNaN(end.getTime())) {
-        console.error('Invalid dates');
-        this.totalPrice = 0;
-        return;
+      console.error('Invalid dates');
+      this.totalPrice = 0;
+      return;
     }
 
     const timeDifference = end.getTime() - start.getTime();
     const numberOfDays = timeDifference / (1000 * 3600 * 24);
 
     if (numberOfDays > 0 && this.propertyDetails.night_rate) {
-        this.totalPrice = numberOfDays * this.propertyDetails.night_rate;
+      this.totalPrice = numberOfDays * this.propertyDetails.night_rate;
     } else {
-        this.totalPrice = 0;
+      this.totalPrice = 0;
     }
 
     console.log(`Number of days: ${numberOfDays}`);
     console.log(`Total price: ${this.totalPrice}`);
-}
-
+  }
 
   onDateChange(): void {
     if (this.dates.startDate && this.dates.endDate) {
-        this.start_date = this.dates.startDate.format('YYYY-MM-DD'); 
-        this.end_date = this.dates.endDate.format('YYYY-MM-DD'); 
+      this.start_date = this.dates.startDate.format('yyyy-MM-dd');
+      this.end_date = this.dates.endDate.format('yyyy-MM-dd');
     } else {
-        this.start_date = '';
-        this.end_date = '';
+      this.start_date = '';
+      this.end_date = '';
     }
 
     this.calculateTotalPrice();
-}
-
-
+  }
 
   navigateToPayment() {
     this.router.navigate(['/payment'], {
