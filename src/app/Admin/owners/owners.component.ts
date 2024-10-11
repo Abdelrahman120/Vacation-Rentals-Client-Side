@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
 import { AdminServicesService } from '../../services/admin-services.service';
 import { CommonModule } from '@angular/common';
-import { SidebarComponent } from "../../admin-dashboard/sidebar/sidebar.component";
+import { SidebarComponent } from '../../admin-dashboard/sidebar/sidebar.component';
 import { RouterLink } from '@angular/router';
+import { TruncatePipe } from '../../pipes/truncate.pipe';
 
 @Component({
   selector: 'app-owners',
   standalone: true,
-  imports: [CommonModule, SidebarComponent , RouterLink],
+  imports: [CommonModule, SidebarComponent, RouterLink, TruncatePipe],
   templateUrl: './owners.component.html',
-  styleUrl: './owners.component.css'
+  styleUrl: './owners.component.css',
 })
 export class OwnersComponent {
   owners: any[] = [];
-  constructor(private adminServices : AdminServicesService) { }
+  constructor(private adminServices: AdminServicesService) {}
 
   ngOnInit(): void {
     this.getOwners();
