@@ -12,6 +12,12 @@ import { RouterLink } from '@angular/router';
   styleUrl: './user-profile.component.css',
 })
 export class UserProfileComponent {
+  isUser() {
+    if (localStorage.getItem('userId') == undefined) {
+      return true;
+    }
+    return false;
+  }
   private loadUserId(): void {
     const userId = localStorage.getItem('userId');
     if (userId) {
@@ -31,11 +37,11 @@ export class UserProfileComponent {
     this.userService.getUserWithPayments().subscribe(
       (response) => {
         this.user = response.data;
+        console.log(this.user.image);
         this.payments = this.user.payments;
         this.favorites = this.user.favorites;
         this.reviews = this.user.reviews;
         console.log(this.reviews);
-        
       },
       (error) => {
         console.error('Error fetching user details', error);

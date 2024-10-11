@@ -1,18 +1,10 @@
-.container{
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    background-color: white;
-    opacity: 1;
-    border-radius: 25px;
+.container {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: white;
+  opacity: 1;
+  border-radius: 25px;
 }
 
-.log{
-    background-image: url("/2.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-  
-    padding-top: 20px;
-}
-.btn{
-    border-radius: 25px;
+.btn {
+  border-radius: 25px;
 }
