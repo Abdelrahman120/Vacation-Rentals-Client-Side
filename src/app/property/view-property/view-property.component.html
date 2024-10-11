@@ -112,14 +112,15 @@
             [(ngModel)]="end_date"
             (change)="calculateTotalPrice()"
           /> -->
+
           <input
-          class="form-control border-0 ps-2 rounded-pill"
-          placeholder="Dates"
-          ngxDaterangepickerBootstrap
-          name="dates"
-          [(ngModel)]="dates"
-          (ngModelChange)="onDateChange()"
-        />
+            class="text-center border-0 p-2 rounded-pill form-control bg-light"
+            placeholder="Dates"
+            ngxDaterangepickerBootstrap
+            name="dates"
+            [(ngModel)]="dates"
+            (ngModelChange)="onDateChange()"
+          />
         </div>
         <div class="mt-3">
           <label for="guests" class="form-label">Number of guests</label>
@@ -133,7 +134,7 @@
         <div class="mt-4">
           <div class="d-flex justify-content-between total">
             <span>Total</span>
-            <span>${{ totalPrice }}</span>
+            <span>${{ totalPrice | number : "1.0-2" }}</span>
           </div>
         </div>
         <div class="mt-4">
