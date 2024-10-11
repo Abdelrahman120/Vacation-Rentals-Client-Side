@@ -2,17 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { PropertyService } from '../../services/propertyService/property.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { DatePipe, NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf, DecimalPipe } from '@angular/common';
 import { FavoriteService } from '../../Services/favorite.service';
 import { TestService } from '../../test.service';
 import * as L from 'leaflet';
 import { UserInfo } from '../../user-info';
 import { UserInfoService } from '../../service/user-info.service';
-
+import {
+  NgxDaterangepickerBootstrapDirective,
+  NgxDaterangepickerBootstrapComponent,
+} from 'ngx-daterangepicker-bootstrap';
 @Component({
   selector: 'app-view-property',
   standalone: true,
-  imports: [FormsModule, DatePipe, NgFor, NgIf, RouterLink],
+  imports: [
+    FormsModule,
+    DatePipe,
+    NgFor,
+    NgIf,
+    DecimalPipe,
+    RouterLink,
+    NgxDaterangepickerBootstrapDirective,
+    NgxDaterangepickerBootstrapComponent,
+  ],
   templateUrl: './view-property.component.html',
   styleUrls: ['./view-property.component.css'],
 })
@@ -32,6 +44,8 @@ export class ViewPropertyComponent implements OnInit {
   };
   totalPrice: number = 0;
   user: string = '';
+  dates: any = { startDate: null, endDate: null };
+
   constructor(
     private propertyService: PropertyService,
     private route: ActivatedRoute,
@@ -46,15 +60,14 @@ export class ViewPropertyComponent implements OnInit {
     const propertyId = this.route.snapshot.params['id'];
 
     this.route.queryParams.subscribe((params) => {
-      this.start_date = params['start_date'] || '';
-      this.end_date = params['end_date'] || '';
+      this.dates.startDate = params['start_date']
+        ? new Date(params['start_date'])
+        : null;
+      this.dates.endDate = params['end_date']
+        ? new Date(params['end_date'])
+        : null;
       this.city = params['city'] || '';
       this.sleeps = +params['sleeps'] || 0;
-
-      console.log('Start Date:', this.start_date);
-      console.log('End Date:', this.end_date);
-      console.log('City:', this.city);
-      console.log('Sleeps:', this.sleeps);
 
       this.propertyService
         .viewProperty(this.propertyId)
@@ -76,9 +89,9 @@ export class ViewPropertyComponent implements OnInit {
     });
 
     this.loadReviews();
-    const token = localStorage.getItem('token'); // Retrieve token from localStorage
+    const token = localStorage.getItem('token');
     if (token) {
-      this.getUserInfo(token); // Call method to get user info
+      this.getUserInfo(token);
     }
   }
   userDetails: UserInfo['data'] | null = null;
@@ -95,8 +108,8 @@ export class ViewPropertyComponent implements OnInit {
     );
   }
   calculateTotalPrice() {
-    const start = new Date(this.start_date);
-    const end = new Date(this.end_date);
+    const start = new Date(this.dates.startDate);
+    const end = new Date(this.dates.endDate);
 
     if (isNaN(start.getTime()) || isNaN(end.getTime())) {
       console.error('Invalid dates');
@@ -105,7 +118,6 @@ export class ViewPropertyComponent implements OnInit {
     }
 
     const timeDifference = end.getTime() - start.getTime();
-
     const numberOfDays = timeDifference / (1000 * 3600 * 24);
 
     if (numberOfDays > 0 && this.propertyDetails.night_rate) {
@@ -116,6 +128,18 @@ export class ViewPropertyComponent implements OnInit {
 
     console.log(`Number of days: ${numberOfDays}`);
     console.log(`Total price: ${this.totalPrice}`);
+  }
+
+  onDateChange(): void {
+    if (this.dates.startDate && this.dates.endDate) {
+      this.start_date = this.dates.startDate.format('yyyy-MM-dd');
+      this.end_date = this.dates.endDate.format('yyyy-MM-dd');
+    } else {
+      this.start_date = '';
+      this.end_date = '';
+    }
+
+    this.calculateTotalPrice();
   }
 
   navigateToPayment() {

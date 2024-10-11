@@ -3,7 +3,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { LoginUserService } from '../services/login-user.service';
 import { CommonModule } from '@angular/common';
 import { OwnerProfileService } from '../Services/owner-profile.service';
-import { UserProfileService } from '../services/user-profile.service';
+import { UserProfileService } from '../Services/user-profile.service';
 
 @Component({
   selector: 'app-navbar',
