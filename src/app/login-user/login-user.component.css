@@ -13,7 +13,7 @@
     padding-top: 50px;
 }
 
-/* Google Login Button Styles */
+
 .btn-google {
     background-color: #4285F4; 
     color: #ffffff; 
@@ -26,13 +26,18 @@
     transition: background-color 0.3s ease; 
   }
   
-  /* Button hover effect */
   .btn-google:hover {
     background-color: #357ae8; 
   }
   
-  /* Font Awesome icon style */
+ 
   .btn-google fa-icon {
     font-size: 1.2rem; 
+  }
+  .container {
+    border-radius: 25px;
+  }
+  .btn{
+    border-radius: 25px;
   }
   
