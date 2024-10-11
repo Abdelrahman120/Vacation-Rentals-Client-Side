@@ -29,27 +29,20 @@ export class PropertyService {
   }
 
   getPropertyByDate(input?: any) {
-    let checkDest = Object.keys(input.location);
-    let checkSleeps = Object.keys(input.sleeps);
-    let sleepsLength = checkSleeps.length;
-    let destLength = checkDest.length;
+    const { location, sleeps, startDate, endDate } = input;
+    const hasLocation = location && Object.keys(location).length > 0;
+    const hasSleeps = sleeps && Object.keys(sleeps).length > 0;
 
-    if (input.startDate && input.endDate && destLength > 0) {
-      console.log(input.startDate);
+    if (startDate && endDate && hasLocation) {
+      let url = `${this.BACKEND_API}/api/properties/search?location=${location}&start_date=${startDate}&end_date=${endDate}`;
 
-      return this.http.get(
-        `${this.BACKEND_API}/api/properties/search?location=${input.location}&start_date=${input.startDate}&end_date=${input.endDate}`
-      );
-    } else if (
-      input.startDate &&
-      input.endDate &&
-      destLength > 0 &&
-      sleepsLength > 0
-    ) {
-      return this.http.get(
-        `${this.BACKEND_API}/api/properties/search?location=${input.location}&start_date=${input.startDate}&end_date=${input.endDate}&sleeps=${input.sleeps}`
-      );
+      if (hasSleeps) {
+        url += `&sleeps=${sleeps}`;
+      }
+
+      return this.http.get(url);
     }
+
     return this.http.get(`${this.BACKEND_API}/api/property`);
   }
 

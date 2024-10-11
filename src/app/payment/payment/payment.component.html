@@ -1,77 +1,105 @@
 <div class="mt-5">ss</div>
 <div class="container mt-5">
   <div class="mt-5">
-    <h1 class="text-center">Payment Page</h1>  
-    <form class="w-50 mx-auto" (ngSubmit)="makePayment(product_name, price, quantity, start_date, end_date , user_id , propertyId )">      
-      <div class="mb-2"> 
+    <h1 class="text-center">Payment Page</h1>
+    <form
+      class="w-50 mx-auto"
+      (ngSubmit)="
+        makePayment(
+          product_name,
+          price,
+          quantity,
+          dates.startDate,
+          dates.endDate,
+          user_id,
+          propertyId
+        )
+      "
+    >
+      <div class="mb-2">
         <label for="product_name" class="form-label fs-4">Property Name</label>
-        <input class="form-control" type="text" [(ngModel)]="product_name"  name="product_name" required />
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="product_name"
+          name="product_name"
+          required
+        />
       </div>
       <div class="mb-2">
         <label for="price" class="form-label fs-4">Price</label>
-        <input type="number" [(ngModel)]="price"  class="form-control" name="price" required disabled/>
+        <input
+          type="number"
+          [(ngModel)]="price"
+          class="form-control"
+          name="price"
+          required
+          disabled
+        />
       </div>
-      <input type="hidden" name="propertyId" [(ngModel)] = "propertyId">
-      <div class="mb-2">
+      <input type="hidden" name="propertyId" [(ngModel)]="propertyId" />
+      <div class="my-4">
         <div class="mb-2">
-          <label for="start_date" class="form-label fs-4">Start Date</label>
-          <input type="date" [(ngModel)]="start_date" class="form-control" name="start_date" required />
+          <input
+            class="text-center border-0 p-2 rounded-pill form-control bg-light"
+            placeholder="Dates"
+            ngxDaterangepickerBootstrap
+            name="dates"
+            [(ngModel)]="formattedDates"
+            disabled
+          />
         </div>
-        
-        <div class="mb-2">
-          <label for="end_date" class="form-label fs-4">End Date</label>
-          <input type="date" [(ngModel)]="end_date" class="form-control" name="end_date" required />
-        </div>
-        
       </div>
-      
-      <input type="hidden" [(ngModel)]="quantity" placeholder="Quantity" name="quantity" />
-      <button type="submit" class="btn btn-primary rounded mt-1">Pay with Stripe</button>
+
+      <input
+        type="hidden"
+        [(ngModel)]="quantity"
+        placeholder="Quantity"
+        name="quantity"
+      />
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-outline-success rounded fs-4 mt-1">
+          Pay with Stripe
+        </button>
+      </div>
     </form>
   </div>
-   <!-- rules Section  -->
-   <div class="mt-5">
+  <!-- rules Section  -->
+  <div class="mt-5">
     <h2>House Rules</h2>
-    <div class="d-flex flex-column  ">
-        <span>Check out before 11:00 AM</span>
-        <div class="d-flex mt-3">
-            <div class="me-3">
-                <i class="fa-solid fa-child fs-4 me-2"></i>
-                <span>
-                    Children allowed: ages 0-17 
-                </span>
-            </div>
-
-            <div>
-                <i class="fa-solid fa-gift fs-4 me-2"></i>
-                <span>
-                    Events allowed: family gatherings, birthday parties, weddings
-                </span>
-            </div>
-            <div>
-
-            </div>
-
+    <div class="d-flex flex-column">
+      <span>Check out before 11:00 AM</span>
+      <div class="d-flex mt-3">
+        <div class="me-3">
+          <i class="fa-solid fa-child fs-4 me-2"></i>
+          <span> Children allowed: ages 0-17 </span>
         </div>
-        <div class="mt-3">
-            <p>
-                Pets are not allowed on the furniture !!! No Smoking inside. No loaded firearms at the cabin and campsite.
-                Since the cabin is located in the forest highly recommended to meet host while checking for your own safety.
-                Open fires only with permission of the host.
-            </p>
-        </div>
-    </div>
- </div>
 
-       <!-- damage section -->
-       <div class="mt-5">
-        <h2>Damages</h2>
+        <div>
+          <i class="fa-solid fa-gift fs-4 me-2"></i>
+          <span>
+            Events allowed: family gatherings, birthday parties, weddings
+          </span>
+        </div>
+        <div></div>
+      </div>
+      <div class="mt-3">
         <p>
-            You will be responsible for any damage to the rental property caused by you or your party during your stay.
+          Pets are not allowed on the furniture !!! No Smoking inside. No loaded
+          firearms at the cabin and campsite. Since the cabin is located in the
+          forest highly recommended to meet host while checking for your own
+          safety. Open fires only with permission of the host.
         </p>
       </div>
+    </div>
+  </div>
 
-  
+  <!-- damage section -->
+  <div class="mt-5">
+    <h2>Damages</h2>
+    <p>
+      You will be responsible for any damage to the rental property caused by
+      you or your party during your stay.
+    </p>
+  </div>
 </div>
-
-  

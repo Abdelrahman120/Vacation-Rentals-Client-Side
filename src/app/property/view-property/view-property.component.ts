@@ -12,6 +12,7 @@ import {
   NgxDaterangepickerBootstrapDirective,
   NgxDaterangepickerBootstrapComponent,
 } from 'ngx-daterangepicker-bootstrap';
+
 @Component({
   selector: 'app-view-property',
   standalone: true,
@@ -54,6 +55,7 @@ export class ViewPropertyComponent implements OnInit {
     private testService: TestService,
     private userInfoService: UserInfoService
   ) {}
+  userDetails: UserInfo['data'] | null = null;
 
   ngOnInit(): void {
     this.propertyId = this.route.snapshot.paramMap.get('id') || '';
@@ -94,7 +96,6 @@ export class ViewPropertyComponent implements OnInit {
       this.getUserInfo(token);
     }
   }
-  userDetails: UserInfo['data'] | null = null;
 
   getUserInfo(token: string): void {
     this.userInfoService.getUserInfo(token).subscribe(
@@ -107,6 +108,7 @@ export class ViewPropertyComponent implements OnInit {
       }
     );
   }
+
   calculateTotalPrice() {
     const start = new Date(this.dates.startDate);
     const end = new Date(this.dates.endDate);
@@ -132,8 +134,8 @@ export class ViewPropertyComponent implements OnInit {
 
   onDateChange(): void {
     if (this.dates.startDate && this.dates.endDate) {
-      this.start_date = this.dates.startDate.format('yyyy-MM-dd');
-      this.end_date = this.dates.endDate.format('yyyy-MM-dd');
+      this.start_date = this.dates.startDate.toISOString().split('T')[0];
+      this.end_date = this.dates.endDate.toISOString().split('T')[0];
     } else {
       this.start_date = '';
       this.end_date = '';
@@ -143,13 +145,18 @@ export class ViewPropertyComponent implements OnInit {
   }
 
   navigateToPayment() {
+    const startDateToSend =
+      this.start_date || this.dates.startDate.toISOString().split('T')[0];
+    const endDateToSend =
+      this.end_date || this.dates.endDate.toISOString().split('T')[0];
+
     this.router.navigate(['/payment'], {
       queryParams: {
         product_name: this.propertyDetails.name,
         sleeps: this.sleeps,
         total_price: this.totalPrice,
-        start_date: this.start_date,
-        end_date: this.end_date,
+        start_date: startDateToSend,
+        end_date: endDateToSend,
         propertyId: this.propertyId,
       },
     });
@@ -165,6 +172,7 @@ export class ViewPropertyComponent implements OnInit {
       }
     );
   }
+
   deleteReview(id: number) {
     this.favouriteService.deleteReview(id).subscribe(() => {
       this.reviews = this.reviews.filter((review) => review.id !== id);
