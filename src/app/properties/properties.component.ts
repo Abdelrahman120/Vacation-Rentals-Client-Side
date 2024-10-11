@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AdminServicesService } from '../services/admin-services.service';
-import { SidebarComponent } from "../admin-dashboard/sidebar/sidebar.component";
+import { SidebarComponent } from '../admin-dashboard/sidebar/sidebar.component';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
+import { TruncatePipe } from '../pipes/truncate.pipe';
 
 @Component({
   selector: 'app-properties',
   standalone: true,
-  imports: [RouterLink, SidebarComponent,NgIf,NgFor , DatePipe],
+  imports: [RouterLink, SidebarComponent, NgIf, NgFor, DatePipe, TruncatePipe],
   templateUrl: './properties.component.html',
-  styleUrl: './properties.component.css'
+  styleUrl: './properties.component.css',
 })
 export class PropertiesComponent {
   properties: any[] = [];
   successMessage: string = '';
-  constructor (private adminServices : AdminServicesService ) {}
+  constructor(private adminServices: AdminServicesService) {}
 
   ngOnInit(): void {
     this.loadProperties();
@@ -26,7 +27,7 @@ export class PropertiesComponent {
         this.properties = response.data; // Adjust this based on your API structure
         console.log('Properties loaded:', this.properties);
       },
-      error => {
+      (error) => {
         console.error('Error loading properties:', error);
       }
     );
@@ -35,5 +36,4 @@ export class PropertiesComponent {
   filterProperties(status?: string): void {
     this.loadProperties(status);
   }
-
 }

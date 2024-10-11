@@ -463,7 +463,7 @@ button.btn.btn-primary.btn-lg.billboard-search {
   --bs-card-border-width: none;
   --bs-card-border-radius: none;
   --bs-card-inner-border-radius: none;
-  /* background-color: transparent !important; */
+  background-color: transparent !important;
 }
 
 .card-title {

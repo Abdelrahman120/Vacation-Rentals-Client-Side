@@ -1,22 +1,49 @@
-<div class="container w-50 border bg-white rounded mx-auto p-5" style="margin-top: 150px;">
-  <form (ngSubmit)="onLogin() ">
-    <h1 class="text-center my-2 text-dark">Login</h1>
+<div
+  class="container w-50 border bg-white rounded mx-auto p-5"
+  style="margin-top: 150px"
+>
+  <form (ngSubmit)="onLogin()">
+    <h1 class="text-center my-2 text-dark">Traveler Login</h1>
     <div class="form-input col-lg-12 my-4">
-      <label for="exampleInputEmail1" class="form-label fs-6 text-uppercase fw-bold text-black">Email
-        Address</label>
-      <input type="email" id="exampleInputEmail1" placeholder="Email" class="form-control ps-3" [(ngModel)]="email"
-        name="email" required required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+      <label
+        for="exampleInputEmail1"
+        class="form-label fs-6 text-uppercase fw-bold text-black"
+        >Email Address</label
+      >
+      <input
+        type="email"
+        id="exampleInputEmail1"
+        placeholder="Email"
+        class="form-control ps-3"
+        [(ngModel)]="email"
+        name="email"
+        required
+        required
+        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+      />
       @if (validationErrors.email) {
       <span class="text-danger">
-        {{ validationErrors.email}}
+        {{ validationErrors.email }}
       </span>
       }
-
     </div>
     <div class="form-input col-lg-12 my-4">
-      <label for="inputPassword1" class="form-label  fs-6 text-uppercase fw-bold text-black">Password</label>
-      <input type="password" id="inputPassword1" placeholder="Password" name="password" class="form-control ps-3"
-        aria-describedby="passwordHelpBlock" [(ngModel)]="password" name="password" required />
+      <label
+        for="inputPassword1"
+        class="form-label fs-6 text-uppercase fw-bold text-black"
+        >Password</label
+      >
+      <input
+        type="password"
+        id="inputPassword1"
+        placeholder="Password"
+        name="password"
+        class="form-control ps-3"
+        aria-describedby="passwordHelpBlock"
+        [(ngModel)]="password"
+        name="password"
+        required
+      />
       @if (validationErrors.password) {
       <span class="text-danger">
         {{ validationErrors.password }}
@@ -26,24 +53,31 @@
         {{ errorMessage }}
       </div>
       <div id="passwordHelpBlock" class="form-text text-end">
-        <a routerLink="/forget_password_user" class="password text-dark">Forgot Password ?</a>
+        <a routerLink="/forget_password_user" class="password text-dark"
+          >Forgot Password ?</a
+        >
       </div>
-
-
-
     </div>
 
     <div class="d-grid my-3">
-      <button type="submit" class="btn btn-primary btn-lg  text-uppercase btn-rounded-none fs-6 ">Log
-        In</button>
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg text-uppercase btn-rounded-none fs-6"
+      >
+        Log In
+      </button>
     </div>
     <div class="text-center d-flex justify-content-center">
-      <button type="button" class="btn btn-google mt-3" (click)="loginWithGoogle()">
+      <button
+        type="button"
+        class="btn btn-google mt-3"
+        (click)="loginWithGoogle()"
+      >
         <fa-icon [icon]="['fab', 'google']" class="me-2"></fa-icon>
         Login with Google
       </button>
     </div>
-    
+
     <div id="passwordHelpBlock">
       <a routerLink="/register/user" class="text-dark fs-5">Sign Up</a>
     </div>
