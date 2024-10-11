@@ -12,10 +12,9 @@
 
         <thead class="thead-dark w-100">
           <tr class="text-center align-middle">
-            <th>ID</th>
+            <th>Number</th>
             <th>Name</th>
-            <th>edit</th>
-            <th>delete</th>
+            <th>Action</th>
           </tr>
         </thead>
 
@@ -26,9 +25,9 @@
             <td class="text-center align-middle">{{item.id}}</td>
             <td class="text-center align-middle">{{item.name}}</td>
 
-            <td class="text-center align-middle"><a class="btn btn-primary"
-                [routerLink]="['/edit-category', item.id]">Edit</a></td>
-            <td class="text-center align-middle"><button class="btn btn-danger"
+            <td class="text-center align-middle"><a class="btn me-2 btn-primary"
+                [routerLink]="['/edit-category', item.id]">Edit</a>
+            <button class="btn btn-danger"
                 (click)="confirmDelete(item.id)">Delete</button></td>
           </tr>
 

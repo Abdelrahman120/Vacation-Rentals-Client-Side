@@ -1,34 +1,46 @@
-<ng-container
-  *ngIf="
-    property && property.bookings && property.bookings.length > 0;
-    else noBookings
-  "
->
-  <h5>Bookings</h5>
-  <ul class="mt-5">
-    <li *ngFor="let booking of property.bookings" class="mb-2">
-      <div class="booking-details p-2 border rounded text-dark">
-        <strong>User:</strong> {{ booking.user_name }}<br />
-        <strong>Email:</strong> {{ booking.user_email }}<br />
-        <strong>Phone:</strong> {{ booking.user_phone }}<br />
-        <strong>Booking date:</strong>
-        {{ booking.book_date | date : "yyyy-MM-dd" }}<br />
-        <strong>Check-in:</strong> {{ booking.start_date }}<br />
-        <strong>Check-out:</strong> {{ booking.end_date }}<br />
-        <strong>Status:</strong>
-        {{ checkBookStatus(booking.start_date, booking.end_date) }}<br />
-        <strong>Booking ends in:</strong> {{ getTimeLeft(booking.end_date)
-        }}<br />
-      </div>
-    </li>
-  </ul>
-  <hr />
-</ng-container>
-
-<ng-template #noBookings>
-  <div
-    class="no-bookings d-flex justify-content-center align-items-center h-100"
+<div class="container mt-5">
+  <ng-container
+    *ngIf="property && property.bookings && property.bookings.length > 0; else noBookings"
   >
-    <h1 class="text-dark">No bookings available for this property.</h1>
+  <div class="mt-5">
+    <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
+      <br>
+      Bookings</h5>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Booking Date</th>
+          <th>Check-in</th>
+          <th>Check-out</th>
+          <th>Status</th>
+          <th>Booking Ends In</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of property.bookings">
+          <td>{{ booking.user_name }}</td>
+          <td>{{ booking.user_email }}</td>
+          <td>{{ booking.user_phone }}</td>
+          <td>{{ booking.book_date | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ booking.start_date }}</td>
+          <td>{{ booking.end_date }}</td>
+          <td>{{ checkBookStatus(booking.start_date, booking.end_date) }}</td>
+          <td>{{ getTimeLeft(booking.end_date) }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</ng-template>
+ 
+  </ng-container>
+
+  <ng-template #noBookings>
+    <div
+      class="no-bookings d-flex justify-content-center align-items-center h-100"
+    >
+      <h1 class="text-dark">No bookings available for this property.</h1>
+    </div>
+  </ng-template>
+</div>
