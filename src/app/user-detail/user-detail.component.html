@@ -1,78 +1,110 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
-      <div *ngIf="loading" class="text-center">
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
+<div class="container w-50 border bg-white mx-auto p-5 w-75" style="margin-top: 100px;">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body pb-0">
+          <div class="row align-items-center">
+            <div class="col-md-3">
+              <div class="text-center border-end">
+                @if(user.phone>5) {
+                <img [src]="'http://localhost:8000/images/posts/' + user.image" alt="Profile Image"
+                  class="img-fluid avatar-xxl rounded-circle" *ngIf="user.image; else defaultImage" />
+                }@else {
+                <img src="{{user.image}}" alt="Profile Image" class="img-fluid avatar-xxl rounded-circle"
+                  *ngIf="user.image; else defaultImage" />
+                }
+                <ng-template #defaultImage>
+                  <img src="assets/default-avatar.png" alt="Default Image" class="profile-image" />
+                </ng-template>
+                <h4 class="text-primary font-size-20 mt-3 mb-2">{{ user.name }}</h4>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="ms-3">
+                <div>
+                  <div class="d-flex">
+                    <h4 class="card-title mb-2">User Info</h4>
+                  </div>
+                  <p class="profile-email text-dark"><strong>Email:</strong> {{ user.email }}</p>
+                  @if(user.phone){
+                  <p class="profile-phone text-dark"> <strong>Phone:</strong> {{ user.phone }}</p>
+                  }
+                  @if(user.address){
+                  <p class="profile-address text-dark"><strong>Address:</strong> {{ user.address }}</p>
+                  }
+                  <p class="profile-gender text-dark"><strong>Gender:</strong> {{ user.gender }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div *ngIf="!loading && user">
-        <!-- User Details -->
-        <div class="card p-4 shadow-sm border-0 mb-4">
-          <div class="text-center">
-            <img
-              [src]="'http://localhost:8000/images/posts/' + user.image"
-              alt="Owner Image"
-            />
-            <h3>{{ user.name }}</h3>
-          </div>
-          <p><strong>Email:</strong> {{ user.email }}</p>
-          <p><strong>Phone:</strong> {{ user.phone }}</p>
-          <p><strong>Address:</strong> {{ user.address }}</p>
-          <p><strong>Gender:</strong> {{ user.gender }}</p>
+      <div>
+        <div *ngIf="user.payments.length > 0; else noPayments" class="row g-5 " id="all-projects">
+          <ng-container *ngFor="let payment of user.payments" class="col-md-6 shadow-sm" id="project-items-1">
+            <div class="mt-5">
+              <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
+                <br>
+                Payments
+              </h5>
+              <table class="table table-hover">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Date</th>
+                    <th>Payment Name</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let payment of user.payments">
+                    <td>{{ payment.start_date }}</td>
+                    <td>{{ payment.product_name }}</td>
+                    <td>{{ payment.amount }} {{ payment.currency }}</td>
+                    <td>{{ payment.payment_status }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-container>
         </div>
+        <ng-template #noPayments>
+          <h4>Payments</h4>
+          <p class="text-dark">No payments found.</p>
+        </ng-template>
+      </div>
 
-        <!-- Payments Section -->
-        <div class="card p-4 shadow-sm border-0 mb-4">
-          <h4 class="mb-3">Payments</h4>
-          <ul class="list-unstyled">
-            <li *ngFor="let payment of user.payments" class="mb-2">
-              <p>
-                <strong class="text-dark">Property:</strong>
-                {{ payment.product_name }}<br />
-                <strong class="text-dark">Amount:</strong> {{ payment.amount }}
-                {{ payment.currency }}<br />
-              </p>
-              <hr />
-            </li>
-          </ul>
-          <div *ngIf="user.payments.length === 0">
-            <p class="text-muted">No payments found.</p>
-          </div>
+      <div>
+        <div *ngIf="user.reviews.length > 0; else noReviews" class="row g-5 " id="all-projects">
+          <ng-container *ngFor="let review of user.reviews" class="col-md-6 shadow-sm" id="project-items-1">
+            <div class="mt-5">
+              <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
+                <br>
+                Reviews
+              </h5>
+              <table class="table table-hover">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Property Name</th>
+                    <th>Review</th>
+                    <th>Rating</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let review of user.reviews">
+                    <td>{{ review.property_name }}</td>
+                    <td>{{ review.review }}</td>
+                    <td>{{ review.rating}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-container>
         </div>
-
-        <!-- Favorites Section -->
-        <div class="card p-4 shadow-sm border-0 mb-4">
-          <h4 class="mb-3">Favorites</h4>
-          <ul class="list-unstyled">
-            <li *ngFor="let favorite of user.favorites" class="mb-2">
-              {{ favorite.property_name }}
-            </li>
-          </ul>
-          <div *ngIf="user.favorites.length === 0">
-            <p class="text-muted">No favorites found.</p>
-          </div>
-        </div>
-
-        <!-- Reviews Section -->
-        <div class="card p-4 shadow-sm border-0 mb-4">
-          <h4 class="mb-3">Reviews</h4>
-          <ul class="list-unstyled">
-            <li *ngFor="let review of user.reviews" class="mb-2">
-              <p>
-                {{ review.review }} <br /><strong>Rating:</strong>
-                {{ review.rating }}
-              </p>
-              <p>Property Name : {{ review.property_name }}</p>
-              <hr />
-            </li>
-          </ul>
-          <div *ngIf="user.reviews.length === 0">
-            <p class="text-muted">No reviews found.</p>
-          </div>
-        </div>
+        <ng-template #noReviews>
+          <h4>Reviews</h4>
+          <p class="text-dark">No reviews found.</p>
+        </ng-template>
       </div>
     </div>
-  </div>
-</div>

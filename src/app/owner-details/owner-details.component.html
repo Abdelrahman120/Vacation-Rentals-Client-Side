@@ -1,50 +1,89 @@
-<div class="container mt-5">
-    <div *ngIf="loading" class="text-center">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-    </div>
-  
-    <div  *ngIf="!loading && owner">
-        <h3></h3>
-      <h2 class="text-center m-4">Owner Details</h2>
-      <div class="card p-4 shadow-sm border-0 mb-4">
-        <div class="text-center">
-            <img [src]="'http://localhost:8000/images/posts/' + owner.image" alt="Owner Image" />
-
-          <h3>{{ owner.name }}</h3>
+<div class="container w-50 border bg-white mx-auto p-5 w-75" style="margin-top: 100px;">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body pb-0">
+          <div class="row align-items-center">
+            <div class="col-md-3">
+              <div class="text-center border-end">
+                @if(owner.phone>5) {
+                <img [src]="'http://localhost:8000/images/posts/' + owner.image" alt="Profile Image"
+                  class="img-fluid avatar-xxl rounded-circle" *ngIf="owner.image; else defaultImage" />
+                }@else {
+                <img src="{{owner.image}}" alt="Profile Image" class="img-fluid avatar-xxl rounded-circle"
+                  *ngIf="owner.image; else defaultImage" />
+                }
+                <ng-template #defaultImage>
+                  <img src="assets/default-avatar.png" alt="Default Image" class="profile-image" />
+                </ng-template>
+                <h4 class="text-primary font-size-20 mt-3 mb-2">{{ owner.name }}</h4>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="ms-3">
+                <div>
+                  <div class="d-flex">
+                    <h4 class="card-title mb-2">Owner Info</h4>
+                  </div>
+                  <p class="profile-email text-dark"><strong>Email:</strong> {{ owner.email }}</p>
+                  @if(owner.phone){
+                  <p class="profile-phone text-dark"> <strong>Phone:</strong> {{ owner.phone }}</p>
+                  }
+                  @if(owner.address){
+                  <p class="profile-address text-dark"><strong>Address:</strong> {{ owner.address }}</p>
+                  }
+                  <p class="profile-gender text-dark"><strong>Gender:</strong> {{ owner.gender }}</p>
+                  @if(owner.company_name){
+                  <p class="profile-address text-dark"><strong>Company Name:</strong> {{ owner.company_name }}</p>
+                  }
+                  @if(owner.description){
+                  <p class="profile-address text-dark"><strong>Description:</strong> {{ owner.description }}</p>
+                  }
+                  <p class="profile-address text-dark"><strong>Wallet:</strong> ${{ owner.wallet }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <p><strong>Email:</strong> {{ owner.email }}</p>
-        <p><strong>Phone:</strong> {{ owner.phone }}</p>
-        <p><strong>Address:</strong> {{ owner.address }}</p>
-        <p><strong>Gender:</strong> {{ owner.gender }}</p>
-        <p><strong>Company Name:</strong> {{ owner.company_name }}</p>
-        <p><strong>Description:</strong> {{ owner.description }}</p>
-        <p><strong>Wallet:</strong> ${{ owner.wallet }}</p>
       </div>
-  
-      <!-- Properties Section -->
-      <div
-        *ngIf="owner.properties && owner.properties.length > 0"
-        class="card p-4 shadow-sm border-0 mb-4"
-      >
-        <h4 class="mb-3">Properties</h4>
-        <ul class="list-unstyled">
-          <li *ngFor="let property of owner.properties" class="mb-3">
-            <p><strong>Name:</strong> {{ property.name }}</p>
-            <p><strong>Headline:</strong> {{ property.headline }}</p>
-            <p><strong>Description:</strong> {{ property.description }}</p>
-            <p><strong>City:</strong> {{ property.city }}, {{ property.country }}</p>
-            <p><strong>Address:</strong> {{ property.address }}</p>
-            <p><strong>Night Rate:</strong> ${{ property.night_rate }}</p>
-            <p><strong>Status:</strong> {{ property.status }}</p>
-            <hr />
-          </li>
-        </ul>
-      </div>
-      <div *ngIf="!owner.properties || owner.properties.length === 0">
-        <p class="text-muted">No properties found.</p>
+
+      <div>
+        <div *ngIf="owner.properties && owner.properties.length > 0; else noPayments"
+          class="card p-4 shadow-sm border-0 mb-4">
+          <ng-container *ngFor="let property of owner.properties " class="col-md-6 shadow-sm" id="project-items-1">
+            <div class="mt-5">
+              <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
+                <br>
+                Properties
+              </h5>
+              <table class="table table-hover">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Name</th>
+                    <th>Headline</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Night Rate</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let property of owner.properties">
+                    <td>{{ property.name }}</td>
+                    <td>{{ property.headline | truncate:20}}</td>
+                    <td>{{ property.description | truncate:20}}</td>
+                    <td>{{ property.location | truncate:20 }}</td>
+                    <td>{{ property.night_rate }}</td>
+                    <td>{{ property.status }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-container>
+        </div>
+        <ng-template #noPayments>
+          <h4>Properties</h4>
+          <p class="text-dark">No properties found.</p>
+        </ng-template>
       </div>
     </div>
-  </div>
-  
