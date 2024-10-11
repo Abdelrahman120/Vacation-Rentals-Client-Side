@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserProfileService } from '../Services/user-profile.service';
+import { UserProfileService } from '../services/user-profile.service';
 import { Router } from '@angular/router';
 import {
   FormBuilder,

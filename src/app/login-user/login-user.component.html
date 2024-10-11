@@ -1,9 +1,9 @@
 <div
-  class="container w-50 border bg-white rounded mx-auto p-5"
-  style="margin-top: 150px"
+  class="container w-50 border bg-white mx-auto p-5"
+  style="margin-top: 120px"
 >
   <form (ngSubmit)="onLogin()">
-    <h1 class="text-center my-2 text-dark">Traveler Login</h1>
+    <h2 class="text-center my-2 text-dark">Traveler Login</h2>
     <div class="form-input col-lg-12 my-4">
       <label
         for="exampleInputEmail1"
@@ -62,24 +62,22 @@
     <div class="d-grid my-3">
       <button
         type="submit"
-        class="btn btn-primary btn-lg text-uppercase btn-rounded-none fs-6"
+        class="btn btn-primary btn-lg text-uppercase btn-rounded-none fs-6 text-white"
+        style="background-color: #3b5899;"
       >
         Log In
       </button>
     </div>
-    <div class="text-center d-flex justify-content-center">
-      <button
-        type="button"
-        class="btn btn-google mt-3"
-        (click)="loginWithGoogle()"
-      >
-        <fa-icon [icon]="['fab', 'google']" class="me-2"></fa-icon>
-        Login with Google
-      </button>
+    <div>
+    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-block btn-primary bg-danger"
+        (click)="loginWithGoogle()" type="submit"><i class="fab fa-google me-2"></i> Sign in with
+        google</button>
     </div>
 
     <div id="passwordHelpBlock">
-      <a routerLink="/register/user" class="text-dark fs-5">Sign Up</a>
+      <p class="small fw-bold mt-2 pt-1 mb-0 text-dark">Don't have an account? <a routerLink="/register/user"
+        class="link-danger">Register</a></p>
+      
     </div>
   </form>
 </div>
