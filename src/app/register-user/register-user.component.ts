@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RegisterUserService } from '../services/register-user.service';
@@ -7,7 +7,7 @@ import { RegisterUserService } from '../services/register-user.service';
 @Component({
   selector: 'app-register-user',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule, RouterLink],
   templateUrl: './register-user.component.html',
   styleUrl: './register-user.component.css',
 })
@@ -33,7 +33,6 @@ export class RegisterUserComponent {
   onRegister() {
     this.validationErrors = {};
 
-    // Client-side validation
     if (!this.name) {
       this.validationErrors.name = ['Name is required'];
     } else if (this.name.length < 3) {
@@ -90,7 +89,7 @@ export class RegisterUserComponent {
       return;
     }
 
-    // Prepare form data to send in the request
+    
     const formData = new FormData();
     formData.append('name', this.name);
     formData.append('email', this.email);

@@ -1,5 +1,5 @@
 <div
-  class="container w-50 border bg-white rounded mx-auto p-5"
+  class="container w-50 border bg-white mx-auto p-5"
   style="margin-top: 100px"
 >
   <form [formGroup]="registerForm" (ngSubmit)="handleEditSubmit()">
@@ -223,11 +223,11 @@
         }
       </div>
 
-      <input
-        type="submit"
-        value="Update"
-        class="btn btn-primary text-uppercase fw-bold rounded-1"
-      />
+      <div class="d-grid my-3 ">
+        
+        <button type="submit" class="btn  btn-lg text-uppercase  fs-6 text-white" style="background-color: #3b5899;">
+          Update      </button>
+      </div>
     </div>
   </form>
 </div>
