@@ -1,6 +1,6 @@
-<div class="container w-50 border bg-white rounded mx-auto p-5" style="margin-top: 100px;">
+<div class="container w-50 border bg-white  mx-auto p-5" style="margin-top: 100px;">
   <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
-    <h2 class="text-center my-2 mb-3 text-dark">Register</h2>
+    <h2 class="text-center my-2 mb-3 text-dark">Owner Register</h2>
     <div class="row">
         <div class="mb-2 col-md-6">
             <label  for="name" class="form-label fs-6 text-uppercase fw-bold text-black">Name</label>
@@ -160,9 +160,15 @@
         </div>
     </div>
     
-    <div class="d-flex justify-content-center my-3">
-        <button type="submit" class="btn btn-lg btn-primary w-50 m-auto "> Register</button>
-    </div>
+    <div class="d-grid my-3 ">
+        
+        <button type="submit" class="btn  btn-lg text-uppercase  fs-6 text-white" style="background-color: #3b5899;">
+          Register      </button>
+      </div>
 </div>
+<div id="passwordHelpBlock">
+    <p class="small fw-bold mt-2 pt-1 mb-0 text-dark">Do you have an account? <a routerLink="/login/owner"
+        class="link-danger">Login</a></p>
+  </div>
 </form>
 </div>
