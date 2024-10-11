@@ -4,11 +4,12 @@ import { LoginUserService } from '../services/login-user.service';
 import { CommonModule } from '@angular/common';
 import { OwnerProfileService } from '../Services/owner-profile.service';
 import { UserProfileService } from '../Services/user-profile.service';
+import { TruncatePipe } from '../pipes/truncate.pipe';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, CommonModule, RouterLinkActive],
+  imports: [RouterLink, CommonModule, RouterLinkActive, TruncatePipe],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })

@@ -47,18 +47,17 @@
             <li class="nav-item dropdown">
 
               <a class="nav-link fs-5 me-md-4 text-center dropdown-toggle poppins-medium" data-bs-toggle="dropdown"
-                *ngIf="isUser()" href="#" role="button" aria-expanded="false">{{ user.name }}</a>
+                *ngIf="isUser()" href="#" role="button" aria-expanded="false">{{ user.name | truncate:10 }}</a>
               <a class="nav-link fs-5 me-md-4 text-center dropdown-toggle poppins-medium" data-bs-toggle="dropdown"
-                *ngIf="isOwner()  && !isAdmin()" href="#" role="button" aria-expanded="false">{{ owner.name }}</a>
+                *ngIf="isOwner()  && !isAdmin()" href="#" role="button" aria-expanded="false">{{ owner.name |
+                truncate:10}}</a>
               <a class="nav-link fs-5 me-md-4 text-center dropdown-toggle poppins-medium" data-bs-toggle="dropdown"
                 *ngIf="!isOwner() && !isUser()" href="#" role="button" aria-expanded="false">Login</a>
               <div class="nav-item dropdown no-arrow" *ngIf="isAdmin() ">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <span class="mr-2 d-none d-lg-inline text-light small fw-bold fs-4">Admin</span>
-                  <!-- <div>
-                    <img class="img-profile rounded-circle" src="imgg/undraw_profile.svg" alt="Profile Picture">
-                  </div> -->
+
                 </a>
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                   <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"
@@ -72,7 +71,6 @@
                 </div>
               </div>
               <ul class="dropdown-menu">
-                <!-- Show login/register links if not logged in -->
                 <ng-container *ngIf="!isLoggedIn(); else loggedInTemplate">
                   <li>
                     <a routerLink="/login/owner" class="fs-6 dropdown-item poppins-medium">Owner</a>
@@ -82,11 +80,8 @@
                   </li>
                 </ng-container>
 
-                <!-- Show logout button if logged in -->
                 <ng-template #loggedInTemplate>
 
-
-                  <!-- User-specific actions -->
                   <li *ngIf="isUser()">
                     <button class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
                       (click)="navigateToPayments()">
@@ -94,8 +89,6 @@
                     </button>
                   </li>
 
-
-                  <!-- Owner-specific actions -->
                   <li *ngIf="isOwner()">
                     <button class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
                       (click)="navigateToOwnerProfile()">
@@ -105,6 +98,7 @@
                   </li>
                   <li>
                     <button class="dropdown-item poppins-medium fs-6" (click)="onLogout()">
+                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                       Logout
                     </button>
                   </li>
