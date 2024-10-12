@@ -4,21 +4,36 @@
 
 <div class="container-md">
   <div class="row mt-5">
-    <ng-container *ngIf="
+    <ng-container
+      *ngIf="
         ownerInfo && ownerInfo.properties.length > 0;
         else noPropertiesTemplate
-      ">
+      "
+    >
       @for (property of ownerInfo.properties; track property.id) {
-      <div class="col-md-4 card rounded-3 shadow p-0 m-2 border-1"
-        style="width: 26rem; background-color: hsl(0, 0%, 100%)">
+      <div
+        class="col-md-4 card rounded-3 shadow p-0 m-2 border-1"
+        style="width: 26rem; background-color: hsl(0, 0%, 100%)"
+      >
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <div class="card-title roboto-medium">
               {{ property.property_name }}
             </div>
-            <button class="btn btn-outline-dark rounded-1" [routerLink]="['/my-property-booking-details', property.id]">
-              View Details
-            </button>
+            <div>
+              <button
+                class="btn btn-outline-dark rounded-1 me-1"
+                [routerLink]="['/my-property-booking-details', property.id]"
+              >
+                View Details
+              </button>
+              <button
+                class="btn btn-dark rounded-1 text-center"
+                [routerLink]="['/update-property', property.id]"
+              >
+                <i class="fa-solid fa-file-pen"></i>
+              </button>
+            </div>
           </div>
           <div class="card-subtitle">
             {{ property.category.name }}
@@ -26,29 +41,43 @@
           <div class="card-text text-muted d-flex justify-content-evenly mt-3">
             <div>
               Bookings:
-              <span class="p-2 bg-secondary text-light rounded-lg roboto-bold" style="font-size: 0.8rem">
+              <span
+                class="p-2 bg-secondary text-light rounded-lg roboto-bold"
+                style="font-size: 0.8rem"
+              >
                 {{ property.booking_count }}
               </span>
             </div>
             &#8226;
             <div>
               Completed:
-              <span class="p-2 bg-secondary text-light rounded-lg roboto-bold" style="font-size: 0.8rem">
+              <span
+                class="p-2 bg-secondary text-light rounded-lg roboto-bold"
+                style="font-size: 0.8rem"
+              >
                 {{ getCompletedBookings(property.bookings) }}
               </span>
             </div>
             &#8226;
             <div>
               Upcoming:
-              <span class="p-2 bg-secondary text-light rounded-lg roboto-bold" style="font-size: 0.8rem">
+              <span
+                class="p-2 bg-secondary text-light rounded-lg roboto-bold"
+                style="font-size: 0.8rem"
+              >
                 {{ getUpcomingBookings(property.bookings) }}
               </span>
             </div>
           </div>
         </div>
-        <div class="w-100 p-2 d-flex justify-content-center rounded-bottom-3" style="background-color: hsl(0, 0%, 90%)">
-          <span class="me-2"><i class="fas fa-map-marker-alt text-dark"></i>
-            {{ property.location | truncate : 15 }} |</span>
+        <div
+          class="w-100 p-2 d-flex justify-content-center rounded-bottom-3"
+          style="background-color: hsl(0, 0%, 90%)"
+        >
+          <span class="me-2"
+            ><i class="fas fa-map-marker-alt text-dark"></i>
+            {{ property.location | truncate : 15 }} |</span
+          >
           <span>
             <i class="fa-solid fa-dollar-sign text-dark"></i>
             {{ property.night_rate }} |
@@ -63,10 +92,15 @@
     </ng-container>
 
     <ng-template #noPropertiesTemplate>
-      <div class="d-flex justify-content-center align-items-center flex-column text-center" style="height: 30rem">
+      <div
+        class="d-flex justify-content-center align-items-center flex-column text-center"
+        style="height: 30rem"
+      >
         <h3 class="text-danger">No properties found</h3>
-        <button class="btn btn-outline-dark text-white" [routerLink]="['/add-property']"
-          style="background-color: #3b5899;">
+        <button
+          class="btn btn-outline-dark btn-primary"
+          [routerLink]="['/add-property']"
+        >
           Add Property
         </button>
       </div>

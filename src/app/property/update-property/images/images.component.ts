@@ -1,6 +1,7 @@
 import { CdkStepperNext, CdkStepperPrevious } from '@angular/cdk/stepper';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PropertyService } from '../../../services/propertyService/property.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-images',
@@ -9,15 +10,26 @@ import { PropertyService } from '../../../services/propertyService/property.serv
   templateUrl: './images.component.html',
   styleUrls: ['./images.component.css'],
 })
-export class ImagesComponent {
-  images: File[] = [];
+export class ImagesComponent implements OnInit {
+  constructor(
+    private PropertyService: PropertyService,
+    private route: ActivatedRoute
+  ) {}
+
+  images: any;
   propertyId: string = '';
   @Output() imageFormSubmitted = new EventEmitter<void>();
+  ngOnInit(): void {
+    this.route.params.subscribe((params: any) => {
+      this.propertyId = params['id'];
+    });
+  }
 
-  constructor(private PropertyService: PropertyService) { }
-
-  onFileChange(event: any) {
-    this.images = Array.from(event.target.files);
+  onFileChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.files) {
+      this.images = Array.from(target.files);
+    }
   }
 
   submitImages(event: Event) {
@@ -33,15 +45,13 @@ export class ImagesComponent {
       formData.append('images[]', image);
     }
 
-    this.propertyId = this.PropertyService.getPropertyId();
-
     this.PropertyService.updateImages(this.propertyId, formData).subscribe(
       (response) => {
         console.log('Images updated successfully', response);
         this.imageFormSubmitted.emit();
       },
       (error) => {
-        console.error('Error uploading images', error);
+        console.error('Error updating images', error);
         if (error.error && error.error.errors) {
           console.error('Validation Errors:', error.error.errors);
         }

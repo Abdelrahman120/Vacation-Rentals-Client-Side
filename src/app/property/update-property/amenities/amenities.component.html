@@ -3,10 +3,19 @@
     <div class="row">
       @for (amenity of amenities; track amenity.id) {
       <div class="col-md-4">
-        <input type="checkbox" class="form-check me-1 visually-hidden" name="amenities[]" id="amenity{{ amenity.id }}"
-          [(ngModel)]="amenity.isChecked" />
-        <label class="form-label checkbox-label m-2 text-center p-3 rounded" for="amenity{{ amenity.id }}"
-          [ngClass]="{ 'checked-bg': amenity.isChecked }">{{ amenity.name }}</label>
+        <input
+          type="checkbox"
+          class="form-check me-1 visually-hidden"
+          name="amenities[]"
+          id="amenity{{ amenity.id }}"
+          [(ngModel)]="amenity.isChecked"
+        />
+        <label
+          class="form-label checkbox-label m-2 text-center p-3 rounded"
+          for="amenity{{ amenity.id }}"
+          [ngClass]="{ 'checked-bg': amenity.isChecked }"
+          >{{ amenity.name }}</label
+        >
       </div>
       }
     </div>
