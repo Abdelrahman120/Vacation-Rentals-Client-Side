@@ -7,13 +7,11 @@ import { PropertiesComponent } from './properties/properties.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoryComponent } from './category/category.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { MasterComponent } from './master/master.component';
 import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
-import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
 import { EditOwnerProfileComponent } from './edit-owner-profile/edit-owner-profile.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -24,7 +22,6 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgetPasswordUserComponent } from './forget-password-user/forget-password-user.component';
 import { ResetPasswordUserComponent } from './reset-password-user/reset-password-user.component';
-import { TestComponent } from './test/test.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PaymentComponent } from './payment/payment/payment.component';
 import { SuccessComponent } from './payment/success/success.component';
@@ -97,12 +94,6 @@ export const routes: Routes = [
     title: 'Login',
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
-    title: 'Dashboard',
-    canActivate: [userGuard],
-  },
-  {
     path: 'category',
     component: CategoryComponent,
     title: 'Category',
@@ -132,12 +123,6 @@ export const routes: Routes = [
     canActivate: [userGuard],
   },
   {
-    path: 'owner-dashboard',
-    component: OwnerDashboardComponent,
-    title: 'Dashboard',
-    canActivate: [ownerGuardGuard],
-  },
-  {
     path: 'admin-dashboard',
     component: AdminDashboardComponent,
     title: 'Dashboard',
@@ -152,11 +137,6 @@ export const routes: Routes = [
     path: 'admin/owners',
     component: OwnersComponent,
     canActivate: [AuthGuard],
-  },
-  {
-    path: 'test/:id',
-    component: TestComponent,
-    title: 'test',
   },
   {
     path: 'forget_password',

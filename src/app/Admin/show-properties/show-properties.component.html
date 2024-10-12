@@ -1,29 +1,25 @@
-
 <div class="container mt-5">
-    <h2 class="text-center  text-white">Owners</h2>
-    <table class="table table-striped mt-5 ">
-        <thead>
-          <tr>
-            <th class="text-center" scope="col">#</th>
-            <th class="text-center" scope="col">First</th>
-            <th class="text-center" scope="col">HeadLine</th>
-            <th class="text-center" scope="col">Number Of Rooms</th>
-            <th class="text-center" scope="col">Country</th>
-            <th class="text-center" scope="col">Night Rate</th>
-
-          </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let property of properties">
-                <th scope="row" class="text-center">{{property.id}}</th>
-                <td class="text-center">{{property.name}}</td>
-                <td class="text-center">{{property.headline}}</td>
-                <td class="text-center">{{property.number_of_rooms}}</td>
-                <td class="text-center">{{property.country}}</td>
-                <td class="text-center">{{property.night_rate}}</td>
-            </tr>
-      
-       
-        </tbody>
-      </table>
+  <h2 class="text-center  text-white">Owners</h2>
+  <table class="table table-striped mt-5 ">
+    <thead>
+      <tr>
+        <th class="text-center" scope="col">#</th>
+        <th class="text-center" scope="col">First</th>
+        <th class="text-center" scope="col">HeadLine</th>
+        <th class="text-center" scope="col">Number Of Rooms</th>
+        <th class="text-center" scope="col">Country</th>
+        <th class="text-center" scope="col">Night Rate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let property of properties">
+        <th scope="row" class="text-center">{{property.id}}</th>
+        <td class="text-center">{{property.name}}</td>
+        <td class="text-center">{{property.headline}}</td>
+        <td class="text-center">{{property.number_of_rooms}}</td>
+        <td class="text-center">{{property.country}}</td>
+        <td class="text-center">{{property.night_rate}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
