@@ -30,17 +30,14 @@ export class UsersComponent {
     );
   }
   deleteUser(id: number): void {
-    console.log('Attempting to delete user with ID:', id);
-    if (confirm('Are you sure you want to delete this user?')) {
-      this.adminServices.deleteUser(id).subscribe(
-        (response) => {
-          console.log('User deleted:', response);
-          this.getUsers();
-        },
-        (error) => {
-          console.error('Error deleting user:', error);
-        }
-      );
-    }
+    this.adminServices.deleteUser(id).subscribe(
+      (response) => {
+        console.log('User deleted:', response);
+        this.getUsers();
+      },
+      (error) => {
+        console.error('Error deleting user:', error);
+      }
+    );
   }
 }
