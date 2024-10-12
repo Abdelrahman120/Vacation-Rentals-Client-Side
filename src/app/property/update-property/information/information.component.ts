@@ -10,6 +10,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { PropertyService } from '../../../services/propertyService/property.service';
 import { ActivatedRoute } from '@angular/router';
+import { Property } from '../../../interface/property';
 
 @Component({
   selector: 'app-information',
@@ -24,19 +25,20 @@ export class InformationComponent {
   propertyForm!: FormGroup;
   locationSuggestions: any[] = [];
   highlightedIndex: number | null = null;
-  property_id: string = "";
-  id: string = "";
+  property_id: string = '';
+  id: string = '';
+  validationErrors: any = {};
 
   @Output() formSubmitted = new EventEmitter<void>();
 
   constructor(
     private fb: FormBuilder,
     private PropertyService: PropertyService,
-    private route: ActivatedRoute,
-  ) { }
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.property_id = this.route.snapshot.params["id"];
+    this.property_id = this.route.snapshot.params['id'];
     this.propertyForm = this.fb.group({
       headline: ['', Validators.required],
       name: ['', Validators.required],
@@ -49,6 +51,28 @@ export class InformationComponent {
       sleeps: ['', [Validators.required]],
     });
     this.getCategories();
+    this.getPropertyData(this.property_id);
+  }
+
+  getPropertyData(id: string): void {
+    this.PropertyService.viewProperty(id).subscribe(
+      (response) => {
+        this.propertyForm.patchValue({
+          headline: response.data.headline,
+          name: response.data.name,
+          bedrooms: response.data.bedrooms,
+          category_id: response.data.category_id,
+          location: response.data.location,
+          bathrooms: response.data.bathrooms,
+          night_rate: response.data.night_rate,
+          description: response.data.description,
+          sleeps: response.data.sleeps,
+        });
+      },
+      (error) => {
+        console.error('Error fetching user data:', error);
+      }
+    );
   }
 
   getCategories() {
@@ -81,28 +105,33 @@ export class InformationComponent {
     this.highlightedIndex = null;
   }
 
-  submitInfo() {
+  updateInfo() {
+    this.validationErrors = {};
+
     if (this.propertyForm.invalid) {
-      this.propertyForm.markAllAsTouched();
-      console.log('All fields are required');
+      Object.keys(this.propertyForm.controls).forEach((key) => {
+        if (this.propertyForm.controls[key].invalid) {
+          this.validationErrors[key] = [
+            `${key.charAt(0).toUpperCase() + key.slice(1)} is required.`,
+          ];
+          this.validationErrors[key] = [
+            `${key.charAt(0).toUpperCase() + key.slice(1)} is required.`,
+          ];
+        }
+      });
       return;
     }
+    const propertyData = this.propertyForm.value;
 
-    const formData = new FormData();
-    Object.keys(this.propertyForm.value).forEach((key) => {
-      formData.append(key, this.propertyForm.get(key)?.value);
-      console.log(formData);
-    });
-
-    this.PropertyService.updateProperty(this.property_id, formData).subscribe(
-      (response: any) => {
-        console.log(this.property_id);
-        this.PropertyService.setPropertyId(this.property_id)
+    this.PropertyService.updateProperty(
+      this.property_id,
+      propertyData
+    ).subscribe(
+      (res: any) => {
+        console.log('Data Updated Successfully', res);
         this.formSubmitted.emit();
       },
-      (error) => {
-        console.error("Error: Property wasn't added:", error);
-      }
+      (err) => console.log(err)
     );
   }
 }

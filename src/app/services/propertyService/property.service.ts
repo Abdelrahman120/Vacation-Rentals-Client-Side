@@ -56,7 +56,14 @@ export class PropertyService {
     });
   }
   updateProperty(id: string, property: any) {
-    return this.http.put(`${this.BACKEND_API}/api/property/${id}`, property);
+    const token = localStorage.getItem('owner_auth_token');
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.put(`${this.BACKEND_API}/api/property/${id}`, property, {
+      headers,
+    });
   }
   deleteProperty(id: number) {
     return this.http.delete(`${this.BACKEND_API}/api/property/${id}`);
@@ -109,18 +116,19 @@ export class PropertyService {
       { headers }
     );
   }
-  updateImages(id: string, formData: FormData) {
+  updateImages(id: string, formData: FormData): Observable<any> {
     const token = localStorage.getItem('owner_auth_token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.put(
+
+    return this.http.post(
       `${this.BACKEND_API}/api/property/${id}/update-images`,
-      // { formData },
       { formData, _method: 'PUT' },
       { headers }
     );
   }
+
   getPropertiesByAmenity(amenityIds: number[]) {
     return this.http.post(`${this.BACKEND_API}/api/properties/filter`, {
       amenity: amenityIds,
@@ -137,6 +145,10 @@ export class PropertyService {
     return this.http
       .get(`${this.BACKEND_API}/api/location-suggestions?query=${query}`)
       .pipe(catchError(this.handleError));
+  }
+
+  getPropertyAmenities(id: string) {
+    return this.http.get(`${this.BACKEND_API}/api/property-amenities/${id}`);
   }
 
   private handleError(error: HttpErrorResponse) {

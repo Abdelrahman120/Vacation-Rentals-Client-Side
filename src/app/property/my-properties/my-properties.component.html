@@ -20,12 +20,20 @@
             <div class="card-title roboto-medium">
               {{ property.property_name }}
             </div>
-            <button
-              class="btn btn-outline-dark rounded-1"
-              [routerLink]="['/my-property-booking-details', property.id]"
-            >
-              View Details
-            </button>
+            <div>
+              <button
+                class="btn btn-outline-dark rounded-1 me-1"
+                [routerLink]="['/my-property-booking-details', property.id]"
+              >
+                View Details
+              </button>
+              <button
+                class="btn btn-dark rounded-1 text-center"
+                [routerLink]="['/update-property', property.id]"
+              >
+                <i class="fa-solid fa-file-pen"></i>
+              </button>
+            </div>
           </div>
           <div class="card-subtitle">
             {{ property.category.name }}
