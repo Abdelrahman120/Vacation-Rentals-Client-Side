@@ -200,28 +200,21 @@
       </div>
 
       <div class="mb-2 col-md-12">
-        <label
-          for="confirm_password"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Confirm Password</label
-        >
+        <label for="confirm_password" class="form-label fs-6 text-uppercase fw-bold text-black">Confirm Password</label>
         <input
           id="confirm_password"
           type="password"
-          name="confirm_password"
+          name="password_confirmation"
           class="form-control"
           formControlName="password_confirmation"
         />
-        @if(registerForm.get('password_confirmation')?.invalid &&
-        (registerForm.get('password_confirmation')?.touched || submitted)) {
-        <span class="text-danger">
-          @if(registerForm.get('password_confirmation')?.hasError('required')){
-          Confirm Password is required. }
-          @if(registerForm.get('password_confirmation')?.hasError('mismatch')){
-          Passwords do not match. }
-        </span>
-        }
+        <div *ngIf="registerForm.hasError('mismatch') && (submitted || registerForm.get('password_confirmation')?.touched)">
+          <span class="text-danger">Passwords do not match.</span>
+        </div>
+   
       </div>
+      
+      
 
       <div class="d-grid my-3 ">
         
