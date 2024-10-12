@@ -20,17 +20,23 @@
           *Email is required.
         </span>
       </div>
-
       <div class="mb-2 col-md-6">
         <label for="password" class="form-label fs-6 text-uppercase fw-bold text-black">Password:</label>
-        <input type="password" id="password" class="form-control" name="password" />
+        <input type="password" id="password" class="form-control" formControlName="password" />
+        <div *ngIf="editProfile.get('password')?.invalid && editProfile.get('password')?.touched" class="text-danger">
+          Password is required and must be at least 6 characters.
+        </div>
       </div>
-
+  
       <div class="mb-2 col-md-6">
-        <label class="form-label fs-6 text-uppercase fw-bold text-black" for="confirm_password">Confirm
-          Password:</label>
-        <input type="password" class="form-control" id="confirm_password" name="confirm_password" />
+        <label for="confirm_password" class="form-label fs-6 text-uppercase fw-bold text-black">Confirm Password:</label>
+        <input type="password" id="confirm_password" class="form-control" formControlName="confirm_password" />
+        <div *ngIf="editProfile.get('confirm_password')?.errors?.['mismatch'] && editProfile.get('confirm_password')?.touched" class="text-danger">
+          Passwords do not match.
+        </div>
       </div>
+      
+      
 
       <div class="mb-2 col-md-6">
         <label class="form-label fs-6 text-uppercase fw-bold text-black" for="phone">Phone:</label>

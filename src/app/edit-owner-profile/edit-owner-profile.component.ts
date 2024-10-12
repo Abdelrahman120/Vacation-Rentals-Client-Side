@@ -5,6 +5,8 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
+  ValidatorFn,
+  AbstractControl,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OwnerProfileService } from '../Services/owner-profile.service';
@@ -45,8 +47,15 @@ export class EditOwnerProfileComponent implements OnInit {
       ],
       password: ['', [Validators.minLength(6)]],
       password_confirmation: [''],
-    });
+    } , {validators: this.passwordMatchValidator});
   }
+
+  passwordMatchValidator: ValidatorFn = (control: AbstractControl) => {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('password_confirmation')?.value;
+  
+    return password === confirmPassword ? null : { mismatch: true };
+  };
 
   ngOnInit() {
     this.loadOwnerData();
@@ -84,21 +93,10 @@ export class EditOwnerProfileComponent implements OnInit {
 
   handleEditSubmit() {
     this.submitted = true;
-
+  
     if (this.registerForm.valid) {
       const formData = { ...this.registerForm.value };
-
-      const password = this.registerForm.get('password')?.value;
-      const confirmPassword = this.registerForm.get(
-        'password_confirmation'
-      )?.value;
-      if (password && password !== confirmPassword) {
-        this.validationErrors.password_confirmation = [
-          'Passwords do not match.',
-        ];
-        return;
-      }
-
+  
       console.log('Form Data before submitting:', formData);
       const ownerId = this.getOwnerIdFromLocalStorage();
       this.ownerProfileService.updateOwner(ownerId, formData).subscribe(
@@ -111,8 +109,11 @@ export class EditOwnerProfileComponent implements OnInit {
           this.handleErrors(error);
         }
       );
+    } else {
+      this.validationErrors = this.registerForm.errors || {};
     }
   }
+  
 
   handleErrors(error: any) {
     if (error.status === 422 && error.error && error.error.errors) {

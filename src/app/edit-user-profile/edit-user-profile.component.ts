@@ -27,14 +27,33 @@ export class EditUserProfileComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder
   ) {
-    this.editProfile = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      name: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.minLength(11)]],
-      address: ['', Validators.required],
-      gender: ['', Validators.required],
-    });
+    this.editProfile = this.fb.group(
+      {
+        email: ['', [Validators.required, Validators.email]],
+        name: ['', Validators.required],
+        phone: ['', [Validators.required, Validators.minLength(11)]],
+        address: ['', Validators.required],
+        gender: ['', Validators.required],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirm_password: ['', Validators.required],
+      },
+      { validators: this.passwordsMatchValidator }
+    );
   }
+
+  
+  passwordsMatchValidator(form: FormGroup) {
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirm_password')?.value;
+  
+    if (password !== confirmPassword) {
+      form.get('confirm_password')?.setErrors({ mismatch: true });
+    } else {
+      form.get('confirm_password')?.setErrors(null);
+    }
+    return null;
+  }
+  
 
   ngOnInit(): void {
     this.userId =
