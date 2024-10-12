@@ -23,7 +23,7 @@ export class OwnersComponent {
   getOwners(): void {
     this.adminServices.getOwners().subscribe(
       (response) => {
-        this.owners = response.data; // Access the data from the response object
+        this.owners = response.data;
       },
       (error) => {
         console.error('Error fetching owners:', error);
@@ -32,16 +32,14 @@ export class OwnersComponent {
   }
 
   deleteOwner(id: number): void {
-    if (confirm('Are you sure you want to delete this Owner?')) {
-      this.adminServices.deleteOwner(id).subscribe(
-        (response) => {
-          console.log('Owner deleted:', response);
-          this.getOwners();
-        },
-        (error) => {
-          console.error('Error deleting Owner:', error);
-        }
-      );
-    }
+    this.adminServices.deleteOwner(id).subscribe(
+      (response) => {
+        console.log('Owner deleted:', response);
+        this.getOwners();
+      },
+      (error) => {
+        console.error('Error deleting Owner:', error);
+      }
+    );
   }
 }
