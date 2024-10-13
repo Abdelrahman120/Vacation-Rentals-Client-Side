@@ -1,69 +1,263 @@
-<div id="page-top" [style]="{'margin-top': '70px'}">
+<!-- <div id="page-top" [style]="{'margin-top': '70px'}">
   <div>
     <div id="wrapper">
-      <app-sidebar></app-sidebar>
-      <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
-          <div class="container-fluid  mt-5 shadow-lg p-4  rounded d-flex flex-column justify-content-center"
-            style="width: 50%;background-color: #3b5899;">
-            <h3 class="text-light text-center">Admin Dashboard</h3>
+      <app-sidebar class="sidebar-container"></app-sidebar>
 
-          </div>
-          <div class="mt-4 d-flex justify-content-center container">
-            <div class="row g-5">
-              <div class="col-sm-12  col-md-3">
-                <div class="card">
-                  <img
-                    src="https://img.freepik.com/premium-vector/man-traveler-walking-city-carry-suitcase_80802-316.jpg"
-                    class="card-img-top img-fluid" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">All Traveler</h5>
-                    <p class="text-black">all Traveleres in the system</p>
-                    <a routerLink="/admin/users" class="btn text-light" style="background-color: #3b5899;">Show</a>
-                  </div>
-                </div>
+      Main Content -->
+      <!-- <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content"> -->
+          <!-- Main Dashboard Heading -->
+          <!-- <div class="container w-50  mt-5 shadow-lg p-4 text-center">
+            <h3 class="text-dark">Admin Dashboard</h3>
+          </div> -->
 
-              </div>
+          <!-- Dashboard Cards Section -->
+          <!-- <div class="mt-5 d-flex justify-content-center container">
+            <div class="row g-4">
+              Card 1: All Travelers
               <div class="col-sm-12 col-md-3">
-                <div class="card">
-                  <img src="/images/group.png" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">All Category</h5>
-                    <p class="text-black">all Categories in the system</p>
-                    <a routerLink="/category" class="btn text-light" style="background-color: #3b5899;">Show</a>
+                <div class="card shadow-sm border-0 rounded">
+                  <img src="https://img.freepik.com/premium-vector/man-traveler-walking-city-carry-suitcase_80802-316.jpg"
+                    class="card-img-top img-fluid rounded-top" alt="All Travelers Image">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">All Travelers</h5>
+                    <p class="fs-1 text-primary fw-bold">{{nofuse}} </p>
+                    <a routerLink="/admin/users" class="btn btn-primary w-100">Show</a>
                   </div>
                 </div>
+              </div> -->
 
-              </div>
-              <div class="col-sm-12 col-md-3 ">
-                <div class="card">
-                  <img src="/images/owners.jpeg" class="card-img-top img-fluid" alt="...">
-                  <div class="card-body">
+              <!-- Card 2: All Categories -->
+              <!-- <div class="col-sm-12 col-md-3">
+                <div class="card shadow-sm border-0 rounded">
+                  <img src="/images/group.png" class="card-img-top img-fluid rounded-top" alt="All Categories Image">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">All Categories</h5>
+                   <p class="text-muted">All categories in the system</p> -->
+                    <!-- <p class="fs-1 text-primary fw-bold">{{nofcat}} </p>
+
+                    <a routerLink="/category" class="btn btn-primary w-100">Show</a>
+                  </div>
+                </div>
+              </div> -->
+
+              <!-- Card 3: All Owners -->
+              <!-- <div class="col-sm-12 col-md-3">
+                <div class="card shadow-sm border-0 rounded">
+                  <img src="/images/owners.jpeg" class="card-img-top img-fluid rounded-top" alt="All Owners Image">
+                  <div class="card-body text-center">
                     <h5 class="card-title">All Owners</h5>
-                    <p class="text-black">all owners in the system</p>
-                    <a routerLink="/admin/owners" class="btn text-light" style="background-color: #3b5899;">Show</a>
+                   <p class="text-muted">All owners in the system</p> -->
+                    <!-- <p class="fs-1 text-primary fw-bold">{{nofowr}} </p>
+                    <a routerLink="/admin/owners" class="btn btn-primary w-100">Show</a>
                   </div>
                 </div>
+              </div> --> 
 
-              </div>
-              <div class="col-sm-12 col-md-3 ">
-                <div class="card">
-                  <img src="/images/billboard.png" class="card-img-top" alt="...">
-                  <div class="card-body">
+              <!-- Card 4: All Properties -->
+              <!-- <div class="col-sm-12 col-md-3">
+                <div class="card shadow-sm border-0 rounded">
+                  <img src="/images/billboard.png" class="card-img-top img-fluid rounded-top" alt="All Properties Image">
+                  <div class="card-body text-center">
                     <h5 class="card-title">All Properties</h5>
-                    <p class="text-black">all properties in the system</p>
-                    <a routerLink="/admin/properties" class="btn text-light" style="background-color: #3b5899;">Show</a>
+                     <p class="text-muted">All properties in the system</p> -->
+                    <!-- <p class="fs-1 text-primary fw-bold">{{nofpro}} </p>
+                    <a routerLink="/admin/properties" class="btn btn-primary w-100">Show</a>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <a class="scroll-to-top rounded" href="#page-top">
+    </div> -->
+
+    <!-- Scroll to Top Button -->
+    <!-- <a class="scroll-to-top rounded" href="#page-top">
       <i class="fas fa-angle-up"></i>
     </a>
   </div>
-</div>
+</div>  -->
+
+
+
+ 
+ 
+    <div class="wrapper " style="background-color: #ffffff !important;"  >
+      <!-- Sidebar -->
+      
+        <app-sidebar></app-sidebar>
+     
+      <!-- End Sidebar -->
+
+      <div class="main-panel">
+       
+
+        <div class="container">
+          <div class="page-inner">
+            <div
+              class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4"
+            >
+              <div>
+                <h3 class="fw-bold mb-3">Dashboard</h3>
+              </div>
+             
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-md-6 col-lg-3 ">
+                <div class="card card-stats card-round shadow">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-icon">
+                        <div
+                          class="icon-big text-center icon-primary bubble-shadow-small"
+                        >
+                          <i class="fas fa-users"></i>
+                        </div>
+                      </div>
+                      <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                          <a routerLink="/admin/users">
+                          <!-- <h5 class="card-title text-dark">All </h5> -->
+                          <p class="fs-3 text-primary fw-bold">{{nofuse}} Travelers</p>
+                          </a>
+                         
+                              </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="card card-stats card-round shadow">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-icon">
+                        <div
+                          class="icon-big text-center icon-info bubble-shadow-small"
+                        >
+                          <i class="fas fa-user-check"></i>
+                        </div>
+                      </div>
+                      <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                          <a routerLink="/admin/owners">
+                            <!-- <h5 class="card-title text-dark">All </h5> -->
+                            <p class="fs-3 text-primary fw-bold">{{nofowr}} Owners</p>
+                            </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="card card-stats card-round shadow">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-icon">
+                        <div
+                          class="icon-big text-center icon-success bubble-shadow-small"
+                        >
+                          <i class="fas fa-luggage-cart"></i>
+                        </div>
+                      </div>
+                      <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                          <a routerLink="/category">
+                            <!-- <h5 class="card-title text-dark">All </h5> -->
+                            <p class="fs-3 text-primary fw-bold">{{nofcat}} Categories</p>
+                            </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="card card-stats card-round shadow">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-icon">
+                        <div
+                          class="icon-big text-center icon-secondary bubble-shadow-small"
+                        >
+                          <i class="far fa-check-circle"></i>
+                        </div>
+                      </div>
+                      <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                          <a routerLink="/admin/properties">
+                            <!-- <h5 class="card-title text-dark">All </h5> -->
+                            <p class="fs-3 text-primary fw-bold">{{nofpro}} Properties</p>
+                            </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card card-round">
+                <div class="card-header">
+                  <div class="card-head-row card-tools-still-right">
+                    <div class="card-title">Transaction History</div>
+                   
+                  </div>
+                </div>
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center mb-0">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">Property Name</th>
+                          <th scope="col" class="text-end">User Name</th>
+                          <th scope="col" class="text-end">Owner Name</th>
+                          <th scope="col" class="text-end">Date & Time</th>
+                          <th scope="col" class="text-end">Amount</th>
+                          <th scope="col" class="text-end">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @for (item of payments; track item.id) {
+                        <tr>
+                          <th scope="row">
+                            <button
+                              class="btn btn-icon btn-round btn-success btn-sm me-2"
+                            >
+                              <i class="fa fa-check"></i>
+                            </button>
+                            {{item.product_name}}
+                          </th>
+                          <td class="text-end">{{item.user_name}}</td>
+                          <td class="text-end">{{item.owner_name}}</td>
+
+                          <td class="text-end">{{item.created_at | truncate:15}}</td>
+                          <td class="text-end">{{item.amount}} {{item.currency}}</td>
+                          <td class="text-end">
+                            <span class="badge badge-success">{{item.payment_status}}</span>
+                          </td>
+                        </tr>
+                      }
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        
+      </div>
+
+     
+      <!-- End Custom template -->
+    </div>
+    <!--   Core JS Files   -->
+   
+   

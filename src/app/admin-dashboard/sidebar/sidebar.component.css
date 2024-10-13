@@ -1,0 +1,11 @@
+
+   .nav-item a span{
+    font-size: 1.2rem;
+    background-color: transparent;
+  }
+  .nav-item a{
+    background-color: transparent;
+    color: white;
+    margin-top: 1rem;
+  }
+ 
