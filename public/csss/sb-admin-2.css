@@ -10320,7 +10320,7 @@ a:focus {
 }
 
 .sidebar {
-  width: 6.5rem;
+  width: 8rem;
   min-height: 100vh;
 }
 
@@ -10509,7 +10509,7 @@ a:focus {
 
 @media (min-width: 768px) {
   .sidebar {
-    width: 14rem !important;
+    width: 19rem !important;
   }
   .sidebar .nav-item .collapse {
     position: relative;
