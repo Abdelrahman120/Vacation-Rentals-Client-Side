@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdminServicesService } from '../services/admin-services.service';
+import { AdminServices } from '../services/admin-services.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TruncatePipe } from '../pipes/truncate.pipe';
@@ -15,7 +15,7 @@ export class OwnerDetailsComponent {
   owner: any;
   loading = true;
   constructor(
-    private adminServices: AdminServicesService,
+    private adminServices: AdminServices,
     private route: ActivatedRoute
   ) {}
 
