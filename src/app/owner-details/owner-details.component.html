@@ -50,24 +50,26 @@
       <div>
         <div *ngIf="owner.properties && owner.properties.length > 0; else noPayments"
           class="card p-4 shadow-sm border-0 mb-4">
-          <ng-container *ngFor="let property of owner.properties " class="col-md-6 shadow-sm" id="project-items-1">
-            <div class="mt-5">
-              <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
-                <br>
-                Properties
-              </h5>
-              <table class="table table-hover">
-                <thead class="table-dark">
-                  <tr>
-                    <th>Name</th>
-                    <th>Headline</th>
-                    <th>Description</th>
-                    <th>Location</th>
-                    <th>Night Rate</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
+          <div class="mt-5">
+            <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
+              <br>
+              Properties
+            </h5>
+            <table class="table table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th>Name</th>
+                  <th>Headline</th>
+                  <th>Description</th>
+                  <th>Location</th>
+                  <th>Night Rate</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let property of owner.properties " class="col-md-6 shadow-sm"
+                  id="project-items-1">
+
                   <tr *ngFor="let property of owner.properties">
                     <td>{{ property.name }}</td>
                     <td>{{ property.headline | truncate:20}}</td>
@@ -76,10 +78,11 @@
                     <td>{{ property.night_rate }}</td>
                     <td>{{ property.status }}</td>
                   </tr>
-                </tbody>
-              </table>
-            </div>
-          </ng-container>
+                </ng-container>
+
+              </tbody>
+            </table>
+          </div>
         </div>
         <ng-template #noPayments>
           <h4>Properties</h4>
