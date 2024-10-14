@@ -28,6 +28,12 @@ export class PropertyService {
     return this.http.get(`${this.BACKEND_API}/api/property`);
   }
 
+  getPropertiesUsingPagination(pageNumber: number) {
+    return this.http.get(
+      `${this.BACKEND_API}/api/property?page=${pageNumber}&limit=30`
+    );
+  }
+
   getPropertyByDate(input?: any) {
     const { location, sleeps, startDate, endDate } = input;
     const hasLocation = location && Object.keys(location).length > 0;

@@ -6,5 +6,30 @@
 }
 
 .hover-effect:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
+}
+
+.img-hover {
+  transition: transform 0.4s ease;
+}
+
+.img-hover:hover {
+  transform: scale(1.2);
+}
+
+.card {
+  background-color: #fff !important;
+}
+
+.blue {
+  color: #3b5899;
+}
+
+.bg-blue {
+  background-color: #3b5899;
+}
+
+.margin {
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
 }

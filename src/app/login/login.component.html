@@ -1,10 +1,26 @@
-<div class="container w-50 border bg-white mx-auto p-5" style="margin-top: 120px">
+<div
+  class="container w-50 border bg-white mx-auto p-5"
+  style="margin-top: 120px"
+>
   <form #loginForm="ngForm" (ngSubmit)="handleSubmit(loginForm)">
     <h2 class="text-center my-2 text-dark">Owner Login</h2>
     <div class="form-input col-lg-12 my-4">
-      <label for="exampleInputEmail1" class="form-label fs-6 text-uppercase fw-bold text-black">Email Address</label>
-      <input type="email" id="exampleInputEmail1" name="email" placeholder="Email" class="form-control ps-3" ngModel
-        #email="ngModel" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+      <label
+        for="exampleInputEmail1"
+        class="form-label fs-6 text-uppercase fw-bold text-black"
+        >Email Address</label
+      >
+      <input
+        type="email"
+        id="exampleInputEmail1"
+        name="email"
+        placeholder="Email"
+        class="form-control ps-3"
+        ngModel
+        #email="ngModel"
+        required
+        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+      />
 
       @if(email.invalid && (email.touched || submitted)){
       <div id="emailErrors" class="form-text text-danger">
@@ -19,9 +35,23 @@
       }
     </div>
     <div class="form-input col-lg-12 my-4">
-      <label for="inputPassword1" class="form-label fs-6 text-uppercase fw-bold text-black">Password</label>
-      <input type="password" id="inputPassword1" placeholder="Password" name="password" class="form-control ps-3"
-        aria-describedby="passwordHelpBlock" ngModel #password="ngModel" required minlength="8" />
+      <label
+        for="inputPassword1"
+        class="form-label fs-6 text-uppercase fw-bold text-black"
+        >Password</label
+      >
+      <input
+        type="password"
+        id="inputPassword1"
+        placeholder="Password"
+        name="password"
+        class="form-control ps-3"
+        aria-describedby="passwordHelpBlock"
+        ngModel
+        #password="ngModel"
+        required
+        minlength="8"
+      />
       @if(password.invalid && (password.touched|| submitted)){
       <div id="exampleInputPassword1" class="form-text text-danger">
         @if(password.hasError('required')) {
@@ -34,26 +64,39 @@
         {{ errorMessage }}
       </div>
       <div id="passwordHelpBlock" class="form-text text-end">
-        <a routerLink="/forget_password" class="password text-dark">Forgot Password ?</a>
+        <a routerLink="/forget_password" class="password text-dark"
+          >Forgot Password ?</a
+        >
       </div>
     </div>
 
-    <div class="d-grid my-3 ">
-      <button type="submit" class="btn login btn-lg text-uppercase  fs-6 text-white" style="background-color: #3b5899;">
+    <div class="d-grid my-3">
+      <button
+        type="submit"
+        class="btn login btn-lg text-uppercase fs-6 text-white"
+        style="background-color: #3b5899"
+      >
         Log In
       </button>
     </div>
     <div class="text-center d-flex justify-content-center">
-
-
-      <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-block text-white bg-danger"
-        (click)="loginWithGoogleForOwner()" type="submit"><i class="fab fa-google me-2"></i> Sign in with
-        google</button>
+      <button
+        data-mdb-button-init
+        data-mdb-ripple-init
+        class="btn btn-lg btn-block text-white bg-danger"
+        (click)="loginWithGoogleForOwner()"
+        type="submit"
+      >
+        <i class="fab fa-google me-2"></i> Sign in with google
+      </button>
     </div>
 
-    <div id="passwordHelpBlock">
-      <p class="small fw-bold mt-2 pt-1 mb-0 text-dark">Don't have an account? <a routerLink="/register/owner"
-          class="link-danger">Register</a></p>
+    <div
+      id="passwordHelpBlock"
+      class="d-flex justify-content-between align-items-center mt-3"
+    >
+      <span class="roboto-bold text-dark"> Don't have an account? </span>
+      <a routerLink="/register/owner" class="link-danger">Register</a>
     </div>
   </form>
 </div>

@@ -7,7 +7,7 @@
 
 body {
   margin-top: 20px;
-  background: #f7f8fa
+  background: #f7f8fa;
 }
 
 .avatar-xxl {
@@ -48,7 +48,7 @@ body {
 }
 
 .bg-soft-primary {
-  background-color: rgba(3, 142, 220, .15) !important;
+  background-color: rgba(3, 142, 220, 0.15) !important;
 }
 
 .rounded-circle {
@@ -86,25 +86,25 @@ body {
 
 .badge-soft-danger {
   color: #f34e4e;
-  background-color: rgba(243, 78, 78, .1);
+  background-color: rgba(243, 78, 78, 0.1);
 }
 
 .badge-soft-warning {
   color: #f7cc53;
-  background-color: rgba(247, 204, 83, .1);
+  background-color: rgba(247, 204, 83, 0.1);
 }
 
 .badge-soft-success {
   color: #51d28c;
-  background-color: rgba(81, 210, 140, .1);
+  background-color: rgba(81, 210, 140, 0.1);
 }
 
 .avatar-group .avatar-group-item {
   margin-left: -14px;
   border: 2px solid #fff;
   border-radius: 50%;
-  -webkit-transition: all .2s;
-  transition: all .2s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .avatar-sm {
@@ -138,7 +138,7 @@ body {
 
 .badge-soft-secondary {
   color: #74788d;
-  background-color: rgba(116, 120, 141, .1);
+  background-color: rgba(116, 120, 141, 0.1);
 }
 
 .badge-soft-secondary {
@@ -148,7 +148,7 @@ body {
 .work-activity {
   position: relative;
   color: #74788d;
-  padding-left: 5.5rem
+  padding-left: 5.5rem;
 }
 
 .work-activity::before {
@@ -157,24 +157,25 @@ body {
   height: 100%;
   top: 0;
   left: 66px;
-  border-left: 1px solid rgba(3, 142, 220, .25)
+  border-left: 1px solid rgba(3, 142, 220, 0.25);
 }
 
 .work-activity .work-item {
   position: relative;
   border-bottom: 2px dashed #eff0f2;
-  margin-bottom: 14px
+  margin-bottom: 14px;
 }
 
 .work-activity .work-item:last-of-type {
   padding-bottom: 0;
   margin-bottom: 0;
-  border: none
+  border: none;
 }
 
-.work-activity .work-item::after, .work-activity .work-item::before {
+.work-activity .work-item::after,
+.work-activity .work-item::before {
   position: absolute;
-  display: block
+  display: block;
 }
 
 .work-activity .work-item::before {
@@ -185,7 +186,7 @@ body {
   font-weight: 500;
   color: #74788d;
   font-size: 12px;
-  min-width: 120px
+  min-width: 120px;
 }
 
 .work-activity .work-item::after {
@@ -196,5 +197,5 @@ body {
   left: -26px;
   top: 3px;
   background-color: #fff;
-  border: 2px solid #038edc
+  border: 2px solid #038edc;
 }
