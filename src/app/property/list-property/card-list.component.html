@@ -22,6 +22,26 @@
           >
             <app-item-card [property]="property"></app-item-card>
           </div>
+          <div class="d-flex justify-content-center my-4">
+            <div class="paginations">
+              <div>
+                <div
+                  class="btn-group d-flex justify-content-center align-items-center"
+                  id="radioBtn"
+                >
+                  <a class="btn me-3 notActive" (click)="paginationPrev()"
+                    >&#x3C;</a
+                  >
+                  <span class="bg-blue p-2 rounded me-3 text-light">{{
+                    pageNumber
+                  }}</span>
+                  <a class="btn me-3 notActive" (click)="paginationNext()">
+                    &#x3E;</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
         </ng-container>
 
         <ng-template #noPropertiesTemplate>

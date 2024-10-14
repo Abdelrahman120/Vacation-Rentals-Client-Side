@@ -28,6 +28,7 @@ export class CardListComponent implements OnInit {
   isFilteringByCategory: boolean = false;
   noPropertiesInCategory: boolean = false;
   noPropertiesFoundInLocation: boolean = false;
+  pageNumber = 1;
 
   constructor(
     private propertyService: PropertyService,
@@ -54,10 +55,21 @@ export class CardListComponent implements OnInit {
       }
     });
 
-    this.checkForQueryParamsAndLoadData();
+    this.loadDataBasedOnParams();
   }
 
-  checkForQueryParamsAndLoadData() {
+  paginationPrev() {
+    if (this.pageNumber > 1) {
+      this.pageNumber -= 1;
+      this.loadAllProperties();
+    }
+  }
+  paginationNext() {
+    this.pageNumber += 1;
+    this.loadAllProperties();
+  }
+
+  loadDataBasedOnParams() {
     this.loading = true;
 
     this.activatedRoute.queryParams.subscribe((params) => {
@@ -100,20 +112,21 @@ export class CardListComponent implements OnInit {
 
   loadAllProperties() {
     this.loading = true;
-    this.propertyService.getProperties().subscribe(
-      (res: any) => {
-        console.log('All properties fetched:', res);
-        this.properties = Array.isArray(res.data) ? res.data : [];
-        this.loading = false;
-        this.isFilteringByCategory = false;
+    this.propertyService
+      .getPropertiesUsingPagination(this.pageNumber)
+      .subscribe(
+        (res: any) => {
+          this.properties = Array.isArray(res.data) ? res.data : [];
+          this.loading = false;
+          this.isFilteringByCategory = false;
 
-        this.noPropertiesInCategory = false;
-        this.noPropertiesFoundInLocation = this.properties.length === 0;
-      },
-      (error) => {
-        console.error('Error loading all properties:', error);
-        this.loading = false;
-      }
-    );
+          this.noPropertiesInCategory = false;
+          this.noPropertiesFoundInLocation = this.properties.length === 0;
+        },
+        (error) => {
+          console.error('Error loading all properties:', error);
+          this.loading = false;
+        }
+      );
   }
 }
