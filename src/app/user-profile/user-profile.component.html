@@ -1,7 +1,4 @@
-<div
-  class="container w-50 border bg-white mx-auto p-5 w-75"
-  style="margin-top: 100px"
->
+<div class="container w-50 border bg-white mx-auto p-5 w-75" style="margin-top: 100px">
   <div class="row">
     <div class="col-xl-12">
       <div class="card">
@@ -10,26 +7,14 @@
             <div class="col-md-3">
               <div class="text-center border-end">
                 @if(isUser()){
-                <img
-                  [src]="'http://localhost:8000/images/posts/' + user.image"
-                  alt="Profile Image"
-                  class="img-fluid avatar-xxl rounded-circle"
-                  *ngIf="user.image; else defaultImage"
-                />
+                <img [src]="'http://localhost:8000/images/posts/' + user.image" alt="Profile Image"
+                  class="img-fluid avatar-xxl rounded-circle" *ngIf="user.image; else defaultImage" />
                 }@else {
-                <img
-                  src="{{ user.image }}"
-                  alt="Profile Image"
-                  class="img-fluid avatar-xxl rounded-circle"
-                  *ngIf="user.image; else defaultImage"
-                />
+                <img src="{{ user.image }}" alt="Profile Image" class="img-fluid avatar-xxl rounded-circle"
+                  *ngIf="user.image; else defaultImage" />
                 }
                 <ng-template #defaultImage>
-                  <img
-                    src="assets/default-avatar.png"
-                    alt="Default Image"
-                    class="profile-image"
-                  />
+                  <img src="assets/default-avatar.png" alt="Default Image" class="profile-image" />
                 </ng-template>
                 <h4 class="text-primary font-size-20 mt-3 mb-2">
                   {{ user.name }}
@@ -42,18 +27,14 @@
                   <div class="d-flex">
                     <h4 class="card-title mb-2">Biography</h4>
                     <div class="d-flex ms-auto">
-                      <a
-                        [routerLink]="['/favorite']"
-                        class="btn btn-light d-flex roboto-regular align-items-center me-3"
-                      >
+                      <a [routerLink]="['/favorite']"
+                        class="btn btn-light d-flex roboto-regular align-items-center me-3">
                         <fa-icon [icon]="faHeart" class="fs-4"></fa-icon>
                         <span class="ms-1 fs-5">Favorite</span>
                       </a>
                       @if(isUser()){
-                      <a
-                        [routerLink]="['/edit-user-profile', id]"
-                        class="btn btn-secondary d-flex roboto-regular align-items-center me-3"
-                      >
+                      <a [routerLink]="['/edit-user-profile', id]"
+                        class="btn btn-secondary d-flex roboto-regular align-items-center me-3">
                         <span class="ms-1 fs-5">Edit Profile</span>
                       </a>
                       }
@@ -83,31 +64,24 @@
     </div>
 
     <div>
-      <div
-        *ngIf="user.payments.length > 0; else noPayments"
-        class="row g-5"
-        id="all-projects"
-      >
-        <ng-container
-          *ngFor="let payment of user.payments"
-          class="col-md-6 shadow-sm"
-          id="project-items-1"
-        >
-          <div class="mt-5">
-            <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
-              <br />
-              Payments
-            </h5>
-            <table class="table table-hover">
-              <thead class="table-dark">
-                <tr>
-                  <th>Date</th>
-                  <th>Property Name</th>
-                  <th>Amount</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
+      <div *ngIf="user.payments.length > 0; else noPayments" class="row g-5" id="all-projects">
+
+        <div class="mt-5">
+          <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
+            <br />
+            Payments
+          </h5>
+          <table class="table table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th>Date</th>
+                <th>Property Name</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let payment of user.payments" class="col-md-6 shadow-sm" id="project-items-1">
                 <tr *ngFor="let payment of user.payments">
                   <td>{{ payment.created_at | date : "mediumDate" }}</td>
                   <td>{{ payment.product_name }}</td>
@@ -116,10 +90,11 @@
                   </td>
                   <td>{{ payment.payment_status }}</td>
                 </tr>
-              </tbody>
-            </table>
-          </div>
-        </ng-container>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+
       </div>
       <ng-template #noPayments>
         <h4>Payments</h4>
@@ -128,39 +103,33 @@
     </div>
 
     <div>
-      <div
-        *ngIf="user.reviews.length > 0; else noReviews"
-        class="row g-5"
-        id="all-projects"
-      >
-        <ng-container
-          *ngFor="let review of user.reviews"
-          class="col-md-6 shadow-sm"
-          id="project-items-1"
-        >
-          <div class="mt-5">
-            <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
-              <br />
-              Reviews
-            </h5>
-            <table class="table table-hover">
-              <thead class="table-dark">
-                <tr>
-                  <th>Property Name</th>
-                  <th>Review</th>
-                  <th>Rating</th>
-                </tr>
-              </thead>
-              <tbody>
+      <div *ngIf="user.reviews.length > 0; else noReviews" class="row g-5" id="all-projects">
+
+        <div class="mt-5">
+          <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
+            <br />
+            Reviews
+          </h5>
+          <table class="table table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th>Property Name</th>
+                <th>Review</th>
+                <th>Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let review of user.reviews" class="col-md-6 shadow-sm" id="project-items-1">
                 <tr *ngFor="let review of user.reviews">
                   <td>{{ review.property_name }}</td>
                   <td>{{ review.review }}</td>
                   <td>{{ review.rating }}/5</td>
                 </tr>
-              </tbody>
-            </table>
-          </div>
-        </ng-container>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+
       </div>
       <ng-template #noReviews>
         <h4>Reviews</h4>
