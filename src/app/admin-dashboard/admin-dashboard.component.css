@@ -1,0 +1,91 @@
+/* Wrapper background */
+.wrapper {
+  background-color: #f8f9fa !important; /* Soft gray background for contrast */
+  padding: 20px; /* Padding for the main container */
+}
+
+/* Main panel */
+.main-panel {
+  padding: 20px; /* Add padding for the content */
+}
+
+/* Page inner */
+.page-inner {
+  background-color: #ffffff;
+  border-radius: 10px; /* Rounded corners for the main content box */
+  padding: 20px; /* Padding inside the box */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for a floating effect */
+}
+
+/* Card style */
+.card {
+  background-color: #ffffff;
+  border: none; /* Remove borders */
+  border-radius: 10px; /* Rounded card edges */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effects */
+}
+
+/* Card hover effect */
+.card:hover {
+  transform: translateY(-5px); /* Slightly lift on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+/* Card icon styles */
+.card .icon-big {
+  background-color: #f0f0f0; /* Light gray background for icons */
+  border-radius: 50%; /* Rounded icon background */
+  padding: 15px; /* Padding around the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card .icon-big i {
+  font-size: 2.5rem; /* Larger icon size */
+  color: #4e73df; /* Primary color for icons */
+}
+
+/* Card numbers and links */
+.card .numbers p {
+  font-size: 1.5rem; /* Larger font size for numbers */
+  color: #343a40; /* Darker text for the card numbers */
+}
+
+.card .numbers a {
+  color: inherit; /* Keep link color same as text */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.card .numbers a:hover {
+  color: #4e73df; /* Change color on hover */
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Card colors for each specific type */
+.card .icon-primary {
+  background-color: #4e73df; /* Blue background */
+  color: #ffffff;
+}
+
+.card .icon-info {
+  background-color: #36b9cc; /* Info (teal) background */
+  color: #ffffff;
+}
+
+.card .icon-success {
+  background-color: #1cc88a; /* Green background */
+  color: #ffffff;
+}
+
+.card .icon-secondary {
+  background-color: #858796; /* Gray background */
+  color: #ffffff;
+}
+
+/* Dashboard title */
+h3.fw-bold {
+  color: #343a40; /* Dark color for the heading */
+  font-weight: 700; /* Bold text */
+  margin-bottom: 20px;
+}

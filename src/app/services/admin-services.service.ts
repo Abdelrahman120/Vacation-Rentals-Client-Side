@@ -75,4 +75,11 @@ export class AdminServicesService {
 }
   getOwnerDetails(ownerId: string): Observable<AdminOwnerDetails> {
     return this.http.get<AdminOwnerDetails>(`${this.url}/owner/${ownerId}`);
-  }}
+  }
+getpayments() {
+
+  return this.http.get(`${this.url}/payments`, { headers: this.getAuthHeaders() });
+
+}
+
+}
