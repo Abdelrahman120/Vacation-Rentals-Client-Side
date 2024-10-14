@@ -42,32 +42,34 @@
 
       <div>
         <div *ngIf="user.payments.length > 0; else noPayments" class="row g-5 " id="all-projects">
-          <ng-container *ngFor="let payment of user.payments" class="col-md-6 shadow-sm" id="project-items-1">
-            <div class="mt-5">
-              <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
-                <br>
-                Payments
-              </h5>
-              <table class="table table-hover">
-                <thead class="table-dark">
-                  <tr>
-                    <th>Date</th>
-                    <th>Payment Name</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
+
+          <div class="mt-5">
+            <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
+              <br>
+              Payments
+            </h5>
+            <table class="table table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th>Date</th>
+                  <th>Payment Name</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let payment of user.payments" class="col-md-6 shadow-sm" id="project-items-1">
                   <tr *ngFor="let payment of user.payments">
                     <td>{{ payment.start_date }}</td>
                     <td>{{ payment.product_name }}</td>
                     <td>{{ payment.amount }} {{ payment.currency }}</td>
                     <td>{{ payment.payment_status }}</td>
                   </tr>
-                </tbody>
-              </table>
-            </div>
-          </ng-container>
+                </ng-container>
+
+              </tbody>
+            </table>
+          </div>
         </div>
         <ng-template #noPayments>
           <h4>Payments</h4>
@@ -77,30 +79,32 @@
 
       <div>
         <div *ngIf="user.reviews.length > 0; else noReviews" class="row g-5 " id="all-projects">
-          <ng-container *ngFor="let review of user.reviews" class="col-md-6 shadow-sm" id="project-items-1">
-            <div class="mt-5">
-              <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
-                <br>
-                Reviews
-              </h5>
-              <table class="table table-hover">
-                <thead class="table-dark">
-                  <tr>
-                    <th>Property Name</th>
-                    <th>Review</th>
-                    <th>Rating</th>
-                  </tr>
-                </thead>
-                <tbody>
+
+          <div class="mt-5">
+            <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
+              <br>
+              Reviews
+            </h5>
+            <table class="table table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th>Property Name</th>
+                  <th>Review</th>
+                  <th>Rating</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let review of user.reviews" class="col-md-6 shadow-sm" id="project-items-1">
                   <tr *ngFor="let review of user.reviews">
                     <td>{{ review.property_name }}</td>
                     <td>{{ review.review }}</td>
                     <td>{{ review.rating}}</td>
                   </tr>
-                </tbody>
-              </table>
-            </div>
-          </ng-container>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+
         </div>
         <ng-template #noReviews>
           <h4>Reviews</h4>

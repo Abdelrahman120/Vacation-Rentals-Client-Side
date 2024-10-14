@@ -1,8 +1,4 @@
-<div
-  class="container w-50 border bg-white mx-auto p-5 w-75"
-  style="padding-top: 200px"
-  style="margin-top: 100px"
->
+<div class="container w-50 border bg-white mx-auto p-5 w-75" style="padding-top: 200px" style="margin-top: 100px">
   <div class="row">
     <div class="col-xl-12">
       <div class="card" *ngIf="ownerInfo">
@@ -11,31 +7,16 @@
             <div class="col-md-3">
               <div class="text-center border-end" *ngIf="ownerInfo">
                 @if(ownerId){
-                <img
-                  *ngIf="ownerInfo.image; else defaultImage"
-                  [src]="
+                <img *ngIf="ownerInfo.image; else defaultImage" [src]="
                     'http://localhost:8000/images/posts/' + ownerInfo.image
-                  "
-                  alt="Profile Image"
-                  class="img-fluid avatar-xxl rounded-circle"
-                />
+                  " alt="Profile Image" class="img-fluid avatar-xxl rounded-circle" />
                 }@else {
-                <img
-                  src="{{ ownerInfo.image }}"
-                  alt="Profile Image"
-                  class="img-fluid avatar-xxl rounded-circle"
-                />
+                <img src="{{ ownerInfo.image }}" alt="Profile Image" class="img-fluid avatar-xxl rounded-circle" />
                 }
                 <ng-template #defaultImage>
-                  <img
-                    src="assets/default-avatar.png"
-                    alt="Default Image"
-                    class="profile-image"
-                  />
+                  <img src="assets/default-avatar.png" alt="Default Image" class="profile-image" />
                 </ng-template>
-                <h4
-                  class="text-primary font-size-30 font-weight-bold mt-3 mb-2"
-                >
+                <h4 class="text-primary font-size-30 font-weight-bold mt-3 mb-2">
                   {{ ownerInfo.name }}
                 </h4>
               </div>
@@ -46,10 +27,8 @@
                   <div class="d-flex justify-content-between">
                     <h4 class="card-title mb-4 fs-2">Biography</h4>
                     @if(ownerId){
-                    <a
-                      [routerLink]="['/edit-Owner-profile', ownerInfo.id]"
-                      class="btn btn-secondary d-flex roboto-regular rounded align-items-center me-3"
-                    >
+                    <a [routerLink]="['/edit-Owner-profile', ownerInfo.id]"
+                      class="btn btn-secondary d-flex roboto-regular rounded align-items-center me-3">
                       <span class="ms-1 fs-5">Edit Profile</span>
                     </a>
                     }
