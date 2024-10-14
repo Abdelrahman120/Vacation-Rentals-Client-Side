@@ -1,0 +1,95 @@
+.main-banner .item {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 220px 20% 320px 20%;
+    margin-top: 0px;
+  }
+  
+  .main-banner .item-1 {
+    background-image: url(banner-01.jpg);
+  }
+  
+
+  
+  .main-banner .item span.category {
+    background-color: #fff;
+    color: #1e1e1e;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
+    padding: 6px 15px;
+    display: inline-block;
+    margin-bottom: 30px;
+  }
+  
+  .main-banner .item span.category em {
+    font-style: normal;
+    color: #f35525;
+  }
+  
+  .main-banner .item h2 {
+    font-size: 62px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 72px;
+    width: 50%;
+    margin-bottom: 0px;
+  }
+  
+  .main-banner .owl-dots {
+    position: absolute;
+    bottom: 60px;
+    left: 20%;
+  }
+  
+  .main-banner .owl-dots .owl-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: all .5s;
+  }
+  
+  .main-banner .owl-dots .active {
+    background-color: #f35525;
+  }
+  
+  .main-banner .owl-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50px);
+  }
+  
+  .main-banner .owl-nav .owl-prev i,
+  .main-banner .owl-nav .owl-next i {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 24px;
+    display: inline-block;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    opacity: 1;
+    transition: all .3s;
+  }
+  
+  .main-banner .owl-nav .owl-prev i {
+    position: absolute;
+    left: 45px;
+  }
+  
+  .main-banner .owl-nav .owl-next i {
+    position: absolute;
+    right: 45px;
+  }
+  
+  .main-banner .owl-nav .owl-prev i:hover,
+  .main-banner .owl-nav .owl-next i:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
