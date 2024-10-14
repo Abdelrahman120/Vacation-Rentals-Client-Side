@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdminServicesService } from '../../services/admin-services.service';
+import { AdminServices } from '../../services/admin-services.service';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from '../../admin-dashboard/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
@@ -13,14 +13,15 @@ import { TruncatePipe } from '../../pipes/truncate.pipe';
   styleUrl: './users.component.css',
 })
 export class UsersComponent {
-  constructor(private adminServices: AdminServicesService) {}
+  constructor(private adminServices: AdminServices) {}
   users: any[] = [];
+  pageNumber = 1;
 
   ngOnInit() {
     this.getUsers();
   }
   getUsers(): void {
-    this.adminServices.getUsers().subscribe(
+    this.adminServices.getUsersUsingPagination(this.pageNumber).subscribe(
       (response) => {
         this.users = response.data;
       },
@@ -28,6 +29,18 @@ export class UsersComponent {
         console.error('Error fetching users:', error);
       }
     );
+  }
+
+  paginationPrev() {
+    if (this.pageNumber > 1) {
+      this.pageNumber -= 1;
+      this.getUsers();
+    }
+  }
+
+  paginationNext() {
+    this.pageNumber += 1;
+    this.getUsers();
   }
   deleteUser(id: number): void {
     this.adminServices.deleteUser(id).subscribe(

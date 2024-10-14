@@ -1,32 +1,32 @@
 import { Component } from '@angular/core';
-import { SidebarComponent } from "./sidebar/sidebar.component";
+import { SidebarComponent } from './sidebar/sidebar.component';
 import { Router, RouterLink } from '@angular/router';
 import { LoginUserService } from '../services/login-user.service';
 import { CategoryService } from '../services/category.service';
-import { AdminServicesService } from '../services/admin-services.service';
+import { AdminServices } from '../services/admin-services.service';
 import { TruncatePipe } from '../pipes/truncate.pipe';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [SidebarComponent,RouterLink ,TruncatePipe],
+  imports: [SidebarComponent, RouterLink, TruncatePipe],
   templateUrl: './admin-dashboard.component.html',
-  styleUrl: './admin-dashboard.component.css'
+  styleUrl: './admin-dashboard.component.css',
 })
 export class AdminDashboardComponent {
-  constructor (private authService : LoginUserService ,
-   private router : Router,
-   private categoryService: CategoryService,
-   private adminServices: AdminServicesService
-  
+  constructor(
+    private authService: LoginUserService,
+    private router: Router,
+    private categoryService: CategoryService,
+    private adminServices: AdminServices
   ) {}
 
   categories: any[] = [];
-  nofcat : number = 0;
+  nofcat: number = 0;
   owners: any[] = [];
-  nofowr : number = 0;
+  nofowr: number = 0;
   properties: any[] = [];
-  users :any[] = [];
+  users: any[] = [];
   nofuse: number = 0;
   nofpro: number = 0;
   payments: any[] = [];
@@ -43,15 +43,14 @@ export class AdminDashboardComponent {
           this.adminServices.getUsers().subscribe((data: any) => {
             this.users = data.data;
             this.nofuse = this.users.length;
-          this.adminServices.getpayments().subscribe((data: any) => {
-            console.log(data);
-            
-            this.payments = data.data;
-          })
+            this.adminServices.getPayments().subscribe((data: any) => {
+              console.log(data);
+
+              this.payments = data.data;
+            });
           });
         });
-      })
-      
+      });
     });
   }
   onOwnerLogout() {
@@ -60,9 +59,9 @@ export class AdminDashboardComponent {
         console.log('Owner Logout successful', response);
         localStorage.removeItem('userName');
         localStorage.removeItem('userEmail');
-        localStorage.removeItem('owner_auth_token'); 
-        localStorage.removeItem('role'); 
-        this.router.navigate(['/login/owner']); 
+        localStorage.removeItem('owner_auth_token');
+        localStorage.removeItem('role');
+        this.router.navigate(['/login/owner']);
       },
       (error) => {
         console.log('Owner Logout failed', error);
@@ -70,5 +69,3 @@ export class AdminDashboardComponent {
     );
   }
 }
-
- 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdminServicesService } from '../../services/admin-services.service';
+import { AdminServices } from '../../services/admin-services.service';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from '../../admin-dashboard/sidebar/sidebar.component';
 import { RouterLink } from '@angular/router';
@@ -14,14 +14,15 @@ import { TruncatePipe } from '../../pipes/truncate.pipe';
 })
 export class OwnersComponent {
   owners: any[] = [];
-  constructor(private adminServices: AdminServicesService) {}
+  pageNumber = 1;
+  constructor(private adminServices: AdminServices) {}
 
   ngOnInit(): void {
     this.getOwners();
   }
 
   getOwners(): void {
-    this.adminServices.getOwners().subscribe(
+    this.adminServices.getOwnersUsingPagination(this.pageNumber).subscribe(
       (response) => {
         this.owners = response.data;
       },
@@ -29,6 +30,18 @@ export class OwnersComponent {
         console.error('Error fetching owners:', error);
       }
     );
+  }
+
+  paginationPrev() {
+    if (this.pageNumber > 1) {
+      this.pageNumber -= 1;
+      this.getOwners();
+    }
+  }
+
+  paginationNext() {
+    this.pageNumber += 1;
+    this.getOwners();
   }
 
   deleteOwner(id: number): void {
