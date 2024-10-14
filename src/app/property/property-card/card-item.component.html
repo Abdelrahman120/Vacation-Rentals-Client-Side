@@ -1,22 +1,20 @@
-<div class="card border-0 position-relative my-2 bg-transparent">
+<div class="card border-1 position-relative my-2 shadow">
   <div
     id="carouselExampleControls{{ property.id }}"
     class="carousel slide mb-1"
     data-bs-ride="carousel"
   >
     <div class="carousel-inner">
-      <a (click)="goToDetails(property.id)">
-        <ng-container *ngFor="let item of property.images; let i = index">
-          <div class="carousel-item" [class.active]="i === 0">
-            <img
-              [src]="'http://127.0.0.1:8000' + item.image"
-              class="d-block w-100 img-fluid rounded-3"
-              [alt]="item.name || 'Property Image'"
-              loading="lazy"
-            />
-          </div>
-        </ng-container>
-      </a>
+      <ng-container *ngFor="let item of property.images; let i = index">
+        <div class="carousel-item" [class.active]="i === 0">
+          <img
+            [src]="'http://127.0.0.1:8000' + item.image"
+            class="d-block w-100 img-fluid img-hover"
+            [alt]="item.name || 'Property Image'"
+            loading="lazy"
+          />
+        </div>
+      </ng-container>
     </div>
 
     <button
@@ -40,36 +38,45 @@
     </button>
   </div>
 
-  <!-- </a> -->
   <fa-icon
     [icon]="faHeart"
     class="fs-4 position-absolute rounded-3 text-light hover-effect z-3"
-    style="top: 2%; right: 4%"
+    style="top: 3%; right: 3%"
     (click)="toggleFavorites(property.id)"
   >
     {{ isFavorite(property.id) ? "Remove from Favorites" : "Add to Favorites" }}
     ></fa-icon
   >
-  <div class="card-body p-1">
-    <i class="fas fa-map-marker-alt text-dark me-1"></i>
+  <div class="card-body p-3 mt-2">
+    <i class="fas fa-map-marker-alt me-1 blue"></i>
     <span class="text-dark text-muted" style="font-size: 14px">{{
-      property.location | truncate : 30
+      property.location | truncate : 40
     }}</span>
-    <p class="roboto-regular text-dark fs-5">
+    <p class="roboto-bold text-dark margin">
       {{ property.headline | truncate : 30 }}
     </p>
-    <div class="d-flex justify-content-between" style="font-size: 0.8rem">
-      <div class="card-text text-dark">
-        <fa-icon [icon]="faHouse" class="rounded-3 text-dark"></fa-icon>
+    <div class="d-flex justify-content-between" style="font-size: 0.9rem">
+      <div class="card-text text-muted roboto-regular">
+        <fa-icon [icon]="faHouse" class="blue"></fa-icon>
         {{ property.property_type }} |
-        <fa-icon [icon]="faBed" class="rounded-3 text-dark"></fa-icon>
-        {{ property.bedrooms }} |
-        <fa-icon [icon]="faBath" class="rounded-3 text-dark"></fa-icon>
-        {{ property.bathrooms }} | Sleeps: {{ property.sleeps }}
-      </div>
-      <div class="text-end fw-bold text-dark" style="font-size: 0.8rem">
-        {{ property.night_rate }}$
+        <fa-icon [icon]="faBed" class="blue"></fa-icon>
+        {{ property.bedrooms }} Bed |
+        <fa-icon [icon]="faBath" class="blue"></fa-icon>
+        {{ property.bathrooms }} Bath |
+        <i class="fa-solid fa-person blue"></i>
+        {{ property.sleeps }} Sleep
       </div>
     </div>
+    <div
+      class="fw-bold text-light position-absolute px-2 py-1"
+      style="font-size: 0.8rem; background-color: #3b5899; top: 56%; left: 5%"
+    >
+      ${{ property.night_rate }}/Night
+    </div>
+    <a
+      (click)="goToDetails(property.id)"
+      class="btn bg-blue text-light mt-2 float-end"
+      >View Details</a
+    >
   </div>
 </div>
