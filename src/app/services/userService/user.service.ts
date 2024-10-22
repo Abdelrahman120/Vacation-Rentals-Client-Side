@@ -17,13 +17,20 @@ export class UserService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-
-    return this.http.post<UserInfo>(
+    if (!user_id || !token) {
+      throw new Error('User ID or Token is missing');
+    }
+    return this.http.get<UserInfo>(
       `${this.BACKEND_API}/api/bookings/${user_id}`,
-      {},
       {
         headers,
       }
+    );
+  }
+
+  getOwnerById(id: number): Observable<any> {
+    return this.http.get<any>(
+      `${this.BACKEND_API}/api/booking/owner-details/${id}`
     );
   }
 }

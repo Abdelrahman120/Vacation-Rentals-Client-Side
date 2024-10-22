@@ -112,21 +112,20 @@ export class CardListComponent implements OnInit {
 
   loadAllProperties() {
     this.loading = true;
+
     this.propertyService
       .getPropertiesUsingPagination(this.pageNumber)
-      .subscribe(
-        (res: any) => {
+      .subscribe({
+        next: (res: any) => {
           this.properties = Array.isArray(res.data) ? res.data : [];
-          this.loading = false;
-          this.isFilteringByCategory = false;
-
-          this.noPropertiesInCategory = false;
-          this.noPropertiesFoundInLocation = this.properties.length === 0;
         },
-        (error) => {
+        error: (error: any) => {
           console.error('Error loading all properties:', error);
           this.loading = false;
-        }
-      );
+        },
+        complete: () => {
+          this.loading = false;
+        },
+      });
   }
 }

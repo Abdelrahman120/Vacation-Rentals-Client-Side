@@ -1,4 +1,4 @@
-<div class="row" style="width: 15rem">
+<div class="row" style="width: 19.5rem">
   <span class="text-center mb-3 text-dark roboto-bold fs-4">Categories</span>
   <div *ngFor="let category of categories; let i = index" class="col-md-6">
     <div class="d-flex justify-content-start">
@@ -13,7 +13,7 @@
       <label
         for="category{{ i }}"
         class="p-3 rounded-1 text-center"
-        style="min-width: 7rem; cursor: pointer"
+        style="cursor: pointer; min-width: 9rem"
         [ngClass]="
           category.isChecked ? 'bg-checked text-light' : 'bg-black text-light'
         "

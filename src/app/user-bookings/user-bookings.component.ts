@@ -13,27 +13,44 @@ import { ItemCardComponent } from './item-card/item-card.component';
 })
 export class UserBookingsComponent implements OnInit {
   userInfo: UserInfo | undefined;
+  hostInfo: { [bookingId: number]: any } = {};
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.userService.getBookings().subscribe(
-      (res: UserInfo) => {
+    this.userService.getBookings().subscribe({
+      next: (res: UserInfo) => {
         this.userInfo = res;
+
+        if (this.userInfo?.data.bookings) {
+          this.userInfo.data.bookings.forEach((booking: Booking) => {
+            const ownerId = booking.property.owner_id;
+            this.getOwnerInfo(ownerId, booking.id);
+          });
+        }
       },
-      (error) => {
+      error: (error) => {
         console.log('Error retrieving data:', error);
-      }
-    );
+      },
+    });
+  }
+
+  getOwnerInfo(ownerId: number, bookingId: number) {
+    this.userService.getOwnerById(ownerId).subscribe({
+      next: (ownerData: any) => {
+        this.hostInfo[bookingId] = ownerData;
+      },
+      error: (error) => {
+        console.log('Error retrieving owner info:', error);
+      },
+    });
   }
 
   trackByBookingId(index: number, booking: Booking): number {
     return booking.id;
   }
 
-  getPaymentForBooking(booking: Booking): Payment | undefined {
-    return this.userInfo?.data.payments.find(
-      (payment) => payment.user_id === booking.user_id
-    );
+  getPaymentForBooking(index: number): Payment | undefined {
+    return this.userInfo?.data.payments[index];
   }
 }

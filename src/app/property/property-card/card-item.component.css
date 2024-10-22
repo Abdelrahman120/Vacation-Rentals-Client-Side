@@ -26,10 +26,23 @@
 }
 
 .bg-blue {
-  background-color: #3b5899;
+  background: linear-gradient(170deg, #3b5899, #5874b1) !important;
+}
+
+.btn {
+  transition: background 1s linear;
+  border: none;
 }
 
 .margin {
   margin-top: 0.1rem;
   margin-bottom: 0.1rem;
+}
+
+.btn:hover {
+  background: linear-gradient(360deg, #142447, #173066, #3b5899) !important;
+  opacity: 1 !important;
+  /* box-shadow: 2px 2px 6px #3b5899; */
+  color: white !important;
+  border: none;
 }

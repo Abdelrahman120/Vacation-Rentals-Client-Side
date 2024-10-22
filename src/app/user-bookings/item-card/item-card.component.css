@@ -1,0 +1,26 @@
+.bg-blue {
+  background-color: #142447;
+}
+
+.text-blue {
+  color: #142447;
+}
+
+.message {
+  left: 95%;
+  bottom: 83%;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+i {
+  transition: all 0.5s ease;
+}
+
+.message:hover {
+  background-color: #0c214eda;
+}
+
+.message:hover > i {
+  transform: scale(1.1);
+}

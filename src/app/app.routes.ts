@@ -39,6 +39,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MyPropertiesComponent } from './property/my-properties/my-properties.component';
 import { PropertyBookingDetailsComponent } from './property/property-booking-details/property-booking-details.component';
 import { UserBookingsComponent } from './user-bookings/user-bookings.component';
+import { ChatComponent } from './user-bookings/chat/chat.component';
 
 export const routes: Routes = [
   {
@@ -222,6 +223,10 @@ export const routes: Routes = [
     path: 'bookings',
     component: UserBookingsComponent,
     title: 'Bookings',
+  },
+  {
+    path: 'bookings/chat/:propId/:ownerId/:bookingId',
+    component: ChatComponent,
   },
   {
     path: '**',

@@ -1,9 +1,10 @@
 .bg-checked {
-  background-color: #325f20;
+  background-color: #233e79;
   color: #ffffff;
+  font-weight: bolder !important;
 }
 
 .bg-black {
-  background-color: #000000;
+  background-color: #142447 !important;
   color: #ffffff;
 }

@@ -39,7 +39,7 @@ ul.list-group .list-group-item:hover {
 }
 
 input.btn {
-  background-color: #3b5899;
+  background-color: #142447;
   border: none;
   font-size: 1.1em;
   font-weight: bold;
@@ -48,7 +48,8 @@ input.btn {
 }
 
 input.btn:hover {
-  background-color: #344e85;
+  background-color: #203a74 !important;
+  opacity: 1 !important;
 }
 
 @media (max-width: 768px) {
@@ -57,7 +58,8 @@ input.btn:hover {
     gap: 10px;
   }
 
-  .w-25, .w-20 {
+  .w-25,
+  .w-20 {
     width: 100%;
   }
 
