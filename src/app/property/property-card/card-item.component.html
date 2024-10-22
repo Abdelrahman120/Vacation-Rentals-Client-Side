@@ -48,24 +48,36 @@
     ></fa-icon
   >
   <div class="card-body p-3 mt-2">
-    <i class="fas fa-map-marker-alt me-1 blue"></i>
-    <span class="text-dark text-muted" style="font-size: 14px">{{
-      property.location | truncate : 40
-    }}</span>
-    <p class="roboto-bold text-dark margin">
+    <span class="text-dark text-muted" style="font-size: 14px">
+      <i class="fas fa-map-marker-alt me-1 blue"></i>
+      {{ property.location | truncate : 40 }}</span
+    >
+    <p class="roboto-bold text-dark m-0">
       {{ property.headline | truncate : 30 }}
     </p>
-    <div class="d-flex justify-content-between" style="font-size: 0.9rem">
-      <div class="card-text text-muted roboto-regular">
-        <fa-icon [icon]="faHouse" class="blue"></fa-icon>
-        {{ property.property_type }} |
-        <fa-icon [icon]="faBed" class="blue"></fa-icon>
-        {{ property.bedrooms }} Bed |
-        <fa-icon [icon]="faBath" class="blue"></fa-icon>
-        {{ property.bathrooms }} Bath |
-        <i class="fa-solid fa-person blue"></i>
-        {{ property.sleeps }} Sleep
-      </div>
+    <div
+      class="card-text text-muted roboto-regular w-75"
+      style="font-size: 0.9rem"
+    >
+      <span
+        ><fa-icon [icon]="faHouse" class="blue"></fa-icon>
+        {{ property.property_type }}</span
+      >
+      |
+      <span
+        ><fa-icon [icon]="faBed" class="blue"></fa-icon>
+        {{ property.bedrooms }} Bed</span
+      >
+      |
+      <span
+        ><fa-icon [icon]="faBath" class="blue"></fa-icon>
+        {{ property.bathrooms }} Bath</span
+      >
+      |
+      <span
+        ><i class="fa-solid fa-person blue"></i>
+        {{ property.sleeps }} Sleep</span
+      >
     </div>
     <div
       class="fw-bold text-light position-absolute px-2 py-1"
@@ -75,7 +87,7 @@
     </div>
     <a
       (click)="goToDetails(property.id)"
-      class="btn bg-blue text-light mt-2 float-end"
+      class="btn bg-blue text-light mt-2 float-end rounded-0"
       >View Details</a
     >
   </div>

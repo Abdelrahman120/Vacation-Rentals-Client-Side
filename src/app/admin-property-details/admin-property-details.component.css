@@ -1,27 +1,88 @@
-.container {
-    max-width: 80%;
-    margin: 0 auto;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #000;
 }
 
-.header {
-    margin-bottom: 1.5rem;
+.bg-blue {
+  background-color: #142447;
 }
 
-.details, .comments-section {
-    margin-top: 1.5rem;
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "details"
+    "status"
+    "comments";
+  grid-gap: 1.5rem;
 }
 
-.status-menu {
-    background-color: #f8f9fa;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.header-section {
+  grid-area: header;
 }
 
-.comment {
-    margin-bottom: 1rem;
-    padding: 1rem;
-    background-color: #ffffff;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.status-section {
+  grid-area: status;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.details-section {
+  grid-area: details;
+}
+
+.comments-section {
+  grid-area: comments;
+}
+
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      "header header"
+      "details status"
+      "comments comments";
+  }
+}
+
+@media (min-width: 992px) {
+  .grid-container {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      "header header"
+      "details status"
+      "comments comments";
+  }
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.form-select {
+  width: 100%;
+}
+
+.btn {
+  width: 100%;
+}
+
+.text-dark {
+  color: #343a40;
+}
+
+.text-info {
+  color: #17a2b8;
 }

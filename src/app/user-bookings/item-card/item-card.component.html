@@ -1,5 +1,8 @@
-<div class="card rounded-3 shadow border-1" style="width: 26rem">
-  <div class="card-body d-flex justify-content-between">
+<div
+  class="card rounded-3 shadow border-1 position-relative"
+  style="width: 26rem"
+>
+  <div class="card-body d-flex justify-content-between pb-0">
     <div>
       <h5 class="card-title mb-1 roboto-regular">
         {{ property.name }}
@@ -8,8 +11,11 @@
         <i class="fas fa-map-marker-alt text-dark text-muted"></i>
         {{ property.location | truncate : 16 }}
       </p>
+      <span class="text-muted">
+        {{ email }}
+      </span>
     </div>
-    <div>
+    <div class="text-center">
       <h5 class="text-dark poppins-regular" style="font-size: 1.5rem">
         {{ payment.amount }}$/<small class="text-dark"
           >{{ diffInDays }}nights</small
@@ -17,9 +23,13 @@
       </h5>
     </div>
   </div>
+  <a
+    class="position-absolute bg-blue rounded-5 p-2 message"
+    routerLink="chat/{{ property.id }}/{{ property.owner_id }}/{{ booking.id }}"
+    ><i class="fa-regular fa-message text-light fs-4 align-middle"></i
+  ></a>
   <div
-    class="w-100 rounded-bottom-3 py-1 px-2 d-flex justify-content-evenly text-light"
-    style="background-color: hsl(0, 0%, 30%)"
+    class="w-100 rounded-bottom-3 py-1 px-2 d-flex justify-content-evenly text-light bg-blue"
   >
     <div>
       <i class="fa-regular fa-calendar-days text-light"></i>
@@ -37,31 +47,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="card rounded-3 shadow border border-1" style="width: 30rem">
-  <div class="card-body d-flex justify-content-between">
-    <div>
-      <h5 class="card-title mb-1 roboto-regular">
-        Payment ID: {{ payment.payment_id }}
-      </h5>
-      <p class="card-subtitle roboto-regular">
-        Product: {{ payment.product_name }}
-      </p>
-    </div>
-    <div>
-      <i class="fa-regular fa-calendar-days text-dark me-1"></i>
-      {{ payment.start_date | date : "mediumDate" }} -
-      <i class="fa-regular fa-calendar-days text-dark me-1"></i>
-      {{ payment.end_date | date : "mediumDate" }}
-    </div>
-  </div>
-
-  <div class="bg-dark w-100 rounded-bottom-3 p-2">
-    Payment Status: {{ payment.payment_status }}
-  </div>
-
-  <h3>{{ property.name }}</h3>
-  <p>{{ property.headline }}</p>
-  <p>{{ property.description }}</p>
-</div>
- -->

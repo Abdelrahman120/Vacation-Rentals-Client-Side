@@ -1,0 +1,35 @@
+<div class="chat-container">
+  <h2>Chat Room</h2>
+
+  <div class="input-container">
+    <input
+      type="text"
+      [(ngModel)]="newMessage"
+      placeholder="Type your message..."
+      (keydown.enter)="sendMessage()"
+      required
+    />
+    <button (click)="sendMessage()" [disabled]="!newMessage.trim()">
+      Send
+    </button>
+  </div>
+
+  <div class="messages" *ngIf="messages.length > 0">
+    <div
+      *ngFor="let message of messages"
+      [ngClass]="{
+        'message-sent': message.senderId === guestId,
+        'message-received': message.senderId !== guestId
+      }"
+    >
+      <strong class="text-dark">{{ message.senderName }}:</strong>
+      {{ message.content }}
+    </div>
+  </div>
+
+  <div *ngIf="messages.length === 0" class="no-messages">
+    <p class="text-dark roboto-regular">
+      No messages yet. Start the conversation!
+    </p>
+  </div>
+</div>

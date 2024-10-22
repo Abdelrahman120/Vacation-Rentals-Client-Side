@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminServices } from '../services/admin-services.service';
-import { DatePipe, NgFor, NgIf } from '@angular/common';
+import { CurrencyPipe, DatePipe, NgFor, NgIf } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { FavoriteService } from '../Services/favorite.service';
 
 @Component({
   selector: 'app-admin-property-details',
   standalone: true,
-  imports: [DatePipe, NgIf, NgFor, FormsModule],
+  imports: [DatePipe, NgIf, NgFor, FormsModule, CurrencyPipe],
   templateUrl: './admin-property-details.component.html',
   styleUrl: './admin-property-details.component.css',
 })
 export class AdminPropertyDetailsComponent {
   property: any = {
-    status: '', // Initialize status to handle the binding
+    status: '',
   };
   constructor(
     private route: ActivatedRoute,
@@ -51,17 +51,14 @@ export class AdminPropertyDetailsComponent {
           next: (response) => {
             console.log('Status updated successfully:', response);
 
-            // Optionally show a success message to the user
-            this.router.navigate(['/send-email', this.property.owner_id]); // Adjust the route path as needed
+            this.router.navigate(['/send-email', this.property.owner_id]);
           },
           error: (error) => {
             console.error('Error updating status:', error);
-            // Optionally show an error message to the user
           },
         });
     } else {
       console.log('Form is invalid');
-      // Handle form invalid case (e.g., show a message to the user)
     }
   }
   loadReviews(propertyId: string | null) {

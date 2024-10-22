@@ -3,7 +3,7 @@
 </h1>
 
 <div class="container-md">
-  <div class="row mt-5">
+  <div class="row mt-5 d-flex justify-content-center">
     <ng-container
       *ngIf="
         ownerInfo && ownerInfo.properties.length > 0;
@@ -11,11 +11,8 @@
       "
     >
       @for (property of ownerInfo.properties; track property.id) {
-      <div
-        class="col-md-4 card rounded-3 shadow p-0 m-2 border-1"
-        style="width: 26rem; background-color: hsl(0, 0%, 100%)"
-      >
-        <div class="card-body">
+      <div class="col-md-4 card shadow-lg p-0 m-2" style="width: 26rem">
+        <div class="card-body bg-light rounded-3">
           <div class="d-flex justify-content-between">
             <div class="card-title roboto-medium">
               {{ property.property_name }}
@@ -28,7 +25,7 @@
                 View Details
               </button>
               <button
-                class="btn btn-dark rounded-1 text-center"
+                class="btn bg-blue rounded-1 text-center"
                 [routerLink]="['/update-property', property.id]"
               >
                 <i class="fa-solid fa-file-pen"></i>
@@ -42,7 +39,7 @@
             <div>
               Bookings:
               <span
-                class="p-2 bg-secondary text-light rounded-lg roboto-bold"
+                class="p-2 bg-blue text-light rounded-lg roboto-bold"
                 style="font-size: 0.8rem"
               >
                 {{ property.booking_count }}
@@ -52,7 +49,7 @@
             <div>
               Completed:
               <span
-                class="p-2 bg-secondary text-light rounded-lg roboto-bold"
+                class="p-2 bg-blue text-light rounded-lg roboto-bold"
                 style="font-size: 0.8rem"
               >
                 {{ getCompletedBookings(property.bookings) }}
@@ -62,7 +59,7 @@
             <div>
               Upcoming:
               <span
-                class="p-2 bg-secondary text-light rounded-lg roboto-bold"
+                class="p-2 bg-blue text-light rounded-lg roboto-bold"
                 style="font-size: 0.8rem"
               >
                 {{ getUpcomingBookings(property.bookings) }}
@@ -71,20 +68,21 @@
           </div>
         </div>
         <div
-          class="w-100 p-2 d-flex justify-content-center rounded-bottom-3"
-          style="background-color: hsl(0, 0%, 90%)"
+          class="w-100 p-2 d-flex justify-content-evenly rounded-bottom-3 bg-blue text-light"
         >
           <span class="me-2"
-            ><i class="fas fa-map-marker-alt text-dark"></i>
-            {{ property.location | truncate : 15 }} |</span
+            ><i class="fas fa-map-marker-alt"></i>
+            {{ property.location | truncate : 16 }}</span
           >
+          |
           <span>
-            <i class="fa-solid fa-dollar-sign text-dark"></i>
-            {{ property.night_rate }} |
+            <i class="fa-solid fa-dollar-sign"></i>
+            {{ property.night_rate }}
           </span>
+          |
           <span>
-            <i class="fa-solid fa-building text-dark ms-2"></i>
-            {{ ownerInfo.company_name }}
+            <i class="fa-solid fa-building ms-2"></i>
+            {{ ownerInfo.company_name | truncate : 15 }}
           </span>
         </div>
       </div>

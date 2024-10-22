@@ -42,9 +42,9 @@
       </div>
       <div class="row d-flex justify-content-center">
         <div
-          class="col-md-4 shadow-sm border-1 rounded-3 me-3 mb-3 p-0"
+          class="col-md-4 shadow-sm border-1 rounded-3 me-3 mb-3 p-0 bg-light position-relative"
           *ngFor="let property of properties"
-          style="width: 30rem; background-color: #ffffff"
+          style="width: 30rem"
         >
           <div class="card-body p-3">
             <div class="d-flex justify-content-between align-items-center">
@@ -59,13 +59,22 @@
                 >
               </div>
             </div>
-            <p class="card-subtitle text-dark text-muted">
+            <p class="card-subtitle text-dark text-muted mb-0">
               {{ property.property_type }}
             </p>
-            <i class="fa-solid fa-chart-column me-2 text-dark"></i>
-            <span class="mb-2 text-dark">
-              Status: <b class="">{{ property.status }}</b>
-            </span>
+            @if (property.status === 'pending'){
+            <fa-icon class="bg-pending text-light" [icon]="faClock"></fa-icon>
+            } @else if (property.status === 'accepted'){
+            <fa-icon
+              class="bg-accepted text-light"
+              [icon]="faCircleCheck"
+            ></fa-icon>
+            } @else if (property.status === 'rejected') {
+            <fa-icon
+              class="bg-rejected text-light"
+              [icon]="faXmarkCircle"
+            ></fa-icon>
+            }
           </div>
 
           <div

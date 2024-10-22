@@ -3,11 +3,12 @@ import { Booking, Payment, UserInfo } from '../../user-info';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Property } from '../../user-info';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-item-card',
   standalone: true,
-  imports: [DatePipe, CommonModule, TruncatePipe],
+  imports: [DatePipe, CommonModule, TruncatePipe, RouterLink],
   templateUrl: './item-card.component.html',
   styleUrls: ['./item-card.component.css'],
 })
@@ -15,19 +16,23 @@ export class ItemCardComponent implements OnInit {
   @Input() userInfo!: UserInfo;
   @Input() property!: Property;
   @Input() payment!: Payment;
+  @Input() hostInfo: any;
+  @Input() booking: any;
+  userId: string | null = null;
   start_date: Date = new Date();
   end_date: Date = new Date();
   diffInDays: any;
+  phone: string = '';
+  email: string = '';
 
   constructor() {}
 
   ngOnInit(): void {
-    this.start_date = new Date(this.payment.start_date);
-    this.end_date = new Date(this.payment.end_date);
-    let diffInHours = this.end_date.getTime() - this.start_date.getTime();
-    this.diffInDays = Math.ceil(diffInHours / (1000 * 60 * 60 * 24));
-    console.log('Payment:', this.payment);
-    console.log('Property:', this.property);
-    console.log('UserInfo:', this.userInfo);
+    console.log(this.hostInfo);
+
+    if (this.hostInfo && this.hostInfo.data) {
+      this.phone = this.hostInfo.data.phone;
+      this.email = this.hostInfo.data.email;
+    }
   }
 }
