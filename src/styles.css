@@ -186,13 +186,13 @@
 }
 
 :root {
-  --accent-color: #1aa090;
+  /* --accent-color: #1aa090;
   --secondary-color: #e2eaf1;
   --dark-color: #f0f0f0;
   --grey-color: #83898f;
   --body-text-color: #868686;
   --light-text-color: #ececec;
-  --link-color: #092035;
+  --link-color: #092035; */
 }
 
 body {
@@ -200,8 +200,8 @@ body {
   font-weight: 400;
   font-size: 19px;
   line-height: 1.6em;
-  color: var(--body-text-color);
-  background-color: var(--dark-color);
+  /* color: var(--body-text-color);
+  background-color: var(--dark-color); */
 }
 
 h1,
