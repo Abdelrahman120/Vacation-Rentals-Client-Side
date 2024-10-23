@@ -34,6 +34,7 @@ export class ViewPropertyComponent implements OnInit {
   propertyDetails: any = {};
   property: any;
   map: any;
+  maps: any;
   start_date: string = '';
   end_date: string = '';
   city: string = '';
@@ -207,14 +208,14 @@ export class ViewPropertyComponent implements OnInit {
 
   initMap(lat: number, lng: number): void {
     this.map = L.map('map').setView([lat, lng], 13);
-
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors',
     }).addTo(this.map);
-
     L.marker([lat, lng])
       .addTo(this.map)
       .bindPopup('Property Location')
       .openPopup();
+
+     
   }
 }
