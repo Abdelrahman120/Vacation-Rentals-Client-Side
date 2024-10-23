@@ -49,45 +49,45 @@
   >
   <div class="card-body p-3 mt-2">
     <span class="text-dark text-muted" style="font-size: 14px">
-      <i class="fas fa-map-marker-alt me-1 blue"></i>
+      <i class="fas fa-map-marker-alt me-1 text-warning"></i>
       {{ property.location | truncate : 40 }}</span
     >
     <p class="roboto-bold text-dark m-0">
       {{ property.headline | truncate : 30 }}
     </p>
     <div
-      class="card-text text-muted roboto-regular w-75"
+      class="card-text text-dark roboto-regular w-75"
       style="font-size: 0.9rem"
     >
-      <span
-        ><fa-icon [icon]="faHouse" class="blue"></fa-icon>
+      <span class="text-dark"
+        ><fa-icon [icon]="faHouse" class="text-warning"></fa-icon>
         {{ property.property_type }}</span
       >
       |
-      <span
-        ><fa-icon [icon]="faBed" class="blue"></fa-icon>
+      <span class="text-dark"
+        ><fa-icon [icon]="faBed" class="text-warning"></fa-icon>
         {{ property.bedrooms }} Bed</span
       >
       |
-      <span
-        ><fa-icon [icon]="faBath" class="blue"></fa-icon>
+      <span class="text-dark"
+        ><fa-icon [icon]="faBath" class="text-warning"></fa-icon>
         {{ property.bathrooms }} Bath</span
       >
       |
-      <span
-        ><i class="fa-solid fa-person blue"></i>
+      <span class="text-dark"
+        ><i class="fa-solid fa-person text-warning"></i>
         {{ property.sleeps }} Sleep</span
       >
     </div>
     <div
-      class="fw-bold text-light position-absolute px-2 py-1"
-      style="font-size: 0.8rem; background-color: #3b5899; top: 56%; left: 5%"
+      class="fw-bold text-light rounded-3 position-absolute px-2 py-1 bg-warning text-dark"
+      style="font-size: 0.8rem; "
     >
       ${{ property.night_rate }}/Night
     </div>
     <a
       (click)="goToDetails(property.id)"
-      class="btn bg-blue text-light mt-2 float-end rounded-0"
+      class="btn bg-blue text-light mt-2 float-end rounded-3"
       >View Details</a
     >
   </div>
