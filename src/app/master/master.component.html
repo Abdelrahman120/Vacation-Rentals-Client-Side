@@ -351,6 +351,154 @@
 
 
 
+
+<!-- start testimonial -->
+
+<div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h6 class="section-title text-center text-warning text-uppercase">Our Testimonials</h6>
+        <h1 class="mb-5">Explore Our <span class="text-warning text-uppercase">Testimonials</span></h1>
+    </div>
+    <!-- <a routerLink='/contact' class="btn btn-lg btn-primary rounded fs-2 fw-bold">
+        Give a Review For Us
+      </a> -->
+          <!-- Carousel wrapper -->
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner testimonial-carousel py-5 ">
+            @if (testmonials.length > 0) {
+                @for (item of testmonials; track $index) {
+                    <div class="carousel-item active testimonial-item position-relative bg-white rounded overflow-hidden">
+                        <p>{{item.message}}</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded" src="new/assets/img/testimonial-1.jpg" style="width: 45px; height: 45px;">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">{{item.name}}</h6>
+                                <small>{{item.email}}</small>
+                            </div>
+                        </div>
+                        <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i> 
+                         </div>
+                }
+            } @else {
+                <div class="carousel-item active testimonial-item position-relative bg-white rounded overflow-hidden">
+                    <p>No Testimonial Found</p>
+                </div>
+            }
+           
+            
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    
+  <!-- Carousel wrapper -->
+</div>
+
+
+
+
+
+
+<!-- end -->
+
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-primary text-uppercase">Contact Us</h6>
+            <h1 class="mb-5"><span class="text-warning text-uppercase">Contact</span> For Any Feedback Or Question</h1>
+        </div>
+        <div class="row g-4">
+           
+            <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
+                <iframe class="position-relative rounded w-100 h-100"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6910.403834657057!2d31.2007606!3d30.4704221!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145815a942593c57%3A0x34539c114f1e9d87!2sBenha%20Faculty%20of%20Computer%20and%20Information%20Sciences!5e0!3m2!1sen!2seg!4v1698054075736!5m2!1sen!2seg"
+                frameborder="0" style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false"
+                tabindex="0">
+                 </iframe>
+            
+            
+            </div>
+            <div class="col-md-6">
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <form #testimonialForm="ngForm" (ngSubmit)="onSubmit(testimonialForm)" novalidate>
+                        <div class="row g-3">
+                          <!-- Name Field -->
+                          <div class="col-md-6">
+                            <div class="form-floating">
+                              <input type="text" class="form-control" id="name" placeholder="Your Name"
+                                     [(ngModel)]="formData.name" name="name" required #name="ngModel">
+                              <label for="name">Your Name</label>
+                              <div *ngIf="name.invalid && name.touched" class="text-danger">
+                                Name is required.
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- Email Field -->
+                          <div class="col-md-6">
+                            <div class="form-floating">
+                              <input type="email" class="form-control" id="email" placeholder="Your Email"
+                                     [(ngModel)]="formData.email" name="email" required email #email="ngModel">
+                              <label for="email">Your Email</label>
+                              <div *ngIf="email.invalid && email.touched" class="text-danger">
+                                <div *ngIf="email.errors?.['required']">Email is required.</div>
+                                <div *ngIf="email.errors?.['email']">Please enter a valid email.</div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- Subject Field -->
+                          <div class="col-12">
+                            <div class="form-floating">
+                              <select class="form-control" [(ngModel)]="formData.subject" name="subject" required #subject="ngModel">
+                                <option class="form-control" value="" disabled selected>Choose Subject</option>
+                                <option class="form-control" value="Questions">Questions</option>
+                                <option class="form-control" value="Feedback">Feedback</option>
+                              </select>
+                              <label for="subject">Subject</label>
+                              <div *ngIf="subject.invalid && subject.touched" class="text-danger">
+                                Subject is required.
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- Message Field -->
+                          <div class="col-12">
+                            <div class="form-floating">
+                              <textarea class="form-control" placeholder="Leave a message here" id="message"
+                                        [(ngModel)]="formData.message" name="message" style="height: 150px" required #message="ngModel"></textarea>
+                              <label for="message">Message</label>
+                              <div *ngIf="message.invalid && message.touched" class="text-danger">
+                                Message is required.
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- Submit Button -->
+                          <div class="col-12">
+                            <button class="btn btn-warning w-100 py-3" type="submit" [disabled]="testimonialForm.invalid">Send Message</button>
+                          </div>
+                        </div>
+                      </form>
+                      
+                      
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- start footer -->
+
 <div class="container-fluid footer text-light footer wow fadeIn mt-5" data-wow-delay="0.1s">
   <div class="container pb-5" data-aos="zoom-in">
       <div class="row g-5">
@@ -421,3 +569,5 @@
 
 
 <!-- End Footer -->
+
+

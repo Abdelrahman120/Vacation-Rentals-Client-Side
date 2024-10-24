@@ -40,6 +40,7 @@ import { MyPropertiesComponent } from './property/my-properties/my-properties.co
 import { PropertyBookingDetailsComponent } from './property/property-booking-details/property-booking-details.component';
 import { UserBookingsComponent } from './user-bookings/user-bookings.component';
 import { ChatComponent } from './user-bookings/chat/chat.component';
+import { TestimonialComponent } from './Admin/testimonial/testimonial.component';
 
 export const routes: Routes = [
   {
@@ -227,6 +228,15 @@ export const routes: Routes = [
   {
     path: 'bookings/chat/:propId/:ownerId/:bookingId',
     component: ChatComponent,
+  },
+  {
+    path: 'contact',
+    component: TestimonialComponent,
+    title: 'Contact Us',
+  },
+  {
+    path:'admin/testimonials',
+    component:TestimonialComponent
   },
   {
     path: '**',
