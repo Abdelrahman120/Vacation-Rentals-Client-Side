@@ -1,70 +1,44 @@
-<div class="row flex-nowrap overflow-auto my-4">
-  @for (amenity of amenities; track amenity.id) {
-  <input
-    type="checkbox"
-    class="visually-hidden"
-    name="amenity"
-    id="amenity{{ amenity.id }}"
-    [(ngModel)]="amenity.isChecked"
-    (change)="filterByAmenity()"
-  />
-  <label
-    for="amenity{{ amenity.id }}"
-    class="p-3 me-2 rounded-5 text-light"
-    style="display: inline-block; width: fit-content"
-    [ngClass]="{
-      'bg-checked': amenity.isChecked,
-      'bg-black': !amenity.isChecked
-    }"
-  >
-    <span> {{ amenity.name }}</span>
-  </label>
-  }
-</div>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#amenitiesModal">
+  Filter by Amenities
+</button>
 
-<!-- <div class="row flex-nowrap overflow-auto my-4">
-  @for (amenity of amenities; track amenity.id) {
-  <label
-    for="{{ amenity.id }}"
-    class="p-3 me-2 rounded-1 text-light"
-    style="display: inline-block; width: fit-content"
-    [ngClass]="{
-      'bg-checked': selectedAmenity === amenity,
-      'bg-black': selectedAmenity !== amenity
-    }"
-  >
-    <span *ngIf="selectedAmenity === amenity" class="ms-2 text-danger">✔️</span>
-    <span> {{ amenity.name }}</span>
-  </label>
-  <input
-    type="radio"
-    class="visually-hidden button"
-    name="amenity"
-    id="{{ amenity.id }}"
-    [(ngModel)]="selectedAmenity"
-    [value]="amenity"
-  />
-  }
-</div> -->
-
-<!-- <div class="row">
-  @for (amenity of amenities; track amenity.id) {
-  <div class="col-md-4">
-    <input
-      type="checkbox"
-      class="form-check me-1 visually-hidden"
-      name="amenities[]"
-      id="amenity{{ amenity.id }}"
-      [(ngModel)]="amenity.isChecked"
-      (change)="filterByAmenity()"
-    />
-    <label
-      class="form-label checkbox-label m-2 text-center p-3 rounded"
-      for="amenity{{ amenity.id }}"
-      [ngClass]="{ 'checked-bg': amenity.isChecked }"
-    >
-      {{ amenity.name }}
-    </label>
+<div class="modal fade" id="amenitiesModal" tabindex="-1" aria-labelledby="amenitiesModalLabel" aria-hidden="true" style="width: 100%;">
+  <div class="modal-dialog modal-dialog-centered modal-static">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="amenitiesModalLabel">Filter by Amenities</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex overflow-auto my-4 row g-2">
+          <div *ngFor="let amenity of amenities; trackBy: trackByAmenityId" class=" col-6">
+            <input
+              type="checkbox"
+              class="visually-hidden"
+              name="amenity"
+              id="amenity{{ amenity.id }}"
+              [(ngModel)]="amenity.isChecked"
+              
+            />
+            
+            <label
+              for="amenity{{ amenity.id }}"
+              class="p-3 rounded-1 text-center"
+              style="cursor: pointer; min-width: 9rem"
+              [ngClass]="{
+                'bg-checked': amenity.isChecked,
+                'bg-black': !amenity.isChecked
+              }"
+            >
+              <span> {{ amenity.name }}</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="applyFilters()">Apply Filters</button>
+      </div>
+    </div>
   </div>
-  }
-</div> -->
+</div>

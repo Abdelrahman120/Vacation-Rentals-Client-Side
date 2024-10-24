@@ -1,12 +1,18 @@
 <div class="container-fluid tw-mt-32 position-relative">
   <div class="container w-100">
     <app-search></app-search>
-    <!-- <app-filter></app-filter> -->
+
   </div>
-  <div class="position-absolute tw-left-5">
-    <app-filter-category></app-filter-category>
+  <div class="container w-100 text-center mt-4">
+    
+    <app-filter-category class="mx-3 "></app-filter-category>
+    <app-filter></app-filter>
   </div>
+
+  
+  <div class="container">
   <div class="container" data-aos="fade-up">
+
     <div class="row">
       <ng-container *ngIf="loading; else propertyListTemplate">
         <div class="d-flex justify-content-center fs-1 text-dark margin">
