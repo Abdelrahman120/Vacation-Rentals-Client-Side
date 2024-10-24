@@ -1,0 +1,68 @@
+<div class="" style="margin-top: 70px">
+    <div class="row">
+      <div class="col-2">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-10 mt-5 text-center fs-1 fw-bold">
+       <h1>Testimonials</h1>
+       <table class="table table-striped table-hover w-100">
+        <thead class="thead-dark w-100">
+          <tr class="text-center align-middle">
+            <th>Number</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for(item of testmonials; track item.id) {
+
+          <tr>
+            <td class="text-center align-middle">{{ item.id }}</td>
+            <td class="text-center align-middle">{{ item.name }}</td>
+            <td class="text-center align-middle">{{item.email}}</td>
+            <td class="text-center align-middle">{{item.subject}}</td>
+             <td class="text-center align-middle">{{item.message}}></td>
+
+            <td class="text-center align-middle">
+             
+              <button class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + item.id">
+                Delete
+              </button>
+            </td>
+          </tr>
+          <div class="modal fade" [id]="'exampleModal' + item.id" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true" style="margin-top: 4rem">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title text-dark fs-5 m-0 p-0" id="exampleModalLabel">
+                    Delete Confirmation
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body mt-1">
+                  Are you sure you want to delete {{ item.name }} Message?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary rounded-1" data-bs-dismiss="modal">
+                    Close
+                  </button>
+                  <button (click)="deleteTestmonial(item.id)" type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal"
+                    >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          }
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+  
