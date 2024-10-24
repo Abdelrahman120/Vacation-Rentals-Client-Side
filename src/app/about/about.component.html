@@ -1,4 +1,4 @@
-<section id="about-us">
+<!-- <section id="about-us">
   <div class="container">
     <div class="row py-lg-5">
       <h2 class="text-capitalize text-center m-0 py-lg-5">Why Choose Us</h2>
@@ -49,4 +49,63 @@
 
     </div>
   </div>
-</section>
+</section> -->
+
+<div class="container-xxl py-5" id="aboutUs">
+  <div class="container parent-animate" [class.hidden]="!isVisible" [class.show]="isVisible">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6">
+        <h6 class="section-title text-start text-warning fs-2 text-uppercase">About Us</h6>
+        <h1 class="mb-4">Welcome to <span class="text-warning text-uppercase">Hotelier</span></h1>
+        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet.</p>
+        
+        <div class="row g-3 pb-4">
+          <div class="col-sm-4 hidden">
+            <div class="border rounded p-1">
+              <div class="border rounded text-center p-4">
+                <i class="fa fa-hotel fa-2x text-warning mb-2"></i>
+                <h2 class="mb-1">1234</h2>
+                <p class="mb-0">Rooms</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 hidden">
+            <div class="border rounded p-1">
+              <div class="border rounded text-center p-4">
+                <i class="fa fa-users-cog fa-2x text-warning mb-2"></i>
+                <h2 class="mb-1">1234</h2>
+                <p class="mb-0">Staffs</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 hidden">
+            <div class="border rounded p-1">
+              <div class="border rounded text-center p-4">
+                <i class="fa fa-users fa-2x text-warning mb-2"></i>
+                <h2 class="mb-1">1234</h2>
+                <p class="mb-0">Clients</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="btn btn-warning py-3 px-5 mt-2" [class.hidden]="!isVisible" [class.show]="isVisible" href="">Explore More</a>
+      </div>
+      <div class="col-lg-6">
+        <div class="row g-3">
+          <div class="col-6 text-end zoom-in" [class.hidden]="!isVisible" [class.show]="isVisible">
+            <img class="img-fluid rounded w-75" src="new/assets/img/about-1.jpg" style="margin-top: 25%;">
+          </div>
+          <div class="col-6 text-start zoom-in" [class.hidden]="!isVisible" [class.show]="isVisible">
+            <img class="img-fluid rounded w-100" src="new/assets/img/about-2.jpg">
+          </div>
+          <div class="col-6 text-end zoom-in" [class.hidden]="!isVisible" [class.show]="isVisible">
+            <img class="img-fluid rounded w-50" src="new/assets/img/about-3.jpg">
+          </div>
+          <div class="col-6 text-start zoom-in" [class.hidden]="!isVisible" [class.show]="isVisible">
+            <img class="img-fluid rounded w-75" src="new/assets/img/about-4.jpg">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

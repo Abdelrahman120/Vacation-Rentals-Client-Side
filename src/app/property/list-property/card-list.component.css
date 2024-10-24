@@ -81,3 +81,39 @@
   padding-right: 0;
   border-right: none;
 }
+
+/* Add this to your component's CSS file */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.95);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.loading {
+  animation: fadeIn 2s ease-in-out;
+}
+
+.property-card {
+  animation: fadeIn 2s ease-in-out, scaleUp 2s ease-in-out;
+}
+
+.pagination {
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* Optional: Adding hover effect */
+.property-card:hover {
+  transform: scale(1.05);
+}
