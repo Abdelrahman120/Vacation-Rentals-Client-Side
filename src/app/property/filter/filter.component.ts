@@ -55,4 +55,49 @@ export class FilterComponent {
       }
     );
   }
+  applyFilters() {
+    
+    this.loading = true;
+  
+    const selectedAmenityIds = this.amenities
+      .filter((amenity) => amenity.isChecked)
+      .map((amenity) => amenity.id);
+  
+    if (selectedAmenityIds.length === 0) {
+      
+      this.propertyService.getProperties().subscribe(
+        (res: any) => {
+          this.loading = false;
+          console.log('All Properties:', res.data);
+          this.filterService.updateFilteredProperties(res.data);
+        },
+        (error) => {
+          this.loading = false;
+          console.error('Error fetching all properties:', error);
+        }
+      );
+      return;
+    }
+  
+    this.propertyService.getPropertiesByAmenity(selectedAmenityIds).subscribe(
+      (res: any) => {
+        this.loading = false;
+        console.log('Filtered Properties:', res.data);
+        this.filterService.updateFilteredProperties(res.data);
+      },
+      (error) => {
+        this.loading = false;
+        console.error('Error fetching filtered properties:', error);
+      }
+    );
+  }
+  
+  
+  
+  trackByAmenityId(index: number, amenity: Amenity): number {
+    return amenity.id;
+  }
+  
+  
+  
 }
