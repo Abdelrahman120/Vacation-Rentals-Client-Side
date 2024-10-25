@@ -1,91 +1,137 @@
-<div class="container-fluid tw-mt-32 position-relative">
-  <div class="container w-100">
-    <app-search></app-search>
-    <!-- <app-filter></app-filter> -->
-  </div>
-  <div class="position-absolute tw-left-5">
-    <app-filter-category></app-filter-category>
-  </div>
-  <div class="container">
-    <div class="row">
-      <ng-container *ngIf="loading; else propertyListTemplate">
-        <div class="d-flex justify-content-center fs-1 text-dark margin">
-          Loading properties...
-        </div>
-      </ng-container>
 
-      <ng-template #propertyListTemplate>
-        <ng-container *ngIf="properties.length > 0; else noPropertiesTemplate">
-          <div
-            *ngFor="let property of properties; trackBy: trackByPropertyId"
-            class="col-sm-12 col-md-6 col-lg-6 col-xl-4 my-2"
-          >
-            <app-item-card [property]="property"></app-item-card>
+
+  
+  <div class="container-fluid tw-mt-32 position-relative">
+    <div class="container w-100">
+      <app-search></app-search>
+    </div>
+    
+    <div class="container w-100 text-center mt-4">
+      <app-filter-category class="mx-3"></app-filter-category>
+      <app-filter></app-filter>
+    </div>
+    
+    <div class="container">
+      <div class="row">
+        <ng-container *ngIf="loading; else propertyListTemplate">
+          <div class="d-flex justify-content-center fs-1 text-dark margin loading">
+            Loading properties...
           </div>
-          <div class="d-flex justify-content-center my-4">
-            <div class="paginations">
-              <div>
-                <div
-                  class="btn-group d-flex justify-content-center align-items-center"
-                  id="radioBtn"
-                >
-                  <a class="btn me-3 notActive" (click)="paginationPrev()"
-                    >&#x3C;</a
-                  >
-                  <span class="bg-blue p-2 rounded me-3 text-light">{{
-                    pageNumber
-                  }}</span>
-                  <a class="btn me-3 notActive" (click)="paginationNext()">
-                    &#x3E;</a
-                  >
+        </ng-container>
+  
+        <ng-template #propertyListTemplate>
+          <ng-container *ngIf="properties.length > 0; else noPropertiesTemplate">
+            <div
+              *ngFor="let property of properties; trackBy: trackByPropertyId"
+              class="col-sm-12 col-md-6 col-lg-6 col-xl-4 my-2 property-card"
+            >
+              <app-item-card [property]="property"></app-item-card>
+            </div>
+            
+            <div class="d-flex justify-content-center my-4 pagination">
+              <div class="paginations">
+                <div>
+                  <div class="btn-group d-flex justify-content-center align-items-center" id="radioBtn">
+                    <a class="btn me-3 notActive" (click)="paginationPrev()">&lt;</a>
+                    <span class="bg-warning p-2 rounded me-3 text-dark">{{ pageNumber }}</span>
+                    <a class="btn me-3 notActive" (click)="paginationNext()">&gt;</a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </ng-container>
-
-        <ng-template #noPropertiesTemplate>
-          <div
-            class="d-flex justify-content-center align-items-center flex-column text-center"
-            style="height: 30rem"
-          >
-            <div
-              *ngIf="
-                isFilteringByCategory && noPropertiesInCategory;
-                else noLocationResultsTemplate
-              "
-            >
-              <h3 class="text-dark">
-                No properties available in the selected category.
-              </h3>
-              <p class="text-dark">
-                Try selecting a different category or adjusting your filters.
-              </p>
-            </div>
-
-            <ng-template #noLocationResultsTemplate>
-              <div *ngIf="noPropertiesFoundInLocation">
-                <h3 class="text-dark">
-                  We don't have any available properties for your search.
-                </h3>
-                <p class="text-dark">
-                  Please try a different location or adjust your filters.
-                </p>
+          </ng-container>
+  
+          <ng-template #noPropertiesTemplate>
+            <div class="d-flex justify-content-center align-items-center flex-column text-center" style="height: 30rem">
+              <div *ngIf="isFilteringByCategory && noPropertiesInCategory; else noLocationResultsTemplate">
+                <h3 class="text-dark">No properties available in the selected category.</h3>
+                <p class="text-dark">Try selecting a different category or adjusting your filters.</p>
               </div>
-
-              <ng-template #noResultsTemplate>
-                <h3 class="text-dark">
-                  We don't have any available properties for your search.
-                </h3>
-                <p class="text-dark">
-                  Try changing your dates or try to search for different
-                  locations nearby.
-                </p>
+  
+              <ng-template #noLocationResultsTemplate>
+                <div *ngIf="noPropertiesFoundInLocation">
+                  <h3 class="text-dark">We don't have any available properties for your search.</h3>
+                  <p class="text-dark">Please try a different location or adjust your filters.</p>
+                </div>
+  
+                <ng-template #noResultsTemplate>
+                  <h3 class="text-dark">We don't have any available properties for your search.</h3>
+                  <p class="text-dark">Try changing your dates or try to search for different locations nearby.</p>
+                </ng-template>
               </ng-template>
-            </ng-template>
-          </div>
+            </div>
+          </ng-template>
         </ng-template>
-      </ng-template>
+      </div>
     </div>
+  </div>
+  
+
+
+
+<div class="container-fluid footer text-light footer wow fadeIn mt-5" >
+  <div class="container pb-5" >
+      <div class="row g-5">
+          <div class="col-md-6 col-lg-4">
+              <div class="bg-primary rounded p-4">
+                  <a href="index.html"><h1 class="text-white text-uppercase mb-3">Hotelier</h1></a>
+                  <p class="text-white mb-0">
+      Download <a class="text-warning fw-medium" href="https://htmlcodex.com/hotel-html-template-pro">Hotelier – Premium Version</a>, build a professional website for your hotel business and grab the attention of new visitors upon your site’s launch.
+    </p>
+              </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+              <h6 class="section-title text-start text-warning text-uppercase mb-4">Contact</h6>
+              <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+              <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+              <p class="mb-2"><i class="fa fa-envelope me-3"></i>infoexample.com</p>
+              <div class="d-flex pt-2">
+                  <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                  <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                  <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                  <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+              </div>
+          </div>
+          <div class="col-lg-5 col-md-12">
+              <div class="row gy-5 g-4">
+                  <div class="col-md-6">
+                      <h6 class="section-title text-start text-warning text-uppercase mb-4">Company</h6>
+                      <a class="btn btn-link" href="">About Us</a>
+                      <a class="btn btn-link" href="">Contact Us</a>
+                      <a class="btn btn-link" href="">Privacy Policy</a>
+                      <a class="btn btn-link" href="">Terms & Condition</a>
+                      <a class="btn btn-link" href="">Support</a>
+                  </div>
+                  <div class="col-md-6">
+                      <h6 class="section-title text-start text-warning text-uppercase mb-4">Services</h6>
+                      <a class="btn btn-link" href="">Food & Restaurant</a>
+                      <a class="btn btn-link" href="">Spa & Fitness</a>
+                      <a class="btn btn-link" href="">Sports & Gaming</a>
+                      <a class="btn btn-link" href="">Event & Party</a>
+                      <a class="btn btn-link" href="">GYM & Yoga</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="container" >
+      <div class="copyright" >
+          <div class="row">
+              <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                  &copy; <a class="border-bottom" href="#">Vacation</a>, All Right Reserved. 
+    
+    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+    Designed By <a class="border-bottom" href="https://htmlcodex.com">ITI Team</a>
+              </div>
+              <div class="col-md-6 text-center text-md-end">
+                  <div class="footer-menu">
+                      <a href="">Home</a>
+                      <a href="">Cookies</a>
+                      <a href="">Help</a>
+                      <a href="">FQAs</a>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
 </div>

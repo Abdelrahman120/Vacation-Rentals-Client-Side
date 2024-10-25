@@ -1,9 +1,14 @@
+
 .bg-checked {
-  background-color: #325f20;
-  color: #ffffff;
+  background-color: #233e79;
+  color: #ffffff !important;
+  font-weight: bolder !important;
 }
 
 .bg-black {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #142447 !important;
+  color: #ffffff !important; 
 }
+
+
+

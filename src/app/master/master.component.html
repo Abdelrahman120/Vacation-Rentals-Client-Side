@@ -2,7 +2,7 @@
 <app-recommendation></app-recommendation>
 <app-about></app-about>
 <app-footer></app-footer> -->
-
+<!-- <app-footer></app-footer> -->
 
   <!-- ======= Hero Section ======= -->
 
@@ -111,313 +111,156 @@
 </div>
 
 
-<div class="container-xxl py-5">
-  <div class="container" data-aos="zoom-in">
-      <div class="row g-5 align-items-center">
-          <div class="col-lg-6">
-              <h6 class="section-title text-start text-warning fs-2 text-uppercase">About Us</h6>
-              <h1 class="mb-4">Welcome to <span class="text-warning text-uppercase">Hotelier</span></h1>
-              <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-              <div class="row g-3 pb-4">
-                  <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
-                      <div class="border rounded p-1">
-                          <div class="border rounded text-center p-4">
-                              <i class="fa fa-hotel fa-2x text-warning mb-2"></i>
-                              <h2 class="mb-1" data-toggle="counter-up">1234</h2>
-                              <p class="mb-0">Rooms</p>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
-                      <div class="border rounded p-1">
-                          <div class="border rounded text-center p-4">
-                              <i class="fa fa-users-cog fa-2x text-warning mb-2"></i>
-                              <h2 class="mb-1" data-toggle="counter-up">1234</h2>
-                              <p class="mb-0">Staffs</p>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-sm-4 wow fadeIn" data-wow-delay="0.5s">
-                      <div class="border rounded p-1">
-                          <div class="border rounded text-center p-4">
-                              <i class="fa fa-users fa-2x text-warning mb-2"></i>
-                              <h2 class="mb-1" data-toggle="counter-up">1234</h2>
-                              <p class="mb-0">Clients</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <a class="btn btn-warning py-3 px-5 mt-2" href="">Explore More</a>
-          </div>
-          <div class="col-lg-6">
-              <div class="row g-3">
-                  <div class="col-6 text-end">
-                      <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="new/assets/img/about-1.jpg" style="margin-top: 25%;">
-                  </div>
-                  <div class="col-6 text-start">
-                      <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="new/assets/img/about-2.jpg">
-                  </div>
-                  <div class="col-6 text-end">
-                      <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="new/assets/img/about-3.jpg">
-                  </div>
-                  <div class="col-6 text-start">
-                      <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="new/assets/img/about-4.jpg">
-                  </div>
-              </div>
-          </div>
+<app-about></app-about>
+
+<app-hero></app-hero>
+
+
+
+
+<!-- start testimonial -->
+
+<div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h6 class="section-title text-center text-warning text-uppercase">Our Testimonials</h6>
+        <h1 class="mb-5">Explore Our <span class="text-warning text-uppercase">Testimonials</span></h1>
+    </div>
+    <!-- <a routerLink='/contact' class="btn btn-lg btn-primary rounded fs-2 fw-bold">
+        Give a Review For Us
+      </a> -->
+          <!-- Carousel wrapper -->
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner testimonial-carousel py-5 ">
+            @if (testmonials.length > 0) {
+                @for (item of testmonials; track $index) {
+                    <div class="carousel-item active testimonial-item position-relative bg-white rounded overflow-hidden">
+                        <p>{{item.message}}</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded" src="new/assets/img/testimonial-1.jpg" style="width: 45px; height: 45px;">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">{{item.name}}</h6>
+                                <small>{{item.email}}</small>
+                            </div>
+                        </div>
+                        <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i> 
+                         </div>
+                }
+            } @else {
+                <div class="carousel-item active testimonial-item position-relative bg-white rounded overflow-hidden">
+                    <p>No Testimonial Found</p>
+                </div>
+            }
+           
+            
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
-  </div>
-</div>
-
-
-<div class="container-xxl py-5">
-  <div class="container" data-aos="fade-up">
-      <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-          <h6 class="section-title text-center text-warning text-uppercase">Our Rooms</h6>
-          <h1 class="mb-5">Explore Our <span class="text-warning text-uppercase">Rooms</span></h1>
-      </div>
-      <div class="row g-4">
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-              <div class="room-item shadow rounded overflow-hidden">
-                  <div class="position-relative">
-                      <img class="img-fluid" src="new/assets/img/room-1.jpg" alt="">
-                      <small class="position-absolute start-0 top-100 translate-middle-y bg-warning text-white rounded py-1 px-3 ms-4">$100/Night</small>
-                  </div>
-                  <div class="p-4 mt-2">
-                      <div class="d-flex justify-content-between mb-3">
-                          <h5 class="mb-0">Junior Suite</h5>
-                          <div class="ps-2">
-                              <small class="fa fa-star text-warning"></small>
-                              <small class="fa fa-star text-warning"></small>
-                              <small class="fa fa-star text-warning"></small>
-                              <small class="fa fa-star text-warning"></small>
-                              <small class="fa fa-star text-warning"></small>
-                          </div>
-                      </div>
-                      <div class="d-flex mb-3">
-                          <small class="border-end me-3 pe-3"><i class="fa fa-bed text-warning me-2"></i>3 Bed</small>
-                          <small class="border-end me-3 pe-3"><i class="fa fa-bath text-warning me-2"></i>2 Bath</small>
-                          <small><i class="fa fa-wifi text-warning me-2"></i>Wifi</small>
-                      </div>
-                      <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                      <div class="d-flex justify-content-between">
-                          <a class="btn btn-sm btn-warning rounded py-2 px-4" href="">View Detail</a>
-                          <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-              <div class="room-item shadow rounded overflow-hidden">
-                  <div class="position-relative">
-                      <img class="img-fluid" src="new/assets/img/room-2.jpg" alt="">
-                      <small class="position-absolute start-0 top-100 translate-middle-y bg-warning text-white rounded py-1 px-3 ms-4">$100/Night</small>
-                  </div>
-                  <div class="p-4 mt-2">
-                      <div class="d-flex justify-content-between mb-3">
-                          <h5 class="mb-0">Executive Suite</h5>
-                          <div class="ps-2">
-                              <small class="fa fa-star text-warning"></small>
-                              <small class="fa fa-star text-warning"></small>
-                              <small class="fa fa-star text-warning"></small>
-                              <small class="fa fa-star text-warning"></small>
-                              <small class="fa fa-star text-warning"></small>
-                          </div>
-                      </div>
-                      <div class="d-flex mb-3">
-                          <small class="border-end me-3 pe-3"><i class="fa fa-bed text-warning me-2"></i>3 Bed</small>
-                          <small class="border-end me-3 pe-3"><i class="fa fa-bath text-warning me-2"></i>2 Bath</small>
-                          <small><i class="fa fa-wifi text-warning me-2"></i>Wifi</small>
-                      </div>
-                      <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                      <div class="d-flex justify-content-between">
-                          <a class="btn btn-sm btn-warning rounded py-2 px-4" href="">View Detail</a>
-                          <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-              <div class="room-item shadow rounded overflow-hidden">
-                  <div class="position-relative">
-                      <img class="img-fluid" src="new/assets/img/room-3.jpg" alt="">
-                      <small class="position-absolute start-0 top-100 translate-middle-y bg-warning text-white rounded py-1 px-3 ms-4">$100/Night</small>
-                  </div>
-                  <div class="p-4 mt-2">
-                      <div class="d-flex justify-content-between mb-3">
-                          <h5 class="mb-0">Super Deluxe</h5>
-                          <div class="ps-2">
-                              <small class="fa fa-star text-warning"></small>
-                              <small class="fa fa-star text-warning"></small>
-                              <small class="fa fa-star text-warning"></small>
-                              <small class="fa fa-star text-warning"></small>
-                              <small class="fa fa-star text-warning"></small>
-                          </div>
-                      </div>
-                      <div class="d-flex mb-3">
-                          <small class="border-end me-3 pe-3"><i class="fa fa-bed text-warning me-2"></i>3 Bed</small>
-                          <small class="border-end me-3 pe-3"><i class="fa fa-bath text-warning me-2"></i>2 Bath</small>
-                          <small><i class="fa fa-wifi text-warning me-2"></i>Wifi</small>
-                      </div>
-                      <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                      <div class="d-flex justify-content-between">
-                          <a class="btn btn-sm btn-warning rounded py-2 px-4" href="">View Detail</a>
-                          <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-
-
-<div class="container-xxl mb-5 py-5">
-  <div class="container" data-aos="fade-up">
-      <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-          <h6 class="section-title text-center text-warning text-uppercase">Our Services</h6>
-          <h1 class="mb-5">Explore Our <span class="text-warning text-uppercase">Services</span></h1>
-      </div>
-      <div class="row g-4">
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-              <a class="service-item rounded" href="">
-                  <div class="service-icon bg-transparent border rounded p-1">
-                      <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                          <i class="fa fa-hotel fa-2x text-warning"></i>
-                      </div>
-                  </div>
-                  <h5 class="mb-3">Rooms & Appartment</h5>
-                  <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-              </a>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-              <a class="service-item rounded" href="">
-                  <div class="service-icon bg-transparent border rounded p-1">
-                      <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                          <i class="fa fa-utensils fa-2x text-warning"></i>
-                      </div>
-                  </div>
-                  <h5 class="mb-3">Food & Restaurant</h5>
-                  <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-              </a>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-              <a class="service-item rounded" href="">
-                  <div class="service-icon bg-transparent border rounded p-1">
-                      <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                          <i class="fa fa-spa fa-2x text-warning"></i>
-                      </div>
-                  </div>
-                  <h5 class="mb-3">Spa & Fitness</h5>
-                  <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-              </a>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
-              <a class="service-item rounded" href="">
-                  <div class="service-icon bg-transparent border rounded p-1">
-                      <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                          <i class="fa fa-swimmer fa-2x text-warning"></i>
-                      </div>
-                  </div>
-                  <h5 class="mb-3">Sports & Gaming</h5>
-                  <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-              </a>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-              <a class="service-item rounded" href="">
-                  <div class="service-icon bg-transparent border rounded p-1">
-                      <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                          <i class="fa fa-glass-cheers fa-2x text-warning"></i>
-                      </div>
-                  </div>
-                  <h5 class="mb-3">Event & Party</h5>
-                  <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-              </a>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-              <a class="service-item rounded" href="">
-                  <div class="service-icon bg-transparent border rounded p-1">
-                      <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                          <i class="fa fa-dumbbell fa-2x text-warning"></i>
-                      </div>
-                  </div>
-                  <h5 class="mb-3">GYM & Yoga</h5>
-                  <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-              </a>
-          </div>
-      </div>
-  </div>
-</div>
-
-
-
-<div class="container-fluid footer text-light footer wow fadeIn mt-5" data-wow-delay="0.1s">
-  <div class="container pb-5" data-aos="zoom-in">
-      <div class="row g-5">
-          <div class="col-md-6 col-lg-4">
-              <div class="bg-primary rounded p-4">
-                  <a href="index.html"><h1 class="text-white text-uppercase mb-3">Hotelier</h1></a>
-                  <p class="text-white mb-0">
-      Download <a class="text-warning fw-medium" href="https://htmlcodex.com/hotel-html-template-pro">Hotelier – Premium Version</a>, build a professional website for your hotel business and grab the attention of new visitors upon your site’s launch.
-    </p>
-              </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-              <h6 class="section-title text-start text-warning text-uppercase mb-4">Contact</h6>
-              <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-              <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-              <p class="mb-2"><i class="fa fa-envelope me-3"></i>infoexample.com</p>
-              <div class="d-flex pt-2">
-                  <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                  <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                  <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                  <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-              </div>
-          </div>
-          <div class="col-lg-5 col-md-12">
-              <div class="row gy-5 g-4">
-                  <div class="col-md-6">
-                      <h6 class="section-title text-start text-warning text-uppercase mb-4">Company</h6>
-                      <a class="btn btn-link" href="">About Us</a>
-                      <a class="btn btn-link" href="">Contact Us</a>
-                      <a class="btn btn-link" href="">Privacy Policy</a>
-                      <a class="btn btn-link" href="">Terms & Condition</a>
-                      <a class="btn btn-link" href="">Support</a>
-                  </div>
-                  <div class="col-md-6">
-                      <h6 class="section-title text-start text-warning text-uppercase mb-4">Services</h6>
-                      <a class="btn btn-link" href="">Food & Restaurant</a>
-                      <a class="btn btn-link" href="">Spa & Fitness</a>
-                      <a class="btn btn-link" href="">Sports & Gaming</a>
-                      <a class="btn btn-link" href="">Event & Party</a>
-                      <a class="btn btn-link" href="">GYM & Yoga</a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="container" >
-      <div class="copyright" >
-          <div class="row">
-              <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                  &copy; <a class="border-bottom" href="#">Vacation</a>, All Right Reserved. 
     
-    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-    Designed By <a class="border-bottom" href="https://htmlcodex.com">ITI Team</a>
-              </div>
-              <div class="col-md-6 text-center text-md-end">
-                  <div class="footer-menu">
-                      <a href="">Home</a>
-                      <a href="">Cookies</a>
-                      <a href="">Help</a>
-                      <a href="">FQAs</a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+  <!-- Carousel wrapper -->
 </div>
 
 
 
-<!-- End Footer -->
+
+
+
+<!-- end -->
+
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-primary text-uppercase">Contact Us</h6>
+            <h1 class="mb-5"><span class="text-warning text-uppercase">Contact</span> For Any Feedback Or Question</h1>
+        </div>
+        <div class="row g-4">
+           
+            <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
+                <iframe class="position-relative rounded w-100 h-100"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6910.403834657057!2d31.2007606!3d30.4704221!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145815a942593c57%3A0x34539c114f1e9d87!2sBenha%20Faculty%20of%20Computer%20and%20Information%20Sciences!5e0!3m2!1sen!2seg!4v1698054075736!5m2!1sen!2seg"
+                frameborder="0" style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false"
+                tabindex="0">
+                 </iframe>
+            
+            
+            </div>
+            <div class="col-md-6">
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <form #testimonialForm="ngForm" (ngSubmit)="onSubmit(testimonialForm)" novalidate>
+                        <div class="row g-3">
+                          <!-- Name Field -->
+                          <div class="col-md-6">
+                            <div class="form-floating">
+                              <input type="text" class="form-control" id="name" placeholder="Your Name"
+                                     [(ngModel)]="formData.name" name="name" required #name="ngModel">
+                              <label for="name">Your Name</label>
+                              <div *ngIf="name.invalid && name.touched" class="text-danger">
+                                Name is required.
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- Email Field -->
+                          <div class="col-md-6">
+                            <div class="form-floating">
+                              <input type="email" class="form-control" id="email" placeholder="Your Email"
+                                     [(ngModel)]="formData.email" name="email" required email #email="ngModel">
+                              <label for="email">Your Email</label>
+                              <div *ngIf="email.invalid && email.touched" class="text-danger">
+                                <div *ngIf="email.errors?.['required']">Email is required.</div>
+                                <div *ngIf="email.errors?.['email']">Please enter a valid email.</div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- Subject Field -->
+                          <div class="col-12">
+                            <div class="form-floating">
+                              <select class="form-control" [(ngModel)]="formData.subject" name="subject" required #subject="ngModel">
+                                <option class="form-control" value="" disabled selected>Choose Subject</option>
+                                <option class="form-control" value="Questions">Questions</option>
+                                <option class="form-control" value="Feedback">Feedback</option>
+                              </select>
+                              <label for="subject">Subject</label>
+                              <div *ngIf="subject.invalid && subject.touched" class="text-danger">
+                                Subject is required.
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- Message Field -->
+                          <div class="col-12">
+                            <div class="form-floating">
+                              <textarea class="form-control" placeholder="Leave a message here" id="message"
+                                        [(ngModel)]="formData.message" name="message" style="height: 150px" required #message="ngModel"></textarea>
+                              <label for="message">Message</label>
+                              <div *ngIf="message.invalid && message.touched" class="text-danger">
+                                Message is required.
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- Submit Button -->
+                          <div class="col-12">
+                            <button class="btn btn-warning w-100 py-3" type="submit" [disabled]="testimonialForm.invalid">Send Message</button>
+                          </div>
+                        </div>
+                      </form>
+                      
+                      
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
+

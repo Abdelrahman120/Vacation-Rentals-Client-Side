@@ -147,4 +147,22 @@ export class AdminServices {
       headers: this.getAuthHeaders(),
     });
   }
+
+  getTestmonials(): Observable<any> {
+    const token = localStorage.getItem('owner_auth_token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.BACKEND_API}/api/testimonials`, { headers });
+  }
+
+  deleteTestmonial(id: number): Observable<any> {
+    const token = localStorage.getItem('owner_auth_token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete(`${this.BACKEND_API}/api/testimonials/${id}`, { headers });
+  }
 }

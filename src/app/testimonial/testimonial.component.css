@@ -1,3 +1,7 @@
+.newsletter {
+    position: relative;
+    z-index: 1;
+}
 
 .footer {
     position: relative;
@@ -71,6 +75,3 @@
     padding-right: 0;
     border-right: none;
 }
-
-
-  
