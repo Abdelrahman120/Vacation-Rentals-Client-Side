@@ -13,6 +13,17 @@
       }
     </div>
     }
+    <div class="mb-2 ">
+      <label for="description" class="form-label">Category Description</label>
+      <input id="description" type="text" name="description" class="form-control" formControlName="description">
+    </div>
+    @if(AddForm.get('description')?.invalid && (AddForm.get('description')?.touched || submitted)){
+    <div id="descriptionErrors" class="form-text text-danger">
+      @if(AddForm.get('description')?.hasError('required')){
+      <span>Required</span>
+      }
+    </div>
+    }
     <div class="d-flex justify-content-center mt-4">
       <button type="submit" class="btn text-white w-50 m-auto" style="background-color: #3b5899;">Add Category</button>
     </div>
