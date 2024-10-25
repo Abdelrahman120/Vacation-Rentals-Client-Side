@@ -27,6 +27,7 @@ export class AddCategoryComponent {
   ) {
     this.AddForm = this.fb.group({
       name: ['', Validators.required],
+      description: ['', Validators.required],
     });
   }
 
