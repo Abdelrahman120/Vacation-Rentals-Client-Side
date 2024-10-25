@@ -1,6 +1,8 @@
 import { Component, HostListener } from '@angular/core';
 import { SearchComponent } from "../search/search.component";
 import { NgClass } from '@angular/common';
+import { Router } from '@angular/router';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-hero',
@@ -10,6 +12,18 @@ import { NgClass } from '@angular/common';
   styleUrl: './hero.component.css'
 })
 export class HeroComponent {
+  categories: any[] = [];
+  constructor(
+    private categoryService: CategoryService
+  ) {}
+  ngOnInit(): void {
+    this.categoryService.getCategories().subscribe((data: any) => {
+      this.categories = data.data;
+      console.log(this.categories);
+      
+    });
+  }
+
   isVisibleRooms: boolean[] = [false, false, false];  // Initialize for 3 rooms
   isVisibleService: boolean[] = [false, false, false, false, false, false]; // Initialize for 6 services
 
@@ -25,7 +39,6 @@ export class HeroComponent {
       const { top, bottom } = section.getBoundingClientRect();
       const isVisible = top < window.innerHeight && bottom > 0;
 
-      console.log(`Section: ${sectionId}, Visible: ${isVisible}`);
 
       if (sectionId === 'rooms') {
         const roomItems = section.getElementsByClassName('room-item');
