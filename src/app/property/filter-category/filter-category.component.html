@@ -24,6 +24,7 @@
   </div>
 </div> -->
 <!-- Button to open modal -->
+<!-- Button to open modal -->
 <button
   type="button"
   class="btn btn-primary"
@@ -53,29 +54,22 @@
         ></button>
       </div>
       <div class="modal-body">
-        <div class="row g-2  overflow-auto my-4">
-          <div
-            *ngFor="let category of categories; let i = index"
-            class="col-6"
-          >
-            <div class="d-flex justify-content-center">
+        <div class="row g-2 overflow-auto my-4">
+          <div *ngFor="let category of categories; let i = index" class="col-6">
+            <div class="form-check d-flex justify-content-center">
               <input
-                type="checkbox"
-                class="visually-hidden"
-                id="category{{ i }}"
+              type="radio"
+                class="form-check-input"
+                id="categoryModal{{ i }}"
                 name="category"
                 [checked]="category.isChecked"
                 (change)="toggleCategorySelection(category)"
               />
               <label
-                for="category{{ i }}"
-                class="p-3 rounded-1 text-center"
-                style="cursor: pointer; min-width: 9rem"
-                [ngClass]="
-                  category.isChecked
-                    ? 'bg-checked text-light'
-                    : 'bg-black text-light'
-                "
+                class="form-check-label"
+               
+                for="categoryModal{{ i }}"
+               
               >
                 {{ category.name }}
               </label>
@@ -103,3 +97,4 @@
     </div>
   </div>
 </div>
+

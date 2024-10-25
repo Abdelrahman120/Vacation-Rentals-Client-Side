@@ -102,10 +102,11 @@
 <div id="services" class="container-xxl mb-5 py-5">
   <div class="container">
     <div class="text-center">
-      <h6 class="section-title text-center text-warning text-uppercase">Our Services</h6>
-      <h1 class="mb-5">Explore Our <span class="text-warning text-uppercase">Services</span></h1>
+      <h6 class="section-title text-center text-warning text-uppercase">Our Categories</h6>
+      <h1 class="mb-5">Explore Our <span class="text-warning text-uppercase">Categories</span></h1>
     </div>
     <div class="row g-4">
+         @for (item of categories; track item.id) {
       <div class="col-lg-4 col-md-6 service-item" [ngClass]="{'animate': isVisibleService[0]}">
         <a class="rounded" href="">
           <div class="service-icon bg-transparent border rounded p-1">
@@ -113,11 +114,13 @@
               <i class="fa fa-hotel fa-2x text-warning"></i>
             </div>
           </div>
-          <h5 class="mb-3">Rooms & Apartment</h5>
-          <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
+          <h5 class="mb-3">{{item.name}}</h5>
+          <p class="text-body mb-0">{{item.description}}</p>
         </a>
       </div>
-      <div class="col-lg-4 col-md-6 service-item" [ngClass]="{'animate': isVisibleService[1]}">
+
+    }
+      <!-- <div class="col-lg-4 col-md-6 service-item" [ngClass]="{'animate': isVisibleService[1]}">
         <a class="rounded" href="">
           <div class="service-icon bg-transparent border rounded p-1">
             <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
@@ -171,7 +174,7 @@
           <h5 class="mb-3">GYM & Yoga</h5>
           <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

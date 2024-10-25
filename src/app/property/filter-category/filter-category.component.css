@@ -1,4 +1,4 @@
-.bg-checked {
+/* .bg-checked {
   background-color: #233e79;
   color: #ffffff;
   font-weight: bolder !important;
@@ -7,4 +7,8 @@
 .bg-black {
   background-color: #142447 !important;
   color: #ffffff;
+} */
+.form-check-input:checked {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
 }
