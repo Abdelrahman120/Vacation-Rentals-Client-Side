@@ -4,6 +4,7 @@ import {
   ChangeDetectorRef,
   ViewChild,
   AfterViewInit,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
@@ -33,7 +34,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css'],
 })
-export class CalendarComponent implements AfterViewInit {
+export class CalendarComponent implements AfterViewInit, OnInit {
   @ViewChild('fullcalendar') calendarComponent!: FullCalendarComponent;
 
   calendarVisible = signal(true);
@@ -63,7 +64,7 @@ export class CalendarComponent implements AfterViewInit {
   propertyId: string = '';
   blocks: any[] = [];
   bookings: any[] = [];
-
+  blockIdToDelete: string | null = null;
   startDate: string = '';
   endDate: string = '';
 
@@ -73,6 +74,10 @@ export class CalendarComponent implements AfterViewInit {
     private changeDetector: ChangeDetectorRef
   ) {
     this.propertyId = this.route.snapshot.paramMap.get('id') || '';
+  }
+
+  ngOnInit() {
+    this.loadEventsFromLocalStorage();
     this.loadEvents();
   }
 
@@ -92,32 +97,57 @@ export class CalendarComponent implements AfterViewInit {
         this.blocks = blocks.data;
         this.bookings = bookings.data;
         this.updateCalendarEvents();
+        this.saveEventsToLocalStorage();
       });
   }
 
   updateCalendarEvents() {
     const blockEvents = this.blocks.map((block: any) => ({
-      id: block.id,
+      id: String(block.id),
       title: 'Blocked',
       start: block.start_date,
       end: block.end_date,
       backgroundColor: '#3C3D37',
-      type: 'block',
+      extendedProps: {
+        type: 'block',
+      },
     }));
 
     const bookingEvents = this.bookings.map((booking: any) => ({
-      id: booking.id,
+      id: String(booking.id),
       title: `${booking.guest_name}'s Booking`,
       start: booking.start_date,
       end: booking.end_date,
       backgroundColor: '#347928',
-      type: 'booking',
+      extendedProps: {
+        type: 'booking',
+      },
     }));
 
     this.calendarOptions.update((options) => ({
       ...options,
       events: [...blockEvents, ...bookingEvents],
     }));
+  }
+
+  saveEventsToLocalStorage() {
+    const allEvents = [...this.blocks, ...this.bookings];
+    localStorage.setItem(
+      `events-${this.propertyId}`,
+      JSON.stringify(allEvents)
+    );
+  }
+
+  loadEventsFromLocalStorage() {
+    const events = localStorage.getItem(`events-${this.propertyId}`);
+    if (events) {
+      const parsedEvents = JSON.parse(events);
+      this.blocks = parsedEvents.filter((event: any) => event.type === 'block');
+      this.bookings = parsedEvents.filter(
+        (event: any) => event.type === 'booking'
+      );
+      this.updateCalendarEvents();
+    }
   }
 
   openAddBlockModal(): void {
@@ -137,12 +167,14 @@ export class CalendarComponent implements AfterViewInit {
     this.bookingAndBlocksService.addBlock(this.propertyId, dates).subscribe({
       next: (response: any) => {
         this.addEventToCalendar(response.data.id, this.startDate, this.endDate);
-
         this.blocks.push({
-          id: response.id,
+          id: response.data.id,
           start_date: this.startDate,
           end_date: this.endDate,
+          type: 'block',
         });
+
+        this.saveEventsToLocalStorage();
 
         this.startDate = '';
         this.endDate = '';
@@ -161,49 +193,75 @@ export class CalendarComponent implements AfterViewInit {
     });
   }
 
-  addEventToCalendar(id: string, start: string, end: string): void {
+  addEventToCalendar(eventId: string, start: string, end: string): void {
     if (this.calendarComponent) {
       const calendarApi = this.calendarComponent.getApi();
       if (calendarApi) {
-        calendarApi.addEvent({
-          id: id,
+        const newEvent = {
+          id: eventId,
           title: 'Blocked',
           start: start,
           end: end,
           backgroundColor: '#3C3D37',
-          type: 'block',
-        });
+          extendedProps: {
+            type: 'block',
+          },
+        };
+        console.log('Adding Event:', newEvent);
+        calendarApi.addEvent(newEvent);
       } else {
         console.error('FullCalendar API not available!');
       }
     }
   }
 
+  prepareDeleteEvent(blockId: string) {
+    this.blockIdToDelete = blockId;
+    const modalElement = document.getElementById('confirmDeleteModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  }
+
+  confirmDelete() {
+    if (this.blockIdToDelete) {
+      this.handleDeleteEvent(this.blockIdToDelete);
+      this.blockIdToDelete = null;
+    }
+  }
+
+  handleDeleteEvent(blockId: string) {
+    this.bookingAndBlocksService
+      .removeBlock(this.propertyId, blockId)
+      .subscribe({
+        next: () => {
+          const calendarApi = this.calendarComponent.getApi();
+          const eventToRemove = calendarApi.getEventById(blockId);
+          if (eventToRemove) {
+            eventToRemove.remove();
+            this.blocks = this.blocks.filter((block) => block.id !== blockId);
+            this.saveEventsToLocalStorage();
+          }
+        },
+        error: (error) => {
+          console.error('Error removing block:', error);
+        },
+      });
+  }
+
   handleEventClick(clickInfo: EventClickArg) {
     const blockId = clickInfo.event.id;
 
-    if (!blockId) {
+    if (!blockId || blockId === 'undefined') {
       console.error('Block ID is missing or undefined!');
       return;
     }
 
     if (clickInfo.event.extendedProps['type'] === 'booking') {
-      alert('Bookings cannot be removed.');
-    } else if (
-      confirm(`Are you sure you want to remove '${clickInfo.event.title}'?`)
-    ) {
-      this.bookingAndBlocksService
-        .removeBlock(this.propertyId, blockId)
-        .subscribe({
-          next: (response) => {
-            clickInfo.event.remove();
-            this.blocks = this.blocks.filter((block) => block.id !== blockId);
-            this.updateCalendarEvents();
-          },
-          error: (error) => {
-            console.error('Error removing block:', error);
-          },
-        });
+      return;
+    } else {
+      this.prepareDeleteEvent(blockId);
     }
   }
 
