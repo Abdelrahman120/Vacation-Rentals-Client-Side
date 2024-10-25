@@ -1,0 +1,14 @@
+.fc {
+  /* the calendar root */
+  max-width: 100vw;
+  max-height: 800px;
+  margin: 0 auto;
+}
+
+.past-date {
+  opacity: 0.5;
+}
+
+.past-event {
+  opacity: 0.5;
+}

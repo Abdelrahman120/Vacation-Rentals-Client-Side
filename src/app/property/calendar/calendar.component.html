@@ -1,0 +1,69 @@
+<div class="" style="margin-top: 100px">
+  <div class="row">
+    <div class="col-2 p-0">
+      <app-owner-sidebar></app-owner-sidebar>
+    </div>
+    <div class="col-10 p-0">
+      <div class="calendar me-5">
+        <full-calendar *ngIf="calendarVisible()" [options]="calendarOptions()">
+          <ng-template #eventContent let-arg>
+            <b>{{ arg.timeText }}</b>
+            <i>{{ arg.event.title }}</i>
+          </ng-template>
+        </full-calendar>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="addBlockModal"
+  tabindex="-1"
+  aria-labelledby="addBlockModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" style="margin-top: 200px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title fs-4" id="addBlockModalLabel">Add Block</span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body row">
+        <div class="mb-3 col-6 text-center">
+          <label for="startDate" class="form-label">Start Date</label>
+          <input
+            type="date"
+            class="form-control text-center ps-2 rounded-pill"
+            [(ngModel)]="startDate"
+          />
+        </div>
+        <div class="mb-3 col-6 text-center">
+          <label for="endDate" class="form-label">End Date</label>
+          <input
+            type="date"
+            class="form-control text-center ps-2 rounded-pill"
+            [(ngModel)]="endDate"
+          />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="addBlock()"
+          data-bs-dismiss="modal"
+        >
+          Add Block
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

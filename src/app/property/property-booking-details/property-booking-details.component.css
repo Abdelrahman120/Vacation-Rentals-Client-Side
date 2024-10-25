@@ -1,4 +1,9 @@
 .table thead th {
-  background-color: #5b3475;
+  background-color: #0d224e;
   color: white;
+}
+
+.bg-blue {
+  background-color: #e0e0e0;
+  color: #000000;
 }
