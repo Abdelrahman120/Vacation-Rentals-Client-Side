@@ -46,12 +46,15 @@ export class BookingAndBlocksService {
     return forkJoin([this.getBlocks(id), this.getBookings(id)]);
   }
 
-  removeBlock(propertyId: string, blockId: string): Observable<any[]> {
+  removeBlock(
+    propertyId: string,
+    blockId: string
+  ): Observable<{ status: number; message: string; id: string }> {
     const token = localStorage.getItem('owner_auth_token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.delete<any[]>(
+    return this.http.delete<{ status: number; message: string; id: string }>(
       `${this.API}property/${propertyId}/block/${blockId}`,
       {
         headers,

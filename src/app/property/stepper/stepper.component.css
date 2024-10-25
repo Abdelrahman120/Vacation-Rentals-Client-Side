@@ -8,12 +8,11 @@
 
 .completed {
   background-color: #3b5899;
-  color: rgb(43, 43, 43);
-
+  color: white;
 }
 
 button.active {
-  background-color: #c7d2eb;
+  background-color: #3b5899;
   color: white;
 }
 
