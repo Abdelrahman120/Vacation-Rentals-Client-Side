@@ -11,26 +11,16 @@
       </div>
       <div class="modal-body">
         <div class="d-flex overflow-auto my-4 row g-2">
-          <div *ngFor="let amenity of amenities; trackBy: trackByAmenityId" class=" col-6">
+          <div *ngFor="let amenity of amenities; trackBy: trackByAmenityId" class="col-6 d-flex align-items-center">
             <input
               type="checkbox"
-              class="visually-hidden"
               name="amenity"
               id="amenity{{ amenity.id }}"
               [(ngModel)]="amenity.isChecked"
-              
+              class="form-check-input me-2"
             />
-            
-            <label
-              for="amenity{{ amenity.id }}"
-              class="p-3 rounded-1 text-center"
-              style="cursor: pointer; min-width: 9rem"
-              [ngClass]="{
-                'bg-checked': amenity.isChecked,
-                'bg-black': !amenity.isChecked
-              }"
-            >
-              <span> {{ amenity.name }}</span>
+            <label for="amenity{{ amenity.id }}" class="form-check-label">
+              {{ amenity.name }}
             </label>
           </div>
         </div>
