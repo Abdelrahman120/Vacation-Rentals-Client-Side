@@ -1,0 +1,10 @@
+.demo-app-main {
+  flex-grow: 1;
+  padding: 3em;
+}
+
+.fc {
+  max-width: 100vw;
+  max-height: 85vh;
+  margin: 0 auto;
+}

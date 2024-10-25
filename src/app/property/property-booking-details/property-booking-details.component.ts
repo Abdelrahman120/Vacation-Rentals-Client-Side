@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { OwnerInfo, Property } from '../../owner-info';
-import { OwnerInfoService } from '../../services/owner-info.service';
-import { OwnerProfileService } from '../../Services/owner-profile.service';
+import { Property } from '../../owner-info';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PropertyService } from '../../services/propertyService/property.service';
+import { SidebarComponent } from '../../admin-dashboard/sidebar/sidebar.component';
+import { OwnerSidebarComponent } from '../owner-sidebar/sidebar.component';
 
 @Component({
   selector: 'app-property-booking-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, OwnerSidebarComponent],
   templateUrl: './property-booking-details.component.html',
   styleUrl: './property-booking-details.component.css',
 })

@@ -4,6 +4,7 @@ import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { provideDaterangepickerLocale } from "ngx-daterangepicker-bootstrap";
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +14,6 @@ export const appConfig: ApplicationConfig = {
       separator: ' - ',
       applyLabel: 'Okay',
     }),
-    NgxDaterangepickerMd
+    NgxDaterangepickerMd, provideAnimationsAsync()
   ],
 };

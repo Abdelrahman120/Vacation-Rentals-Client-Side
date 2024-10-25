@@ -185,15 +185,17 @@
   font-style: italic;
 }
 
+/*
 :root {
-  /* --accent-color: #1aa090;
+  --accent-color: #1aa090;
   --secondary-color: #e2eaf1;
   --dark-color: #f0f0f0;
   --grey-color: #83898f;
   --body-text-color: #868686;
   --light-text-color: #ececec;
-  --link-color: #092035; */
+  --link-color: #092035;
 }
+*/
 
 body {
   font-family: "Work Sans", sans-serif;
@@ -459,11 +461,31 @@ button.btn.btn-primary.btn-lg.billboard-search {
 
 /*---- residence section start ----  */
 
+// .card {
+//   --bs-card-border-width: none;
+//   --bs-card-border-radius: none;
+//   --bs-card-inner-border-radius: none;
+//   background-color: transparent !important;
+// }
+
 .card {
-  --bs-card-border-width: none;
-  --bs-card-border-radius: none;
-  --bs-card-inner-border-radius: none;
-  background-color: transparent !important;
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    background-color: #fff;
+    margin: 1.25rem 0 1.25rem 0;
+    box-shadow: 0 .25rem .5rem #e6edef;
+
+    .card-head {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #edf1f7;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .card-body {
+        padding: 1rem 1.5rem;
+    }
 }
 
 .card-title {
@@ -796,6 +818,7 @@ input[type="number"]::-webkit-inner-spin-button {
   top: -5px;
   background: none;
   pointer-events: none;
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
@@ -867,3 +890,6 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

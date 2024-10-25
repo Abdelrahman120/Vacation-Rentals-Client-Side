@@ -1,43 +1,55 @@
-<div class="container mt-5">
-  <ng-container *ngIf="property && property.bookings && property.bookings.length > 0; else noBookings">
-    <div class="mt-5">
-      <h5 class="text-center fw-bold fs-3 text-dark-emphasis">
-        <br>
-        Bookings
-      </h5>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Booking Date</th>
-            <th>Check-in</th>
-            <th>Check-out</th>
-            <th>Status</th>
-            <th>Booking Ends In</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let booking of property.bookings">
-            <td>{{ booking.user_name }}</td>
-            <td>{{ booking.user_email }}</td>
-            <td>{{ booking.user_phone }}</td>
-            <td>{{ booking.book_date | date: 'yyyy-MM-dd' }}</td>
-            <td>{{ booking.start_date }}</td>
-            <td>{{ booking.end_date }}</td>
-            <td>{{ checkBookStatus(booking.start_date, booking.end_date) }}</td>
-            <td>{{ getTimeLeft(booking.end_date) }}</td>
-          </tr>
-        </tbody>
-      </table>
+<div class="" style="margin-top: 100px; margin-right: 45px">
+  <div class="row">
+    <div class="col-2 p-0">
+      <app-owner-sidebar></app-owner-sidebar>
     </div>
+    <div class="col-10 p-0">
+      <ng-container
+        *ngIf="
+          property && property.bookings && property.bookings.length > 0;
+          else noBookings
+        "
+      >
+        <table class="table table-hover table-blue w-100">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Booking Date</th>
+              <th>Check-in</th>
+              <th>Check-out</th>
+              <th>Status</th>
+              <th>Booking Ends In</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let booking of property.bookings">
+              <td class="bg-blue">{{ booking.user_name }}</td>
+              <td class="bg-blue">{{ booking.user_email }}</td>
+              <td class="bg-blue">{{ booking.user_phone }}</td>
+              <td class="bg-blue">
+                {{ booking.book_date | date : "yyyy-MM-dd" }}
+              </td>
+              <td class="bg-blue">{{ booking.start_date }}</td>
+              <td class="bg-blue">{{ booking.end_date }}</td>
+              <td class="bg-blue">
+                {{ checkBookStatus(booking.start_date, booking.end_date) }}
+              </td>
+              <td class="bg-blue">{{ getTimeLeft(booking.end_date) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-container>
 
-  </ng-container>
-
-  <ng-template #noBookings>
-    <div class="no-bookings d-flex justify-content-center align-items-center h-100" style="margin-top: 200px;">
-      <h1 class="text-dark">No bookings available for this property.</h1>
+      <ng-template #noBookings>
+        <div
+          class="no-bookings d-flex justify-content-center align-items-center h-100"
+          style="margin-top: 200px"
+        >
+          <h1 class="text-dark">No bookings available for this property.</h1>
+        </div>
+      </ng-template>
     </div>
-  </ng-template>
+  </div>
 </div>

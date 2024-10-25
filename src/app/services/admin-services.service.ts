@@ -41,7 +41,7 @@ export class AdminServices {
 
   getUsersUsingPagination(pageNumber: number): Observable<AdminUsers> {
     return this.http.get<AdminUsers>(
-      `${this.BACKEND_API}/api/admin/users?page=${pageNumber}&limit=20`,
+      `${this.BACKEND_API}/api/admin/users?page=${pageNumber}&limit=12`,
       {
         headers: this.getAuthHeaders(),
       }
