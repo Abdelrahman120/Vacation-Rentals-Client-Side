@@ -1,14 +1,13 @@
-<div class="container-fluid tw-mt-20">
-  <div class="container w-75"></div>
+<div class="container-fluid tw-mt-32">
   <div class="container">
     <div class="row">
       @if (favoriteProperties.length > 0) { @for (property of
       favoriteProperties; track $index) {
       <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3 my-2">
-        <div class="card border-0 position-relative my-2">
+        <div class="card bg-light border-1 position-relative my-2 shadow">
           <img
             src="http://127.0.0.1:8000{{ property.images[0]['image'] }}"
-            class="card-img-top rounded-3 shadow-lg position-relative"
+            class="card-img-top rounded-top-3 position-relative"
           />
 
           <fa-icon
@@ -19,32 +18,60 @@
           >
             ></fa-icon
           >
-          <div class="card-body p-1">
-            <span class="text-dark" style="font-size: 14px">{{
-              property.location
-            }}</span>
-            <p
-              class="roboto-bold text-dark"
-              style="bottom: 2rem; font-size: 1rem"
+          <div class="card-body py-3 pt-4 px-2">
+            <span class="text-muted" style="font-size: 14px">
+              <i class="fas fa-map-marker-alt me-1 text-warning"></i>
+              {{ property.location | truncate : 36 }}</span
             >
-              {{ property.property_name }}
+            <p class="roboto-bold text-dark mb-0" style="font-size: 1rem">
+              {{ property.property_name | truncate : 30 }}
             </p>
+
             <div
-              class="d-flex justify-content-between"
-              style="font-size: 0.8rem"
+              class="card-text text-dark d-flex gap-2"
+              style="font-size: 0.9rem"
             >
-              <div class="card-text text-dark">
-                <fa-icon [icon]="faHouse" class="rounded-3 text-dark"></fa-icon>
-                {{ property.property_type }} |
-                <fa-icon [icon]="faBed" class="rounded-3 text-dark"></fa-icon>
-                {{ property.bedrooms }} |
-                <fa-icon [icon]="faBath" class="rounded-3 text-dark"></fa-icon>
-                {{ property.bathrooms }} | Sleeps: {{ property.sleeps }}
-              </div>
-              <div class="text-end fw-bold text-dark" style="font-size: 0.8rem">
-                {{ property.night_rate }}$
-              </div>
+              <span>
+                <fa-icon
+                  [icon]="faHouse"
+                  class="rounded-3 text-warning"
+                ></fa-icon>
+                {{ property.property_type }}
+              </span>
+              |
+              <span>
+                <fa-icon
+                  [icon]="faBed"
+                  class="rounded-3 text-warning"
+                ></fa-icon>
+                {{ property.bedrooms }}
+              </span>
+              |
+              <span>
+                <fa-icon
+                  [icon]="faBath"
+                  class="rounded-3 text-warning"
+                ></fa-icon>
+                {{ property.bathrooms }}
+              </span>
+              |
+              <span>
+                <i class="fa-solid fa-person text-warning"></i>
+                {{ property.sleeps }} Sleeps
+              </span>
             </div>
+            <div
+              class="text-end fw-bold text-dark bg-warning p-1 rounded-2 position-absolute"
+              style="font-size: 0.8rem; bottom: 41%"
+            >
+              ${{ property.night_rate }}/Night
+            </div>
+            <button
+              (click)="goToDetails(property.id)"
+              class="float-end btn btn-warning rounded-3 mt-2 me-2"
+            >
+              View Details
+            </button>
           </div>
         </div>
       </div>
@@ -54,9 +81,8 @@
         style="height: 45rem"
       >
         <div class="mb-3">
-          <h3> No Favorite properties </h3>
+          <h3>No Favorite properties</h3>
         </div>
-        
       </div>
       }
     </div>

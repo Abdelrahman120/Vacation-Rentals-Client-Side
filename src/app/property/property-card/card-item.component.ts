@@ -77,7 +77,6 @@ export class CardItemComponent implements OnInit {
 
   toggleFavorite(propertyId: number) {
     if (this.isFavorite(propertyId)) {
-      // Remove from favorites
       this.favoriteService.removeFromFavorites(propertyId).subscribe(() => {
         this.favoriteProperties = this.favoriteProperties.filter(
           (id) => id !== propertyId
@@ -85,7 +84,6 @@ export class CardItemComponent implements OnInit {
         this.updateLocalStorage();
       });
     } else {
-      // Add to favorites
       this.favoriteService.addToFavorites(propertyId).subscribe(() => {
         this.favoriteProperties.push(propertyId);
         this.updateLocalStorage();
