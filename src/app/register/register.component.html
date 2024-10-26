@@ -1,23 +1,10 @@
-<div
-  class="container w-50 border bg-white mx-auto p-5"
-  style="margin-top: 100px"
->
+<div class="container w-50 border bg-white mx-auto p-5" style="margin-top: 100px">
   <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
     <h2 class="text-center my-2 mb-3 text-dark">Owner Register</h2>
     <div class="row">
       <div class="mb-2 col-md-6">
-        <label
-          for="name"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Name</label
-        >
-        <input
-          id="name"
-          type="text"
-          name="name"
-          class="form-control"
-          formControlName="name"
-        />
+        <label for="name" class="form-label fs-6 text-uppercase fw-bold text-black">Name</label>
+        <input id="name" type="text" name="name" class="form-control" formControlName="name" />
 
         @if(registerForm.get('name')?.invalid &&
         (registerForm.get('name')?.touched || submitted)){
@@ -30,18 +17,8 @@
       </div>
 
       <div class="mb-2 col-md-6">
-        <label
-          for="address"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Address</label
-        >
-        <input
-          id="address"
-          type="text"
-          name="address"
-          class="form-control"
-          formControlName="address"
-        />
+        <label for="address" class="form-label fs-6 text-uppercase fw-bold text-black">Address</label>
+        <input id="address" type="text" name="address" class="form-control" formControlName="address" />
 
         @if(registerForm.get('address')?.invalid &&
         (registerForm.get('address')?.touched || submitted)){
@@ -53,25 +30,15 @@
         }
       </div>
       <div class="mb-2 col-md-6">
-        <label
-          for="phone"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >phone</label
-        >
-        <input
-          id="phone"
-          type="text"
-          name="phone"
-          class="form-control"
-          formControlName="phone"
-        />
+        <label for="phone" class="form-label fs-6 text-uppercase fw-bold text-black">phone</label>
+        <input id="phone" type="text" name="phone" class="form-control" minlength="11" formControlName="phone" />
 
         @if(registerForm.get('phone')?.invalid &&
         (registerForm.get('phone')?.touched || submitted)){
         <div id="phoneErrors" class="form-text text-danger">
           @if(registerForm.get('phone')?.hasError('required')){
           <span>Phone is Required</span>
-          } @if(registerForm.get('phone')?.hasError('minLength')){
+          } @if(registerForm.get('phone')?.hasError('minlength')){
           <span>Phone Must be 11 digit</span>
           }
         </div>
@@ -79,18 +46,8 @@
       </div>
 
       <div class="mb-2 col-md-6">
-        <label
-          for="company_name"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Company Name</label
-        >
-        <input
-          id="company_name"
-          type="text"
-          name="company_name"
-          class="form-control"
-          formControlName="company_name"
-        />
+        <label for="company_name" class="form-label fs-6 text-uppercase fw-bold text-black">Company Name</label>
+        <input id="company_name" type="text" name="company_name" class="form-control" formControlName="company_name" />
 
         @if(registerForm.get('company_name')?.invalid &&
         (registerForm.get('company_name')?.touched || submitted)){
@@ -102,19 +59,9 @@
         }
       </div>
       <div class="mb-2 col-md-6">
-        <label
-          for="exampleInputEmail1"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Email address</label
-        >
-        <input
-          type="email"
-          name="email"
-          class="form-control"
-          formControlName="email"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-        />
+        <label for="exampleInputEmail1" class="form-label fs-6 text-uppercase fw-bold text-black">Email address</label>
+        <input type="email" name="email" class="form-control" formControlName="email" id="exampleInputEmail1"
+          aria-describedby="emailHelp" />
 
         @if(registerForm.get('email')?.invalid &&
         (registerForm.get('email')?.touched || submitted)){
@@ -128,17 +75,8 @@
         }
       </div>
       <div class="mb-2 col-md-6">
-        <label
-          for="gender"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Gender</label
-        >
-        <select
-          id="gender"
-          name="gender"
-          class="form-control"
-          formControlName="gender"
-        >
+        <label for="gender" class="form-label fs-6 text-uppercase fw-bold text-black">Gender</label>
+        <select id="gender" name="gender" class="form-control" formControlName="gender">
           <option value="Male">Male</option>
           <option value="Female">Female</option>
         </select>
@@ -154,17 +92,8 @@
       </div>
 
       <div class="mb-2 col-md-12">
-        <label
-          for="image"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Image</label
-        >
-        <input
-          type="file"
-          id="image"
-          class="form-control"
-          (change)="onFileChange($event)"
-        />
+        <label for="image" class="form-label fs-6 text-uppercase fw-bold text-black">Image</label>
+        <input type="file" id="image" class="form-control" (change)="onFileChange($event)" />
 
         @if(registerForm.get('image')?.invalid &&
         (registerForm.get('image')?.touched || submitted)){
@@ -176,18 +105,9 @@
         }
       </div>
       <div class="mb-2 col-md-12">
-        <label
-          for="description"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Description
+        <label for="description" class="form-label fs-6 text-uppercase fw-bold text-black">Description
         </label>
-        <input
-          id="description"
-          type="text"
-          name="description"
-          class="form-control"
-          formControlName="description"
-        />
+        <input id="description" type="text" name="description" class="form-control" formControlName="description" />
 
         @if(registerForm.get('description')?.invalid &&
         (registerForm.get('description')?.touched || submitted)){
@@ -200,18 +120,9 @@
       </div>
       <input type="hidden" name="role" value="owner" formControlName="role" />
       <div class="mb-2 col-md-6">
-        <label
-          for="exampleInputPassword1"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Password</label
-        >
-        <input
-          type="password"
-          name="password"
-          class="form-control"
-          formControlName="password"
-          id="exampleInputPassword1"
-        />
+        <label for="exampleInputPassword1" class="form-label fs-6 text-uppercase fw-bold text-black">Password</label>
+        <input type="password" name="password" class="form-control" formControlName="password"
+          id="exampleInputPassword1" />
 
         @if(registerForm.get('password')?.invalid &&
         (registerForm.get('password')?.touched || submitted)){
@@ -225,62 +136,37 @@
         }
       </div>
       <div class="mb-2 col-md-6">
-        <label
-          for="exampleInputPassword1"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Confirm Password</label
-        >
-        <input
-          id="exampleInputPassword1"
-          type="password"
-          name="password_confirmation"
-          class="form-control"
-          formControlName="password_confirmation"
-        />
+        <label for="exampleInputPassword1" class="form-label fs-6 text-uppercase fw-bold text-black">Confirm
+          Password</label>
+        <input id="exampleInputPassword1" type="password" name="password_confirmation" class="form-control"
+          formControlName="password_confirmation" />
 
-        <div
-          *ngIf="
+        <div *ngIf="
             (registerForm.get('password_confirmation')?.invalid &&
               (registerForm.get('password_confirmation')?.touched ||
                 submitted)) ||
             (registerForm.hasError('mismatch') &&
               (registerForm.get('password_confirmation')?.touched || submitted))
-          "
-        >
+          ">
           <div id="password_confirmationErrors" class="form-text text-danger">
-            <span
-              *ngIf="
+            <span *ngIf="
                 registerForm.get('password_confirmation')?.hasError('required')
-              "
-              >Password is Required</span
-            >
-            <span *ngIf="registerForm.hasError('mismatch')"
-              >Passwords do not match</span
-            >
-            <span
-              *ngIf="
+              ">Password is Required</span>
+            <span *ngIf="registerForm.hasError('mismatch')">Passwords do not match</span>
+            <span *ngIf="
                 registerForm.get('password_confirmation')?.hasError('minlength')
-              "
-              >Password must be at least 8 characters</span
-            >
+              ">Password must be at least 8 characters</span>
           </div>
         </div>
       </div>
 
       <div class="d-grid my-3">
-        <button
-          type="submit"
-          class="btn btn-lg text-uppercase fs-6 text-white"
-          style="background-color: #3b5899"
-        >
+        <button type="submit" class="btn btn-lg text-uppercase fs-6 text-white" style="background-color: #3b5899">
           Register
         </button>
       </div>
     </div>
-    <div
-      id="passwordHelpBlock"
-      class="d-flex justify-content-between align-items-center"
-    >
+    <div id="passwordHelpBlock" class="d-flex justify-content-between align-items-center">
       <span class="roboto-bold text-dark"> Do you have an account? </span>
       <a routerLink="/login/owner" class="link-danger">Login</a>
     </div>
