@@ -136,7 +136,7 @@
     </div>
 
     <!-- Add a Review Form -->
-    <div class="add-review mt-4">
+    <div class="add-review mt-4" *ngIf="canReview; else noReviewForm">
       <h4 class="text-dark fs-4">Leave a Review</h4>
       <form (submit)="addReview()">
         <div class="form-group mb-3">
@@ -150,10 +150,14 @@
           <label for="review">Comment</label>
           <textarea class="form-control" id="review" [(ngModel)]="newReview.review" name="review" rows="3"></textarea>
         </div>
-
+        
         <button type="submit" class="btn btn-primary">Submit comment</button>
       </form>
+      
     </div>
+    <ng-template #noReviewForm>
+      <p>You need to book this property to leave a review.</p>
+    </ng-template>
   </div>
 </div>
 

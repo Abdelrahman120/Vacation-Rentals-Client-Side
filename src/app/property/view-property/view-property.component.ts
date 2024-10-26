@@ -31,6 +31,7 @@ import {
 })
 export class ViewPropertyComponent implements OnInit {
   propertyId: string = '';
+  canReview: boolean = false;
   propertyDetails: any = {};
   property: any;
   map: any;
@@ -62,6 +63,8 @@ export class ViewPropertyComponent implements OnInit {
     this.propertyId = this.route.snapshot.paramMap.get('id') || '';
     const propertyId = this.route.snapshot.params['id'];
 
+    console.log("Property ID:", typeof( propertyId));
+    this.checkIfUserCanReview();
     this.route.queryParams.subscribe((params) => {
       this.dates.startDate = params['start_date']
         ? new Date(params['start_date'])
@@ -202,6 +205,17 @@ export class ViewPropertyComponent implements OnInit {
       },
       (error) => {
         console.error('Error adding review:', error);
+      }
+    );
+  }
+
+  checkIfUserCanReview(): void {
+    this.favouriteService.checkBooking(this.propertyId).subscribe(
+      (response) => {
+        this.canReview = response.canReview;
+      },
+      (error) => {
+        console.error('Error checking booking:', error);
       }
     );
   }
