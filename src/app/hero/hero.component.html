@@ -68,10 +68,9 @@
                   <small class="border-end me-3 pe-3"><i class="fa fa-bath text-warning me-2"></i>2 Bath</small>
                   <small><i class="fa fa-wifi text-warning me-2"></i>Wifi</small>
                 </div>
-                <p class="text-body mb-3">{{ item.description }}</p>
-                <div class="d-flex justify-content-between">
+                <p class="text-body mb-3">{{ item.description | truncate: 50 }}</p>
+                <div class="d-flex justify-content-end">
                   <a class="btn btn-sm btn-warning rounded py-2 px-4" href="">View Detail</a>
-                  <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
                 </div>
               </div>
             </div>

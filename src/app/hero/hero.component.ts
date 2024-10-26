@@ -4,11 +4,12 @@ import { CommonModule, NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 import { CategoryService } from '../services/category.service';
 import { PropertyService } from '../services/propertyService/property.service';
+import { TruncatePipe } from '../pipes/truncate.pipe';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [SearchComponent,NgClass , CommonModule],
+  imports: [SearchComponent,NgClass , CommonModule , TruncatePipe],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css'
 })
