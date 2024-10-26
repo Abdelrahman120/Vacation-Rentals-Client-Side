@@ -26,7 +26,8 @@
 }
 
 .bg-blue {
-  background: linear-gradient(170deg, #3b5899, #5874b1) !important;
+  background-color: #142447;
+  /* background: linear-gradient(170deg, #3b5899, #5874b1) !important; */
 }
 
 .btn {
