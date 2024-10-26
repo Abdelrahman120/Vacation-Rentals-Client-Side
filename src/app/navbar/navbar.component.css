@@ -1,13 +1,12 @@
 /*---- navbar section start ---- */
 .text-white .nav-link.active,
-.text-white .nav-link:focus,
-.text-white .nav-link:hover {
+.text-white .nav-link:focus {
   color: var(----body-text-color);
 }
 
 .nav-link.active,
-.nav-link:focus,
-.nav-link:hover {
+.nav-link:focus
+ {
   color: var(----body-text-color);
 }
 

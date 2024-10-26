@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { TestimonialService } from '../services/testimonial.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PropertyService } from '../services/propertyService/property.service';
 
 @Component({
   selector: 'app-master',
@@ -25,12 +26,13 @@ export class MasterComponent {
     'message': ''
   }
   testmonials: any[] = [];
+  properties: any[] = [];
 
   ngOnInit(): void {
     this.getallTestmonials();
   }
 
-  constructor (private testmonialService: TestimonialService) {}
+  constructor (private testmonialService: TestimonialService , private propertyService: PropertyService) {}
 
   onSubmit(testimonialForm: any) {
     if (testimonialForm.valid) {  // Ensure the form is valid before submitting
@@ -55,4 +57,18 @@ getallTestmonials() {
     }
   )
 }
+
+getFirstThree(){
+  this.propertyService.getFirstThree().subscribe(
+    (data : any) => {
+      console.log(data);
+      this.properties = data.data;
+    }, (error) => {
+      console.log(error);
+    }
+
+  )
+}
+
+
 }

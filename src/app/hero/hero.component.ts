@@ -1,20 +1,24 @@
 import { Component, HostListener } from '@angular/core';
 import { SearchComponent } from "../search/search.component";
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 import { CategoryService } from '../services/category.service';
+import { PropertyService } from '../services/propertyService/property.service';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [SearchComponent,NgClass],
+  imports: [SearchComponent,NgClass , CommonModule],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css'
 })
 export class HeroComponent {
   categories: any[] = [];
+  properties: any[] = [];
+  // properties.images: any[] = [];
   constructor(
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private propetiesService: PropertyService,
   ) {}
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe((data: any) => {
@@ -22,6 +26,7 @@ export class HeroComponent {
       console.log(this.categories);
       
     });
+    this.getFirstThree();
   }
 
   isVisibleRooms: boolean[] = [false, false, false];  // Initialize for 3 rooms
@@ -56,4 +61,13 @@ export class HeroComponent {
         }
       }
     }
-  }}
+  }
+  getFirstThree(){
+    this.propetiesService.getFirstThree().subscribe(
+      (data : any) => {
+        this.properties = data.data;
+      }
+    )
+  }
+
+}
