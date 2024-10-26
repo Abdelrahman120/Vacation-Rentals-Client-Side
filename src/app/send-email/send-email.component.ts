@@ -29,7 +29,13 @@ export class SendEmailComponent {
     this.owner_id = owner_id || '';
     this.AdminService.showOwner(Number(owner_id)).subscribe((data) => {
       this.owner_name = data.owner.name;
+      this.mailGreeting = `Dear ${this.owner_name},`;
     });
+    this.mailBody =
+      "Hope this email finds you well.\nWe're reaching out to inform you that your property has been accepted.";
+    this.mailActionText = 'Visit Our Website';
+    this.mailActionUrl = 'http://localhost:4200/properties';
+    this.mailEndLine = 'Sincerely, VacationRentals';
   }
 
   sendMail(form: NgForm): void {

@@ -15,7 +15,7 @@
         <div class="card-body bg-light rounded-3">
           <div class="d-flex justify-content-between">
             <div class="card-title roboto-medium">
-              {{ property.property_name }}
+              {{ property.property_name | truncate : 10 }}
             </div>
             <div>
               <button
@@ -73,7 +73,7 @@
         >
           <span class="me-2"
             ><i class="fas fa-map-marker-alt"></i>
-            {{ property.location | truncate : 16 }}</span
+            {{ property.location | truncate : 10 }}</span
           >
           |
           <span>
@@ -83,7 +83,7 @@
           |
           <span>
             <i class="fa-solid fa-building ms-2"></i>
-            {{ ownerInfo.company_name | truncate : 15 }}
+            {{ ownerInfo.company_name | truncate : 10 }}
           </span>
         </div>
       </div>
