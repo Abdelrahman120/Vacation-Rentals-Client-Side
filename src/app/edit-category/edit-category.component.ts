@@ -27,6 +27,7 @@ export class EditCategoryComponent  {
   ) {
     this.editForm = this.fb.group({
       name: ['', Validators.required],
+      description: ['', Validators.required],
      
     });
   }
@@ -39,6 +40,7 @@ export class EditCategoryComponent  {
       this.editForm.patchValue({
         
         name: category.data.name,
+        description: category.data.description,
     });
 
 

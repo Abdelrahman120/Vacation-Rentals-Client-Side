@@ -40,6 +40,9 @@ import { MyPropertiesComponent } from './property/my-properties/my-properties.co
 import { PropertyBookingDetailsComponent } from './property/property-booking-details/property-booking-details.component';
 import { UserBookingsComponent } from './user-bookings/user-bookings.component';
 import { ChatComponent } from './user-bookings/chat/chat.component';
+import { MyPropertyDetailsComponent } from './property/my-property-details/my-property-details.component';
+import { Calendar } from '@fullcalendar/core/index.js';
+import { CalendarComponent } from './property/calendar/calendar.component';
 import { TestimonialComponent } from './Admin/testimonial/testimonial.component';
 
 export const routes: Routes = [
@@ -62,6 +65,12 @@ export const routes: Routes = [
     path: 'update-property/:id',
     component: UpdatePropertyComponent,
     title: 'Update Property',
+    canActivate: [ownerGuardGuard],
+  },
+  {
+    path: 'calendar/:id',
+    component: CalendarComponent,
+    title: 'Property Calendar',
     canActivate: [ownerGuardGuard],
   },
   {
@@ -235,8 +244,8 @@ export const routes: Routes = [
     title: 'Contact Us',
   },
   {
-    path:'admin/testimonials',
-    component:TestimonialComponent
+    path: 'admin/testimonials',
+    component: TestimonialComponent,
   },
   {
     path: '**',

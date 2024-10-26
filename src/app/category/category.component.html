@@ -10,6 +10,7 @@
           <tr class="text-center align-middle">
             <th>Number</th>
             <th>Name</th>
+            <th>Description</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -20,6 +21,7 @@
           <tr>
             <td class="text-center align-middle">{{ item.id }}</td>
             <td class="text-center align-middle">{{ item.name }}</td>
+            <td class="text-center align-middle" style="max-width: 200px;">{{ item.description }}</td>
 
             <td class="text-center align-middle">
               <a class="btn me-2 text-white" [routerLink]="['/edit-category', item.id]"

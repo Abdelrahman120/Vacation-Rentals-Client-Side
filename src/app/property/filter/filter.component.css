@@ -1,4 +1,4 @@
-
+/* 
 .bg-checked {
   background-color: #233e79;
   color: #ffffff !important;
@@ -11,4 +11,8 @@
 }
 
 
-
+ */
+ .form-check-input:checked {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
