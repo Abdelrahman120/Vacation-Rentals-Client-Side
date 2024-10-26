@@ -1,17 +1,39 @@
-<button type="button" class="btn btn-warning rounded" data-bs-toggle="modal" data-bs-target="#amenitiesModal">
+<button
+  type="button"
+  class="btn btn-warning rounded-5"
+  data-bs-toggle="modal"
+  data-bs-target="#amenitiesModal"
+>
   Filter by Amenities
 </button>
 
-<div class="modal fade" id="amenitiesModal" tabindex="-1" aria-labelledby="amenitiesModalLabel" aria-hidden="true" style="width: 100%;">
+<div
+  class="modal fade"
+  id="amenitiesModal"
+  tabindex="-1"
+  aria-labelledby="amenitiesModalLabel"
+  aria-hidden="true"
+  style="width: 100%"
+>
   <div class="modal-dialog modal-dialog-centered modal-static">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="amenitiesModalLabel">Filter by Amenities</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <span class="modal-title fs-4" id="amenitiesModalLabel">
+          Filter by Amenities
+        </span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <div class="d-flex overflow-auto my-4 row g-2">
-          <div *ngFor="let amenity of amenities; trackBy: trackByAmenityId" class="col-6 d-flex align-items-center">
+          <div
+            *ngFor="let amenity of amenities; trackBy: trackByAmenityId"
+            class="col-6 d-flex align-items-center"
+          >
             <input
               type="checkbox"
               name="amenity"
@@ -26,8 +48,17 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="applyFilters()">Apply Filters</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="applyFilters()"
+        >
+          Apply Filters
+        </button>
       </div>
     </div>
   </div>

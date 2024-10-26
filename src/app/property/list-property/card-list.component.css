@@ -15,8 +15,8 @@
   padding-top: 180px;
 }
 
-.footer{
-  background-color: #0F172B;
+.footer {
+  background-color: #0f172b;
 }
 .footer .btn.btn-social {
   margin-right: 5px;
@@ -26,13 +26,13 @@
   align-items: center;
   justify-content: center;
   color: var(--light);
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   border-radius: 35px;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .footer .btn.btn-social:hover {
-  color: #0F172B !important;
+  color: #0f172b !important;
 }
 
 .footer .btn.btn-link {
@@ -40,11 +40,11 @@
   margin-bottom: 5px;
   padding: 0;
   text-align: left;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 15px;
   font-weight: normal;
   text-transform: capitalize;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .footer .btn.btn-link::before {
@@ -63,7 +63,7 @@
 .footer .copyright {
   padding: 25px 0;
   font-size: 15px;
-  border-top: 1px solid rgba(256, 256, 256, .1);
+  border-top: 1px solid rgba(256, 256, 256, 0.1);
 }
 
 .footer .copyright a {
@@ -73,7 +73,7 @@
 .footer .footer-menu a {
   margin-right: 15px;
   padding-right: 15px;
-  border-right: 1px solid rgba(255, 255, 255, .3);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .footer .footer-menu a:last-child {
@@ -82,7 +82,6 @@
   border-right: none;
 }
 
-/* Add this to your component's CSS file */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -107,13 +106,13 @@
 
 .property-card {
   animation: fadeIn 2s ease-in-out, scaleUp 2s ease-in-out;
+  transition: transform 0.4s ease;
 }
 
 .pagination {
   animation: fadeIn 2s ease-in-out;
 }
 
-/* Optional: Adding hover effect */
 .property-card:hover {
   transform: scale(1.05);
 }

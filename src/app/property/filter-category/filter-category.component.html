@@ -1,7 +1,6 @@
-
 <button
   type="button"
-  class="btn btn-warning rounded"
+  class="btn btn-warning rounded-5"
   data-bs-toggle="modal"
   data-bs-target="#categoryModal"
 >
@@ -19,7 +18,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="categoryModalLabel">Categories</h5>
+        <span class="modal-title fs-4" id="categoryModalLabel">Categories</span>
         <button
           type="button"
           class="btn-close"
@@ -32,19 +31,14 @@
           <div *ngFor="let category of categories; let i = index" class="col-6">
             <div class="form-check d-flex justify-content-center">
               <input
-              type="radio"
+                type="radio"
                 class="form-check-input"
                 id="categoryModal{{ i }}"
                 name="category"
                 [checked]="category.isChecked"
                 (change)="toggleCategorySelection(category)"
               />
-              <label
-                class="form-check-label"
-               
-                for="categoryModal{{ i }}"
-               
-              >
+              <label class="form-check-label" for="categoryModal{{ i }}">
                 {{ category.name }}
               </label>
             </div>
@@ -52,11 +46,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
         <button
@@ -71,4 +61,3 @@
     </div>
   </div>
 </div>
-

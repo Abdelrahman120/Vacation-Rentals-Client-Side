@@ -18,6 +18,10 @@ form.input-group {
   border-radius: 50px;
 }
 
+.bg-warn {
+  background-color: hsl(45, 85%, 55%) !important;
+}
+
 .form-control:focus {
   outline: none;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);

@@ -1,4 +1,4 @@
-<div class="card border-1 position-relative my-2 shadow">
+<div class="card border-1 position-relative mt-0 shadow">
   <div
     id="carouselExampleControls{{ property.id }}"
     class="carousel slide mb-1"
@@ -56,7 +56,7 @@
       {{ property.headline | truncate : 30 }}
     </p>
     <div
-      class="card-text text-dark roboto-regular w-75"
+      class="card-text text-dark d-flex justify-content-between roboto-regular w-75"
       style="font-size: 0.9rem"
     >
       <span class="text-dark"
@@ -81,7 +81,7 @@
     </div>
     <div
       class="fw-bold text-light rounded-3 position-absolute px-2 py-1 bg-warning text-dark"
-      style="font-size: 0.8rem; "
+      style="font-size: 0.8rem; bottom: 36%"
     >
       ${{ property.night_rate }}/Night
     </div>
