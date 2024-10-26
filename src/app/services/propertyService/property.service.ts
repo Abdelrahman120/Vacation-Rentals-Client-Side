@@ -30,7 +30,7 @@ export class PropertyService {
 
   getPropertiesUsingPagination(pageNumber: number) {
     return this.http.get(
-      `${this.BACKEND_API}/api/property?page=${pageNumber}&limit=30`
+      `${this.BACKEND_API}/api/property?page=${pageNumber}&limit=12`
     );
   }
 
@@ -160,5 +160,10 @@ export class PropertyService {
   private handleError(error: HttpErrorResponse) {
     console.error('Error occurred:', error);
     return throwError('An error occurred; please try again later.');
+  }
+
+
+  getFirstThree(){
+    return this.http.get(`${this.BACKEND_API}/api/first/three`);
   }
 }

@@ -1,32 +1,3 @@
-<!-- <app-hero></app-hero>
-<app-recommendation></app-recommendation>
-<app-about></app-about>
-<app-footer></app-footer> -->
-<!-- <app-footer></app-footer> -->
-
-  <!-- ======= Hero Section ======= -->
-
-
-  <!-- <section id="hero" class="d-flex align-items-center">
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-          <h1>Better Solutions For Your Business</h1>
-          <h2>We are team of talented designers making websites with Bootstrap</h2>
-          <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="#about" class="btn-get-started scrollto">Get Started</a>
-            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
-          </div>
-        </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-          <img src="/new/assets/img/hero-img.png" class="img-fluid animated" alt="">
-        </div>
-      </div>
-    </div>
-
-  </section>End Hero -->
-
 
   <div class="container-fluid p-0 mb-5">
     <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -37,8 +8,7 @@
                     <div class="p-3" style="max-width: 700px;">
                         <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Luxury Living</h6>
                         <h1 class="display-3 text-white mb-4 animated slideInDown">Discover A Brand Luxurious Hotel</h1>
-                        <a href="" class="btn btn-warning py-md-3 px-md-5 me-3 animated slideInLeft">Our Rooms</a>
-                        <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book A Room</a>
+                        <a routerLink="/properties" class="btn btn-warning py-md-3 px-md-5 me-3 animated slideInLeft">Our Rooms</a>
                     </div>
                 </div>
             </div>
@@ -48,8 +18,7 @@
                     <div class="p-3" style="max-width: 700px;">
                         <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Luxury Living</h6>
                         <h1 class="display-3 text-white mb-4 animated slideInDown">Discover A Brand Luxurious Hotel</h1>
-                        <a href="" class="btn btn-warning py-md-3 px-md-5 me-3 animated slideInLeft">Our Rooms</a>
-                        <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book A Room</a>
+                        <a routerLink="/properties" class="btn btn-warning py-md-3 px-md-5 me-3 animated slideInLeft">Our Rooms</a>
                     </div>
                 </div>
             </div>
@@ -67,55 +36,9 @@
     </div>
 </div>
 
-<div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
-  <div class="container">
-      <div class="bg-white shadow" style="padding: 35px;">
-          <div class="row g-2">
-              <div class="col-md-10">
-                  <div class="row g-2">
-                      <div class="col-md-3">
-                          <div class="date" id="date1" data-target-input="nearest">
-                              <input type="text" class="form-control datetimepicker-input"
-                                  placeholder="Check in" data-target="#date1" data-toggle="datetimepicker" />
-                          </div>
-                      </div>
-                      <div class="col-md-3">
-                          <div class="date" id="date2" data-target-input="nearest">
-                              <input type="text" class="form-control datetimepicker-input" placeholder="Check out" data-target="#date2" data-toggle="datetimepicker"/>
-                          </div>
-                      </div>
-                      <div class="col-md-3">
-                          <select class="form-select">
-                              <option selected>Adult</option>
-                              <option value="1">Adult 1</option>
-                              <option value="2">Adult 2</option>
-                              <option value="3">Adult 3</option>
-                          </select>
-                      </div>
-                      <div class="col-md-3">
-                          <select class="form-select">
-                              <option selected>Child</option>
-                              <option value="1">Child 1</option>
-                              <option value="2">Child 2</option>
-                              <option value="3">Child 3</option>
-                          </select>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-2">
-                  <button class="btn btn-warning w-100">Submit</button>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-
-
 <app-about></app-about>
 
 <app-hero></app-hero>
-
-
 
 
 <!-- start testimonial -->
@@ -125,10 +48,7 @@
         <h6 class="section-title text-center text-warning text-uppercase">Our Testimonials</h6>
         <h1 class="mb-5">Explore Our <span class="text-warning text-uppercase">Testimonials</span></h1>
     </div>
-    <!-- <a routerLink='/contact' class="btn btn-lg btn-primary rounded fs-2 fw-bold">
-        Give a Review For Us
-      </a> -->
-          <!-- Carousel wrapper -->
+
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner testimonial-carousel py-5 ">
             @if (testmonials.length > 0) {
@@ -177,7 +97,7 @@
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="section-title text-center text-primary text-uppercase">Contact Us</h6>
+            <!-- <h6 class="section-title text-center text-primary text-uppercase">Contact Us</h6> -->
             <h1 class="mb-5"><span class="text-warning text-uppercase">Contact</span> For Any Feedback Or Question</h1>
         </div>
         <div class="row g-4">

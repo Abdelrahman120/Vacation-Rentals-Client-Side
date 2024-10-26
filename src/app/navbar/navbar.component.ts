@@ -99,6 +99,7 @@ export class NavbarComponent {
         localStorage.removeItem('userId');
         localStorage.removeItem('owner_auth_token');
         localStorage.removeItem('role');
+        localStorage.removeItem('ownerid');
 
         if (role === 'admin') {
           this.router.navigate(['/login/owner']);
