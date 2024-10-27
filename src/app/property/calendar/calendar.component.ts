@@ -67,6 +67,7 @@ export class CalendarComponent implements AfterViewInit, OnInit {
   blockIdToDelete: string | null = null;
   startDate: string = '';
   endDate: string = '';
+  showAlert: boolean = false;
 
   constructor(
     private bookingAndBlocksService: BookingAndBlocksService,
@@ -292,6 +293,10 @@ export class CalendarComponent implements AfterViewInit, OnInit {
   updateShowProperty(propertyId:any , status : any ) {
     this.bookingAndBlocksService.updateShow(propertyId, status).subscribe(
       (response) => {
+        this.showAlert = true;
+        setTimeout(() => {
+          this.showAlert = false;
+        }, 5000);
         console.log('Property status updated:', response);
       },
       (error) => {

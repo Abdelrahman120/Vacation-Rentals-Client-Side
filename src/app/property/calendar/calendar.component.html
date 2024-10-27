@@ -5,6 +5,9 @@
       <app-owner-sidebar></app-owner-sidebar>
     </div>
     <div class="col-10 p-0">
+      <div *ngIf="showAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+        Property status updated successfully!
+      </div>
       <div class="calendar me-5">
         <full-calendar
           *ngIf="calendarVisible()"
