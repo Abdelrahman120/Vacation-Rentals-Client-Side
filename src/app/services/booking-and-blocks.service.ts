@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, catchError, forkJoin, of } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 
 @Injectable({
@@ -42,8 +42,25 @@ export class BookingAndBlocksService {
     });
   }
 
+  // getEvents(id: string): Observable<any[]> {
+  //   return forkJoin([this.getBlocks(id), this.getBookings(id)]);
+  // }
+
   getEvents(id: string): Observable<any[]> {
-    return forkJoin([this.getBlocks(id), this.getBookings(id)]);
+    return forkJoin([
+      this.getBlocks(id).pipe(
+        catchError((error) => {
+          console.error('Error fetching blocks:', error);
+          return of([]);
+        })
+      ),
+      this.getBookings(id).pipe(
+        catchError((error) => {
+          console.error('Error fetching bookings:', error);
+          return of([]);
+        })
+      ),
+    ]);
   }
 
   removeBlock(

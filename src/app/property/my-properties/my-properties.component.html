@@ -11,7 +11,7 @@
       "
     >
       @for (property of ownerInfo.properties; track property.id) {
-      <div class="col-md-4 card shadow-lg p-0 m-2" style="width: 26rem">
+      <div class="col-md-4 card shadow-lg p-0 m-2" style="width: 30rem">
         <div class="card-body bg-light rounded-3">
           <div class="d-flex justify-content-between">
             <div class="card-title roboto-medium">
@@ -73,7 +73,7 @@
         >
           <span class="me-2"
             ><i class="fas fa-map-marker-alt"></i>
-            {{ property.location | truncate : 10 }}</span
+            {{ property.location | truncate : 20 }}</span
           >
           |
           <span>
