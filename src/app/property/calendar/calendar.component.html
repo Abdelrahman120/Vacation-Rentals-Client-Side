@@ -1,3 +1,4 @@
+
 <div class="" style="margin-top: 100px">
   <div class="row">
     <div class="col-2 p-0">
@@ -31,6 +32,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <span class="modal-title fs-4" id="addBlockModalLabel">Add Block</span>
+       
         <button
           type="button"
           class="btn-close"
@@ -65,6 +67,9 @@
         <button type="button" class="btn btn-primary" (click)="addBlock()">
           Add Block
         </button>
+        <button class="btn btn-success" (click)="updateShowProperty(propertyId, 'available')">Make Available</button>
+        <button class="btn btn-danger" (click)="updateShowProperty(propertyId, 'unavailable')">Make Unavailable</button>
+
       </div>
     </div>
   </div>
