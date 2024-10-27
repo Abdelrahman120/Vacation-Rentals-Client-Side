@@ -94,8 +94,10 @@ export class CalendarComponent implements AfterViewInit, OnInit {
     this.bookingAndBlocksService
       .getEvents(this.propertyId)
       .subscribe(([blocks, bookings]) => {
-        this.blocks = blocks.data;
-        this.bookings = bookings.data;
+        this.blocks = blocks.data || [];
+        this.bookings = bookings.data || [];
+        console.log('Bookings', bookings.data);
+        console.log('Blocks', this.blocks);
         this.updateCalendarEvents();
         this.saveEventsToLocalStorage();
       });
