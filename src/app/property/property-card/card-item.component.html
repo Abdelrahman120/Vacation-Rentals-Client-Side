@@ -40,12 +40,13 @@
 
   <fa-icon
     [icon]="faHeart"
-    class="fs-4 position-absolute rounded-3 text-light hover-effect z-3"
+    [ngClass]="{ 'heart-red': isfavorite, 'heart-default': !isfavorite }"
+
+    class="fs-4 position-absolute rounded-3  hover-effect z-3"
     style="top: 3%; right: 3%"
     (click)="toggleFavorites(property.id)"
   >
-    {{ isFavorite(property.id) ? "Remove from Favorites" : "Add to Favorites" }}
-    ></fa-icon
+    </fa-icon
   >
   <div class="card-body p-3 mt-2">
     <span class="text-dark text-muted" style="font-size: 14px">

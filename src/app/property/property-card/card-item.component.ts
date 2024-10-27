@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DatePipe, DecimalPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Router, RouterLink } from '@angular/router';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faBath, faBed, faHouse } from '@fortawesome/free-solid-svg-icons';
+// import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faBath, faBed, faHouse ,faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FavoriteService } from '../../Services/favorite.service';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
 
@@ -34,6 +34,7 @@ export class CardItemComponent implements OnInit {
   faBath = faBath;
   faHouse = faHouse;
   favoriteProperties: number[] = [];
+  isfavorite: boolean = false;
 
   goToDetails(id: string) {
     const queryParams = new URLSearchParams(window.location.search);
@@ -53,51 +54,71 @@ export class CardItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadFavorites();
+    // this.loadFavorites();
+    this.checkIfFavorite();
   }
 
-  loadFavorites() {
-    const storedFavorites = localStorage.getItem('favoriteProperties');
-    if (storedFavorites) {
-      this.favoriteProperties = JSON.parse(storedFavorites);
+  // loadFavorites() {
+  //   const storedFavorites = localStorage.getItem('favoriteProperties');
+  //   if (storedFavorites) {
+  //     this.favoriteProperties = JSON.parse(storedFavorites);
+  //   } else {
+  //     this.favoriteService.getUserFavorites().subscribe((favorites: any) => {
+  //       this.favoriteProperties = favorites.map((fav: any) => fav.propertyId);
+  //       localStorage.setItem(
+  //         'favoriteProperties',
+  //         JSON.stringify(this.favoriteProperties)
+  //       );
+  //     });
+  //   }
+  // }
+
+  // isFavorite(propertyId: number): boolean {
+  //   return this.favoriteProperties.includes(propertyId);
+  // }
+
+  // toggleFavorite(propertyId: number) {
+  //   if (this.isFavorite(propertyId)) {
+  //     this.favoriteService.removeFromFavorites(propertyId).subscribe(() => {
+  //       this.favoriteProperties = this.favoriteProperties.filter(
+  //         (id) => id !== propertyId
+  //       );
+  //       this.updateLocalStorage();
+  //     });
+  //   } else {
+  //     this.favoriteService.addToFavorites(propertyId).subscribe(() => {
+  //       this.favoriteProperties.push(propertyId);
+  //       this.updateLocalStorage();
+  //     });
+  //   }
+  // }
+
+  // updateLocalStorage() {
+  //   localStorage.setItem(
+  //     'favoriteProperties',
+  //     JSON.stringify(this.favoriteProperties)
+  //   );
+  // }
+  toggleFavorites(id: number) {
+    let favs = JSON.parse(localStorage.getItem('favoriteProperties') || '[]');
+    if (favs.includes(id)) {
+      // If the product is already a favorite, remove it from the array
+      favs = favs.filter((favId: number) => favId !== id);
+      this.isfavorite = false;
     } else {
-      this.favoriteService.getUserFavorites().subscribe((favorites: any) => {
-        this.favoriteProperties = favorites.map((fav: any) => fav.propertyId);
-        localStorage.setItem(
-          'favoriteProperties',
-          JSON.stringify(this.favoriteProperties)
-        );
-      });
+      // If the product is not a favorite, add it to the array
+      favs.push(id);
+      this.isfavorite = true;
     }
+  
+    // Update localStorage with the new favorites array
+    localStorage.setItem('favoriteProperties', JSON.stringify(favs));  
+    this.favoriteService.togleFavorite(id).subscribe(() => {});
   }
-
-  isFavorite(propertyId: number): boolean {
-    return this.favoriteProperties.includes(propertyId);
-  }
-
-  toggleFavorite(propertyId: number) {
-    if (this.isFavorite(propertyId)) {
-      this.favoriteService.removeFromFavorites(propertyId).subscribe(() => {
-        this.favoriteProperties = this.favoriteProperties.filter(
-          (id) => id !== propertyId
-        );
-        this.updateLocalStorage();
-      });
-    } else {
-      this.favoriteService.addToFavorites(propertyId).subscribe(() => {
-        this.favoriteProperties.push(propertyId);
-        this.updateLocalStorage();
-      });
-    }
-  }
-
-  updateLocalStorage() {
-    localStorage.setItem(
-      'favoriteProperties',
-      JSON.stringify(this.favoriteProperties)
-    );
-  }
-  toggleFavorites(propertyId: number) {
-    this.favoriteService.togleFavorite(propertyId).subscribe(() => {});
+  checkIfFavorite() {
+    const productId = this.property.id;
+    const favorites = JSON.parse(localStorage.getItem('favoriteProperties') || '[]');
+  
+    this.isfavorite = favorites.includes(productId);
   }
 }
