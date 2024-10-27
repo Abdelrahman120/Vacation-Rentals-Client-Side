@@ -289,4 +289,16 @@ export class CalendarComponent implements AfterViewInit, OnInit {
     }
     return [];
   }
-}
+  updateShowProperty(propertyId:any , status : any ) {
+    this.bookingAndBlocksService.updateShow(propertyId, status).subscribe(
+      (response) => {
+        console.log('Property status updated:', response);
+      },
+      (error) => {
+        console.error('Error updating property status:', error);
+      }
+    );
+  }
+  }
+
+

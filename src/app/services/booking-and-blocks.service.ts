@@ -78,4 +78,13 @@ export class BookingAndBlocksService {
       }
     );
   }
+
+  updateShow(id : any , status : any): Observable<any> {
+    const token = localStorage.getItem('owner_auth_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.put(`${this.API}properties/${id}/update-status`, {show : status}, { headers });
+
+  }
 }
