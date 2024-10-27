@@ -40,6 +40,13 @@ export class FavoritesComponent implements OnInit {
     this.favoriteService.removeFromFavorites(propertyId).subscribe(() => {
       //this.favoriteProperties = this.favoriteProperties.filter(property => property.id !== propertyId);
       this.loadFavorites();
+      let favs = JSON.parse(localStorage.getItem('favoriteProperties') || '[]');
+      if (favs.includes(propertyId)) {
+        // If the product is already a favorite, remove it from the array
+        favs = favs.filter((favId: number) => favId !== propertyId);
+        localStorage.setItem('favoriteProperties', JSON.stringify(favs));  
+
+      }
     });
   }
 

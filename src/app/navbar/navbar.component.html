@@ -88,14 +88,15 @@
                     </button>
                   </li>
 
-                  <li *ngIf="isOwner()" class="nav-item">
+                  <li *ngIf="isOwner() && !isAdmin()" class="nav-item">
                     <button class="btn btn-link nav-link dropdown-item poppins-medium fs-6"
                       (click)="navigateToOwnerProfile()">
                       Profile
                     </button>
 
                   </li>
-                  <li class="nav-item">
+                
+                  <li *ngIf="!isAdmin()" class="nav-item">
                     <button class="dropdown-item poppins-medium fs-6" (click)="onLogout()">
                       <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                       Logout
