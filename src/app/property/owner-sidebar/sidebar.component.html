@@ -60,6 +60,19 @@
             <span class="fs-5">Bookings</span>
           </a>
         </li>
+
+
+        <li class="nav-item">
+          <a
+            class="nav-link d-flex align-items-center"
+            [routerLink]="['/offer/', propertyId]"
+            routerLinkActive="text-light poppins-bold"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <i class="fas fa-user-tie me-2"></i>
+            <span class="fs-5">Offers</span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>

@@ -44,6 +44,7 @@ import { MyPropertyDetailsComponent } from './property/my-property-details/my-pr
 import { Calendar } from '@fullcalendar/core/index.js';
 import { CalendarComponent } from './property/calendar/calendar.component';
 import { TestimonialComponent } from './Admin/testimonial/testimonial.component';
+import { OfferComponent } from './offer/offer.component';
 
 export const routes: Routes = [
   {
@@ -72,6 +73,11 @@ export const routes: Routes = [
     component: CalendarComponent,
     title: 'Property Calendar',
     canActivate: [ownerGuardGuard],
+  },
+  {
+    path: 'offer/:id',
+    component:OfferComponent,
+    title: 'Offer',
   },
   {
     path: 'add-property',

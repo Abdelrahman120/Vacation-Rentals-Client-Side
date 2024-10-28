@@ -166,4 +166,19 @@ export class PropertyService {
   getFirstThree(){
     return this.http.get(`${this.BACKEND_API}/api/first/three`);
   }
+
+  viewPropertyForOffer(id: string): Observable<any> {
+    return this.http.get(
+      `${this.BACKEND_API}/api/property/${id}`
+    );
+  }
+
+
+  updateOffer(propertyId: any, offer: any): Observable<any> {
+    const token = localStorage.getItem('owner_auth_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    })
+    return this.http.put(`http://localhost:8000/api/properties/${propertyId}/offer`, { offer } , { headers });
+  }
 }
