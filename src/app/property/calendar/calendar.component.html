@@ -1,11 +1,14 @@
-
 <div class="" style="margin-top: 100px">
   <div class="row">
     <div class="col-2 p-0">
       <app-owner-sidebar></app-owner-sidebar>
     </div>
     <div class="col-10 p-0">
-      <div *ngIf="showAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+      <div
+        *ngIf="showAlert"
+        class="alert alert-success alert-dismissible fade show"
+        role="alert"
+      >
         Property status updated successfully!
       </div>
       <div class="calendar me-5">
@@ -35,7 +38,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <span class="modal-title fs-4" id="addBlockModalLabel">Add Block</span>
-       
+
         <button
           type="button"
           class="btn-close"
@@ -70,9 +73,6 @@
         <button type="button" class="btn btn-primary" (click)="addBlock()">
           Add Block
         </button>
-        <button class="btn btn-success" (click)="updateShowProperty(propertyId, 'available')">Make Available</button>
-        <button class="btn btn-danger" (click)="updateShowProperty(propertyId, 'unavailable')">Make Unavailable</button>
-
       </div>
     </div>
   </div>
@@ -88,7 +88,9 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
+        <span class="modal-title" id="confirmDeleteModalLabel"
+          >Confirm Delete</span
+        >
         <button
           type="button"
           class="btn-close"
@@ -108,3 +110,58 @@
     </div>
   </div>
 </div>
+
+<div
+  class="modal fade"
+  id="hidePropertyModal"
+  tabindex="-1"
+  aria-labelledby="hidePropertyModalLabel"
+  aria-hidden="true"
+  style="margin-top: 12.5rem"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title" id="hidePropertyModalLabel"
+          >Confirm Delete</span
+        >
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body fs-4 text-center">Change property status.</div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary btn-radius"
+          data-bs-dismiss="modal"
+        >
+          Cancel
+        </button>
+        <button
+          class="button-3 btn-green btn-radius"
+          data-bs-dismiss="modal"
+          role="button"
+          (click)="updateShowProperty(propertyId, 'available')"
+        >
+          Make Available
+        </button>
+        <button
+          class="button-3 btn-red btn-radius"
+          role="button"
+          data-bs-dismiss="modal"
+          (click)="updateShowProperty(propertyId, 'unavailable')"
+        >
+          Make Unavailable
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+    
+ -->

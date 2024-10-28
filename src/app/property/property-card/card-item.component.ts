@@ -3,7 +3,12 @@ import { DatePipe, DecimalPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Router, RouterLink } from '@angular/router';
 // import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faBath, faBed, faHouse ,faHeart } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBath,
+  faBed,
+  faHouse,
+  faHeart,
+} from '@fortawesome/free-solid-svg-icons';
 import { FavoriteService } from '../../Services/favorite.service';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
 
@@ -34,7 +39,7 @@ export class CardItemComponent implements OnInit {
   faBath = faBath;
   faHouse = faHouse;
   favoriteProperties: number[] = [];
-  isfavorite: boolean = false;
+  isFavorite: boolean = false;
 
   goToDetails(id: string) {
     const queryParams = new URLSearchParams(window.location.search);
@@ -100,25 +105,26 @@ export class CardItemComponent implements OnInit {
   //   );
   // }
   toggleFavorites(id: number) {
-    let favs = JSON.parse(localStorage.getItem('favoriteProperties') || '[]');
-    if (favs.includes(id)) {
-      // If the product is already a favorite, remove it from the array
-      favs = favs.filter((favId: number) => favId !== id);
-      this.isfavorite = false;
+    let favorites = JSON.parse(
+      localStorage.getItem('favoriteProperties') || '[]'
+    );
+    if (favorites.includes(id)) {
+      favorites = favorites.filter((favId: number) => favId !== id);
+      this.isFavorite = false;
     } else {
-      // If the product is not a favorite, add it to the array
-      favs.push(id);
-      this.isfavorite = true;
+      favorites.push(id);
+      this.isFavorite = true;
     }
-  
-    // Update localStorage with the new favorites array
-    localStorage.setItem('favoriteProperties', JSON.stringify(favs));  
-    this.favoriteService.togleFavorite(id).subscribe(() => {});
+
+    localStorage.setItem('favoriteProperties', JSON.stringify(favorites));
+    this.favoriteService.toggleFavorite(id).subscribe(() => {});
   }
   checkIfFavorite() {
     const productId = this.property.id;
-    const favorites = JSON.parse(localStorage.getItem('favoriteProperties') || '[]');
-  
-    this.isfavorite = favorites.includes(productId);
+    const favorites = JSON.parse(
+      localStorage.getItem('favoriteProperties') || '[]'
+    );
+
+    this.isFavorite = favorites.includes(productId);
   }
 }

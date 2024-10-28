@@ -3,30 +3,41 @@ import { PropertyService } from '../services/propertyService/property.service';
 import { DatePipe, DecimalPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Router, RouterLink } from '@angular/router';
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faBath, faBed, faHouse } from "@fortawesome/free-solid-svg-icons";
-import { CardItemComponent } from "../property/property-card/card-item.component";
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faBath, faBed, faHouse } from '@fortawesome/free-solid-svg-icons';
+import { CardItemComponent } from '../property/property-card/card-item.component';
 import { FavoriteService } from '../Services/favorite.service';
 declare var $: any;
 @Component({
   selector: 'app-recommendation',
   standalone: true,
-  imports: [DatePipe, FontAwesomeModule, DecimalPipe, NgClass, RouterLink, NgIf, NgFor, CardItemComponent],
+  imports: [
+    DatePipe,
+    FontAwesomeModule,
+    DecimalPipe,
+    NgClass,
+    RouterLink,
+    NgIf,
+    NgFor,
+    CardItemComponent,
+  ],
   templateUrl: './recommendation.component.html',
   styleUrl: './recommendation.component.css',
 })
 export class RecommendationComponent {
   properties: any[] = [];
-  constructor(private router: Router, private favoriteService: FavoriteService ,protected propertyservice: PropertyService) {
+  constructor(
+    private router: Router,
+    private favoriteService: FavoriteService,
+    protected propertyService: PropertyService
+  ) {}
 
-  }
- 
   faHeart = faHeart;
   faBed = faBed;
   faBath = faBath;
   faHouse = faHouse;
   ngOnInit(): void {
-    this.propertyservice.getProperties().subscribe((data: any) => {
+    this.propertyService.getProperties().subscribe((data: any) => {
       this.properties = data.data;
       console.log(this.properties);
     });
@@ -72,9 +83,7 @@ export class RecommendationComponent {
     }, 1000);
   }
   toggleFavorites(propertyId: number) {
-    this.favoriteService.togleFavorite(propertyId).subscribe(() => {
-
-    })
+    this.favoriteService.toggleFavorite(propertyId).subscribe(() => {});
   }
   goToDetails(id: string) {
     const queryParams = new URLSearchParams(window.location.search);
@@ -92,5 +101,4 @@ export class RecommendationComponent {
       },
     });
   }
-
 }
