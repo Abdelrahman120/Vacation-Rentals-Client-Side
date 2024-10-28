@@ -43,13 +43,19 @@ export class CalendarComponent implements AfterViewInit, OnInit {
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
-      right: 'addBlockButton',
+      right: 'addBlockButton,hidePropertyButton',
     },
     customButtons: {
       addBlockButton: {
         text: 'Add Block',
         click: () => {
           this.openAddBlockModal();
+        },
+      },
+      hidePropertyButton: {
+        text: 'Hide Property',
+        click: () => {
+          this.openHidePropertyModal();
         },
       },
     },
@@ -155,6 +161,14 @@ export class CalendarComponent implements AfterViewInit, OnInit {
 
   openAddBlockModal(): void {
     const modalElement = document.getElementById('addBlockModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  }
+
+  openHidePropertyModal() {
+    const modalElement = document.getElementById('hidePropertyModal');
     if (modalElement) {
       const modal = new bootstrap.Modal(modalElement);
       modal.show();
@@ -290,7 +304,7 @@ export class CalendarComponent implements AfterViewInit, OnInit {
     }
     return [];
   }
-  updateShowProperty(propertyId:any , status : any ) {
+  updateShowProperty(propertyId: any, status: any) {
     this.bookingAndBlocksService.updateShow(propertyId, status).subscribe(
       (response) => {
         this.showAlert = true;
@@ -304,6 +318,4 @@ export class CalendarComponent implements AfterViewInit, OnInit {
       }
     );
   }
-  }
-
-
+}
