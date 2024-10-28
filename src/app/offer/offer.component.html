@@ -1,0 +1,33 @@
+
+<div class="" style="margin-top: 100px">
+    <div class="row">
+      <div class="col-2 p-0">
+        <app-owner-sidebar></app-owner-sidebar>
+      </div>
+      <div class="col-10 p-0">
+        <div class="mt-5">
+            <h1>Offers</h1>
+            <div *ngIf="alertMessage" class="alert alert-success" role="alert">
+                {{ alertMessage }}
+              </div>
+            <!-- <p>{{.name}}</p> -->
+
+            <div *ngIf="propertyData">
+                <h2>Name: {{ propertyData.name }}</h2>
+                <p>Original Price: {{ originalPrice }} per night</p>
+                <p *ngIf="propertyData.offer">Price After Offer: {{ finalPrice | number:'1.2-2' }} per night</p>
+                <p *ngIf="!propertyData.offer">No Offer Available</p>
+            </div>
+
+            <div>
+                <label for="newOffer">Set New Offer (%):</label>
+                <input class="form-control w-25 my-2" id="newOffer" type="number" [(ngModel)]="newOffer">
+                <button class="btn btn-primary" (click)="updateOffer(propertyId, newOffer)">Update Offer</button>
+            </div>
+            
+            <button class="btn btn-danger mt-2" (click)="resetOffer()">Reset Offer to 0</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -80,12 +80,17 @@
         {{ property.sleeps }} Sleep</span
       >
     </div>
-    <div
+    <div *ngIf="property.offer == 0"
       class="fw-bold text-light rounded-3 position-absolute px-2 py-1 bg-warning text-dark"
       style="font-size: 0.8rem; bottom: 36%"
     >
-      ${{ property.night_rate }}/Night
+      ${{ property.total_price }}/Night
     </div>
+    <div *ngIf="property.offer > 0">
+      <p>Discount: {{ property.offer }}%</p>
+      <p>Offer Price: ${{ property.total_price}}</p>
+      <p class="tw-line-through">Original Price: ${{ property.night_rate }}</p>
+  </div>
     <a
       (click)="goToDetails(property.id)"
       class="btn bg-blue text-light mt-2 float-end rounded-3"
