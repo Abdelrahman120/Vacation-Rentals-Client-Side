@@ -26,6 +26,10 @@ import moment from 'moment';
 export class SearchComponent implements OnInit {
   location: string = '';
   sleeps: string = '';
+  bedrooms: string='';
+  bathrooms:string='';
+  price_min:string='';
+  price_max:string='';
   result: any[] = [];
   suggestions: any[] = [];
   dates: { startDate: moment.Moment | null; endDate: moment.Moment | null } = {
@@ -37,11 +41,19 @@ export class SearchComponent implements OnInit {
     endDate: string | null;
     location: string;
     sleeps: string;
+    bedrooms:string ;
+    bathrooms:string;
+    price_min:string;
+    price_max:string;
   } = {
     startDate: null,
     endDate: null,
     location: '',
     sleeps: '',
+    bedrooms:'' ,
+    bathrooms:'',
+    price_min:'',
+    price_max:'',
   };
 
   constructor(
@@ -57,6 +69,10 @@ export class SearchComponent implements OnInit {
         endDate: params['end_date'] || null,
         location: params['location'] || '',
         sleeps: params['sleeps'] || '',
+        bedrooms: params['bedrooms'] || '' ,
+        bathrooms: params['bathrooms'] || '' ,
+        price_min: params['price_min'] || '' ,
+        price_max: params['price_max'] || '' ,
       };
 
       if (this.input.startDate && this.input.endDate) {
@@ -137,6 +153,10 @@ export class SearchComponent implements OnInit {
         end_date: formattedEndDate,
         location: this.location,
         sleeps: this.sleeps,
+        bedrooms: this.bedrooms,
+        bathrooms: this.bathrooms,
+        price_min: this.price_min,
+        price_max: this.price_max,
       },
     });
   }

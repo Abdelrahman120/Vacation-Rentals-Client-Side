@@ -35,15 +35,28 @@ export class PropertyService {
   }
 
   getPropertyByDate(input?: any) {
-    const { location, sleeps, startDate, endDate } = input;
+    const { location, sleeps, startDate, endDate, bedrooms, bathrooms, price_min,price_max } = input;
     const hasLocation = location && Object.keys(location).length > 0;
     const hasSleeps = sleeps && Object.keys(sleeps).length > 0;
+    const haspricemax= price_max&&Object.keys(price_max).length>0;
+    const haspricemin= price_min&&Object.keys(price_min).length>0;
+    const hasbedrooms= bedrooms&&Object.keys(bedrooms).length>0;
+    const hasbathrooms= bathrooms&&Object.keys(bathrooms).length>0;    
 
     if (startDate && endDate && hasLocation) {
       let url = `${this.BACKEND_API}/api/properties/search?location=${location}&start_date=${startDate}&end_date=${endDate}`;
 
       if (hasSleeps) {
         url += `&sleeps=${sleeps}`;
+      }
+      if(haspricemax && haspricemin){
+        url += `&price_min=${price_min}&price_max=${price_max}`;
+      }
+      if (hasbedrooms){
+        url += `&bedrooms=${bedrooms}`;
+      }
+      if (hasbathrooms){
+        url += `&bathrooms=${bathrooms}`;
       }
 
       return this.http.get(url);

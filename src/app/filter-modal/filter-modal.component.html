@@ -1,0 +1,32 @@
+<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="filterModalLabel">Filter Properties</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price Range</label>
+              <input type="number" class="form-control" id="priceMin" placeholder="Min Price" [(ngModel)]="priceMin" name="priceMin">
+              <input type="number" class="form-control mt-2" id="priceMax" placeholder="Max Price" [(ngModel)]="priceMax" name="priceMax">
+            </div>
+            <div class="mb-3">
+              <label for="bedrooms" class="form-label">Number of Bedrooms</label>
+              <input type="number" class="form-control" id="bedrooms" [(ngModel)]="bedrooms" name="bedrooms">
+            </div>
+            <div class="mb-3">
+              <label for="bathrooms" class="form-label">Number of Bathrooms</label>
+              <input type="number" class="form-control" id="bathrooms" [(ngModel)]="bathrooms" name="bathrooms">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="applyFilters()">Apply Filters</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
