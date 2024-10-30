@@ -76,7 +76,7 @@ export const routes: Routes = [
   },
   {
     path: 'offer/:id',
-    component:OfferComponent,
+    component: OfferComponent,
     title: 'Offer',
   },
   {
