@@ -58,37 +58,41 @@
       class="card-text text-dark d-flex justify-content-between roboto-regular w-75"
       style="font-size: 0.9rem"
     >
-      <span class="text-dark"
-        ><fa-icon [icon]="faHouse" class="text-warning"></fa-icon>
-        {{ property.property_type }}</span
-      >
+      <span class="text-dark">
+        <fa-icon [icon]="faHouse" class="text-warning"></fa-icon>
+        {{ property.property_type }}
+      </span>
       |
-      <span class="text-dark"
-        ><fa-icon [icon]="faBed" class="text-warning"></fa-icon>
-        {{ property.bedrooms }} Bed</span
-      >
+      <span class="text-dark">
+        <fa-icon [icon]="faBed" class="text-warning"></fa-icon>
+        {{ property.bedrooms }} Bed
+      </span>
       |
-      <span class="text-dark"
-        ><fa-icon [icon]="faBath" class="text-warning"></fa-icon>
-        {{ property.bathrooms }} Bath</span
-      >
+      <span class="text-dark">
+        <fa-icon [icon]="faBath" class="text-warning"></fa-icon>
+        {{ property.bathrooms }} Bath
+      </span>
       |
-      <span class="text-dark"
-        ><i class="fa-solid fa-person text-warning"></i>
-        {{ property.sleeps }} Sleep</span
-      >
+      <span class="text-dark">
+        <i class="fa-solid fa-person text-warning"></i>
+        {{ property.sleeps }} Sleep
+      </span>
     </div>
-    <div *ngIf="property.offer == 0"
+    
+    <!-- عرض معلومات العرض -->
+    <div *ngIf="property.offer > 0 && isOfferActive()">
+      <p>Discount: {{ property.offer }}%</p>
+      <p>Offer Price: ${{ property.total_price }}</p>
+      <p class="tw-line-through">Original Price: ${{ property.night_rate }}</p>
+    </div>
+    
+    <div *ngIf="(property.offer == 0 || !isOfferActive())"
       class="fw-bold text-light rounded-3 position-absolute px-2 py-1 bg-warning text-dark"
       style="font-size: 0.8rem; bottom: 36%"
     >
       ${{ property.total_price }}/Night
     </div>
-    <div *ngIf="property.offer > 0">
-      <p>Discount: {{ property.offer }}%</p>
-      <p>Offer Price: ${{ property.total_price}}</p>
-      <p class="tw-line-through">Original Price: ${{ property.night_rate }}</p>
-  </div>
+
     <a
       (click)="goToDetails(property.id)"
       class="btn bg-blue text-light mt-2 float-end rounded-3"

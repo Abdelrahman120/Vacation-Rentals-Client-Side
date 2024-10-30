@@ -127,4 +127,10 @@ export class CardItemComponent implements OnInit {
 
     this.isFavorite = favorites.includes(productId);
   }
+  isOfferActive(): boolean {
+    const today = new Date();
+    const startDate = new Date(this.property.offer_start_date);
+    const endDate = new Date(this.property.offer_end_date);
+    return today >= startDate && today <= endDate;
+  }
 }
