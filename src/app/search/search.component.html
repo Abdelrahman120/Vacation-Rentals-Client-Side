@@ -1,27 +1,26 @@
 <form
-  class="input-group p-2 rounded-pill shadow-lg bg-white w-75 mx-auto d-flex justify-content-between align-items-center"
+  class="input-group p-3 rounded-pill shadow-lg bg-white w-75 mx-auto d-flex justify-content-between align-items-center position-relative"
 >
   <!-- Location Input -->
-  <div class="position-relative w-20">
+  <div class="position-relative flex-grow-1 me-3">
     <div class="input-group">
       <span class="input-group-text bg-white border-0 ps-3">
         <i class="fas fa-map-marker-alt text-dark"></i>
       </span>
       <input
         type="text"
-        class="form-control border-0 ps-2 rounded-pill"
+        class="form-control border-0 ps-2 rounded-start"
         placeholder="Where to?"
         aria-label="Location"
         name="location"
         [(ngModel)]="location"
         (input)="getLocationSuggestions()"
-        style="border-top-left-radius: 20px; border-bottom-left-radius: 20px"
       />
     </div>
 
     <ul
       *ngIf="suggestions.length > 0"
-      class="list-group position-absolute w-100 shadow"
+      class="list-group position-absolute w-100 shadow mt-1"
       style="z-index: 1000; max-height: 200px; overflow-y: auto"
     >
       <li
@@ -35,13 +34,13 @@
   </div>
 
   <!-- Dates Input -->
-  <div class="w-20">
+  <div class="flex-grow-1 me-3">
     <div class="input-group">
       <span class="input-group-text bg-white border-0 ps-3">
         <i class="fas fa-calendar-alt text-dark"></i>
       </span>
       <input
-        class="form-control border-0 ps-2 rounded-pill"
+        class="form-control border-0 ps-2 rounded-start"
         placeholder="Dates"
         ngxDaterangepickerBootstrap
         name="dates"
@@ -50,94 +49,99 @@
     </div>
   </div>
 
-  <!-- Sleeps Input -->
-  <div class="w-15">
-    <div class="input-group">
-      <span class="input-group-text bg-white border-0 ps-3">
-        <i class="fas fa-user-friends text-dark"></i>
-      </span>
-      <input
-        type="text"
-        class="form-control border-0 ps-2 rounded-pill"
-        placeholder="Sleeps"
-        aria-label="Sleeps"
-        name="sleeps"
-        [(ngModel)]="sleeps"
-      />
-    </div>
-  </div>
-
-  <!-- Bedrooms Input -->
-  <div class="w-15">
-    <div class="input-group">
-      <span class="input-group-text bg-white border-0 ps-3">
-        <i class="fas fa-bed text-dark"></i>
-      </span>
-      <input
-        type="number"
-        class="form-control border-0 ps-2 rounded-pill"
-        placeholder="Bedrooms"
-        aria-label="Bedrooms"
-        name="bedrooms"
-        [(ngModel)]="bedrooms"
-      />
-    </div>
-  </div>
-
-  <!-- Bathrooms Input -->
-  <div class="w-15">
-    <div class="input-group">
-      <span class="input-group-text bg-white border-0 ps-3">
-        <i class="fas fa-bath text-dark"></i>
-      </span>
-      <input
-        type="number"
-        class="form-control border-0 ps-2 rounded-pill"
-        placeholder="Bathrooms"
-        aria-label="Bathrooms"
-        name="bathrooms"
-        [(ngModel)]="bathrooms"
-      />
-    </div>
-  </div>
-
-  <!-- Min Price Input -->
-  <div class="w-15">
-    <div class="input-group">
-      <span class="input-group-text bg-white border-0 ps-3">$</span>
-      <input
-        type="number"
-        class="form-control border-0 ps-2 rounded-pill"
-        placeholder="Min Price"
-        aria-label="Min Price"
-        name="price_min"
-        [(ngModel)]="price_min"
-      />
-    </div>
-  </div>
-
-  <!-- Max Price Input -->
-  <div class="w-15">
-    <div class="input-group">
-      <span class="input-group-text bg-white border-0 ps-3">$</span>
-      <input
-        type="number"
-        class="form-control border-0 ps-2 rounded-pill"
-        placeholder="Max Price"
-        aria-label="Max Price"
-        name="price_max"
-        [(ngModel)]="price_max"
-      />
-    </div>
+  <!-- Filter Button -->
+  <div class="ms-2">
+    <button
+      type="button"
+      class="btn btn-light border rounded-circle shadow-sm p-2"
+      (click)="toggleFilter()"
+    >
+      <i class="fas fa-sliders-h text-dark"></i>
+    </button>
   </div>
 
   <!-- Search Button -->
-  <div class="ms-3">
-    <input
-      class="btn bg-warning text-dark rounded-pill px-4"
-      value="Search"
+  <div class="ms-2">
+    <button
+      class="btn btn-warning text-dark rounded-pill px-4"
       type="button"
       (click)="search()"
-    />
+    >
+      Search
+    </button>
+  </div>
+
+  <!-- Filter Section -->
+  <div
+    *ngIf="showFilter"
+    class="filter-section bg-light p-4 rounded shadow-lg position-absolute mt-3 z-1"
+    style="top: 100%; left: 0; width: 100%"
+  >
+    <div class="row">
+      <!-- Sleeps Input -->
+      <div class="col-md-4 mb-3">
+        <label for="sleeps" class="form-label">Sleeps</label>
+        <input
+          type="text"
+          class="form-control"
+          id="sleeps"
+          placeholder="Sleeps"
+          name="sleeps"
+          [(ngModel)]="sleeps"
+        />
+      </div>
+
+      <!-- Bedrooms Input -->
+      <div class="col-md-4 mb-3">
+        <label for="bedrooms" class="form-label">Bedrooms</label>
+        <input
+          type="number"
+          class="form-control"
+          id="bedrooms"
+          placeholder="Bedrooms"
+          name="bedrooms"
+          [(ngModel)]="bedrooms"
+        />
+      </div>
+
+      <!-- Bathrooms Input -->
+      <div class="col-md-4 mb-3">
+        <label for="bathrooms" class="form-label">Bathrooms</label>
+        <input
+          type="number"
+          class="form-control"
+          id="bathrooms"
+          placeholder="Bathrooms"
+          name="bathrooms"
+          [(ngModel)]="bathrooms"
+        />
+      </div>
+
+      <!-- Min Price Input -->
+      <div class="col-md-6 mb-3">
+        <label for="price_min" class="form-label">Min Price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="price_min"
+          placeholder="Min Price"
+          name="price_min"
+          [(ngModel)]="price_min"
+        />
+      </div>
+
+      <!-- Max Price Input -->
+      <div class="col-md-6 mb-3">
+        <label for="price_max" class="form-label">Max Price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="price_max"
+          placeholder="Max Price"
+          name="price_max"
+          [(ngModel)]="price_max"
+        />
+      </div>
+    </div>
   </div>
 </form>
