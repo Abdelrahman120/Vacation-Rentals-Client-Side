@@ -160,4 +160,9 @@ export class SearchComponent implements OnInit {
       },
     });
   }
+  showFilter: boolean = false;
+
+  toggleFilter(): void {
+    this.showFilter = !this.showFilter;
+  }
 }
