@@ -187,11 +187,12 @@ export class PropertyService {
   }
 
 
-  updateOffer(propertyId: any, offer: any): Observable<any> {
+  updateOffer(propertyId: any, offer: any,start_date:any,end_date:any): Observable<any> {
     const token = localStorage.getItem('owner_auth_token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     })
-    return this.http.put(`http://localhost:8000/api/properties/${propertyId}/offer`, { offer } , { headers });
+    return this.http.post(`http://localhost:8000/api/properties/${propertyId}/offer`, { offer , offer_start_date: start_date, 
+      offer_end_date: end_date } , { headers });
   }
 }
