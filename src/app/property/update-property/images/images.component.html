@@ -2,15 +2,17 @@
   <div class="mt-4">
     <div class="row">
       <div class="col-md-12">
+        @if(imageError){
+        <span class="alert alert-danger mt-2">
+          {{ imageError }}
+        </span>
+        }
         <label for="propertyImages">Property Images</label>
-        <input
-          type="file"
-          name="images[]"
-          class="form-control"
-          placeholder="propertyImages"
-          multiple
-          (change)="onFileChange($event)"
-        />
+        <input type="file" name="images[]" class="form-control" placeholder="propertyImages" multiple
+          (change)="onFileChange($event)" />
+        <span class="text-muted mt-1">
+          You can upload multiple images. Each should be less than 10MB.
+        </span>
       </div>
     </div>
   </div>

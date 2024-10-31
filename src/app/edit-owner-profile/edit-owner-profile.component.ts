@@ -22,41 +22,69 @@ export class EditOwnerProfileComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   validationErrors: any = {};
+  imageError: string | null = null;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private ownerProfileService: OwnerProfileService
   ) {
-    this.registerForm = this.fb.group({
-      company_name: ['', Validators.required],
-      name: ['', Validators.required],
-      owner_image: [''],
-      address: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.minLength(11)]],
-      description: ['', Validators.required],
-      role: ['owner'],
-      gender: ['', Validators.required],
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.email,
-          Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/),
+    this.registerForm = this.fb.group(
+      {
+        company_name: ['', Validators.required],
+        name: ['', Validators.required],
+        owner_image: [''],
+        address: ['', Validators.required],
+        phone: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(11),
+            Validators.pattern(/^\d+$/),
+          ],
         ],
-      ],
-      password: ['', [Validators.minLength(6)]],
-      password_confirmation: [''],
-    } , {validators: this.passwordMatchValidator});
+        description: ['', Validators.required],
+        role: ['owner'],
+        gender: ['', Validators.required],
+        email: [
+          '',
+          [
+            Validators.required,
+            Validators.email,
+            Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/),
+          ],
+        ],
+        password: ['', [Validators.minLength(6)]],
+        password_confirmation: [''],
+      },
+      { validators: this.passwordMatchValidator }
+    );
   }
 
   passwordMatchValidator: ValidatorFn = (control: AbstractControl) => {
     const password = control.get('password')?.value;
     const confirmPassword = control.get('password_confirmation')?.value;
-  
+
     return password === confirmPassword ? null : { mismatch: true };
   };
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      const maxSize = 5 * 1024 * 1024;
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
 
+      if (file.size > maxSize) {
+        this.imageError = 'File size should not exceed 5 MB.';
+        this.registerForm.get('owner_image')?.setErrors({ maxSize: true });
+      } else if (!allowedTypes.includes(file.type)) {
+        this.imageError = 'Only JPEG and PNG formats are allowed.';
+        this.registerForm.get('owner_image')?.setErrors({ invalidType: true });
+      } else {
+        this.imageError = null;
+        this.registerForm.patchValue({ owner_image: file });
+      }
+    }
+  }
   ngOnInit() {
     this.loadOwnerData();
   }
@@ -93,10 +121,10 @@ export class EditOwnerProfileComponent implements OnInit {
 
   handleEditSubmit() {
     this.submitted = true;
-  
+
     if (this.registerForm.valid) {
       const formData = { ...this.registerForm.value };
-  
+
       console.log('Form Data before submitting:', formData);
       const ownerId = this.getOwnerIdFromLocalStorage();
       this.ownerProfileService.updateOwner(ownerId, formData).subscribe(
@@ -113,7 +141,6 @@ export class EditOwnerProfileComponent implements OnInit {
       this.validationErrors = this.registerForm.errors || {};
     }
   }
-  
 
   handleErrors(error: any) {
     if (error.status === 422 && error.error && error.error.errors) {

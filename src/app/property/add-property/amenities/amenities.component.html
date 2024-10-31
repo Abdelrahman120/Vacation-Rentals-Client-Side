@@ -1,6 +1,13 @@
 <form (submit)="submitAmenity()">
   <div class="mt-4 h-25 overflow-hidden scroll-y">
     <div class="row">
+      @if(amenityError)
+      {
+      <span class="alert alert-danger">
+        *You must choose at least one amenity.
+      </span>
+      }
+
       @for (amenity of amenities; track amenity.id) {
       <div class="col-md-4">
         <input type="checkbox" class="form-check me-1 visually-hidden" name="amenities[]" id="amenity{{ amenity.id }}"

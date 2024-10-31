@@ -21,6 +21,7 @@ import { OwnerAuthService } from '../Services/owner-auth.service';
 export class RegisterComponent {
   registerForm: FormGroup;
   submitted = false;
+  imageError: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -32,11 +33,18 @@ export class RegisterComponent {
         company_name: ['', Validators.required],
         name: ['', Validators.required],
         address: ['', Validators.required],
-        phone: ['', [Validators.required, Validators.minLength(11)]],
+        phone: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(11),
+            Validators.pattern(/^[0-9]*$/),
+          ],
+        ],
         description: ['', Validators.required],
         role: ['owner'],
-        image: ['', [Validators.required]],
-        gender: ['', [Validators.required]],
+        image: ['', Validators.required],
+        gender: ['', Validators.required],
         email: [
           '',
           [
@@ -57,9 +65,23 @@ export class RegisterComponent {
 
   onFileChange(event: any): void {
     const file = event.target.files[0];
-    this.registerForm.patchValue({
-      image: file,
-    });
+    if (file) {
+      const maxSize = 5 * 1024 * 1024;
+      const allowedTypes = ['image/jpeg', 'image/png'];
+
+      if (file.size > maxSize) {
+        this.imageError = 'File size should not exceed 5 MB.';
+        this.registerForm.get('image')?.setErrors({ maxSize: true });
+      } else if (!allowedTypes.includes(file.type)) {
+        this.imageError = 'Only JPEG and PNG formats are allowed.';
+        this.registerForm.get('image')?.setErrors({ invalidType: true });
+      } else {
+        this.imageError = null;
+        this.registerForm.patchValue({
+          image: file,
+        });
+      }
+    }
   }
 
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
