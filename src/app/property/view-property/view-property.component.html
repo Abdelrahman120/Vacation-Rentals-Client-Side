@@ -77,51 +77,71 @@
         <a routerLink="/login" class="btn btn-primary rounded-pill">Sign Up</a>
       </div>
 
-      <div class="bordered-container shadow-lg p-4">
-        <div class="price-section mb-3">
-          <p class="fw-bold m-2 text-dark">
-            ${{ propertyDetails.night_rate }}/night
-          </p>
+      <div class="bordered-container shadow-lg p-4 rounded-4 bg-white" style="max-width: 400px; margin: auto;">
+        <!-- Price Section -->
+        <div class="price-section mb-4 text-center position-relative">
+          <div *ngIf="property.offer > 0 && isOfferActive()" class="offer-details">
+            <p class="badge bg-danger text-white rounded-pill px-3 py-1 mb-2">Discount: {{ property.offer }}%</p>
+            <p class="offer-price display-6 text-success fw-bold mb-1">Offer Price: ${{ getOfferPrice() }}</p>
+            <p class="original-price text-muted text-decoration-line-through">
+              Original Price: ${{ property.night_rate }}
+            </p>
+          </div>
+      
+          <div *ngIf="property.offer == 0 || !isOfferActive()"
+            class="fw-bold position-absolute px-3 py-1 bg-warning text-dark rounded-3"
+            style="font-size: 1rem; bottom: 10%; left: 50%; transform: translateX(-50%);"
+          >
+            ${{ property.night_rate }}/Night
+          </div>
         </div>
-
-        <div class="d-flex justify-content-between">
+      
+        <!-- Date Picker -->
+        <div class="date-picker mb-4">
+          <label class="form-label fw-semibold" for="dates">Choose Dates</label>
           <input
-            class="text-center border-0 p-2 rounded-pill form-control bg-light"
+            class="text-center border-0 p-2 rounded-pill form-control bg-light shadow-sm"
             placeholder="Dates"
             ngxDaterangepickerBootstrap
             name="dates"
             [(ngModel)]="dates"
             (ngModelChange)="onDateChange()"
+            style="font-size: 1rem;"
           />
         </div>
-
-        <div class="mt-3">
-          <label for="guests" class="form-label">Number of guests</label>
+      
+        <!-- Guest Input -->
+        <div class="guest-input mb-4">
+          <label for="guests" class="form-label fw-semibold">Number of Guests</label>
           <input
             type="number"
             id="guests"
-            class="form-control"
+            class="form-control text-center rounded-pill shadow-sm"
             [(ngModel)]="sleeps"
+            min="1"
+            style="font-size: 1rem;"
           />
         </div>
-
-        <div class="mt-4">
-          <div class="d-flex justify-content-between total">
-            <span>Total</span>
-            <span>${{ totalPrice | number : "1.0-2" }}</span>
-          </div>
+      
+        <!-- Total Price -->
+        <div class="total-price d-flex justify-content-between align-items-center py-3 border-top">
+          <span class="fw-bold">Total</span>
+          <span class="fw-bold display-6 text-primary">${{ totalPrice | number: "1.0-2" }}</span>
         </div>
-
+      
+        <!-- Book Now Button -->
         <button
-          class="btn btn-primary rounded-pill w-100 mt-3"
+          class="btn btn-primary rounded-pill w-100 mt-4 py-2 fw-semibold shadow-sm"
           (click)="navigateToPayment()"
+          style="font-size: 1.2rem;"
         >
-          Book now
+          Book Now
         </button>
-        <small class="d-block text-center mt-2"
-          >You will not be charged yet</small
-        >
+        
+        <!-- Info Note -->
+        <small class="d-block text-center mt-3 text-muted">You will not be charged yet</small>
       </div>
+      
     </div>
   </div>
 
