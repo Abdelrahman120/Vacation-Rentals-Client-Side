@@ -127,10 +127,17 @@ export class ViewPropertyComponent implements OnInit {
     const numberOfDays = timeDifference / (1000 * 3600 * 24);
 
     if (numberOfDays > 0 && this.propertyDetails.night_rate) {
-      this.totalPrice = Math.ceil(
+       const baseTotal = Math.floor(
         numberOfDays * this.propertyDetails.night_rate
       );
-    } else {
+      if (this.isOfferActive() && this.propertyDetails.offer > 0) {
+        this.totalPrice = Math.floor(baseTotal * (1 - this.propertyDetails.offer / 100));
+      } else {
+        this.totalPrice = Math.floor(baseTotal);
+      }
+    } 
+    
+    else {
       this.totalPrice = 0;
     }
 
@@ -231,5 +238,16 @@ export class ViewPropertyComponent implements OnInit {
       .openPopup();
 
      
+  }
+  getOfferPrice(): number {
+    return this.isOfferActive()
+      ? this.property.night_rate * (1 - this.property.offer / 100)
+      : this.property.night_rate;
+  }
+  isOfferActive(): boolean {
+    const today = new Date();
+    const startDate = new Date(this.property.offer_start_date);
+    const endDate = new Date(this.property.offer_end_date);
+    return today >= startDate && today <= endDate;
   }
 }

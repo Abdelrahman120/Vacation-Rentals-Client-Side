@@ -79,8 +79,8 @@
       </span>
     </div>
     
-    <!-- عرض معلومات العرض -->
     <div *ngIf="property.offer > 0 && isOfferActive()">
+      
       <p>Discount: {{ property.offer }}%</p>
       <p>Offer Price: ${{ property.total_price }}</p>
       <p class="tw-line-through">Original Price: ${{ property.night_rate }}</p>
