@@ -11,7 +11,7 @@
       (editForm.get('name')?.touched || submitted)){
       <div id="nameErrors" class="form-text text-danger">
         @if(editForm.get('name')?.hasError('required')){
-        <span>Required</span>
+        <span>Category Name is Required</span>
         }
       </div>
       }
@@ -23,7 +23,7 @@
       (editForm.get('description')?.touched || submitted)){
       <div id="descriptionErrors" class="form-text text-danger">
         @if(editForm.get('description')?.hasError('required')){
-        <span>Required</span>
+        <span>Description is Required</span>
         }
       </div>
       }

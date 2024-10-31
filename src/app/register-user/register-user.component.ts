@@ -9,7 +9,7 @@ import { RegisterUserService } from '../services/register-user.service';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, FormsModule, RouterLink],
   templateUrl: './register-user.component.html',
-  styleUrl: './register-user.component.css',
+  styleUrls: ['./register-user.component.css'],
 })
 export class RegisterUserComponent {
   name: string = '';
@@ -21,13 +21,26 @@ export class RegisterUserComponent {
   gender: string = '';
   selectedFile: File | null = null;
   validationErrors: any = {};
+
   constructor(
     private authService: RegisterUserService,
     private router: Router
-  ) { }
+  ) {}
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
+    const maxSize = 5 * 1024 * 1024;
+    const allowedTypes = ['image/jpeg', 'image/png'];
+
+    if (this.selectedFile) {
+      if (this.selectedFile.size > maxSize) {
+        this.validationErrors.image = ['File size should not exceed 5 MB'];
+      } else if (!allowedTypes.includes(this.selectedFile.type)) {
+        this.validationErrors.image = ['Only JPEG and PNG formats are allowed'];
+      } else {
+        this.validationErrors.image = null;
+      }
+    }
   }
 
   onRegister() {
@@ -89,7 +102,6 @@ export class RegisterUserComponent {
       return;
     }
 
-    
     const formData = new FormData();
     formData.append('name', this.name);
     formData.append('email', this.email);
