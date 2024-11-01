@@ -11,6 +11,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FavoriteService } from '../../Services/favorite.service';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
+import { UserInfoService } from '../../service/user-info.service';
+import { UserInfo } from '../../user-info';
 
 @Component({
   selector: 'app-item-card',
@@ -31,8 +33,12 @@ import { TruncatePipe } from '../../pipes/truncate.pipe';
 export class CardItemComponent implements OnInit {
   constructor(
     private router: Router,
-    private favoriteService: FavoriteService
+    private favoriteService: FavoriteService,
+    private userInfoService: UserInfoService
+
   ) {}
+  userDetails: UserInfo['data'] | null = null;
+
   @Input() property: any;
   faHeart = faHeart;
   faBed = faBed;
@@ -61,6 +67,21 @@ export class CardItemComponent implements OnInit {
   ngOnInit() {
     // this.loadFavorites();
     this.checkIfFavorite();
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.getUserInfo(token);
+    }
+  }
+  getUserInfo(token: string): void {
+    this.userInfoService.getUserInfo(token).subscribe(
+      (response) => {
+        this.userDetails = response.data;
+        console.log('User Details:', this.userDetails.id);
+      },
+      (error) => {
+        console.error('Error fetching user info:', error);
+      }
+    );
   }
 
   // loadFavorites() {
