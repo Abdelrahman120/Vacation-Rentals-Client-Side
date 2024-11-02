@@ -1,23 +1,10 @@
-<div
-  class="container w-50 border bg-white mx-auto p-5"
-  style="margin-top: 100px"
->
+<div class="container w-50 border bg-white mx-auto p-5" style="margin-top: 100px">
   <form [formGroup]="registerForm" (ngSubmit)="handleEditSubmit()">
     <h2 class="text-center my-2 mb-3 text-dark">Update Profile</h2>
     <div class="row">
       <div class="mb-2 col-md-6">
-        <label
-          for="name"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Name</label
-        >
-        <input
-          id="name"
-          type="text"
-          name="name"
-          class="form-control"
-          formControlName="name"
-        />
+        <label for="name" class="form-label fs-6 text-uppercase fw-bold text-black">Name</label>
+        <input id="name" type="text" name="name" class="form-control" formControlName="name" />
         @if(registerForm.get('name')?.invalid &&
         (registerForm.get('name')?.touched || submitted)) {
         <span class="text-danger">
@@ -28,18 +15,8 @@
       </div>
 
       <div class="mb-2 col-md-6">
-        <label
-          for="address"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Address</label
-        >
-        <input
-          id="address"
-          type="text"
-          name="address"
-          class="form-control"
-          formControlName="address"
-        />
+        <label for="address" class="form-label fs-6 text-uppercase fw-bold text-black">Address</label>
+        <input id="address" type="text" name="address" class="form-control" formControlName="address" />
         @if(registerForm.get('address')?.invalid &&
         (registerForm.get('address')?.touched || submitted)) {
         <span class="text-danger">
@@ -50,41 +27,24 @@
       </div>
 
       <div class="mb-2 col-md-4">
-        <label
-          for="phone"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Phone</label
-        >
-        <input
-          id="phone"
-          type="text"
-          name="phone"
-          class="form-control"
-          formControlName="phone"
-        />
+        <label for="phone" class="form-label fs-6 text-uppercase fw-bold text-black">Phone</label>
+        <input id="phone" type="text" name="phone" class="form-control" formControlName="phone" />
         @if(registerForm.get('phone')?.invalid &&
         (registerForm.get('phone')?.touched || submitted)) {
         <span class="text-danger">
           @if(registerForm.get('phone')?.hasError('required')){ Phone is
           required. } @if(registerForm.get('phone')?.hasError('minlength')){
-          Phone number must be at least 11 digits. }
+          Phone number must be at least 11 digits. }@else if (registerForm.get('phone')?.hasError('pattern')) {
+          this is not a valid phone number
+          }
         </span>
         }
+
       </div>
 
       <div class="mb-2 col-md-4">
-        <label
-          for="company_name"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Company Name</label
-        >
-        <input
-          id="company_name"
-          type="text"
-          name="company_name"
-          class="form-control"
-          formControlName="company_name"
-        />
+        <label for="company_name" class="form-label fs-6 text-uppercase fw-bold text-black">Company Name</label>
+        <input id="company_name" type="text" name="company_name" class="form-control" formControlName="company_name" />
         @if(registerForm.get('company_name')?.invalid &&
         (registerForm.get('company_name')?.touched || submitted)) {
         <span class="text-danger">
@@ -94,33 +54,17 @@
         }
       </div>
       <div class="mb-2 col-md-4">
-        <label
-          for="owner_image"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Image</label
-        >
-        <input
-          id="owner_image"
-          type="file"
-          name="image"
-          class="form-control"
-          formControlName="owner_image"
-        />
+        <label for="owner_image" class="form-label fs-6 text-uppercase fw-bold text-black">Image</label>
+        <input id="owner_image" type="file" name="image" class="form-control" formControlName="owner_image" />
+      </div>
+      <div *ngIf="imageError">
+        <small class="text-danger">{{ imageError }}</small>
       </div>
 
+
       <div class="mb-2 col-md-6">
-        <label
-          for="email"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Email address</label
-        >
-        <input
-          type="email"
-          name="email"
-          class="form-control"
-          formControlName="email"
-          id="email"
-        />
+        <label for="email" class="form-label fs-6 text-uppercase fw-bold text-black">Email address</label>
+        <input type="email" name="email" class="form-control" formControlName="email" id="email" />
         @if(registerForm.get('email')?.invalid &&
         (registerForm.get('email')?.touched || submitted)) {
         <span class="text-danger">
@@ -132,17 +76,8 @@
       </div>
 
       <div class="mb-2 col-md-6">
-        <label
-          for="gender"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Gender</label
-        >
-        <select
-          id="gender"
-          name="gender"
-          class="form-control"
-          formControlName="gender"
-        >
+        <label for="gender" class="form-label fs-6 text-uppercase fw-bold text-black">Gender</label>
+        <select id="gender" name="gender" class="form-control" formControlName="gender">
           <option value="Male">Male</option>
           <option value="Female">Female</option>
         </select>
@@ -156,18 +91,9 @@
       </div>
 
       <div class="mb-2 col-md-12">
-        <label
-          for="description"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Description</label
-        >
-        <textarea
-          id="description"
-          type="text"
-          name="description"
-          class="form-control"
-          formControlName="description"
-        ></textarea>
+        <label for="description" class="form-label fs-6 text-uppercase fw-bold text-black">Description</label>
+        <textarea id="description" type="text" name="description" class="form-control"
+          formControlName="description"></textarea>
         @if(registerForm.get('description')?.invalid &&
         (registerForm.get('description')?.touched || submitted)) {
         <span class="text-danger">
@@ -178,18 +104,8 @@
       </div>
 
       <div class="mb-2 col-md-12">
-        <label
-          for="password"
-          class="form-label fs-6 text-uppercase fw-bold text-black"
-          >Password</label
-        >
-        <input
-          id="password"
-          type="password"
-          name="password"
-          class="form-control"
-          formControlName="password"
-        />
+        <label for="password" class="form-label fs-6 text-uppercase fw-bold text-black">Password</label>
+        <input id="password" type="password" name="password" class="form-control" formControlName="password" />
         @if(registerForm.get('password')?.invalid &&
         (registerForm.get('password')?.touched || submitted)) {
         <span class="text-danger">
@@ -201,25 +117,16 @@
 
       <div class="mb-2 col-md-12">
         <label for="confirm_password" class="form-label fs-6 text-uppercase fw-bold text-black">Confirm Password</label>
-        <input
-          id="confirm_password"
-          type="password"
-          name="password_confirmation"
-          class="form-control"
-          formControlName="password_confirmation"
-        />
-        <div *ngIf="registerForm.hasError('mismatch') && (submitted || registerForm.get('password_confirmation')?.touched)">
+        <input id="confirm_password" type="password" name="password_confirmation" class="form-control"
+          formControlName="password_confirmation" />
+        <div
+          *ngIf="registerForm.hasError('mismatch') && (submitted || registerForm.get('password_confirmation')?.touched)">
           <span class="text-danger">Passwords do not match.</span>
         </div>
-   
       </div>
-      
-      
-
       <div class="d-grid my-3 ">
-        
         <button type="submit" class="btn  btn-lg text-uppercase  fs-6 text-white" style="background-color: #3b5899;">
-          Update      </button>
+          Update </button>
       </div>
     </div>
   </form>

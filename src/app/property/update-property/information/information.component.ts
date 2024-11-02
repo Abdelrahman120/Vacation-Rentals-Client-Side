@@ -40,15 +40,57 @@ export class InformationComponent {
   ngOnInit(): void {
     this.property_id = this.route.snapshot.params['id'];
     this.propertyForm = this.fb.group({
-      headline: ['', Validators.required],
-      name: ['', Validators.required],
-      bedrooms: ['', [Validators.required, Validators.min(1)]],
+      headline: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.pattern('^[a-zA-Z ]+$'),
+        ],
+      ],
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.pattern('^[a-zA-Z ]+$'),
+        ],
+      ],
+      bedrooms: [
+        '',
+        [
+          Validators.required,
+          Validators.min(1),
+          Validators.pattern('^[0-9]*$'),
+        ],
+      ],
       category_id: ['', Validators.required],
       location: ['', Validators.required],
-      bathrooms: ['', [Validators.required, Validators.min(1)]],
-      night_rate: ['', [Validators.required, Validators.min(0)]],
-      description: ['', Validators.required],
-      sleeps: ['', [Validators.required]],
+      bathrooms: [
+        '',
+        [
+          Validators.required,
+          Validators.min(1),
+          Validators.pattern('^[0-9]*$'),
+        ],
+      ],
+      night_rate: [
+        '',
+        [
+          Validators.required,
+          Validators.min(0),
+          Validators.pattern('^[0-9]*$'),
+        ],
+      ],
+      description: ['', [Validators.required, Validators.minLength(10)]],
+      sleeps: [
+        '',
+        [
+          Validators.required,
+          Validators.min(1),
+          Validators.pattern('^[0-9]*$'),
+        ],
+      ],
     });
     this.getCategories();
     this.getPropertyData(this.property_id);
@@ -64,7 +106,7 @@ export class InformationComponent {
           category_id: response.data.category_id,
           location: response.data.location,
           bathrooms: response.data.bathrooms,
-          night_rate: response.data.night_rate,
+          night_rate: Number(response.data.night_rate),
           description: response.data.description,
           sleeps: response.data.sleeps,
         });

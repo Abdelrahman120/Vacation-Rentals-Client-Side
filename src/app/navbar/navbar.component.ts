@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { OwnerProfileService } from '../Services/owner-profile.service';
 import { UserProfileService } from '../Services/user-profile.service';
 import { TruncatePipe } from '../pipes/truncate.pipe';
+import { NotificationsService } from '../services/notifications.service';
 
 @Component({
   selector: 'app-navbar',
@@ -17,16 +18,28 @@ export class NavbarComponent {
   owner: any = {};
   user: any;
   ownerId: number | null = null;
+  notificationCount: any = 0;
+  private intervalId: any;
+  notifications: any[] = [];
+  notificationsForOwner: any[] = [];
 
   constructor(
     private authService: LoginUserService,
     private router: Router,
     private ownerService: OwnerProfileService,
-    private userService: UserProfileService
+    private userService: UserProfileService,
+    private notificationService: NotificationsService
   ) {}
 
   ngOnInit(): void {
+    this.loadNotificationsForOwner();
     this.loadOwnerDetails();
+    this.loadNotifications();
+    this.intervalId = setInterval(() => {
+      this.loadNotifications(); 
+      this.loadNotificationsForOwner();
+
+    }, 3000);
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
     const userData = urlParams.get('user');
@@ -43,6 +56,24 @@ export class NavbarComponent {
     this.loadUserDetails();
   }
 
+  loadNotificationsForOwner(){
+    this.notificationService.getNotificationsForOwner().subscribe(
+      (data) => {
+        this.notificationsForOwner = data;
+        console.log("Data For Owner" + this.notificationsForOwner);
+        
+      },
+      (error) => {
+        console.error('Error fetching notifications:', error);
+      }
+    );
+  
+  }
+  ngOnDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
   loadUserDetails() {
     this.userService.getUserDetails().subscribe(
       (data) => {
@@ -56,6 +87,7 @@ export class NavbarComponent {
       }
     );
   }
+ 
 
   loadOwnerDetails() {
     this.ownerService.getOwnerDetails().subscribe(
@@ -100,6 +132,7 @@ export class NavbarComponent {
         localStorage.removeItem('owner_auth_token');
         localStorage.removeItem('role');
         localStorage.removeItem('ownerid');
+        localStorage.removeItem('favoriteProperties');
 
         if (role === 'admin') {
           this.router.navigate(['/login/owner']);
@@ -107,6 +140,7 @@ export class NavbarComponent {
           this.router.navigate(['/login/owner']);
         } else {
           this.router.navigate(['/login']);
+          
         }
       },
       (error) => {
@@ -121,4 +155,18 @@ export class NavbarComponent {
   navigateToOwnerProfile(): void {
     this.router.navigate(['owner/info']);
   }
+
+  
+  loadNotifications() {
+    this.notificationService.getNotifications().subscribe(data => {
+      console.log('Data loaded:', data); 
+      this.notifications = data;
+      this.notificationCount = this.notifications.length;
+    }, error => {
+      console.error('Error loading notifications:', error);
+    });
+  }
+  
+
+
 }

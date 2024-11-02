@@ -15,7 +15,7 @@ import { PropertyService } from '../../../services/propertyService/property.serv
   standalone: true,
   imports: [CdkStepperNext, FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './information.component.html',
-  styleUrl: './information.component.css',
+  styleUrls: ['./information.component.css'],
 })
 export class InformationComponent {
   owner_id: string = '';
@@ -29,19 +29,61 @@ export class InformationComponent {
   constructor(
     private fb: FormBuilder,
     private PropertyService: PropertyService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.propertyForm = this.fb.group({
-      headline: ['', Validators.required],
-      name: ['', Validators.required],
-      bedrooms: ['', [Validators.required, Validators.min(1)]],
+      headline: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.pattern('^[a-zA-Z ]+$'),
+        ],
+      ],
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.pattern('^[a-zA-Z ]+$'),
+        ],
+      ],
+      bedrooms: [
+        '',
+        [
+          Validators.required,
+          Validators.min(1),
+          Validators.pattern('^[0-9]*$'),
+        ],
+      ],
       category_id: ['', Validators.required],
       location: ['', Validators.required],
-      bathrooms: ['', [Validators.required, Validators.min(1)]],
-      night_rate: ['', [Validators.required, Validators.min(0)]],
-      description: ['', Validators.required],
-      sleeps: ['', [Validators.required]],
+      bathrooms: [
+        '',
+        [
+          Validators.required,
+          Validators.min(1),
+          Validators.pattern('^[0-9]*$'),
+        ],
+      ],
+      night_rate: [
+        '',
+        [
+          Validators.required,
+          Validators.min(0),
+          Validators.pattern('^[0-9]*$'),
+        ],
+      ],
+      description: ['', [Validators.required, Validators.minLength(10)]],
+      sleeps: [
+        '',
+        [
+          Validators.required,
+          Validators.min(1),
+          Validators.pattern('^[0-9]*$'),
+        ],
+      ],
     });
     this.getCategories();
   }

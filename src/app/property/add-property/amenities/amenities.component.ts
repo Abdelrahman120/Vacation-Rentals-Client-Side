@@ -9,12 +9,13 @@ import { PropertyService } from '../../../services/propertyService/property.serv
   standalone: true,
   imports: [CdkStepperNext, CdkStepperPrevious, FormsModule, NgClass],
   templateUrl: './amenities.component.html',
-  styleUrl: './amenities.component.css',
+  styleUrls: ['./amenities.component.css'],
 })
 export class AmenitiesComponent {
   constructor(private PropertyService: PropertyService) {}
+
   @Output() AmenityFormSubmitted = new EventEmitter<void>();
-  amenities: any;
+  amenities: any = [];
   amenityError = false;
   propertyId: string = '';
 
@@ -30,13 +31,14 @@ export class AmenitiesComponent {
   }
 
   submitAmenity() {
+    if (this.amenities.length === 0) {
+      this.amenityError = true;
+      return;
+    }
+
     const selectedAmenities = this.amenities.filter(
       (amenity: any) => amenity.isChecked
     );
-    const selectedAmenityIds = selectedAmenities.map(
-      (amenity: any) => amenity.id
-    );
-    console.log(selectedAmenityIds);
 
     if (selectedAmenities.length === 0) {
       this.amenityError = true;
@@ -46,7 +48,7 @@ export class AmenitiesComponent {
     this.amenityError = false;
     this.propertyId = this.PropertyService.getPropertyId();
     this.PropertyService.setAmenities(this.propertyId, {
-      amenities: selectedAmenityIds,
+      amenities: selectedAmenities.map((amenity: any) => amenity.id),
     }).subscribe(
       (response) => {
         console.log('Amenities submitted successfully', response);

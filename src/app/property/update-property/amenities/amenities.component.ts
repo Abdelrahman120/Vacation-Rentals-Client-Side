@@ -60,14 +60,15 @@ export class AmenitiesComponent {
     const selectedAmenities = this.amenities.filter(
       (amenity) => amenity.isChecked
     );
-    const selectedAmenityIds = selectedAmenities.map((amenity) => amenity.id);
+
     if (selectedAmenities.length === 0) {
       this.amenityError = true;
       return;
     }
+
     this.amenityError = false;
     const data = {
-      amenities: selectedAmenityIds,
+      amenities: selectedAmenities.map((amenity) => amenity.id),
     };
     this.propertyService.updateAmenities(this.propertyId, data).subscribe(
       (response) => {
