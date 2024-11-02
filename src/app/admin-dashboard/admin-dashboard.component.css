@@ -89,3 +89,13 @@ h3.fw-bold {
   font-weight: 700; /* Bold text */
   margin-bottom: 20px;
 }
+
+.navbar .nav-link .badge {
+  font-size: 0.75rem;
+  padding: 0.4em 0.6em;
+}
+
+.dropdown-menu {
+  max-height: 300px;
+  overflow-y: auto;
+}

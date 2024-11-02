@@ -3,6 +3,8 @@ import { Router, RouterLink } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RegisterUserService } from '../services/register-user.service';
+import $ from 'jquery';
+import { RefreshServicesService } from '../services/refresh-services.service';
 
 @Component({
   selector: 'app-register-user',
@@ -24,7 +26,8 @@ export class RegisterUserComponent {
 
   constructor(
     private authService: RegisterUserService,
-    private router: Router
+    private router: Router,
+    private refreshServices : RefreshServicesService
   ) {}
 
   onFileSelected(event: any) {
@@ -121,12 +124,16 @@ export class RegisterUserComponent {
         localStorage.setItem('auth_token', response.access_token);
         localStorage.setItem('userId', response.user.id);
         this.router.navigate(['/login']);
+        // this.refreshServices.login();
+        this.refreshServices.triggerRefresh();
       },
       (error) => {
         this.validationErrors = error.error.errors;
         console.log('Registration failed', error);
       }
     );
+    
+
   }
 
   validateEmail(email: string): boolean {

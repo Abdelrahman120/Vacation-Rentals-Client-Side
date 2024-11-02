@@ -52,7 +52,7 @@
                 truncate:10}}</a>
               <a class="nav-link fs-5 me-md-4 text-center dropdown-toggle poppins-medium" data-bs-toggle="dropdown"
                 *ngIf="!isOwner() && !isUser()" href="#" role="button" aria-expanded="false">Login</a>
-              <div class="nav-item dropdown no-arrow" *ngIf="isAdmin() ">
+              <div class="nav-item dropdown no-arrow d-flex" *ngIf="isAdmin() ">
                 <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <span class="mr-2 d-none d-lg-inline text-white small fw-bold fs-4">Admin</span>
@@ -67,6 +67,38 @@
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                   </a>
+                </div>
+                <div class="dropdown">
+                  <a
+                    class="nav-link position-relative"
+                    href="#"
+                    role="button"
+                    id="notificationDropdown"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="fa fa-bell"></i>
+                    <span
+                      *ngIf="notifications.length > 0"
+                      class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    >
+                      {{ notifications.length }}
+                    </span>
+                  </a>
+            
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="notificationDropdown"
+                  >
+                    <li *ngIf="notifications.length === 0" class="dropdown-item">
+                   No notifications
+                    </li>
+                    <li *ngFor="let notification of notifications">
+                      <a class="dropdown-item" href="#">
+                        {{ notification.data.message }}
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
               <ul class="dropdown-menu">
