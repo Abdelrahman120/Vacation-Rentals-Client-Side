@@ -10,6 +10,7 @@ import { environment } from '../../../environments/environment.development';
 export class ChatRoomService {
   private pusher: Pusher;
   private chatChannel: any;
+  private messages: any;
   BACKEND_API = `${environment.BACKEND_URL}`;
 
   public messagesSource = new BehaviorSubject<any[]>([]);
@@ -68,11 +69,7 @@ export class ChatRoomService {
 
     this.chatChannel.bind('message', (data: any) => {
       console.log('Received message:', data);
-      this.addMessage({
-        senderId: data.sender_id,
-        senderName: data.sender_name,
-        content: data.content,
-      });
+      this.addMessage(data);
     });
 
     this.chatChannel.bind('pusher:subscription_error', (status: any) => {

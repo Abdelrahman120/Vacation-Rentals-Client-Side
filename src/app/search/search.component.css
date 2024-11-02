@@ -71,19 +71,22 @@ input.btn:hover {
     width: 100%;
   }
   .form-label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #333;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+
+  .filter-section {
+    width: 100%;
+    max-width: 300px;
+    right: 0;
+  }
+
+  .filter-item {
+    margin-bottom: 15px;
+  }
 }
 
-.filter-section {
-  width: 100%;
-  max-width: 300px;
-  right: 0;
-}
-
-.filter-item {
-  margin-bottom: 15px;
-}
-
+ngx-daterangepicker > div {
+  background-color: green;
 }

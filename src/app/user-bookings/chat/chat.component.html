@@ -9,8 +9,8 @@
         'message-received': message.senderId !== guestId
       }"
     >
-      <strong class="text-dark">{{ message.senderName }}:</strong>
-      {{ message.content }}
+      <strong class="text-dark">{{ message.username }}:</strong>
+      {{ message.message }}
     </div>
   </div>
 
@@ -19,7 +19,6 @@
       type="text"
       [(ngModel)]="newMessage"
       placeholder="Type your message..."
-      (keydown.enter)="sendMessage()"
       required
     />
     <button (click)="sendMessage()" [disabled]="!newMessage.trim()">

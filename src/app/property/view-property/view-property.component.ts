@@ -12,6 +12,7 @@ import {
   NgxDaterangepickerBootstrapDirective,
   NgxDaterangepickerBootstrapComponent,
 } from 'ngx-daterangepicker-bootstrap';
+import moment from 'moment';
 
 @Component({
   selector: 'app-view-property',
@@ -48,6 +49,7 @@ export class ViewPropertyComponent implements OnInit {
   totalPrice: number = 0;
   user: string = '';
   dates: any = { startDate: null, endDate: null };
+  minDate: any;
 
   constructor(
     private propertyService: PropertyService,
@@ -62,8 +64,8 @@ export class ViewPropertyComponent implements OnInit {
   ngOnInit(): void {
     this.propertyId = this.route.snapshot.paramMap.get('id') || '';
     const propertyId = this.route.snapshot.params['id'];
-
-    console.log("Property ID:", typeof( propertyId));
+    this.minDate = moment();
+    console.log('Property ID:', typeof propertyId);
     this.checkIfUserCanReview();
     this.route.queryParams.subscribe((params) => {
       this.dates.startDate = params['start_date']
@@ -229,7 +231,5 @@ export class ViewPropertyComponent implements OnInit {
       .addTo(this.map)
       .bindPopup('Property Location')
       .openPopup();
-
-     
   }
 }

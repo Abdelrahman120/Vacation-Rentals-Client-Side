@@ -1,4 +1,4 @@
-<div class="card border-1 position-relative mt-0 shadow">
+<div class="card border-1 position-relative mt-0 shadow rounded-4">
   <div
     id="carouselExampleControls{{ property.id }}"
     class="carousel slide mb-1"
@@ -9,7 +9,7 @@
         <div class="carousel-item" [class.active]="i === 0">
           <img
             [src]="'http://127.0.0.1:8000' + item.image"
-            class="d-block w-100 img-fluid img-hover"
+            class="d-block w-100 img-fluid img-hover rounded-top-4"
             [alt]="item.name || 'Property Image'"
             loading="lazy"
           />
@@ -78,19 +78,24 @@
         {{ property.sleeps }} Sleep
       </span>
     </div>
-    
-    <!-- عرض معلومات العرض -->
-    <div *ngIf="property.offer > 0 && isOfferActive()">
-      <p>Discount: {{ property.offer }}%</p>
-      <p>Offer Price: ${{ property.total_price }}</p>
-      <p class="tw-line-through">Original Price: ${{ property.night_rate }}</p>
+
+    <div
+      *ngIf="property.offer > 0 && isOfferActive()"
+      class="fw-bold text-light rounded-3 d-flex position-absolute px-2 py-1 bg-warning text-dark"
+      style="font-size: 0.8rem; bottom: 36%"
+    >
+      <span class="me-2 roboto-bold">${{ property.total_price }}/Night</span>
+      <span class="tw-line-through roboto-regular"
+        >${{ property.night_rate }}/Night</span
+      >
     </div>
-    
-    <div *ngIf="(property.offer == 0 || !isOfferActive())"
+
+    <div
+      *ngIf="property.offer == 0 || !isOfferActive()"
       class="fw-bold text-light rounded-3 position-absolute px-2 py-1 bg-warning text-dark"
       style="font-size: 0.8rem; bottom: 36%"
     >
-      ${{ property.total_price }}/Night
+      <span>${{ property.total_price }}/Night</span>
     </div>
 
     <a
