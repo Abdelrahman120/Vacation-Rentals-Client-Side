@@ -1,13 +1,16 @@
-/*---- navbar section start ---- */
 .text-white .nav-link.active,
 .text-white .nav-link:focus {
   color: var(----body-text-color);
 }
 
 .nav-link.active,
-.nav-link:focus
- {
+.nav-link:focus {
   color: var(----body-text-color);
+}
+
+.active-route {
+  font-weight: bold !important;
+  color: #FFc107 !important;
 }
 
 .nav-link {
@@ -52,47 +55,46 @@
   }
 
 }
-.fs-5:hover , .fs-4:hover {
+
+.fs-5:hover, .fs-4:hover {
   color: brown !important;
 }
 
-/* Dropdown container styles */
 .dropdown-menu {
-  background-color: #ffffff; 
-  border-radius: 0.5rem; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  transition: all 0.3s ease; 
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .dropdown-item {
-  padding: 10px 15px; 
-  color: #333; 
+  padding: 10px 15px;
+  color: #333;
 }
 
 .dropdown-item:hover {
-  background-color: #f8f9fa; 
-  color: #007bff; 
-  transition: background-color 0.2s ease; 
+  background-color: #f8f9fa;
+  color: #007bff;
+  transition: background-color 0.2s ease;
 }
 
 .dropdown-item button {
-  background-color: #dc3545; 
-  color: #fff; 
-  border: none; 
-  width: 100%; 
-  text-align: left; 
-  padding: 10px 15px; 
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 10px 15px;
 }
 
 .dropdown-item button:hover {
-  background-color: #c82333; 
+  background-color: #c82333;
 }
 
-/* Additional styles for spacing and text */
 .dropdown-item.fs-6 {
   font-size: 1rem;
 }
 
 .dropdown-menu li {
-  margin: 0; 
+  margin: 0;
 }
