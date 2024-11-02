@@ -21,6 +21,8 @@ export class NavbarComponent {
   notificationCount: any = 0;
   private intervalId: any;
   notifications: any[] = [];
+  notificationsForOwner: any[] = [];
+
   constructor(
     private authService: LoginUserService,
     private router: Router,
@@ -30,10 +32,13 @@ export class NavbarComponent {
   ) {}
 
   ngOnInit(): void {
+    this.loadNotificationsForOwner();
     this.loadOwnerDetails();
     this.loadNotifications();
     this.intervalId = setInterval(() => {
       this.loadNotifications(); 
+      this.loadNotificationsForOwner();
+
     }, 3000);
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
@@ -49,6 +54,20 @@ export class NavbarComponent {
       console.error('No token found. Please log in again.');
     }
     this.loadUserDetails();
+  }
+
+  loadNotificationsForOwner(){
+    this.notificationService.getNotificationsForOwner().subscribe(
+      (data) => {
+        this.notificationsForOwner = data;
+        console.log("Data For Owner" + this.notificationsForOwner);
+        
+      },
+      (error) => {
+        console.error('Error fetching notifications:', error);
+      }
+    );
+  
   }
   ngOnDestroy() {
     if (this.intervalId) {
