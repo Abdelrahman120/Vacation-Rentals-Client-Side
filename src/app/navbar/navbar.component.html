@@ -43,6 +43,41 @@
                 My Properties
               </a>
             </li>
+            <li class="nav-item">
+            
+              <div class="dropdown" *ngIf="isOwner()  && !isAdmin()">
+                <a
+                  class="nav-link position-relative"
+                  href="#"
+                  role="button"
+                  id="notificationDropdown"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fa fa-bell"></i>
+                  <span
+                    *ngIf="notificationsForOwner.length > 0"
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  >
+                    {{ notificationsForOwner.length }}
+                  </span>
+                </a>
+          
+                <ul
+                  class="dropdown-menu dropdown-menu-end"
+                  aria-labelledby="notificationDropdown"
+                >
+                  <li *ngIf="notificationsForOwner.length === 0" class="dropdown-item">
+                 No notifications
+                  </li>
+                  <li *ngFor="let notification of notificationsForOwner">
+                    <a class="dropdown-item" href="#">
+                      {{ notification.data.message }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
             <li class="nav-item dropdown">
 
               <a class="nav-link fs-5 me-md-4 text-center dropdown-toggle poppins-medium" data-bs-toggle="dropdown"
