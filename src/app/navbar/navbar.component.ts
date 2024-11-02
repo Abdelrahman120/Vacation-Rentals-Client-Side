@@ -113,6 +113,7 @@ export class NavbarComponent {
         localStorage.removeItem('owner_auth_token');
         localStorage.removeItem('role');
         localStorage.removeItem('ownerid');
+        localStorage.removeItem('favoriteProperties');
 
         if (role === 'admin') {
           this.router.navigate(['/login/owner']);
@@ -120,6 +121,7 @@ export class NavbarComponent {
           this.router.navigate(['/login/owner']);
         } else {
           this.router.navigate(['/login']);
+          
         }
       },
       (error) => {
