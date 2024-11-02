@@ -1,18 +1,5 @@
-<div class="chat-container">
+<div class="chat-container" style="margin-top: 10rem">
   <h2>Chat Room</h2>
-
-  <div class="input-container">
-    <input
-      type="text"
-      [(ngModel)]="newMessage"
-      placeholder="Type your message..."
-      (keydown.enter)="sendMessage()"
-      required
-    />
-    <button (click)="sendMessage()" [disabled]="!newMessage.trim()">
-      Send
-    </button>
-  </div>
 
   <div class="messages" *ngIf="messages.length > 0">
     <div
@@ -22,11 +9,22 @@
         'message-received': message.senderId !== guestId
       }"
     >
-      <strong class="text-dark">{{ message.senderName }}:</strong>
-      {{ message.content }}
+      <strong class="text-dark">{{ message.username }}:</strong>
+      {{ message.message }}
     </div>
   </div>
 
+  <div class="input-container">
+    <input
+      type="text"
+      [(ngModel)]="newMessage"
+      placeholder="Type your message..."
+      required
+    />
+    <button (click)="sendMessage()" [disabled]="!newMessage.trim()">
+      Send
+    </button>
+  </div>
   <div *ngIf="messages.length === 0" class="no-messages">
     <p class="text-dark roboto-regular">
       No messages yet. Start the conversation!

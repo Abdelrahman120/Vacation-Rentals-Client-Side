@@ -26,10 +26,10 @@ import moment from 'moment';
 export class SearchComponent implements OnInit {
   location: string = '';
   sleeps: string = '';
-  bedrooms: string='';
-  bathrooms:string='';
-  price_min:string='';
-  price_max:string='';
+  bedrooms: string = '';
+  bathrooms: string = '';
+  price_min: string = '';
+  price_max: string = '';
   result: any[] = [];
   suggestions: any[] = [];
   dates: { startDate: moment.Moment | null; endDate: moment.Moment | null } = {
@@ -41,20 +41,21 @@ export class SearchComponent implements OnInit {
     endDate: string | null;
     location: string;
     sleeps: string;
-    bedrooms:string ;
-    bathrooms:string;
-    price_min:string;
-    price_max:string;
+    bedrooms: string;
+    bathrooms: string;
+    price_min: string;
+    price_max: string;
   } = {
     startDate: null,
     endDate: null,
     location: '',
     sleeps: '',
-    bedrooms:'' ,
-    bathrooms:'',
-    price_min:'',
-    price_max:'',
+    bedrooms: '',
+    bathrooms: '',
+    price_min: '',
+    price_max: '',
   };
+  minDate: any;
 
   constructor(
     private router: Router,
@@ -63,16 +64,17 @@ export class SearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.minDate = moment();
     this.activatedRoute.queryParams.subscribe((params) => {
       this.input = {
         startDate: params['start_date'] || null,
         endDate: params['end_date'] || null,
         location: params['location'] || '',
         sleeps: params['sleeps'] || '',
-        bedrooms: params['bedrooms'] || '' ,
-        bathrooms: params['bathrooms'] || '' ,
-        price_min: params['price_min'] || '' ,
-        price_max: params['price_max'] || '' ,
+        bedrooms: params['bedrooms'] || '',
+        bathrooms: params['bathrooms'] || '',
+        price_min: params['price_min'] || '',
+        price_max: params['price_max'] || '',
       };
 
       if (this.input.startDate && this.input.endDate) {

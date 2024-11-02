@@ -241,7 +241,7 @@ export const routes: Routes = [
     title: 'Bookings',
   },
   {
-    path: 'bookings/chat/:propId/:ownerId/:bookingId',
+    path: 'bookings/chat/:ownerId/:bookingId',
     component: ChatComponent,
   },
   {

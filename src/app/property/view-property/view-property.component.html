@@ -105,6 +105,7 @@
             ngxDaterangepickerBootstrap
             name="dates"
             [(ngModel)]="dates"
+            [minDate]="minDate"
             (ngModelChange)="onDateChange()"
             style="font-size: 1rem;"
           />

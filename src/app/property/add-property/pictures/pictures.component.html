@@ -8,9 +8,15 @@
         </span>
         }
         <label for="propertyImages">Property Images</label>
-        <input type="file" name="images[]" class="form-control" placeholder="propertyImages" multiple
-          (change)="onFileChange($event)" />
-        <span class="text-muted mt-1">You can upload each image. Each should be less than 10MB.</span>
+        <input
+          type="file"
+          name="images[]"
+          class="form-control"
+          placeholder="propertyImages"
+          multiple
+          (change)="onFileChange($event)"
+        />
+        <span class="text-muted mt-1">You Can Upload Upto 10MB.</span>
       </div>
     </div>
   </div>
