@@ -45,6 +45,7 @@ import { Calendar } from '@fullcalendar/core/index.js';
 import { CalendarComponent } from './property/calendar/calendar.component';
 import { TestimonialComponent } from './Admin/testimonial/testimonial.component';
 import { OfferComponent } from './offer/offer.component';
+import { OwnerChatComponent } from './property/owner-chat/owner-chat.component';
 
 export const routes: Routes = [
   {
@@ -224,25 +225,37 @@ export const routes: Routes = [
     path: 'owner/update-property/:id',
     component: UpdatePropertyComponent,
     title: 'Update Property',
+    canActivate: [ownerGuardGuard],
   },
   {
     path: 'my-properties',
     component: MyPropertiesComponent,
     title: 'My Properties',
+    canActivate: [ownerGuardGuard],
   },
   {
     path: 'my-property-booking-details/:id',
     component: PropertyBookingDetailsComponent,
     title: 'Booking Details',
+    canActivate: [ownerGuardGuard],
+  },
+  {
+    path: 'my-property-booking-details/:id/chat/:guestId/:bookingId',
+    component: OwnerChatComponent,
+    title: 'Message Guests',
+    canActivate: [ownerGuardGuard],
   },
   {
     path: 'bookings',
     component: UserBookingsComponent,
     title: 'Bookings',
+    canActivate: [userGuard],
   },
   {
     path: 'bookings/chat/:ownerId/:bookingId',
     component: ChatComponent,
+    title: 'Message Hosts',
+    canActivate: [userGuard],
   },
   {
     path: 'contact',

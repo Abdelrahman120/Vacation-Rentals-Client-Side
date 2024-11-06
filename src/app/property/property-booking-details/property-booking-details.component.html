@@ -21,22 +21,40 @@
               <th>Check-out</th>
               <th>Status</th>
               <th>Booking Ends In</th>
+              <th>Message</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let booking of property.bookings">
-              <td class="bg-blue">{{ booking.user_name }}</td>
-              <td class="bg-blue">{{ booking.user_email }}</td>
-              <td class="bg-blue">{{ booking.user_phone }}</td>
-              <td class="bg-blue">
+            <tr *ngFor="let booking of property.bookings" class="shadow-sm">
+              <td class="bg-light text-dark">{{ booking.user_name }}</td>
+              <td class="bg-light text-dark">
+                {{ booking.user_email }}
+              </td>
+              <td class="bg-light text-dark">
+                {{ booking.user_phone }}
+              </td>
+              <td class="bg-light text-dark">
                 {{ booking.book_date | date : "yyyy-MM-dd" }}
               </td>
-              <td class="bg-blue">{{ booking.start_date }}</td>
-              <td class="bg-blue">{{ booking.end_date }}</td>
-              <td class="bg-blue">
+              <td class="bg-light text-dark">
+                {{ booking.start_date }}
+              </td>
+              <td class="bg-light text-dark">{{ booking.end_date }}</td>
+              <td class="bg-light text-dark">
                 {{ checkBookStatus(booking.start_date, booking.end_date) }}
               </td>
-              <td class="bg-blue">{{ getTimeLeft(booking.end_date) }}</td>
+              <td class="bg-light text-dark">
+                {{ getTimeLeft(booking.end_date) }}
+              </td>
+              <td class="bg-light text-dark">
+                <button
+                  class="btn btn-outline-success shadow-sm rounded-5"
+                  routerLink="chat/{{ booking.user_id }}/{{ booking.id }}"
+                >
+                  <i class="fa-solid fa-message"></i>
+                  Message
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>

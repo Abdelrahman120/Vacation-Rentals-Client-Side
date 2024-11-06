@@ -1,10 +1,13 @@
 <form
-  class="input-group p-2 rounded-pill shadow-lg bg-white mx-auto d-flex justify-content-evenly align-items-center position-relative"
-  style="width: 56rem; height: 3.9rem"
+  class="input-group p-2 rounded-5 shadow-lg bg-white mx-auto d-flex justify-content-evenly align-items-center position-relative"
+  style="width: 47rem; height: 3.9rem"
 >
   <!-- Location Input -->
   <div class="position-relative flex-grow-1 me-2">
-    <div class="input-group border border-1 p-1 rounded-5 align-middle">
+    <div
+      class="input-group border border-1 p-1 rounded-5 align-middle"
+      style="width: 18rem"
+    >
       <label
         for="location"
         class="input-group-text fs-5 rounded-5 bg-white pe-0"
@@ -40,7 +43,10 @@
 
   <!-- Dates Input -->
   <div class="flex-grow-1">
-    <div class="input-group border border-1 rounded-5 p-1 align-middle">
+    <div
+      class="input-group border border-1 rounded-5 p-1 align-middle"
+      style="width: 16rem"
+    >
       <label for="dates" class="input-group-text fs-5 pe-0">
         <i class="fas fa-calendar-alt text-dark"></i>
       </label>
@@ -60,7 +66,7 @@
   <div class="mx-2">
     <button
       type="button"
-      class="btn btn-light border rounded-circle shadow-sm p-2"
+      class="btn btn-light border rounded-circle shadow-sm p-2 me-1"
       style="width: 35px; height: 35px"
       (click)="toggleFilter()"
     >

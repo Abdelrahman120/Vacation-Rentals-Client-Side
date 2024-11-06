@@ -36,9 +36,8 @@ export class NavbarComponent {
     this.loadOwnerDetails();
     this.loadNotifications();
     this.intervalId = setInterval(() => {
-      this.loadNotifications(); 
-      this.loadNotificationsForOwner();
-
+      // this.loadNotifications();
+      // this.loadNotificationsForOwner();
     }, 3000);
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
@@ -56,18 +55,15 @@ export class NavbarComponent {
     this.loadUserDetails();
   }
 
-  loadNotificationsForOwner(){
+  loadNotificationsForOwner() {
     this.notificationService.getNotificationsForOwner().subscribe(
       (data) => {
         this.notificationsForOwner = data;
-        console.log("Data For Owner" + this.notificationsForOwner);
-        
       },
       (error) => {
         console.error('Error fetching notifications:', error);
       }
     );
-  
   }
   ngOnDestroy() {
     if (this.intervalId) {
@@ -87,7 +83,6 @@ export class NavbarComponent {
       }
     );
   }
- 
 
   loadOwnerDetails() {
     this.ownerService.getOwnerDetails().subscribe(
@@ -140,7 +135,6 @@ export class NavbarComponent {
           this.router.navigate(['/login/owner']);
         } else {
           this.router.navigate(['/login']);
-          
         }
       },
       (error) => {
@@ -156,17 +150,15 @@ export class NavbarComponent {
     this.router.navigate(['owner/info']);
   }
 
-  
   loadNotifications() {
-    this.notificationService.getNotifications().subscribe(data => {
-      console.log('Data loaded:', data); 
-      this.notifications = data;
-      this.notificationCount = this.notifications.length;
-    }, error => {
-      console.error('Error loading notifications:', error);
-    });
+    this.notificationService.getNotifications().subscribe(
+      (data) => {
+        this.notifications = data;
+        this.notificationCount = this.notifications.length;
+      },
+      (error) => {
+        console.error('Error loading notifications:', error);
+      }
+    );
   }
-  
-
-
 }

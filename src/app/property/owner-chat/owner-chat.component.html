@@ -1,20 +1,20 @@
 <div class="chat-container" style="margin-top: 10rem">
-  <div class="d-flex justify-content-start align-items-center">
+  <div class="d-flex justify-content-start align-items-center h-100 mb-3">
     <img
-      [src]="'http://localhost:8000/images/posts/' + hostImage"
-      alt="{{ hostName }} image"
+      [src]="'http://localhost:8000/images/posts/' + guestImage"
+      alt="{{ guestName }} image"
       class="rounded-circle me-3"
       style="height: 60px; width: 60px"
     />
     <div>
-      <h5 class="py-0 my-0">{{ hostName }}</h5>
+      <h5 class="py-0 my-0">{{ guestName }}</h5>
       <div class="d-flex">
         <span class="text-muted py-0 mb-0 me-2"
-          ><i class="fa-solid fa-inbox me-1"></i>{{ hostEmail }}</span
+          ><i class="fa-solid fa-inbox me-1"></i>{{ guestEmail }}</span
         >
         •
         <span class="text-muted py-0 my-0 ms-2"
-          ><i class="fa-solid fa-phone me-1"></i>{{ hostPhone | phone }}</span
+          ><i class="fa-solid fa-phone me-1"></i>{{ guestPhone | phone }}</span
         >
       </div>
     </div>
@@ -31,12 +31,12 @@
     <div
       *ngFor="let message of messages"
       [ngClass]="{
-        'message-sent': message.username === guestName,
-        'message-received': message.username !== guestName
+        'message-sent': message.username === ownerName,
+        'message-received': message.username !== ownerName
       }"
     >
       <strong class="text-dark"
-        >{{ message.username === guestName ? "Me" : message.username }}:</strong
+        >{{ message.username === ownerName ? "Me" : message.username }}:</strong
       >
       {{ message.message }}
     </div>

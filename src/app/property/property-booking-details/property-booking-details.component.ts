@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Property } from '../../owner-info';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PropertyService } from '../../services/propertyService/property.service';
 import { SidebarComponent } from '../../admin-dashboard/sidebar/sidebar.component';
 import { OwnerSidebarComponent } from '../owner-sidebar/sidebar.component';
@@ -9,7 +9,7 @@ import { OwnerSidebarComponent } from '../owner-sidebar/sidebar.component';
 @Component({
   selector: 'app-property-booking-details',
   standalone: true,
-  imports: [CommonModule, OwnerSidebarComponent],
+  imports: [CommonModule, OwnerSidebarComponent, RouterLink],
   templateUrl: './property-booking-details.component.html',
   styleUrl: './property-booking-details.component.css',
 })

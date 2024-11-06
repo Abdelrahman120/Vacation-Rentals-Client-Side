@@ -35,13 +35,22 @@ export class PropertyService {
   }
 
   getPropertyByDate(input?: any) {
-    const { location, sleeps, startDate, endDate, bedrooms, bathrooms, price_min,price_max } = input;
+    const {
+      location,
+      sleeps,
+      startDate,
+      endDate,
+      bedrooms,
+      bathrooms,
+      price_min,
+      price_max,
+    } = input;
     const hasLocation = location && Object.keys(location).length > 0;
     const hasSleeps = sleeps && Object.keys(sleeps).length > 0;
-    const haspricemax= price_max&&Object.keys(price_max).length>0;
-    const haspricemin= price_min&&Object.keys(price_min).length>0;
-    const hasbedrooms= bedrooms&&Object.keys(bedrooms).length>0;
-    const hasbathrooms= bathrooms&&Object.keys(bathrooms).length>0;    
+    const hasPriceMax = price_max && Object.keys(price_max).length > 0;
+    const hasPriceMin = price_min && Object.keys(price_min).length > 0;
+    const hasBedrooms = bedrooms && Object.keys(bedrooms).length > 0;
+    const hasBathrooms = bathrooms && Object.keys(bathrooms).length > 0;
 
     if (startDate && endDate && hasLocation) {
       let url = `${this.BACKEND_API}/api/properties/search?location=${location}&start_date=${startDate}&end_date=${endDate}`;
@@ -49,13 +58,13 @@ export class PropertyService {
       if (hasSleeps) {
         url += `&sleeps=${sleeps}`;
       }
-      if(haspricemax && haspricemin){
+      if (hasPriceMax && hasPriceMin) {
         url += `&price_min=${price_min}&price_max=${price_max}`;
       }
-      if (hasbedrooms){
+      if (hasBedrooms) {
         url += `&bedrooms=${bedrooms}`;
       }
-      if (hasbathrooms){
+      if (hasBathrooms) {
         url += `&bathrooms=${bathrooms}`;
       }
 
@@ -175,24 +184,28 @@ export class PropertyService {
     return throwError('An error occurred; please try again later.');
   }
 
-
-  getFirstThree(){
+  getFirstThree() {
     return this.http.get(`${this.BACKEND_API}/api/first/three`);
   }
 
   viewPropertyForOffer(id: string): Observable<any> {
-    return this.http.get(
-      `${this.BACKEND_API}/api/property/${id}`
-    );
+    return this.http.get(`${this.BACKEND_API}/api/property/${id}`);
   }
 
-
-  updateOffer(propertyId: any, offer: any,start_date:any,end_date:any): Observable<any> {
+  updateOffer(
+    propertyId: any,
+    offer: any,
+    start_date: any,
+    end_date: any
+  ): Observable<any> {
     const token = localStorage.getItem('owner_auth_token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
-    })
-    return this.http.post(`http://localhost:8000/api/properties/${propertyId}/offer`, { offer , offer_start_date: start_date, 
-      offer_end_date: end_date } , { headers });
+    });
+    return this.http.post(
+      `http://localhost:8000/api/properties/${propertyId}/offer`,
+      { offer, offer_start_date: start_date, offer_end_date: end_date },
+      { headers }
+    );
   }
 }

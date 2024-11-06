@@ -28,7 +28,7 @@ export class ItemCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.hostInfo);
+    console.log('Host info:', this.hostInfo);
 
     if (this.hostInfo && this.hostInfo.data) {
       this.phone = this.hostInfo.data.phone;

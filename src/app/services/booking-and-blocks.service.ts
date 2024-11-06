@@ -32,20 +32,6 @@ export class BookingAndBlocksService {
     });
   }
 
-  addBlock(id: string, dates: { start_date: string; end_date: string }) {
-    const token = localStorage.getItem('owner_auth_token');
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.post<any[]>(`${this.API}property/${id}/add-block`, dates, {
-      headers,
-    });
-  }
-
-  // getEvents(id: string): Observable<any[]> {
-  //   return forkJoin([this.getBlocks(id), this.getBookings(id)]);
-  // }
-
   getEvents(id: string): Observable<any[]> {
     return forkJoin([
       this.getBlocks(id).pipe(
@@ -61,6 +47,16 @@ export class BookingAndBlocksService {
         })
       ),
     ]);
+  }
+
+  addBlock(id: string, dates: { start_date: string; end_date: string }) {
+    const token = localStorage.getItem('owner_auth_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.post<any[]>(`${this.API}property/${id}/add-block`, dates, {
+      headers,
+    });
   }
 
   removeBlock(
@@ -79,12 +75,15 @@ export class BookingAndBlocksService {
     );
   }
 
-  updateShow(id : any , status : any): Observable<any> {
+  updateShow(id: any, status: any): Observable<any> {
     const token = localStorage.getItem('owner_auth_token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.put(`${this.API}properties/${id}/update-status`, {show : status}, { headers });
-
+    return this.http.put(
+      `${this.API}properties/${id}/update-status`,
+      { show: status },
+      { headers }
+    );
   }
 }
