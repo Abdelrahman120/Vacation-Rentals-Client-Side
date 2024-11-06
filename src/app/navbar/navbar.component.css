@@ -98,3 +98,26 @@
 .dropdown-menu li {
   margin: 0;
 }
+
+.notifications-menu {
+  max-height: 300px;
+  overflow-y: auto;
+  width: 250px;
+}
+
+.notification-item {
+  padding: 10px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.notification-item:hover {
+  background-color: #f8f9fa;
+}
+
+.notification-item i {
+  font-size: 1.2rem;
+}
+
+.notification-item span {
+  font-size: 0.9rem;
+}

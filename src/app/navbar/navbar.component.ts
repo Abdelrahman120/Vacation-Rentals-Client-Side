@@ -36,8 +36,8 @@ export class NavbarComponent {
     this.loadOwnerDetails();
     this.loadNotifications();
     this.intervalId = setInterval(() => {
-      // this.loadNotifications();
-      // this.loadNotificationsForOwner();
+      this.loadNotifications();
+      this.loadNotificationsForOwner();
     }, 3000);
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
@@ -160,5 +160,19 @@ export class NavbarComponent {
         console.error('Error loading notifications:', error);
       }
     );
+  }
+
+  onNotificationClick(notification: any, event: Event) {
+    event.preventDefault();
+    if (notification.type === 'App\\Notifications\\NewOwnerRegister') {
+      console.log(notification);
+      const ownerid = notification.data.user_id;
+      this.router.navigate([`/admin/owner/${ownerid}`]);
+    }
+    if (notification.type === 'App\\Notifications\\UserRegistered') {
+      console.log(notification);
+      const ownerid = notification.data.user_id;
+      this.router.navigate([`/user/${ownerid}`]);
+    }
   }
 }

@@ -109,16 +109,20 @@
                     </span>
                   </a>
 
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
-                    <li *ngIf="notifications.length === 0" class="dropdown-item">
+                  <ul class="dropdown-menu dropdown-menu-end notifications-menu" aria-labelledby="notificationDropdown">
+                    <li *ngIf="notifications.length === 0" class="dropdown-item text-center text-muted">
                       No notifications
                     </li>
                     <li *ngFor="let notification of notifications">
-                      <a class="dropdown-item" href="#">
-                        {{ notification.data.message }}
+                      <a class="dropdown-item notification-item d-flex align-items-center" href="#" (click)="onNotificationClick(notification, $event)">
+                        <i class="fas fa-info-circle me-2 text-primary" *ngIf="notification.type === 'info'"></i>
+                        <i class="fas fa-exclamation-circle me-2 text-warning" *ngIf="notification.type === 'warning'"></i>
+                        <i class="fas fa-check-circle me-2 text-success" *ngIf="notification.type === 'success'"></i>
+                        <span>{{ notification.data.message }}</span>
                       </a>
                     </li>
                   </ul>
+                  
                 </div>
               </div>
               <ul class="dropdown-menu">
