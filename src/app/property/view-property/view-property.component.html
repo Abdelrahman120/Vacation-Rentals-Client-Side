@@ -77,72 +77,96 @@
         <a routerLink="/login" class="btn btn-primary rounded-pill">Sign Up</a>
       </div>
 
-      <div class="bordered-container shadow-lg p-4 rounded-4 bg-white" style="max-width: 400px; margin: auto;">
+      <div
+        class="bordered-container shadow-lg p-4 rounded-4 bg-white"
+        style="max-width: 400px; margin: auto"
+      >
         <!-- Price Section -->
         <div class="price-section mb-4 text-center position-relative">
-          <div *ngIf="property.offer > 0 && isOfferActive()" class="offer-details">
-            <p class="badge bg-danger text-white rounded-pill px-3 py-1 mb-2">Discount: {{ property.offer }}%</p>
-            <p class="offer-price display-6 text-success fw-bold mb-1">Offer Price: ${{ getOfferPrice() }}</p>
+          <div
+            *ngIf="property.offer > 0 && isOfferActive()"
+            class="offer-details"
+          >
+            <p class="badge bg-danger text-white rounded-pill px-3 py-1 mb-2">
+              Discount: {{ property.offer }}%
+            </p>
+            <p class="offer-price display-6 text-success fw-bold mb-1">
+              Offer Price: ${{ getOfferPrice() }}
+            </p>
             <p class="original-price text-muted text-decoration-line-through">
               Original Price: ${{ property.night_rate }}
             </p>
           </div>
-      
-          <div *ngIf="property.offer == 0 || !isOfferActive()"
+
+          <div
+            *ngIf="property.offer == 0 || !isOfferActive()"
             class="fw-bold position-absolute px-3 py-1 bg-warning text-dark rounded-3"
-            style="font-size: 1rem; bottom: 10%; left: 50%; transform: translateX(-50%);"
+            style="
+              font-size: 1rem;
+              bottom: 10%;
+              left: 50%;
+              transform: translateX(-50%);
+            "
           >
             ${{ property.night_rate }}/Night
           </div>
         </div>
-      
+
         <!-- Date Picker -->
         <div class="date-picker mb-4">
           <label class="form-label fw-semibold" for="dates">Choose Dates</label>
           <input
             class="text-center border-0 p-2 rounded-pill form-control bg-light shadow-sm"
-            placeholder="Dates"
             ngxDaterangepickerBootstrap
             name="dates"
+            [isInvalidDate]="isDateBlocked"
+            [autoApply]="true"
             [(ngModel)]="dates"
             [minDate]="minDate"
             (ngModelChange)="onDateChange()"
-            style="font-size: 1rem;"
+            style="font-size: 1rem"
           />
         </div>
-      
+
         <!-- Guest Input -->
         <div class="guest-input mb-4">
-          <label for="guests" class="form-label fw-semibold">Number of Guests</label>
+          <label for="guests" class="form-label fw-semibold"
+            >Number of Guests</label
+          >
           <input
             type="number"
             id="guests"
             class="form-control text-center rounded-pill shadow-sm"
             [(ngModel)]="sleeps"
             min="1"
-            style="font-size: 1rem;"
+            style="font-size: 1rem"
           />
         </div>
-      
+
         <!-- Total Price -->
-        <div class="total-price d-flex justify-content-between align-items-center py-3 border-top">
+        <div
+          class="total-price d-flex justify-content-between align-items-center py-3 border-top"
+        >
           <span class="fw-bold">Total</span>
-          <span class="fw-bold display-6 text-primary">${{ totalPrice | number: "1.0-2" }}</span>
+          <span class="fw-bold display-6 text-primary"
+            >${{ totalPrice | number : "1.0-2" }}</span
+          >
         </div>
-      
+
         <!-- Book Now Button -->
         <button
           class="btn btn-primary rounded-pill w-100 mt-4 py-2 fw-semibold shadow-sm"
           (click)="navigateToPayment()"
-          style="font-size: 1.2rem;"
+          style="font-size: 1.2rem"
         >
           Book Now
         </button>
-        
+
         <!-- Info Note -->
-        <small class="d-block text-center mt-3 text-muted">You will not be charged yet</small>
+        <small class="d-block text-center mt-3 text-muted"
+          >You will not be charged yet</small
+        >
       </div>
-      
     </div>
   </div>
 

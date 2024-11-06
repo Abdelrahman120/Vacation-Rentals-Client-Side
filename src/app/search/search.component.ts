@@ -9,6 +9,7 @@ import {
 import { PropertyService } from '../services/propertyService/property.service';
 import { CommonModule } from '@angular/common';
 import moment from 'moment';
+import { BookingAndBlocksService } from '../services/booking-and-blocks.service';
 
 @Component({
   selector: 'app-search',
@@ -36,6 +37,7 @@ export class SearchComponent implements OnInit {
     startDate: moment().startOf('day'),
     endDate: moment().endOf('day'),
   };
+
   input: {
     startDate: string | null;
     endDate: string | null;
@@ -56,11 +58,13 @@ export class SearchComponent implements OnInit {
     price_max: '',
   };
   minDate: any;
+  blockedDatesSet = new Set<string>();
 
   constructor(
     private router: Router,
     private propertyService: PropertyService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private bookingAndBlocksService: BookingAndBlocksService
   ) {}
 
   ngOnInit(): void {
@@ -90,6 +94,27 @@ export class SearchComponent implements OnInit {
         this.fetchData();
       }
     });
+  }
+
+  fetchBlockedDates(id: string): void {
+    this.bookingAndBlocksService
+      .getEvents(id)
+      .subscribe(([blocks, bookings]) => {
+        const allBlockedDates = [...blocks, ...bookings].map(
+          (event) => event.date
+        );
+        this.blockedDatesSet = new Set(
+          allBlockedDates.map((date) => new Date(date).toDateString())
+        );
+      });
+  }
+
+  isDateBlocked(date: Date): boolean {
+    return this.blockedDatesSet.has(date.toDateString());
+  }
+
+  onDateChange(): void {
+    console.log('Date range changed:', this.dates);
   }
 
   fetchData(): void {

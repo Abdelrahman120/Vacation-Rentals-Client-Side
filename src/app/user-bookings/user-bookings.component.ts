@@ -29,9 +29,7 @@ export class UserBookingsComponent implements OnInit {
           });
         }
       },
-      error: (error) => {
-        console.log('Error retrieving data:', error);
-      },
+      error: (error) => {},
     });
   }
 

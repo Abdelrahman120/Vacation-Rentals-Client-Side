@@ -13,6 +13,7 @@ import {
   NgxDaterangepickerBootstrapComponent,
 } from 'ngx-daterangepicker-bootstrap';
 import moment from 'moment';
+import { BookingAndBlocksService } from '../../services/booking-and-blocks.service';
 
 @Component({
   selector: 'app-view-property',
@@ -50,6 +51,11 @@ export class ViewPropertyComponent implements OnInit {
   user: string = '';
   dates: any = { startDate: null, endDate: null };
   minDate: any;
+  blockedDatesSet = new Set<string>();
+  datePickerOptions = {
+    autoApply: true,
+    isInvalidDate: (date: moment.Moment) => this.isDateBlocked(date),
+  };
 
   constructor(
     private propertyService: PropertyService,
@@ -57,7 +63,8 @@ export class ViewPropertyComponent implements OnInit {
     private router: Router,
     private favouriteService: FavoriteService,
     private testService: TestService,
-    private userInfoService: UserInfoService
+    private userInfoService: UserInfoService,
+    private bookingAndBlocksService: BookingAndBlocksService
   ) {}
   userDetails: UserInfo['data'] | null = null;
 
@@ -67,6 +74,7 @@ export class ViewPropertyComponent implements OnInit {
     this.minDate = moment();
     console.log('Property ID:', typeof propertyId);
     this.checkIfUserCanReview();
+    this.fetchBlockedDates(this.propertyId);
     this.route.queryParams.subscribe((params) => {
       this.dates.startDate = params['start_date']
         ? new Date(params['start_date'])
@@ -103,6 +111,24 @@ export class ViewPropertyComponent implements OnInit {
     }
   }
 
+  fetchBlockedDates(id: string): void {
+    this.bookingAndBlocksService
+      .getEvents(id)
+      .subscribe(([blocks, bookings]) => {
+        const allBlockedDates = [...blocks, ...bookings].map((event) => {
+          console.log('event dates: ', event);
+
+          return moment(event.date).format('YYYY-MM-DD');
+        });
+        this.blockedDatesSet = new Set(allBlockedDates);
+      });
+    console.log('Blocked Dates Set:', this.blockedDatesSet);
+  }
+
+  isDateBlocked = (date: moment.Moment): boolean => {
+    return this.blockedDatesSet.has(date.format('YYYY-MM-DD'));
+  };
+
   getUserInfo(token: string): void {
     this.userInfoService.getUserInfo(token).subscribe(
       (response) => {
@@ -129,17 +155,17 @@ export class ViewPropertyComponent implements OnInit {
     const numberOfDays = timeDifference / (1000 * 3600 * 24);
 
     if (numberOfDays > 0 && this.propertyDetails.night_rate) {
-       const baseTotal = Math.floor(
+      const baseTotal = Math.floor(
         numberOfDays * this.propertyDetails.night_rate
       );
       if (this.isOfferActive() && this.propertyDetails.offer > 0) {
-        this.totalPrice = Math.floor(baseTotal * (1 - this.propertyDetails.offer / 100));
+        this.totalPrice = Math.floor(
+          baseTotal * (1 - this.propertyDetails.offer / 100)
+        );
       } else {
         this.totalPrice = Math.floor(baseTotal);
       }
-    } 
-    
-    else {
+    } else {
       this.totalPrice = 0;
     }
 
