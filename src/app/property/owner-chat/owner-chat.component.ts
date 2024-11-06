@@ -41,11 +41,18 @@ export class OwnerChatComponent implements OnInit, OnDestroy {
       this.propertyId = param['id'];
     });
 
-    this.getOwner();
+    this.loadInitialData();
+  }
+
+  private loadInitialData(): void {
     this.getUser();
+    this.getOwner();
     this.getMessages();
+    this.loadMessagesFromDb();
     this.subscribeToMessages();
     this.ChatRoomService.getRoomDetails(this.bookingId);
+
+    this.subscribeToMessages();
   }
 
   getMessages() {
@@ -59,14 +66,27 @@ export class OwnerChatComponent implements OnInit, OnDestroy {
     });
   }
 
+  loadMessagesFromDb(): void {
+    this.ChatRoomService.getMessagePerBooking(this.bookingId).subscribe({
+      next: (res: any) => {
+        this.messages = res.messages.map((msg: any) => ({
+          ...msg,
+          username: msg.sender === 'guest' ? this.guestName : this.ownerName,
+        }));
+      },
+      error: (err: any) => {
+        console.error('Error loading messages from DB:', err);
+      },
+    });
+  }
+
   subscribeToMessages() {
     this.ChatRoomService.currentMessages.subscribe({
-      next: (messages: any[]) => {
-        console.log('Messages Received in Component:', messages);
-        this.messages = messages;
+      next: (newMessages: any[]) => {
+        this.messages = [...this.messages, ...newMessages];
       },
       error: (error: any) => {
-        console.error('Subscribe Error:', error);
+        console.error('Error in real-time message subscription:', error);
       },
     });
   }
@@ -83,7 +103,6 @@ export class OwnerChatComponent implements OnInit, OnDestroy {
         this.newMessage
       ).subscribe({
         next: (res) => {
-          console.log(res);
           this.newMessage = '';
         },
         error: (error: any) => console.error(error),
@@ -91,16 +110,16 @@ export class OwnerChatComponent implements OnInit, OnDestroy {
     }
   }
 
-  getPreviousMessages() {
-    this.ChatRoomService.getMessagePerBooking(this.bookingId).subscribe({
-      next: (res: any) => {
-        this.messages = res.messages;
-      },
-      error: (err: any) => {
-        console.error(err);
-      },
-    });
-  }
+  // getPreviousMessages() {
+  //   this.ChatRoomService.getMessagePerBooking(this.bookingId).subscribe({
+  //     next: (res: any) => {
+  //       this.messages = res.messages;
+  //     },
+  //     error: (err: any) => {
+  //       console.error(err);
+  //     },
+  //   });
+  // }
 
   ngOnDestroy(): void {
     this.ChatRoomService.unsubscribeFromChatChannel(
