@@ -15,6 +15,17 @@ import { PhonePipe } from '../../pipes/phone.pipe';
   styleUrl: './chat.component.css',
 })
 export class ChatComponent implements OnInit, OnDestroy {
+  hostId: number = 0;
+  guestId: number = 0;
+  bookingId: number = 0;
+  guestName: string = '';
+  messages: any[] = [];
+  newMessage = '';
+  hostName: string = '';
+  hostEmail: string = '';
+  hostImage: string = '';
+  hostPhone: string = '';
+
   constructor(
     private route: ActivatedRoute,
     private chatService: ChatRoomService,
@@ -22,56 +33,58 @@ export class ChatComponent implements OnInit, OnDestroy {
     private ownerInfoService: OwnerInfoService
   ) {}
 
-  hostId: number = 0;
-  guestId: number = 0;
-  bookingId: number = 0;
-  guestName: string = '';
-  room: any;
-  messages: any[] = [];
-  newMessage = '';
-  roomDetails: any;
-  hostName: string = '';
-  hostEmail: string = '';
-  hostImage: string = '';
-  hostPhone: string = '';
-
   ngOnInit(): void {
+    // Retrieve route parameters
     this.route.params.subscribe((params: any) => {
       this.hostId = Number(params['ownerId']);
       this.bookingId = Number(params['bookingId']);
     });
     this.guestId = Number(localStorage.getItem('userId'));
 
+    this.loadInitialData();
+  }
+
+  private loadInitialData(): void {
     this.getUser();
     this.getOwnerDetails();
+
+    this.loadMessagesFromDb();
+
     this.subscribeToMessages();
-    this.chatService.getRoomDetails(this.bookingId);
   }
 
-  getMessages() {
-    this.chatService.getRoomDetails(this.bookingId).subscribe({
-      next: (res) => {
-        this.roomDetails = res.data;
+  loadMessagesFromDb(): void {
+    this.chatService.getMessagePerBooking(this.bookingId).subscribe({
+      next: (res: any) => {
+        this.messages = res.messages.map((msg: any) => ({
+          ...msg,
+          username: msg.sender === 'guest' ? this.guestName : this.hostName,
+        }));
       },
-      error: (err) => {
-        console.log(err);
+      error: (err: any) => {
+        console.error('Error loading messages from DB:', err);
       },
     });
   }
 
-  subscribeToMessages() {
+  subscribeToMessages(): void {
+    this.chatService.subscribeToChatChannel(
+      this.guestId,
+      this.hostId,
+      this.bookingId
+    );
+
     this.chatService.currentMessages.subscribe({
-      next: (messages: any[]) => {
-        console.log('Messages Received in Component:', messages);
-        this.messages = messages;
+      next: (newMessages: any[]) => {
+        this.messages = [...this.messages, ...newMessages];
       },
       error: (error: any) => {
-        console.error('Subscribe Error:', error);
+        console.error('Error in real-time message subscription:', error);
       },
     });
   }
 
-  sendMessage() {
+  sendMessage(): void {
     if (this.newMessage.trim()) {
       const senderRole = 'guest';
       this.chatService
@@ -85,7 +98,6 @@ export class ChatComponent implements OnInit, OnDestroy {
         )
         .subscribe({
           next: (res) => {
-            console.log(res);
             this.newMessage = '';
           },
           error: (error: any) => console.error(error),
@@ -101,30 +113,24 @@ export class ChatComponent implements OnInit, OnDestroy {
     );
   }
 
-  getUser() {
+  getUser(): void {
     this.userDetails.getUserById(this.guestId).subscribe({
       next: (user: any) => {
         this.guestName = user.data?.name || '';
-        this.chatService.subscribeToChatChannel(
-          this.guestId,
-          this.hostId,
-          this.bookingId
-        );
       },
-      error: (err) => console.error(err),
+      error: (err) => console.error('Error getting user info:', err),
     });
   }
 
-  getOwnerDetails() {
+  getOwnerDetails(): void {
     this.ownerInfoService.getOwnerById(this.hostId).subscribe({
       next: (res: any) => {
         this.hostName = res.data?.name || '';
         this.hostEmail = res.data?.email || '';
         this.hostImage = res.data?.image || '';
         this.hostPhone = res.data?.phone || '';
-        console.log('owner info: ', res.data);
       },
-      error: (err) => console.error('Owner Info: ', err),
+      error: (err) => console.error('Error getting owner info:', err),
     });
   }
 }
