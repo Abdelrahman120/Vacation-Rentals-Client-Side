@@ -51,12 +51,12 @@
             <li class="nav-item">
 
               <div class="dropdown" *ngIf="isOwner()  && !isAdmin()">
-                <a class="nav-link position-relative" href="#" role="button" id="notificationDropdown"
+                <a class="nav-link position-relative"  role="button" id="notificationDropdown"
                   data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="fa fa-bell"></i>
-                  <span *ngIf="notificationsForOwner.length > 0"
+                  <span  *ngIf="notificationsForOwner.length > 0"
                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {{ notificationsForOwner.length }}
+                    {{ notificationsForOwner.length }}$
                   </span>
                 </a>
 
@@ -65,7 +65,7 @@
                     No notifications
                   </li>
                   <li *ngFor="let notification of notificationsForOwner">
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" routerLink="/my-property-booking-details/{{ notification.data.property_id}}">
                       {{ notification.data.message }}
                     </a>
                   </li>

@@ -62,7 +62,7 @@
     >
       <span class="text-dark">
         <fa-icon [icon]="faHouse" class="text-warning"></fa-icon>
-        {{ property.property_type }}
+        {{ property.property_type | truncate : 10 }}
       </span>
       |
       <span class="text-dark">
@@ -82,7 +82,7 @@
     </div>
 
     <div
-      *ngIf="property.offer > 0 && isOfferActive()"
+      *ngIf="property.offer > 0 "
       class="fw-bold text-light rounded-3 d-flex position-absolute px-2 py-1 bg-warning text-dark"
       style="font-size: 0.8rem; bottom: 36%"
     >
