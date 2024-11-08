@@ -154,9 +154,9 @@ export class ViewPropertyComponent implements OnInit {
     const timeDifference = end.getTime() - start.getTime();
     const numberOfDays = timeDifference / (1000 * 3600 * 24);
 
-    if (numberOfDays > 0 && this.propertyDetails.night_rate) {
+    if (numberOfDays > 0 && this.propertyDetails.total_price) {
       const baseTotal = Math.floor(
-        numberOfDays * this.propertyDetails.night_rate
+        numberOfDays * this.propertyDetails.total_price
       );
       if (this.isOfferActive() && this.propertyDetails.offer > 0) {
         this.totalPrice = Math.floor(
