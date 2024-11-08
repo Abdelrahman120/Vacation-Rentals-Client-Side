@@ -114,7 +114,8 @@
                       No notifications
                     </li>
                     <li *ngFor="let notification of notifications">
-                      <a class="dropdown-item notification-item d-flex align-items-center" href="#" (click)="onNotificationClick(notification, $event)">
+                      <a class="dropdown-item notification-item d-flex align-items-center"     [routerLink]="getNotificationLink(notification)"
+                      (click)="onNotificationClick(notification, $event)">
                         <i class="fas fa-info-circle me-2 text-primary" *ngIf="notification.type === 'info'"></i>
                         <i class="fas fa-exclamation-circle me-2 text-warning" *ngIf="notification.type === 'warning'"></i>
                         <i class="fas fa-check-circle me-2 text-success" *ngIf="notification.type === 'success'"></i>

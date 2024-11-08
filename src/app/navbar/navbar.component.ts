@@ -175,4 +175,14 @@ export class NavbarComponent {
       this.router.navigate([`/user/${ownerid}`]);
     }
   }
+
+  getNotificationLink(notification: any): string {
+    if (notification.data.type == 'owner') {
+      return '/owner/' + notification.data.user_id; 
+    } else if (notification.data.type == 'user') {
+      return '/user/' + notification.data.user_id; 
+    }
+    return '/'; 
+  }
+  
 }
