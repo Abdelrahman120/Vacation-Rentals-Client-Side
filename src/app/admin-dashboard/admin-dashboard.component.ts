@@ -72,9 +72,9 @@ export class AdminDashboardComponent {
   //         this.refreshDivContent();
   //     }
   // });
-  this.intervalId = setInterval(() => {
-    this.loadNotifications(); 
-  }, 3000);
+  // this.intervalId = setInterval(() => {
+  //   this.loadNotifications(); 
+  // }, 3000);
   }
   ngOnDestroy() {
     if (this.intervalId) {

@@ -208,6 +208,12 @@ export class PropertyService {
       { headers }
     );
   }
+  getPropertiesByOffer(offer: string) {
+    let offerParam = offer === 'yes' ? 'offer>0' : 'offer=0';
+    return this.http.get(
+      `${this.BACKEND_API}/api/properties/with-offer?offer=${offerParam}`
+    );
+  }
 
   checkIfPropertyAvailable(
     propertyId: string,

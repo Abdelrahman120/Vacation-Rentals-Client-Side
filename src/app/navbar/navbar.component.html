@@ -51,12 +51,12 @@
             <li class="nav-item">
 
               <div class="dropdown" *ngIf="isOwner()  && !isAdmin()">
-                <a class="nav-link position-relative" href="#" role="button" id="notificationDropdown"
+                <a class="nav-link position-relative"  role="button" id="notificationDropdown"
                   data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="fa fa-bell"></i>
-                  <span *ngIf="notificationsForOwner.length > 0"
+                  <span  *ngIf="notificationsForOwner.length > 0"
                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {{ notificationsForOwner.length }}
+                    {{ unreadCountOwner}}
                   </span>
                 </a>
 
@@ -65,10 +65,13 @@
                     No notifications
                   </li>
                   <li *ngFor="let notification of notificationsForOwner">
-                    <a class="dropdown-item" href="#">
+                    <a 
+                      class="dropdown-item" 
+                      (click)="markAndNavigate(notification.id, notification.data.property_id, $event)">
                       {{ notification.data.message }}
                     </a>
                   </li>
+                  
                 </ul>
               </div>
             </li>
@@ -105,7 +108,7 @@
                     <i class="fa fa-bell"></i>
                     <span *ngIf="notifications.length > 0"
                       class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {{ notifications.length }}
+                      {{ unreadCount }}
                     </span>
                   </a>
 
@@ -114,13 +117,16 @@
                       No notifications
                     </li>
                     <li *ngFor="let notification of notifications">
-                      <a class="dropdown-item notification-item d-flex align-items-center" href="#" (click)="onNotificationClick(notification, $event)">
+                      <a class="dropdown-item notification-item d-flex align-items-center"
+                         [routerLink]="getNotificationLink(notification)"
+                         (click)="onNotificationClick(notification, $event)">
                         <i class="fas fa-info-circle me-2 text-primary" *ngIf="notification.type === 'info'"></i>
                         <i class="fas fa-exclamation-circle me-2 text-warning" *ngIf="notification.type === 'warning'"></i>
                         <i class="fas fa-check-circle me-2 text-success" *ngIf="notification.type === 'success'"></i>
                         <span>{{ notification.data.message }}</span>
                       </a>
                     </li>
+                    
                   </ul>
                   
                 </div>
