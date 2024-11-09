@@ -34,7 +34,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // Retrieve route parameters
     this.route.params.subscribe((params: any) => {
       this.hostId = Number(params['ownerId']);
       this.bookingId = Number(params['bookingId']);
@@ -46,7 +45,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private loadInitialData(): void {
     this.getUser();
-    this.getOwnerDetails();
+    this.getOwner();
 
     this.loadMessagesFromDb();
 
@@ -79,7 +78,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.messages = [...this.messages, ...newMessages];
       },
       error: (error: any) => {
-        console.error('Error in real-time message subscription:', error);
+        console.error(error);
       },
     });
   }
@@ -100,7 +99,9 @@ export class ChatComponent implements OnInit, OnDestroy {
           next: (res) => {
             this.newMessage = '';
           },
-          error: (error: any) => console.error(error),
+          error: (error: any) => {
+            console.error(error);
+          },
         });
     }
   }
@@ -118,11 +119,13 @@ export class ChatComponent implements OnInit, OnDestroy {
       next: (user: any) => {
         this.guestName = user.data?.name || '';
       },
-      error: (err) => console.error('Error getting user info:', err),
+      error: (err) => {
+        console.error(err);
+      },
     });
   }
 
-  getOwnerDetails(): void {
+  getOwner(): void {
     this.ownerInfoService.getOwnerById(this.hostId).subscribe({
       next: (res: any) => {
         this.hostName = res.data?.name || '';
@@ -130,7 +133,9 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.hostImage = res.data?.image || '';
         this.hostPhone = res.data?.phone || '';
       },
-      error: (err) => console.error('Error getting owner info:', err),
+      error: (err) => {
+        console.error(err);
+      },
     });
   }
 }

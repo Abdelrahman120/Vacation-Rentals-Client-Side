@@ -78,10 +78,10 @@ export class CardListComponent implements OnInit {
         endDate: params['end_date'],
         location: params['location'],
         sleeps: params['sleeps'],
-        price_min:params['price_min'],
-        price_max:params['price_max'],
-        bathrooms:params['bathrooms'],
-        bedrooms:params['bedrooms']
+        price_min: params['price_min'],
+        price_max: params['price_max'],
+        bathrooms: params['bathrooms'],
+        bedrooms: params['bedrooms'],
       };
 
       if (this.input.location || this.input.startDate || this.input.endDate) {
