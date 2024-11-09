@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { SearchComponent } from '../../search/search.component';
 import { FilterComponent } from '../filter/filter.component';
 import { FilterCategoryComponent } from '../filter-category/filter-category.component';
+import { PropertiesWithOffersComponent } from "../../properties-with-offers/properties-with-offers.component";
 
 @Component({
   selector: 'app-card-list',
@@ -17,7 +18,8 @@ import { FilterCategoryComponent } from '../filter-category/filter-category.comp
     SearchComponent,
     FilterComponent,
     FilterCategoryComponent,
-  ],
+    PropertiesWithOffersComponent
+],
   templateUrl: './card-list.component.html',
   styleUrls: ['./card-list.component.css'],
 })
