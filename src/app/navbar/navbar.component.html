@@ -56,7 +56,7 @@
                   <i class="fa fa-bell"></i>
                   <span  *ngIf="notificationsForOwner.length > 0"
                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {{ notificationsForOwner.length }}$
+                    {{ unreadCountOwner}}
                   </span>
                 </a>
 
@@ -65,10 +65,13 @@
                     No notifications
                   </li>
                   <li *ngFor="let notification of notificationsForOwner">
-                    <a class="dropdown-item" routerLink="/my-property-booking-details/{{ notification.data.property_id}}">
+                    <a 
+                      class="dropdown-item" 
+                      (click)="markAndNavigate(notification.id, notification.data.property_id, $event)">
                       {{ notification.data.message }}
                     </a>
                   </li>
+                  
                 </ul>
               </div>
             </li>
@@ -105,7 +108,7 @@
                     <i class="fa fa-bell"></i>
                     <span *ngIf="notifications.length > 0"
                       class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {{ notifications.length }}
+                      {{ unreadCount }}
                     </span>
                   </a>
 
@@ -114,14 +117,16 @@
                       No notifications
                     </li>
                     <li *ngFor="let notification of notifications">
-                      <a class="dropdown-item notification-item d-flex align-items-center"     [routerLink]="getNotificationLink(notification)"
-                      (click)="onNotificationClick(notification, $event)">
+                      <a class="dropdown-item notification-item d-flex align-items-center"
+                         [routerLink]="getNotificationLink(notification)"
+                         (click)="onNotificationClick(notification, $event)">
                         <i class="fas fa-info-circle me-2 text-primary" *ngIf="notification.type === 'info'"></i>
                         <i class="fas fa-exclamation-circle me-2 text-warning" *ngIf="notification.type === 'warning'"></i>
                         <i class="fas fa-check-circle me-2 text-success" *ngIf="notification.type === 'success'"></i>
                         <span>{{ notification.data.message }}</span>
                       </a>
                     </li>
+                    
                   </ul>
                   
                 </div>

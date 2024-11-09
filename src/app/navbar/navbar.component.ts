@@ -22,6 +22,8 @@ export class NavbarComponent {
   private intervalId: any;
   notifications: any[] = [];
   notificationsForOwner: any[] = [];
+  unreadCount: number = 0;
+  unreadCountOwner: number = 0;
 
   constructor(
     private authService: LoginUserService,
@@ -35,6 +37,8 @@ export class NavbarComponent {
     this.loadNotificationsForOwner();
     this.loadOwnerDetails();
     this.loadNotifications();
+    this.loadUnreadNotificationsCount();
+    this.updateUnreadCount();
     // this.intervalId = setInterval(() => {
     //   this.loadNotifications();
     //   this.loadNotificationsForOwner();
@@ -54,6 +58,24 @@ export class NavbarComponent {
     }
     this.loadUserDetails();
   }
+
+
+
+
+  markAsRead(notificationId: string): void {
+    this.notificationService.markNotificationAsRead(notificationId).subscribe(
+      () => {
+        this.loadUnreadNotificationsCount(); 
+      },
+      (error) => {
+        console.error('Error marking notification as read:', error);
+      }
+    );
+  }
+
+
+
+
 
   loadNotificationsForOwner() {
     this.notificationService.getNotificationsForOwner().subscribe(
@@ -164,25 +186,98 @@ export class NavbarComponent {
 
   onNotificationClick(notification: any, event: Event) {
     event.preventDefault();
-    if (notification.type === 'App\\Notifications\\NewOwnerRegister') {
-      console.log(notification);
-      const ownerid = notification.data.user_id;
-      this.router.navigate([`/admin/owner/${ownerid}`]);
-    }
-    if (notification.type === 'App\\Notifications\\UserRegistered') {
-      console.log(notification);
-      const ownerid = notification.data.user_id;
-      this.router.navigate([`/user/${ownerid}`]);
-    }
+
+    this.notificationService.markNotificationAsRead(notification.id).subscribe(
+      () => {
+        // After marking as read, navigate based on the notification type
+        if (notification.type === 'App\\Notifications\\NewOwnerRegister') {
+          const ownerid = notification.data.user_id;
+          this.router.navigate([`/admin/owner/${ownerid}`]);
+        } else if (notification.type === 'App\\Notifications\\UserRegistered') {
+          const ownerid = notification.data.user_id;
+          this.router.navigate([`/user/${ownerid}`]);
+        }
+      },
+      (error) => {
+        console.error('Error marking notification as read:', error);
+      }
+    );
   }
 
+
   getNotificationLink(notification: any): string {
-    if (notification.data.type == 'owner') {
+    if (notification.data.type === 'owner') {
       return '/owner/' + notification.data.user_id; 
-    } else if (notification.data.type == 'user') {
+    } else if (notification.data.type === 'user') {
       return '/user/' + notification.data.user_id; 
     }
     return '/'; 
   }
   
+
+  loadUnreadNotificationsCount(): void {
+    this.notificationService.getUnreadNotificationsCount().subscribe(
+      (response) => {
+        this.unreadCount = response.unreadCount;
+        console.log(this.unreadCount);
+        
+      },
+      (error) => {
+        console.error('Error loading unread notifications count:', error);
+      }
+    );
+  }
+
+
+  // for owner notifications 
+  updateUnreadCount(): void {
+    this.notificationService.getOwnerUnreadNotificationsCount().subscribe(
+      (response) => {
+        this.unreadCountOwner = response.unreadCount;
+      },
+      (error) => {
+        console.error('Error fetching unread notifications count:', error);
+      }
+    );
+  }
+
+  // markNotificationAsRead(notificationId: string): void {
+  //   this.notificationService.markOwnerNotificationAsRead(notificationId).subscribe(
+  //     (response) => {
+  //       if (response.success) {
+  //         console.log(`Notification ${notificationId} marked as read`);
+  //         this.updateUnreadCount(); // Refresh the count
+          
+  //       } else {
+  //         console.error('Failed to mark notification as read');
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Failed to mark notification as read:', error);
+  //     }
+  //   );
+  // }
+
+  markAndNavigate(notificationId: string, propertyId: string, event: Event): void {
+    event.preventDefault(); // Prevents the default navigation behavior
+
+    // Mark the notification as read
+    this.notificationService.markOwnerNotificationAsRead(notificationId).subscribe(
+      (response) => {
+        if (response.success) {
+          this.updateUnreadCount(); // Refresh the count
+          // Navigate to the specified route after marking as read
+          this.router.navigate([`/my-property-booking-details/${propertyId}`]);
+        } else {
+          console.error('Failed to mark notification as read');
+        }
+      },
+      (error) => {
+        console.error('Failed to mark notification as read:', error);
+      }
+    );
+  }
+
+
+  // end for owner notifications 
 }
