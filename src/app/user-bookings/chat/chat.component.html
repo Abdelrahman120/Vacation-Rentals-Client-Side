@@ -9,35 +9,33 @@
     <div>
       <h5 class="py-0 my-0">{{ hostName }}</h5>
       <div class="d-flex">
-        <span class="text-muted py-0 mb-0 me-2"
-          ><i class="fa-solid fa-inbox me-1"></i>{{ hostEmail }}</span
-        >
+        <span class="text-muted py-0 mb-0 me-2">
+          <i class="fa-solid fa-inbox me-1"></i>{{ hostEmail }}
+        </span>
         •
-        <span class="text-muted py-0 my-0 ms-2"
-          ><i class="fa-solid fa-phone me-1"></i>{{ hostPhone | phone }}</span
-        >
+        <span class="text-muted py-0 my-0 ms-2">
+          <i class="fa-solid fa-phone me-1"></i>{{ hostPhone | phone }}
+        </span>
       </div>
     </div>
   </div>
 
   <div class="messages">
-    @if (messages.length === 0) {
-    <div class="no-messages">
+    <div *ngIf="messages.length === 0" class="no-messages">
       <p class="text-dark roboto-regular">
         No messages yet. Start the conversation!
       </p>
     </div>
-    } @else {
+    @for (message of messages; track $index) {
     <div
-      *ngFor="let message of messages"
       [ngClass]="{
         'message-sent': message.username === guestName,
         'message-received': message.username !== guestName
       }"
     >
-      <strong class="text-dark"
-        >{{ message.username === guestName ? "Me" : message.username }}:</strong
-      >
+      <strong class="text-dark">
+        {{ message.username === guestName ? "Me" : message.username }}:
+      </strong>
       {{ message.message }}
     </div>
     }

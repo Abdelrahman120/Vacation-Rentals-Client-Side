@@ -87,7 +87,6 @@
         class="bordered-container shadow-lg p-4 rounded-4 bg-white"
         style="max-width: 400px; margin: auto"
       >
-        <!-- Price Section -->
         <div class="price-section mb-4 text-center position-relative">
           <div
             *ngIf="property.offer > 0"
@@ -122,6 +121,23 @@
         <!-- Date Picker -->
         <div class="date-picker mb-4">
           <label class="form-label fw-semibold" for="dates">Choose Dates</label>
+          <span *ngIf="isAvailable === false" class="float-end text-danger">
+            Dates are not available!
+          </span>
+          <div class="d-inline" *ngIf="isAvailable === true">
+            <span
+              *ngIf="sleeps <= 0 || sleeps == null"
+              class="float-end text-danger"
+            >
+              Minimum travelers are 1!
+            </span>
+            <span *ngIf="sleeps > 0" class="float-end text-success">
+              Dates are available!
+            </span>
+          </div>
+          <span *ngIf="isAvailable === null" class="float-end text-danger">
+            Change dates!
+          </span>
           <input
             class="text-center border-0 p-2 rounded-pill form-control bg-light shadow-sm"
             ngxDaterangepickerBootstrap
@@ -162,6 +178,12 @@
 
         <!-- Book Now Button -->
         <button
+          [disabled]="
+            isAvailable === false ||
+            isAvailable === null ||
+            sleeps <= 0 ||
+            sleeps == null
+          "
           class="btn btn-primary rounded-pill w-100 mt-4 py-2 fw-semibold shadow-sm"
           (click)="navigateToPayment()"
           style="font-size: 1.2rem"

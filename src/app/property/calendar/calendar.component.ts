@@ -26,7 +26,6 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet,
     FullCalendarModule,
     OwnerSidebarComponent,
     FormsModule,
@@ -74,6 +73,8 @@ export class CalendarComponent implements AfterViewInit, OnInit {
   startDate: string = '';
   endDate: string = '';
   showAlert: boolean = false;
+  showDateError: boolean = false;
+  isBlocked = false;
 
   constructor(
     private bookingAndBlocksService: BookingAndBlocksService,
@@ -176,6 +177,12 @@ export class CalendarComponent implements AfterViewInit, OnInit {
   }
 
   addBlock(): void {
+    if (this.isEndDateBeforeStartDate()) {
+      this.showDateError = true;
+      return;
+    }
+
+    this.showDateError = false;
     const dates = {
       start_date: this.startDate,
       end_date: this.endDate,
@@ -205,7 +212,9 @@ export class CalendarComponent implements AfterViewInit, OnInit {
         }
       },
       error: (error) => {
-        console.error('Error adding block:', error);
+        if (error.status === 409) {
+          this.isBlocked = true;
+        }
       },
     });
   }
@@ -317,5 +326,11 @@ export class CalendarComponent implements AfterViewInit, OnInit {
         console.error('Error updating property status:', error);
       }
     );
+  }
+
+  isEndDateBeforeStartDate(): boolean {
+    const start = new Date(this.startDate);
+    const end = new Date(this.endDate);
+    return end < start;
   }
 }

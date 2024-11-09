@@ -28,7 +28,17 @@ export class ItemCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log('Host info:', this.hostInfo);
+    if (!(this.start_date instanceof Date)) {
+      this.start_date = new Date(this.start_date);
+    }
+    if (!(this.end_date instanceof Date)) {
+      this.end_date = new Date(this.end_date);
+    }
+
+    const diffInMilliseconds =
+      this.end_date.getTime() - this.start_date.getTime();
+
+    this.diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
 
     if (this.hostInfo && this.hostInfo.data) {
       this.phone = this.hostInfo.data.phone;

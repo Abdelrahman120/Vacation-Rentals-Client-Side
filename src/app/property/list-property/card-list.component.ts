@@ -7,7 +7,8 @@ import { CommonModule } from '@angular/common';
 import { SearchComponent } from '../../search/search.component';
 import { FilterComponent } from '../filter/filter.component';
 import { FilterCategoryComponent } from '../filter-category/filter-category.component';
-import { PropertiesWithOffersComponent } from "../../properties-with-offers/properties-with-offers.component";
+import { PropertiesWithOffersComponent } from '../../properties-with-offers/properties-with-offers.component';
+import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
   selector: 'app-card-list',
@@ -18,8 +19,9 @@ import { PropertiesWithOffersComponent } from "../../properties-with-offers/prop
     SearchComponent,
     FilterComponent,
     FilterCategoryComponent,
-    PropertiesWithOffersComponent
-],
+    PropertiesWithOffersComponent,
+    FooterComponent,
+  ],
   templateUrl: './card-list.component.html',
   styleUrls: ['./card-list.component.css'],
 })
@@ -80,10 +82,10 @@ export class CardListComponent implements OnInit {
         endDate: params['end_date'],
         location: params['location'],
         sleeps: params['sleeps'],
-        price_min:params['price_min'],
-        price_max:params['price_max'],
-        bathrooms:params['bathrooms'],
-        bedrooms:params['bedrooms']
+        price_min: params['price_min'],
+        price_max: params['price_max'],
+        bathrooms: params['bathrooms'],
+        bedrooms: params['bedrooms'],
       };
 
       if (this.input.location || this.input.startDate || this.input.endDate) {

@@ -56,6 +56,7 @@ export class ViewPropertyComponent implements OnInit {
     autoApply: true,
     isInvalidDate: (date: moment.Moment) => this.isDateBlocked(date),
   };
+  isAvailable: any;
 
   constructor(
     private propertyService: PropertyService,
@@ -84,6 +85,16 @@ export class ViewPropertyComponent implements OnInit {
         : null;
       this.city = params['city'] || '';
       this.sleeps = +params['sleeps'] || 0;
+
+      if (this.dates.startDate && this.dates.endDate) {
+        this.checkIfAvailable(
+          this.propertyId,
+          this.dates.startDate,
+          this.dates.endDate
+        );
+      } else {
+        this.isAvailable = null;
+      }
 
       this.propertyService
         .viewProperty(this.propertyId)
@@ -183,6 +194,12 @@ export class ViewPropertyComponent implements OnInit {
     }
 
     this.calculateTotalPrice();
+
+    this.checkIfAvailable(
+      this.propertyId,
+      new Date(this.start_date),
+      new Date(this.end_date)
+    );
   }
 
   navigateToPayment() {
@@ -217,6 +234,22 @@ export class ViewPropertyComponent implements OnInit {
   deleteReview(id: number) {
     this.favouriteService.deleteReview(id).subscribe(() => {
       this.reviews = this.reviews.filter((review) => review.id !== id);
+    });
+  }
+
+  checkIfAvailable(id: string, startDate: Date, endDate: Date) {
+    const dates = {
+      start_date: startDate,
+      end_date: endDate,
+    };
+    this.propertyService.checkIfPropertyAvailable(id, dates).subscribe({
+      next: (res: any) => {
+        this.isAvailable = res.available;
+        console.log('property availability: ', res.available);
+      },
+      error: (err: any) => {
+        //
+      },
     });
   }
 

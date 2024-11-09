@@ -2,14 +2,14 @@
   class="card rounded-3 shadow border-1 position-relative"
   style="width: 30rem"
 >
-  <div class="card-body d-flex justify-content-between pb-0 mb-3">
+  <div class="card-body d-flex justify-content-between pb-0 mb-2">
     <div>
-      <h5 class="card-title mb-1 roboto-regular mb-2">
-        {{ property.name }}
+      <h5 class="card-title mb-1 roboto-regular">
+        {{ property.name | truncate : 19 }}
       </h5>
       <p class="card-subtitle roboto-regular">
         <i class="fas fa-map-marker-alt text-dark text-muted"></i>
-        {{ property.location | truncate : 25 }}
+        {{ property.location | truncate : 20 }}
       </p>
       <span class="text-muted">
         {{ email }}
@@ -20,9 +20,7 @@
     </div>
     <div class="text-center">
       <h5 class="text-dark poppins-regular" style="font-size: 1.5rem">
-        {{ payment.amount }}$/<small class="text-dark"
-          >{{ diffInDays }}nights</small
-        >
+        {{ property.night_rate }}$/<small class="text-dark">night</small>
       </h5>
     </div>
   </div>

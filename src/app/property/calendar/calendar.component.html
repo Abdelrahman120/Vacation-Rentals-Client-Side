@@ -65,6 +65,12 @@
             [(ngModel)]="endDate"
           />
         </div>
+        <div *ngIf="showDateError" class="text-danger text-center">
+          End Date cannot be before Start Date.
+        </div>
+        <div *ngIf="isBlocked" class="text-danger text-center">
+          Dates already blocked!
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

@@ -210,8 +210,24 @@ export class PropertyService {
   }
   getPropertiesByOffer(offer: string) {
     let offerParam = offer === 'yes' ? 'offer>0' : 'offer=0';
-    return this.http.get(`${this.BACKEND_API}/api/properties/with-offer?offer=${offerParam}`);
+    return this.http.get(
+      `${this.BACKEND_API}/api/properties/with-offer?offer=${offerParam}`
+    );
   }
-  
-  
+
+  checkIfPropertyAvailable(
+    propertyId: string,
+    dates: { start_date: Date; end_date: Date }
+  ) {
+    const formattedStartDate = dates.start_date.toISOString().split('T')[0];
+    const formattedEndDate = dates.end_date.toISOString().split('T')[0];
+
+    return this.http.post(
+      `${this.BACKEND_API}/api/property-booking/${propertyId}`,
+      {
+        start_date: formattedStartDate,
+        end_date: formattedEndDate,
+      }
+    );
+  }
 }
