@@ -41,6 +41,7 @@ export class NavbarComponent {
     this.loadNotifications();
     this.loadUnreadNotificationsCount();
     this.updateUnreadCount();
+    this.loadOwnerDetails();
     }
     this.intervalId = setInterval(() => {
       if(this.isAdmin()){
@@ -61,9 +62,7 @@ export class NavbarComponent {
       } else {
         this.loadUserDetails();
       }
-    } else {
-      console.error('No token found. Please log in again.');
-    }
+    } 
     this.loadUserDetails();
   }
 
@@ -119,9 +118,6 @@ export class NavbarComponent {
       (data) => {
         this.owner = data;
         console.log(this.owner);
-      },
-      (error) => {
-        console.error('Error fetching owner details:', error);
       }
     );
   }

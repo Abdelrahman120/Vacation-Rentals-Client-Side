@@ -57,8 +57,8 @@
               <div *ngFor="let item of pair" class="col-md-6 testimonial-item position-relative bg-white rounded overflow-hidden">
                 <p>{{ item.message }}</p>
                 <div class="d-flex align-items-center">
-                  <img class="img-fluid flex-shrink-0 rounded" src="http://localhost:8000/images/posts/{{ item.image }}" style="width: 45px; height: 45px;">
-                  <div class="ps-3">
+                  <i class="fa-solid fa-user fs-2 border-1 rounded-circle p-3"></i>
+                    <div class="ps-3">
                     <h6 class="fw-bold mb-1">{{ item.name }}</h6>
                     <small>{{ item.email }}</small>
                   </div>
@@ -69,7 +69,6 @@
           </div>
         </ng-container>
     
-        <!-- Fallback message if there are no testimonials -->
         <ng-template #noTestimonials>
           <div class="carousel-item active testimonial-item position-relative bg-white rounded overflow-hidden">
             <p>No Testimonials Found</p>

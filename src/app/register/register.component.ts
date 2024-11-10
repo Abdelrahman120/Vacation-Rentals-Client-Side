@@ -41,7 +41,7 @@ export class RegisterComponent {
             Validators.pattern(/^[0-9]*$/),
           ],
         ],
-        description: ['', Validators.required],
+      
         role: ['owner'],
         image: ['', Validators.required],
         gender: ['', Validators.required],

@@ -102,7 +102,6 @@ export class ViewPropertyComponent implements OnInit {
         .subscribe((res: any) => {
           this.propertyDetails = res.data;
           this.maxSleeps = res.data.sleeps;
-          console.log('Property Details:', res.data.sleeps);
           this.calculateTotalPrice();
         });
 
@@ -203,6 +202,8 @@ export class ViewPropertyComponent implements OnInit {
   }
 
   onSleepsChange() {
+    console.log('Sleeps: ', this.sleeps, this.maxSleeps);
+
     this.isOverMaxSleep = this.sleeps > this.maxSleeps;
   }
 
