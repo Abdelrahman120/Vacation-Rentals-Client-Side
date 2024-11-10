@@ -121,3 +121,6 @@
 .notification-item span {
   font-size: 0.9rem;
 }
+.clickable{
+  cursor: pointer;
+}
