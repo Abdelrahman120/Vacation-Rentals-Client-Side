@@ -167,13 +167,14 @@
             This property can only host {{ maxSleeps }}
           </span>
           <input
-            type="number"
+            type="text"
             id="guests"
             class="form-control text-center rounded-pill shadow-sm"
-            (ngModelChange)="onSleepsChange()"
             [(ngModel)]="sleeps"
-            min="1"
+            (ngModelChange)="onSleepsChange()"
             style="font-size: 1rem"
+            pattern="[0-9]*"
+            inputmode="numeric"
           />
         </div>
 
