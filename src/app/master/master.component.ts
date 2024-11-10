@@ -25,11 +25,11 @@ export class MasterComponent {
     'subject': '',
     'message': ''
   }
-  testmonials: any[] = [];
+  testimonials: any[] = [];
   properties: any[] = [];
-
+  pairedTestimonials :any[] = [];
   ngOnInit(): void {
-    this.getallTestmonials();
+    this.getAllTestimonials();
   }
 
   constructor (private testmonialService: TestimonialService , private propertyService: PropertyService) {}
@@ -47,15 +47,26 @@ export class MasterComponent {
     }
 }
 
-getallTestmonials() {
+getAllTestimonials() {
   this.testmonialService.getAllTestimonials().subscribe(
     (data) => {
-      this.testmonials = data.data;   
-      console.log(this.testmonials); 
-    }, (error) => {
+      this.testimonials = data.data;
+      this.pairedTestimonials = this.groupTestimonials(this.testimonials);
+      console.log(this.pairedTestimonials); // Check the grouped testimonials in the console
+    },
+    (error) => {
       console.log(error);
     }
-  )
+  );
+}
+
+// Group testimonials into pairs for display
+groupTestimonials(  testimonials: any) {
+  const pairs = [];
+  for (let i = 0; i < testimonials.length; i += 2) {
+    pairs.push(testimonials.slice(i, i + 2));
+  }
+  return pairs;
 }
 
 getFirstThree(){

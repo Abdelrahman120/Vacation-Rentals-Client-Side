@@ -39,10 +39,12 @@ export class NavbarComponent {
     this.loadNotifications();
     this.loadUnreadNotificationsCount();
     this.updateUnreadCount();
-    // this.intervalId = setInterval(() => {
-    //   this.loadNotifications();
-    //   this.loadNotificationsForOwner();
-    // }, 3000);
+    this.intervalId = setInterval(() => {
+      this.loadNotifications();
+      this.loadNotificationsForOwner();
+      this.loadUnreadNotificationsCount();
+      this.updateUnreadCount();
+    }, 3000);
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
     const userData = urlParams.get('user');

@@ -66,7 +66,7 @@
                   </li>
                   <li *ngFor="let notification of notificationsForOwner">
                     <a 
-                      class="dropdown-item" 
+                      class="dropdown-item clickable" 
                       (click)="markAndNavigate(notification.id, notification.data.property_id, $event)">
                       {{ notification.data.message }}
                     </a>
