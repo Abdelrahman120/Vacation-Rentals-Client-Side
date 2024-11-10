@@ -34,16 +34,22 @@ export class NavbarComponent {
   ) {}
 
   ngOnInit(): void {
-    this.loadNotificationsForOwner();
     this.loadOwnerDetails();
+
+    if(this.isOwner()){
+    this.loadNotificationsForOwner();
     this.loadNotifications();
     this.loadUnreadNotificationsCount();
     this.updateUnreadCount();
+    }
     this.intervalId = setInterval(() => {
-      this.loadNotifications();
+      if(this.isAdmin()){
+      this.loadNotifications();}
+      if(this.isOwner()){
       this.loadNotificationsForOwner();
       this.loadUnreadNotificationsCount();
       this.updateUnreadCount();
+      }
     }, 3000);
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
