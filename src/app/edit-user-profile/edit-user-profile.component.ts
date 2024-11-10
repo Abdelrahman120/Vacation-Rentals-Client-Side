@@ -140,15 +140,15 @@ export class EditUserProfileComponent implements OnInit {
       userData.image = this.selectedFile;
     }
 
-    this.userProfileService.updateUser(this.userId, userData).subscribe(
-      (response) => {
+    this.userProfileService.updateUser(this.userId, userData).subscribe({
+      next: (response) => {
         console.log('Update successful', response);
         this.router.navigate(['/user/payments']);
       },
-      (error) => {
+      error: (error) => {
         this.validationErrors = error.error.errors || {};
         console.error('Update failed', error);
-      }
-    );
+      },
+    });
   }
 }
