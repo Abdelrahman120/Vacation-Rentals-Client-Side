@@ -53,10 +53,20 @@
         <h1 class="fs-1 roboto-thin">{{ propertyDetails.headline }}</h1>
       </div>
 
-      <!-- <div class="book-info mb-3">
-        <h1 class="fs-1 fw-bold">Temperature</h1>
-        <p class="roboto-bold text-muted">🌡️ {{ propertyDetails.temperature }}°C</p>
-      </div> -->
+      <div
+        class="book-info mb-3 d-flex justify-content-evenly align-items-center"
+        style="width: 26rem"
+      >
+        <span class="roboto-bold text-muted"
+          >{{ property.bedrooms }} Bedrooms</span
+        >
+        |
+        <span class="roboto-bold text-muted"
+          >{{ property.bathrooms }} Bathrooms</span
+        >
+        |
+        <span class="roboto-bold text-muted">{{ property.sleeps }} Sleeps</span>
+      </div>
 
       <!-- Amenities Section -->
       <h1 class="text-dark roboto-regular mt-3 fw-bold fs-1">
