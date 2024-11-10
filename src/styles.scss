@@ -461,31 +461,24 @@ button.btn.btn-primary.btn-lg.billboard-search {
 
 /*---- residence section start ----  */
 
-// .card {
-//   --bs-card-border-width: none;
-//   --bs-card-border-radius: none;
-//   --bs-card-inner-border-radius: none;
-//   background-color: transparent !important;
-// }
-
 .card {
-    display: flex;
-    flex-direction: column;
-    border-radius: .5rem;
-    background-color: #fff;
-    margin: 1.25rem 0 1.25rem 0;
-    box-shadow: 0 .25rem .5rem #e6edef;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  margin: 1.25rem 0 1.25rem 0;
+  box-shadow: 0 0.25rem 0.5rem #e6edef;
 
-    .card-head {
-        padding: 1rem 1.5rem;
-        border-bottom: 1px solid #edf1f7;
-        font-size: 1rem;
-        font-weight: 600;
-    }
+  .card-head {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #edf1f7;
+    font-size: 1rem;
+    font-weight: 600;
+  }
 
-    .card-body {
-        padding: 1rem 1.5rem;
-    }
+  .card-body {
+    padding: 1rem 1.5rem;
+  }
 }
 
 .card-title {
@@ -892,5 +885,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

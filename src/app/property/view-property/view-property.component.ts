@@ -57,6 +57,8 @@ export class ViewPropertyComponent implements OnInit {
     isInvalidDate: (date: moment.Moment) => this.isDateBlocked(date),
   };
   isAvailable: any;
+  maxSleeps: number = 0;
+  isOverMaxSleep = false;
 
   constructor(
     private propertyService: PropertyService,
@@ -73,7 +75,6 @@ export class ViewPropertyComponent implements OnInit {
     this.propertyId = this.route.snapshot.paramMap.get('id') || '';
     const propertyId = this.route.snapshot.params['id'];
     this.minDate = moment();
-    console.log('Property ID:', typeof propertyId);
     this.checkIfUserCanReview();
     this.fetchBlockedDates(this.propertyId);
     this.route.queryParams.subscribe((params) => {
@@ -84,7 +85,7 @@ export class ViewPropertyComponent implements OnInit {
         ? new Date(params['end_date'])
         : null;
       this.city = params['city'] || '';
-      this.sleeps = +params['sleeps'] || 0;
+      this.sleeps = +params['sleeps'] || 1;
 
       if (this.dates.startDate && this.dates.endDate) {
         this.checkIfAvailable(
@@ -100,8 +101,8 @@ export class ViewPropertyComponent implements OnInit {
         .viewProperty(this.propertyId)
         .subscribe((res: any) => {
           this.propertyDetails = res.data;
-          console.log('Property Details:', this.propertyDetails);
-          console.log(this.propertyDetails.images);
+          this.maxSleeps = res.data.sleeps;
+          console.log('Property Details:', res.data.sleeps);
           this.calculateTotalPrice();
         });
 
@@ -109,7 +110,6 @@ export class ViewPropertyComponent implements OnInit {
         .getProperty(Number(this.propertyId))
         .subscribe((data) => {
           this.property = data.data;
-          console.log(data.data);
 
           this.initMap(this.property.latitude, this.property.longitude);
         });
@@ -200,6 +200,10 @@ export class ViewPropertyComponent implements OnInit {
       new Date(this.start_date),
       new Date(this.end_date)
     );
+  }
+
+  onSleepsChange() {
+    this.isOverMaxSleep = this.sleeps > this.maxSleeps;
   }
 
   navigateToPayment() {
