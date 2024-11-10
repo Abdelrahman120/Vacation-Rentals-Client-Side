@@ -49,15 +49,14 @@
     <div class="col-md-8">
       <!-- Features Section -->
       <div class="book-info mb-3">
-        <h1 class="fs-1 fw-bold">Cabin</h1>
-        <p class="roboto-bold text-muted">{{ propertyDetails.headline }}</p>
+        <p class="roboto-bold text-muted">{{ property.property_type }}</p>
+        <h1 class="fs-1 roboto-thin">{{ propertyDetails.headline }}</h1>
       </div>
 
       <!-- <div class="book-info mb-3">
         <h1 class="fs-1 fw-bold">Temperature</h1>
         <p class="roboto-bold text-muted">🌡️ {{ propertyDetails.temperature }}°C</p>
       </div> -->
-
 
       <!-- Amenities Section -->
       <h1 class="text-dark roboto-regular mt-3 fw-bold fs-1">
@@ -88,22 +87,18 @@
         style="max-width: 400px; margin: auto"
       >
         <div class="price-section mb-4 text-center position-relative">
-          <div
-            *ngIf="property.offer > 0"
-            class="offer-details"
-          >
+          <div *ngIf="property.offer > 0" class="offer-details">
             <p class="badge bg-danger text-white rounded-pill px-3 py-1 mb-2">
               Discount: {{ property.offer }}%
             </p>
             <p class="offer-price display-6 text-success fw-bold mb-1">
-              Offer Price:
-              ${{ property.total_price }}
+              Offer Price: ${{ property.total_price }}
             </p>
             <p class="original-price text-muted text-decoration-line-through">
-              Original Price:  ${{ getOfferPrice() }}
+              Original Price: ${{ getOfferPrice() }}
             </p>
           </div>
-<!-- 
+          <!-- 
           <div
             *ngIf="property.offer == 0 || !isOfferActive()"
             class="fw-bold position-absolute px-3 py-1 bg-warning text-dark rounded-3"
@@ -156,10 +151,14 @@
           <label for="guests" class="form-label fw-semibold"
             >Number of Guests</label
           >
+          <span *ngIf="isOverMaxSleep" class="float-end text-danger">
+            This property can only host {{ maxSleeps }}
+          </span>
           <input
             type="number"
             id="guests"
             class="form-control text-center rounded-pill shadow-sm"
+            (ngModelChange)="onSleepsChange()"
             [(ngModel)]="sleeps"
             min="1"
             style="font-size: 1rem"
@@ -182,7 +181,8 @@
             isAvailable === false ||
             isAvailable === null ||
             sleeps <= 0 ||
-            sleeps == null
+            sleeps == null ||
+            isOverMaxSleep
           "
           class="btn btn-primary rounded-pill w-100 mt-4 py-2 fw-semibold shadow-sm"
           (click)="navigateToPayment()"
@@ -209,7 +209,7 @@
     <h1 class="text-dark roboto-regular fs-1 fw-bold">Property Manager</h1>
     <div
       class="d-flex justify-content-center align-items-center"
-      style="width: 13rem"
+      style="width: 20rem"
     >
       <img
         [src]="
