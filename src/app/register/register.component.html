@@ -109,18 +109,18 @@
         }
       </div>
       <div class="mb-2 col-md-12">
-        <label for="description" class="form-label fs-6 text-uppercase fw-bold text-black">Description
-        </label>
-        <input id="description" type="text" name="description" class="form-control" formControlName="description" />
+        <!-- <label for="description" class="form-label fs-6 text-uppercase fw-bold text-black">Description
+        </label> -->
+        <input id="description" type="hidden" value="Some Description sdsds sdsds" name="description" class="form-control" formControlName="description" />
 
-        @if(registerForm.get('description')?.invalid &&
+        <!-- @if(registerForm.get('description')?.invalid &&
         (registerForm.get('description')?.touched || submitted)){
         <div id="descriptionErrors" class="form-text text-danger">
           @if(registerForm.get('description')?.hasError('required')){
           <span>Description is Required</span>
           }
         </div>
-        }
+        } -->
       </div>
       <input type="hidden" name="role" value="owner" formControlName="role" />
       <div class="mb-2 col-md-6">

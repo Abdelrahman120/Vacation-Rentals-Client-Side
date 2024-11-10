@@ -20,6 +20,7 @@ export class HeroComponent {
   constructor(
     private categoryService: CategoryService,
     private propetiesService: PropertyService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe((data: any) => {
@@ -39,6 +40,9 @@ export class HeroComponent {
     this.checkVisibility('services');
   }
 
+  goToDetails(id: string) {
+    this.router.navigate(['/property-details', id]);
+  }
   checkVisibility(sectionId: string) {
     const section = document.getElementById(sectionId);
     if (section) {

@@ -70,7 +70,7 @@
                 </div>
                 <p class="text-body mb-3">{{ item.description | truncate: 50 }}</p>
                 <div class="d-flex justify-content-end">
-                  <a class="btn btn-sm btn-warning rounded py-2 px-4" href="">View Detail</a>
+                  <a (click)="goToDetails(item.id)" class="btn btn-sm btn-warning rounded py-2 px-4">View Detail</a>
                 </div>
               </div>
             </div>
